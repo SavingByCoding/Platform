@@ -32,11 +32,18 @@
     </div>
     <div class = "row loginFormRow justify-content-around">
         <div class = "col-8 loginFormCol">
-            <div id = "firebaseui-auth-container" style = "display:none">
+            <div>
+                <button onclick= "GoogleSignIn()">Log in</button>
+            </div>
             </div>
         </div>
     </div>
 </div>
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+<script src="LoginFirebase.js"></script>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
