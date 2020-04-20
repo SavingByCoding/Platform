@@ -1,0 +1,83 @@
+.my-row{
+    height:500px;
+    width: 100%;
+
+
+}
+.mainbod{
+    background: #efe7e7;
+}
+.home-link{
+    font-size: 30px;
+    color: #FFD97D;
+    font-family: "Roboto Light";
+    text-shadow: 1px 1px 1px peru;
+    transition: all 1s ease;
+}
+.menuliststuff{
+    text-align: center;
+}
+.home-link:hover{
+    text-decoration: none;
+    text-shadow: darkred;
+}
+.mainnav{
+    background: #60D394;
+}
+.outputside {
+    background: blanchedalmond;
+    height:500px;
+    width:100%;
+
+    padding-right: 0;
+    padding-left: 0;
+}
+.maincol{
+    width:100%;
+    padding-right:0;
+    padding-left: 0;
+}
+.filler-col{
+    height: 20px;
+}
+
+.leftside, .rightside{
+    height: 100vh;
+    width:100%;
+}
+.rightside{
+    background: #ff0000;
+}
+.outputScreen{
+    height:80vh;
+    width:100%;
+    color: ghostwhite;
+    background: #1c3342;
+    text-align: start;
+    top: 0;
+}
+.CompileButton{
+    width:100%;
+    height:20vh;
+    background: #354d7b;
+    font-family: "Roboto Light";
+}
+.CompileButton:hover{
+    background: #2b3357;
+}
+#editor {
+    position: absolute;
+    top: 0;
+    right: 0%;
+    bottom: 0;
+    left: 0;
+}
+#compilescreen{
+    background: black;
+    height: max-content;
+    width: max-content;
+    top: 0;
+    right:0;
+    bottom:0;
+    left:0;
+}

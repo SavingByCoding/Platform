@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Code Compiler</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel = "stylesheet" type= "text/css" href = "Sandbox.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<httpProtocol>
+    <customHeaders>
+        <add name="Access-Control-Allow-Origin" value="*" />
+    </customHeaders>
+</httpProtocol>
+<body class = "mainbod">
+
+<nav class = "navbar mainnav navbar-light" >
+    <a href = "#" class = "nav-brand home-link">Saving By Coding</a>
+    <button class = "navbar-toggler menu-button" data-toggle = "collapse" data-target = "#navbar1">
+        <span class = "navbar-toggler-icon"></span>
+    </button>
+    <div class = "collapse navbar-collapse my-nav " id ="navbar1">
+        <ul class = "navbar-nav menu-list menuliststuff mx-auto">
+            <li class = "nav-item">
+                <a href = "#" class = "nav-link ">About</a>
+            </li>
+            <li class = "nav-item">
+                <a href = "#" class = "nav-link ">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br><br><br>
+<div class = "container-fluid maincont"><br><br>
+    <div class = "row my-row no-gutters">
+        <div class = "col no-gutters">
+            <div class = "leftside">
+                <div id="editor"> hello </div>
+                <div id=" compilescreen">
+                    <script src="ace.js" type="text/javascript" charset="utf-8"></script>
+                    <script>
+                        var editor = ace.edit("editor");
+                        editor.setTheme("ace/theme/dracula");
+                        editor.session.setMode("ace/mode/python");
+                    </script>
+                    <script src="Sandbox.js"></script>
+                </div>
+            </div>
+        </div>
+        <div class = "col no-gutters">
+            <div class = "rightside">
+                <button class="btn btn-primary CompileButton" id = "CompileButton" type="submit">Run It!</button>
+                <textarea class= "outputScreen" id = "outputScreen" readonly> Code Output</textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br>
+
+</body>
+</html>
