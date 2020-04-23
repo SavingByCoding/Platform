@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="admin.css" type="text/css">
+</head>
+<body ng-app="SBCAdmin" ng-controller="AppController">
+    <br />
+    <div class="container">
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item" ng-repeat="tab in tabs">
+                <a class="nav-link" href="#" ng-class="{'active': $index == currentTab}" ng-click="changeTab($index)">{{tab}}</a>
+            </li>
+        </ul>
+        <br />
+        <div ng-show="currentTab === 0">
+            a
+        </div>
+        <div ng-show="currentTab === 1">
+            b
+        </div>
+        <div ng-show="currentTab == 2">
+            <div class="grid row">
+                <div class="col-sm-12">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 100%;">
+                                <div class="input-group mb-3" style="margin-bottom: 0 !important;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="searchUsersLabel">
+                                            <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                              <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                                              <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" id="searchUsers" ng-model="usersQuery" placeholder="Search for Users">
+                                </div>
+                            </td>
+                            <td style="width: auto;">
+                                <button type="button" id="showStudents" class="btn btn-outline-primary" ng-click="toggleShowStudents()">{{showAdmins ? 'Hide': 'Show'}} Students</button>
+                            </td>
+                            <td style="width: auto;">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crudUserModal" ng-click="launchCreateUserModal()">Create User</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="modal fade" id="crudUserModal" tabindex="-1" role="dialog" aria-labelledby="crudUserModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="crudUserModalTitle">{{crudStates.user}} User: {{new.user.name}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="userName">Name</label>
+                                            <input type="name" ng-model="new.user.name" class="form-control" id="userName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="userEmail">Email</label>
+                                            <input type="email" ng-model="new.user.email" class="form-control" id="userEmail">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="userPassword">Password</label>
+                                            <input type="password" ng-model="new.user.password" class="form-control" id="userPassword">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="userDateOfBirth">Date of Birth</label>
+                                            <input type="date" ng-model="new.user.dateOfBirth" class="form-control" id="userDateOfBirth">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" ng-click="clearCrudUserModal()" class="btn btn-secondary" data-dismiss="modal">Clear</button>
+                                    <button type="button" ng-click="crudUser()" class="btn btn-primary" data-dismiss="modal">{{crudStates.user}} User</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                </div>
+                <div class="col-sm-6 col-lg-4" ng-repeat="user in users">
+                    <div class="card" ng-class="{'bg-primary': user.userType === 2, 'text-white': user.userType === 2}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{user.name}}</h5>
+                            <h6 class="card-subtitle mb-2">Joined: {{user.dateJoined | date: 'M/d/yyyy h:mm a'}}</h6>
+                            <p class="card-text">Birthday: {{user.dateOfBirth | date: 'MMMM d, yyyy'}}</p>
+                            <a href="#" class="card-link" style="color: white;">Edit</a>
+                            <a href="#" class="card-link" style="color: white;">Make {{user.userType === 1 ? 'Admin' : 'Student'}}</a>
+                            <a href="#" class="card-link" style="color: white;">Delete</a>
+                        </div>
+                    </div>
+                    <div class="hidden-md hidden-lg hidden-xl"><br/></div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="currentTab == 3">
+            <div class="grid row">
+                <div class="col-sm-12">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 100%;">
+                                <div class="input-group mb-3" style="margin-bottom: 0 !important;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="searchEventsLabel">
+                                            <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                              <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                                              <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" id="searchEvents" ng-model="eventsQuery" placeholder="Search for Events">
+                                </div>
+                            </td>
+                            <td style="width: auto;">
+                                <button type="button" id="showArchivedEvents" class="btn btn-outline-primary" ng-click="toggleShowArchivedEvents()">{{showArchivedEvents ? 'Hide': 'Show'}} Archived Events</button>
+                            </td>
+                            <td style="width: auto;">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crudEventModal" ng-click="launchCreateEventModal()">Create Event</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="modal fade" id="crudEventModal" tabindex="-1" role="dialog" aria-labelledby="crudEventModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="crudEventModalTitle">{{crudStates.event}} Event: {{new.event.name}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="eventName">Name</label>
+                                            <input type="name" ng-model="new.event.name" class="form-control" id="eventName" placeholder="e.g. Unit 1 Lesson 1 Call - Cohort 1">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="eventLink">Link</label>
+                                            <input type="url" ng-model="new.event.link" class="form-control" id="eventLink" placeholder="e.g. https://meet.google.com/j4E8Al">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="eventDescription">Description</label>
+                                            <textarea class="form-control" ng-model="new.event.description" id="eventDescription" rows="3" placeholder="e.g. This call is about lesson 1, where we learn variables interactively."></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="eventTime">Date & Time</label>
+                                            <input type="datetime-local" ng-model="new.event.time" class="form-control" id="eventTime" placeholder="Select a data and time">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" ng-click="clearCrudEventModal()" class="btn btn-secondary" data-dismiss="modal">Clear</button>
+                                    <button type="button" ng-click="crudEvent()" class="btn btn-primary" data-dismiss="modal">{{crudStates.event}} Event</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                </div>
+                <div class="col-md-6 col-lg-4" ng-repeat="event in events" ng-hide="(event.archived && !showArchivedEvents) || (!event.name.toLowerCase().includes(eventsQuery.toLowerCase()) && !event.description.toLowerCase().includes(eventsQuery.toLowerCase()) && eventsQuery)">
+                    <div class="card" ng-class="{'archivedCard': event.archived}">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <span>
+                                    {{event.name}}
+                                    <a href="{{event.link}}" target="_blank">
+                                        <svg class="bi bi-link" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M6.354 5.5H4a3 3 0 000 6h3a3 3 0 002.83-4H9c-.086 0-.17.01-.25.031A2 2 0 017 10.5H4a2 2 0 110-4h1.535c.218-.376.495-.714.82-1z"/>
+                                          <path d="M6.764 6.5H7c.364 0 .706.097 1 .268A1.99 1.99 0 019 6.5h.236A3.004 3.004 0 008 5.67a3 3 0 00-1.236.83z"/>
+                                          <path d="M9 5.5a3 3 0 00-2.83 4h1.098A2 2 0 019 6.5h3a2 2 0 110 4h-1.535a4.02 4.02 0 01-.82 1H12a3 3 0 100-6H9z"/>
+                                          <path d="M8 11.33a3.01 3.01 0 001.236-.83H9a1.99 1.99 0 01-1-.268 1.99 1.99 0 01-1 .268h-.236c.332.371.756.66 1.236.83z"/>
+                                        </svg>
+                                    </a>
+                                </span>
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><b>Time</b>: {{event.time | date: 'MMM d, yyyy @ h:mm a'}}</h6>
+                            <p class="card-text">{{event.description}}</p>
+                            <div style="">
+                                <a href="#" class="card-link" data-toggle="modal" data-target="#crudEventModal" ng-click="launchEditEventModal($index)">Edit</a>
+                                <a href="#" class="card-link" ng-click="toggleEventArchived($index)">{{event.archived ? "Unarchive" : "Archive"}}</a>
+                                <a href="#" class="card-link" ng-click="deleteEvent($index)">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden-md hidden-lg hidden-xl"><br/></div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="currentTab == 4">
+            e
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-animate/1.7.9/angular-animate.min.js" integrity="sha256-4Am33FY45kRUTsiTIMaIc7t10JBmM6ybI/SYqNcMxsQ=" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+
+    <script src="admin.js"></script>
+</body>
+</html>
