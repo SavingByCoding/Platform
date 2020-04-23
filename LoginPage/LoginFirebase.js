@@ -1,4 +1,5 @@
 // Your web app's Firebase configuration
+var provider = new firebase.auth.GoogleAuthProvider();
 var firebaseConfig = {
     apiKey: "AIzaSyCKzKvzgyg6mhOw11DH4R2VAGeCWT1rAuU",
     authDomain: "savingbycoding-222b6.firebaseapp.com",
@@ -14,7 +15,6 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
 GoogleSignIn=()=>{
-    var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
         console.log("works");
         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -34,4 +34,24 @@ GoogleSignIn=()=>{
     });
 
 
+}
+
+RegularLogIn=()=>{
+    let email= document.getElementById('username').value;
+    let password= document.getElementById('password').value;
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+    });
+}
+
+
+SignOut=()=>{
+    firebase.auth().signOut().then(function () {
+        // Sign-out successful.
+    }).catch(function (error) {
+        // An error happened.
+    });
 }
