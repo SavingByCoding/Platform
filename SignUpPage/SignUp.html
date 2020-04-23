@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel = "stylesheet" href = "SignUp.css">
+    <title>Title</title>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase.js "></script>
+</head>
+<body class = "loginbody">
+<nav class="mb-1 navbar navbar-expand-lg navbar-expand-sm navbar-dark mainNavBar">
+    <a class="navbar-brand" href="#"><img src = SBC-logos_transparent.png class = "home-link"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav ml-auto listOfMenus">
+            <li class="nav-item linksMenu">
+                <a class="nav-link linksMenu" href="#">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link linksMenu" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link linksMenu" href="#">How to Access</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Course Content
+                </a>
+                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item" href="#">HTML</a>
+                    <a class="dropdown-item" href="#">Python</a>
+
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <h5>Login/Sign up</h5>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-default dropMenu"
+                     aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item " href="#">Login</a>
+                    <a class="dropdown-item active" href="#">Sign Up</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br><br><br><br>
+<div class = "container loginContainer">
+    <div class = "row loginHeaderRow justify-content-around">
+        <div class = "col loginHeaderColumn">
+            <div class="card loginHeaderCard">
+                <div class="card-body">
+                    <h1 class = "cardLoginPageText">Sign Up Page</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <BR>
+    <div class = "row loginHeaderRow justify-content-around">
+        <div class = "col loginHeaderColumn">
+            <div class="card loginHeaderCard">
+                <div class="card-body">
+                    <style type="text/css">
+                        body {
+                            color: #4e4e4e;
+                            background: #d9ccba;
+                            font-family: 'Roboto', sans-serif;
+                        }
+                        .mainAvatar{
+                            font-size: 50px;
+                        }
+                        .form-control {
+                            font-size: 16px;
+                            background: #f2f2f2;
+                            box-shadow: none !important;
+                            border-color: transparent;
+                        }
+                        .form-control:focus {
+                            border-color: #d3d3d3;
+                        }
+                        .form-control, .btn {
+                            border-radius: 2px;
+                        }
+                        .login-form {
+                            width: 380px;
+                            margin: 0 auto;
+                        }
+                        .login-form h2 {
+                            margin: 0;
+                            padding: 30px 0;
+                            font-size: 34px;
+                        }
+                        .login-form .avatar {
+                            margin: 0 auto 30px;
+                            width: 100px;
+                            height: 100px;
+                            border-radius: 50%;
+                            z-index: 9;
+                            background: #ef3b3a;
+                            padding: 15px;
+                            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+                        }
+                        .login-form .avatar img {
+                            width: 100%;
+                        }
+                        .login-form form {
+                            color: #7a7a7a;
+                            border-radius: 4px;
+                            margin-bottom: 15px;
+                            background: #fff;
+                            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                            padding: 30px;
+                        }
+                        .login-form .btn {
+                            font-weight: bold;
+                            background: #ef3b3a;
+                            border: none;
+                            margin-bottom: 20px;
+                        }
+                        .login-form .btn:hover, .login-form .btn:focus {
+                            background: #ed2121;
+                            outline: none !important;
+                        }
+                        .login-form a {
+                            color: #ef3b3a;
+                        }
+                        .login-form form a {
+                            color: #ef3b3a;
+                        }
+                        .login-form a:hover, .login-form form a:hover {
+                            text-decoration: underline;
+                        }
+                        .hint-text {
+                            color: #999;
+                            text-align: center;
+                        }
+                        .form-footer {
+                            padding-bottom: 15px;
+                            text-align: center;
+                        }
+                    </style>
+                    <div class="login-form loginFORM">
+                        <h2 class="text-center">Sign up to be a member!</h2>
+                        <form>
+                            <div class="avatar mainAvatar">
+                                <h1>SBC</h1>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control input-lg" id="username" name="username" placeholder="Email Address" required="required">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control input-lg" id="password" name="password" placeholder="Password" required="required">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-lg btn-block login-btn" onclick= "RegularSignUp()" >Sign up</button>
+                            </div>
+                            <p class = "hint-text"> Or use Google to login!</p>
+                            <div>
+                                <button class="btn btn-primary LoginButton" onclick= "GoogleSignIn()">Google</button>
+                            </div>
+                            <p class="hint-text">Any Questions? <a href="#">Ask Us!</a></p>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+<script src="SignUpFirebase.js"></script>
+</body>
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>

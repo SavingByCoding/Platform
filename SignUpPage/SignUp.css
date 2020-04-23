@@ -1,0 +1,165 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
+.my-nav{
+    background:#d4c3aa ;
+}
+
+.home-link{
+    height: 60px;
+    width:60px;
+    transition: all 2s ease;
+}
+.home-link:hover{
+    transform: scale(1.4);
+    text-decoration: none;
+    text-shadow: darkred;
+}
+.mainnav{
+    background: #d4c3aa;
+}
+.menu-list{
+    text-align: center;
+}
+
+.main-header{
+    background: blanchedalmond;
+    text-shadow: 1px 1px 1px peru;
+    font-size: 35px;
+    text-align: center;
+    text-decoration: overline;
+    height: 200px;
+    transition: all 0.5s ease;
+}
+.main-title{
+    font-family: "Roboto Thin";
+    color: #000000;
+    font-stretch: ultra-expanded;
+    font-stretch: expanded;
+
+}
+
+.main-header:hover {
+    background: rgba(60, 112, 132, 0.9);
+    font-size: 40px;
+    color: #000000;
+}
+.cardbodystuff{
+    background: antiquewhite;
+    text-align: center;
+}
+.mainnav{
+    background: #FFD97D;
+}
+.logo-imagestuff{
+    height:80px;
+    width: 80px;
+}
+.loginbody{
+    background: url("background.gif");
+    background-repeat: no-repeat;
+    background-size: 200%;
+}
+.loginContainer{
+    width:50%;
+    height:300px;
+}
+.loginHeaderColumn{
+    background: transparent;
+    text-align: center;
+    transition: all 1s ease;
+    width:85%;
+
+}
+.loginFormCol{
+    background: rgba(100, 170, 232, 0.4);
+}
+.loginFormRow {
+    height:300px;
+}
+.loginHeaderColumn:hover {
+    transform: scale(1.05);
+}
+
+
+.joinNowCard{
+    height: 358px;
+    font-family: Oswald;
+    border: 4px solid mediumvioletred;
+    background: antiquewhite;
+    text-align: center;
+}
+.LoginButton{
+    width:60%;
+    height:40px;
+    background: #d44d4d;
+    font-size: 15px;
+    transition: all 1s ease;
+    border: transparent;
+}
+.LoginButton:hover{
+    transform: scale(1.02);
+    background: #842020;
+    font-family: Oswald;
+    font-size: 18px;
+    border: transparent;
+}
+.cardLoginPageText{
+    font-family: Oswald;
+    color: #08174c;
+    font-size: 40px;
+}
+.loginCard{
+    background: antiquewhite;
+    font-family: Oswald;
+    border: 4px solid mediumvioletred;
+}
+.loginHeaderCard{
+    background: antiquewhite;
+    border: 4px solid mediumvioletred;
+    font-family: "Oswald";
+}
+.cardBody{
+    text-align: center;
+}
+.otherOption{
+    font-size: 11px;
+}
+.SignUpLinkButton{
+    color: antiquewhite;
+    background:#412f7b ;
+    transition: all 1s ease;
+    font-stretch:extra-condensed ;
+}
+.SignUpLinkButton1{
+    color: antiquewhite;
+    font-family: Oswald;
+    background:#412f7b ;
+    transition: all 1s ease;
+    font-stretch:extra-condensed;
+    height:10%;
+    width:20%;
+}
+.SignUpLinkButton1:hover{
+    transform: scale(1.02);
+    background: #7746ca ;
+}
+.SignUpLinkButton:hover{
+    transform: scale(1.02);
+    background: #7746ca ;
+}
+.profileIcon{
+    width: 30px;
+    height: 30px;
+}
+.mainNavBar{
+    background: #354d7b;
+    font-family: Oswald;
+
+}
+.footerRow{
+    background: darkviolet;
+}
+.signUpCard{
+    justify-content: center;
+    height:200px;
+    width:80%;
+}
