@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel = "stylesheet" href = "SignUp.css">
+    <link rel = "stylesheet" href = "GoogleButton.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
     <title>Title</title>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase.js "></script>
 </head>
@@ -150,7 +152,6 @@
                     </style>
                     <div class="login-form loginFORM">
                         <h2 class="text-center">Sign up to be a member!</h2>
-
                             <div class="avatar mainAvatar">
                                 <h1>SBC</h1>
                             </div>
@@ -162,10 +163,10 @@
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary btn-lg btn-block login-btn" onclick= "RegularSignUp()" >Sign up</button>
-                            </div>
-                            <p class = "hint-text"> Or use Google to login!</p>
-                            <div>
-                                <button class="btn btn-primary LoginButton" onclick= "GoogleSignIn()">Google</button>
+
+                                <button onclick= "GoogleSignUp()" class="loginBtn loginBtn--google">
+                                    Sign Up with Google
+                                </button>
                             </div>
                             <p class="hint-text">Any Questions? <a href="#">Ask Us!</a></p>
                     </div>
