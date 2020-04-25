@@ -4,10 +4,10 @@
 .my-row{
     height:500px;
     width: 100%;
-
-
 }
-
+html {
+    scroll-behavior: smooth;
+}
 .home-link{
     height: 60px;
     width:60px;
@@ -61,13 +61,14 @@
     text-align: start;
     top: 0;
 }
-.CompileButton{
+.CheckButton{
+    visibility: visible;
     width:100%;
     height:100%;
     border: transparent;
     background: #d75f5f;
     font-family: "Oswald";
-    font-size: 25px;
+    font-size: 40px;
     color: #23233B;
     transition: all 0.5s ease;
     padding-left: 0;
@@ -75,11 +76,12 @@
     margin-right: 0;
     margin-left: 0;
 }
-.CompileButton:hover{
+.CheckButton:hover{
     background: #9a4444;
     transform: scale(1.03);
     color: #e7e6cb
 }
+
 #editor {
     position: absolute;
     top: 0;
@@ -204,7 +206,43 @@
     color: #23233B;
     font-family: Karla;
 }
+
 .FOOTER{
     background: antiquewhite;
     border: 2px solid #23233B;
+}
+
+.CorrectButton{
+    visibility: hidden;
+    width:100%;
+    height:100%;
+    border: transparent;
+    background: #58b836;
+    font-family: "Oswald";
+    font-size: 40px;
+    color: #23233B;
+    transition: all 0.5s ease;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+.CorrectButton:hover{
+    background: #45922a;
+    transform: scale(1.03);
+    color: #e7e6cb
+}
+.helpCard{
+    background: antiquewhite;
+    text-align: center;
+    color: #23233B;
+    font-family: Karla;
+}
+.POPUP{
+    text-align: center;
+}
+
+.close{
+    margin-left:-90%;
+    margin-top:1%;
 }

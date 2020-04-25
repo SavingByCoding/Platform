@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Code Compiler</title>
+    <title>Sandbox</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel = "stylesheet" type= "text/css" href = "Sandbox.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -16,28 +16,80 @@
 </httpProtocol>
 <body class = "mainbod">
 
-<nav class = "navbar mainnav navbar-light"  >
-    <a href = "#" class = "nav-brand home-link">Saving By Coding</a>
-    <button class = "navbar-toggler menu-button" data-toggle = "collapse" data-target = "#navbar1">
-        <span class = "navbar-toggler-icon"></span>
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-expand-sm navbar-dark mainNavBar">
+    <a class="navbar-brand" href="#"><img src = SBC-logos_transparent.png class = "home-link"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
-    <div class = "collapse navbar-collapse my-nav " id ="navbar1">
-        <ul class = "navbar-nav menu-list menuliststuff mx-auto">
-            <li class = "nav-item">
-                <a href = "#" class = "nav-link ">About</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav ml-auto listOfMenus">
+            <li class="nav-item linksMenu">
+                <a class="nav-link linksMenu" href="#">Home
+                    <span class="sr-only">(current)</span>
+                </a>
             </li>
-            <li class = "nav-item">
-                <a href = "#" class = "nav-link ">Contact</a>
+            <li class="nav-item">
+                <a class="nav-link linksMenu" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link linksMenu" href="#">How to Access</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Course Content
+                </a>
+                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item" href="#">HTML</a>
+                    <a class="dropdown-item" href="#">Python</a>
+
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link linksMenu active" href="#">Sandbox</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <h5>Login/Sign up</h5>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-default dropMenu"
+                     aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item " href="#">Login</a>
+                    <a class="dropdown-item" href="#">Sign Up</a>
+                </div>
             </li>
         </ul>
     </div>
 </nav>
-<br><br><br>
-<div class = "container-fluid maincont"><br><br>
+<!--/.Navbar -->
+<br>
+
+
+<br>
+
+<div class = "container">
+    <div class = "row">
+        <div class="card instructionsCard">
+            <div class="card-body instructionsCard">
+                <h4>How it Works</h4>
+                <p>Use our sandbox editor to test out your own ideas and expand on your knowledge! Running out of ideas? Refer to our Project Ideas at the bottom of this page that you can try and test yourself with! Once you're done, click the red "Run it!" button and watch your code come to life in the output screen on the right!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<br>
+<div class = "container-fluid maincont">
     <div class = "row my-row no-gutters">
         <div class = "col no-gutters">
             <div class = "leftside">
-                <div id="editor"> </div>
+                <div id="editor"> #Put your code in here</div>
                 <div id=" compilescreen">
                     <script src="ace.js" type="text/javascript" charset="utf-8"></script>
                     <script>
@@ -51,13 +103,87 @@
         </div>
         <div class = "col no-gutters">
             <div class = "rightside">
-                <button class="btn btn-primary CompileButton" id = "CompileButton" type="submit">Run It!</button>
-                <textarea class= "outputScreen" id = "outputScreen" readonly> Code Output</textarea>
+
+                <textarea class= "outputScreen" id = "outputScreen" readonly>--> Code Output</textarea>
             </div>
         </div>
     </div>
 </div>
-<br><br><br>
 
+
+<div class = "container buttonCont">
+    <div class = "row buttonRow justify-content-around">
+        <div class="col-12 colButton">
+            <button class="btn btn-primary CompileButton" id = "CompileButton" type="submit">Run It!</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="card mt-3 tab-card">
+        <div class="card-header tab-card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true">Project One</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false">Project Two</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="three-tab" data-toggle="tab" href="#three" role="tab" aria-controls="Three" aria-selected="false">Project Three</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="four-tab" data-toggle="tab" href="#four" role="tab" aria-controls="Four" aria-selected="false">Project Four</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content tabContent" id="myTabContent">
+            <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+                <h5 class="card-title">Project Idea One</h5>
+                <p class="card-text">Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality, though, the unity and coherence of ideas among sentences is what constitutes a paragraph. A paragraph is defined as “a group of sentences or a single sentence that forms a unit” (Lunsford and Connors 116). Length and appearance do not determine whether a section in a paper is a paragraph. For instance, in some styles of writing, particularly journalistic styles, a paragraph can be just one sentence long. Ultimately, a paragraph is a sentence or group of sentences that support one main idea. In this handout, we will refer to this as the “controlling idea,” because it controls what happens in the rest of the paragraph.</p>
+                <a href="#" class="btn btn-primary projectButton">See Full Project</a>
+            </div>
+            <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
+                <h5 class="card-title">Project Idea Two</h5>
+                <p class="card-text">Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality, though, the unity and coherence of ideas among sentences is what constitutes a paragraph. A paragraph is defined as “a group of sentences or a single sentence that forms a unit” (Lunsford and Connors 116). Length and appearance do not determine whether a section in a paper is a paragraph. For instance, in some styles of writing, particularly journalistic styles, a paragraph can be just one sentence long. Ultimately, a paragraph is a sentence or group of sentences that support one main idea. In this handout, we will refer to this as the “controlling idea,” because it controls what happens in the rest of the paragraph.</p>
+                <a href="#" class="btn btn-primary projectButton">See Full Project</a>
+            </div>
+            <div class="tab-pane fade p-3" id="three" role="tabpanel" aria-labelledby="three-tab">
+                <h5 class="card-title">Project Idea Three</h5>
+                <p class="card-text">Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality, though, the unity and coherence of ideas among sentences is what constitutes a paragraph. A paragraph is defined as “a group of sentences or a single sentence that forms a unit” (Lunsford and Connors 116). Length and appearance do not determine whether a section in a paper is a paragraph. For instance, in some styles of writing, particularly journalistic styles, a paragraph can be just one sentence long. Ultimately, a paragraph is a sentence or group of sentences that support one main idea. In this handout, we will refer to this as the “controlling idea,” because it controls what happens in the rest of the paragraph.</p>
+                <a href="#" class="btn btn-primary projectButton">See Full Project</a>
+            </div>
+            <div class="tab-pane fade p-3" id="four" role="tabpanel" aria-labelledby="four-tab">
+                <h5 class="card-title">Project Idea Four</h5>
+                <p class="card-text">Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality, though, the unity and coherence of ideas among sentences is what constitutes a paragraph. A paragraph is defined as “a group of sentences or a single sentence that forms a unit” (Lunsford and Connors 116). Length and appearance do not determine whether a section in a paper is a paragraph. For instance, in some styles of writing, particularly journalistic styles, a paragraph can be just one sentence long. Ultimately, a paragraph is a sentence or group of sentences that support one main idea. In this handout, we will refer to this as the “controlling idea,” because it controls what happens in the rest of the paragraph.</p>
+                <a href="#" class="btn btn-primary projectButton">See Full Project</a>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<br><br>
+<footer id="sticky-footer" class="py-4  FOOTER text-white-50">
+    <div class="container  text-center">
+        <div class = "row">
+            <div class = "col-4">
+                <h5>2020 Copyright: Saving By Coding</h5>
+                <p>Make a difference in your life</p>
+            </div>
+            <div class = "col-4 linksColFooter">
+                <small><a class = "Links" href="#">Home Page</a></small><br>
+                <small><a class = "Links" href="#">About Us</a></small><br>
+                <small><a class = "Links" href="#">How to Access</a></small><br>
+                <small><a class = "Links" href="#">HTML</a></small><br>
+                <small><a class = "Links" href="#">Python</a></small><br>
+            </div>
+            <div class = "col-4"></div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
