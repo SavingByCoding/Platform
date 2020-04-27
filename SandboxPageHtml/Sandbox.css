@@ -137,7 +137,7 @@ html {
     height:30%;
 }
 .card {
-    background-color: #354d7b;
+    background-color: antiquewhite;
     border: 1px solid rgba(0, 34, 51, 0.1);
     box-shadow: 2px 4px 10px 0 rgba(0, 34, 51, 0.05), 2px 4px 10px 0 rgba(0, 34, 51, 0.05);
     border-radius: 0.15rem;
@@ -168,7 +168,7 @@ html {
     border: 0;
     border-bottom:2px solid transparent;
     margin-right: 0;
-    color: antiquewhite;
+    color: #23233b;
     padding: 2px 15px;
 }
 
@@ -187,7 +187,7 @@ html {
     background: #354d7b;
 }
 .tabContent{
-    color: antiquewhite;
+    color: #23233b;
 }
 .instructionsCard{
     background:antiquewhite ;
@@ -245,4 +245,19 @@ html {
 .close{
     margin-left:-90%;
     margin-top:1%;
+}
+.codeTitle{
+    color: #23233B;
+    background: #d9cbbc;
+    font-family: Karla;
+    font-size: 20px;
+    border: transparent;
+    text-align: center;
+}
+.editImage{
+    height:15px;
+    width:15px;
+}
+.headerEditor{
+    font-size: 30px;
 }

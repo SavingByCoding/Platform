@@ -246,3 +246,18 @@ html {
     margin-left:-90%;
     margin-top:1%;
 }
+.codeTitle{
+    color: #23233B;
+    background: #d9cbbc;
+    font-family: Karla;
+    font-size: 20px;
+    border: none;
+    text-align: center;
+}
+.editImage{
+    height:15px;
+    width:15px;
+}
+.headerEditor{
+    font-size: 30px;
+}

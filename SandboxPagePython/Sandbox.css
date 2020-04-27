@@ -68,7 +68,7 @@
     border: transparent;
     background: #d75f5f;
     font-family: "Oswald";
-    font-size: 25px;
+    font-size: 40px;
     color: #23233B;
     transition: all 0.5s ease;
     padding-left: 0;
@@ -136,7 +136,7 @@
     height:30%;
 }
 .card {
-    background-color: #354d7b;
+    background-color: antiquewhite;
     border: 1px solid rgba(0, 34, 51, 0.1);
     box-shadow: 2px 4px 10px 0 rgba(0, 34, 51, 0.05), 2px 4px 10px 0 rgba(0, 34, 51, 0.05);
     border-radius: 0.15rem;
@@ -167,7 +167,7 @@
     border: 0;
     border-bottom:2px solid transparent;
     margin-right: 0;
-    color: antiquewhite;
+    color: #23233b;
     padding: 2px 15px;
 }
 
@@ -186,7 +186,7 @@
     background: #354d7b;
 }
 .tabContent{
-    color: antiquewhite;
+    color: #23233b;
 }
 .instructionsCard{
     background:antiquewhite ;
@@ -208,4 +208,27 @@
 .FOOTER{
     background: antiquewhite;
     border: 2px solid #23233B;
+}
+.codeTitle{
+    color: #23233B;
+    background: #d9cbbc;
+    font-family: Karla;
+    font-size: 20px;
+    border: transparent;
+    text-align: center;
+}
+.editImage{
+    height:15px;
+    width:15px;
+}
+.headerEditor{
+    font-size: 30px;
+    font-family: Karla;
+    color: #23233b;
+}
+.headerCard{
+    background: antiquewhite;
+    font-size: 20px;
+    text-align: center;
+    border: none;
 }
