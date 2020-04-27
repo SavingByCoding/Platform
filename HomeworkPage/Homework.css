@@ -24,9 +24,8 @@ html {
 }
 .outputside {
     background: blanchedalmond;
-    height:500px;
+    height:100%;
     width:100%;
-
     padding-right: 0;
     padding-left: 0;
 }
@@ -44,10 +43,10 @@ html {
     padding-left: 0;
 }
 .leftside{
-    height: 109%;
+    height: 100px;
 }
 .rightside{
-    height: 100%;
+    height: 700px;
     background: #354d7b;
     padding-right: 0;
 }
@@ -60,6 +59,7 @@ html {
     background: #f6ecec;
     text-align: start;
     top: 0;
+    resize: none;
 }
 .CheckButton{
     visibility: visible;

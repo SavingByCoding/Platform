@@ -1,3 +1,5 @@
+let HomeWorkAnswer= "hello"; //We manually Put in
+let OutputConsoleText=""; //Kids Code
 $(document).ready(function () {
 
     $("#CompileButton").click(function () {
@@ -14,14 +16,27 @@ $(document).ready(function () {
 
         function processRequest(e) {
             Output= xhr.responseText;
+            CheckAnswer();
             insertText(Output);
         }
 
         function insertText(text) {
             document.getElementById("outputScreen").value= text;
+            OutputConsoleText=text;
         }
 
 
     });
 
 });
+
+function CheckAnswer(){
+    if(HomeWorkAnswer == OutputConsoleText.ignoreCase){
+        jQuery.noConflict();
+        $("#CorrectAnswer").modal('show');
+    }
+    else {
+        jQuery.noConflict();
+        $("#IncorrectAnswer").modal('show');
+    }
+}

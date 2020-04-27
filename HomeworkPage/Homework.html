@@ -67,26 +67,26 @@
     </div>
 </nav>
 <!--/.Navbar -->
-<br>
+<!--<br>-->
 
 
-<br>
+<!--<br>-->
 
-<!--<div class = "container">-->
-<!--    <div class = "row">-->
-<!--        <div class="card instructionsCard">-->
-<!--            <div class="card-body instructionsCard">-->
-<!--                <h4 class><u>How it Works</u></h4>-->
-<!--                <p>Complete homework assignments in this editor to get the credit for it. Make sure to follow every instructions to get the exact output needed to proceed!</p>-->
-<!--                <p> Need some help? Use the <a href="#HomeworkHelper"> Homework Helper </a>at the bottom of this page. Still confused? Refer to our <a href="#"> content </a> for some help or <a href="#"> contact us</a>!</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<!--&lt;!&ndash;<div class = "container">&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class = "row">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="card instructionsCard">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="card-body instructionsCard">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h4 class><u>How it Works</u></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>Complete homework assignments in this editor to get the credit for it. Make sure to follow every instructions to get the exact output needed to proceed!</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p> Need some help? Use the <a href="#HomeworkHelper"> Homework Helper </a>at the bottom of this page. Still confused? Refer to our <a href="#"> content </a> for some help or <a href="#"> contact us</a>!</p>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-<br>
+<!--<br>-->
 
-<br>
+<!--<br>-->
 <div class = "container-fluid maincont">
     <div class = "row my-row no-gutters">
         <div class = "col no-gutters">
@@ -113,11 +113,20 @@
 </div>
 
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <div class = "container buttonCont">
     <div class = "row buttonRow justify-content-around">
         <div class="col-12 colButton">
-            <button class="btn btn-primary CheckButton" id = "CompileButton" type="submit" data-toggle="modal" data-target="#myModal">Check your code!</button>
+<!--            <button class="btn btn-primary CheckButton" id = "CompileButton" type="submit" data-toggle="modal" data-target="#CorrectAnswer">Check your code!</button>-->
+            <button class="btn btn-primary CheckButton" id = "CompileButton" type="submit">Check your code!</button>
         </div>
     </div>
 </div>
@@ -138,9 +147,8 @@
         </div>
     </div></div>
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="CorrectAnswer" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content POPUP">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -152,9 +160,20 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal" ><a href="#"> Assignment List</a></button>
             </div>
         </div>
-
     </div>
 </div>
+<div id="IncorrectAnswer" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content POPUP">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Try Again</h4>
+            <div class="modal-body">
+                <p> Sorry, your output was incorrect.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <br>
 <footer id="sticky-footer" class="py-4  FOOTER text-white-50">
