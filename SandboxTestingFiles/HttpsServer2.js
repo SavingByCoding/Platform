@@ -16,7 +16,15 @@ http.createServer((request, response) => {
     compiler.compilePython( envData , code, function(data){
         console.log("code"+ code);
         console.log("output"+data.output);
-        output=data.output;
+        let tempstringversionofoutput= new String(data.output);
+        // console.log(data.error);
+        if(tempstringversionofoutput == "undefined"){
+            output= data.error;
+            console.log(data.error);
+        }
+        else{
+            output=data.output;
+        }
         response.write(output);
         response.end();
     });
