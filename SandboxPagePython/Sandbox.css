@@ -106,7 +106,24 @@
 }
 .mainbod{
     background: #d7ebf5;
+
 }
+.fadeCont{
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
 .page-footer{
     background: #23233B;
     font-family: Karla;
