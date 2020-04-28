@@ -68,7 +68,9 @@ $(document).ready(function () {
 
     $("#DownloadCodeButton").click(function () {
         var text = editor.getValue();
-        var filename = "ProjectCode.html";
+        var filename = $("#ProjectName").val();
+        var filename= filename+".html";
+        console.log(filename);
 
         download(filename, text);
 
