@@ -1,14 +1,14 @@
 // Your web app's Firebase configuration
 var provider = new firebase.auth.GoogleAuthProvider();
 var firebaseConfig = {
-    apiKey: "AIzaSyCKzKvzgyg6mhOw11DH4R2VAGeCWT1rAuU",
-    authDomain: "savingbycoding-222b6.firebaseapp.com",
-    databaseURL: "https://savingbycoding-222b6.firebaseio.com",
-    projectId: "savingbycoding-222b6",
-    storageBucket: "savingbycoding-222b6.appspot.com",
-    messagingSenderId: "881760339308",
-    appId: "1:881760339308:web:9f91a36ad42928ff4e5f49",
-    measurementId: "G-PTGHQ5MEFQ"
+    apiKey: "AIzaSyBOn9KJJihPr0F0zXNcj_tlHn6tGgxIsMI",
+    authDomain: "saving-by-coding.firebaseapp.com",
+    databaseURL: "https://saving-by-coding.firebaseio.com",
+    projectId: "saving-by-coding",
+    storageBucket: "saving-by-coding.appspot.com",
+    messagingSenderId: "1001321494305",
+    appId: "1:1001321494305:web:7261fc3516fd79bc557060",
+    measurementId: "G-GLKDW56H9N"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

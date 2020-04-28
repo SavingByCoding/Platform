@@ -14,6 +14,50 @@
         <add name="Access-Control-Allow-Origin" value="*" />
     </customHeaders>
 </httpProtocol>
+<script>
+    let HomeWorkAnswer= new String("hello"); //We manually Put in
+    $(document).ready(function () {
+
+        $("#CompileButton").click(function () {
+            let Code= editor.getValue();
+            Code= encodeURI(Code);
+            Code= Code.replace(/#/g,"~"); //To make sure Comments Work
+            let Output= ""; //Kids Code
+            let Url= "https://cors-anywhere.herokuapp.com/http://18.218.244.255:8080/"+ Code;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', Url, true);
+            xhr.send();
+            xhr.onreadystatechange = processRequest;
+
+            if(HomeWorkAnswer == Output){
+                console.log("here");
+                jQuery.noConflict();
+                // $("#IncorrectAnswer").modal('hide');
+                $("#CorrectAnswer").modal('show');
+            }
+            else {
+                jQuery.noConflict();
+                // $("#CorrectAnswer").modal('hide');
+                $("#IncorrectAnswer").modal('show');
+
+            }
+            function processRequest(e) {
+                Output= xhr.responseText;
+                insertText(Output);
+            }
+
+            function insertText(text) {
+                document.getElementById("outputScreen").value = text;
+            }
+
+
+
+        });
+
+
+    });
+</script>
 <body class = "mainbod">
 
 <!--Navbar -->
@@ -108,7 +152,6 @@
                         editor.setTheme("ace/theme/dracula");
                         editor.session.setMode("ace/mode/python");
                     </script>
-                    <script src="HomeworkEditor.js"></script>
                 </div>
             </div>
         </div>
