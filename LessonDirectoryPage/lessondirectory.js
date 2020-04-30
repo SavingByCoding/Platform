@@ -65,9 +65,11 @@ app.controller('AppController', function($scope) {
                         id: doc.id,
                         name: doc.data().name,
                         description: doc.data().description,
+                        ordinalNumber: doc.data().ordinalNumber,
                         type: $scope.getChild(item.type)
                     });
                 }
+                $scope.items.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0));
                 $scope.$apply();
             });
         }
