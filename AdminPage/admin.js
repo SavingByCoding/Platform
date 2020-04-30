@@ -9,7 +9,6 @@ firebase.initializeApp({
     measurementId: "G-GLKDW56H9N"
 });
 firebase.analytics();
-
 var db = firebase.firestore();
 var app = angular.module('SBCAdmin', ['ngAnimate']);
 
