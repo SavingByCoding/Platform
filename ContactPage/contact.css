@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+}
+
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 3px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+.message-
+{
+    border-radius: 5px;
+    background-color: rgba(64, 152, 160, 0.56);
+    line-height: normal;
+    margin-top: 6px;
+    padding: 20px;
+}
+body{
+    background-image: url("https://airbus-h.assetsadobe2.com/is/image/content/dam/corporate-topics/innovation/Innovation-future-technology.jpg?wid=1920&fit=fit,1&qlt=85,0 " );
+    color: white;
+    font-size: 25px;
+
+}
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 80px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: black;
+    padding: 10px;
+    opacity:95%
+}
+
+.column {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+    padding: 20px;
+}
+.button
+{
+    text-align: center;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media screen and (max-width: 2000px) {
+    .column, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
