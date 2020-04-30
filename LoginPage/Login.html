@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel = "stylesheet" href = "Login.css">
     <link rel = "stylesheet" href = "GoogleButton.css">
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
     <title>Saving By Coding</title>
 </head>
 <body class = "loginbody">
@@ -55,10 +56,10 @@
     </div>
 </nav>
 <!--/.Navbar -->
-<br><br><br><br>
+<br><br>
 
 
-<div class = "container loginContainer">
+<div class = "container loginContainer" data-aos="fade-up">
     <div class = "row loginHeaderRow justify-content-around">
         <div class = "col loginHeaderColumn">
             <div class="card loginHeaderCard">
@@ -71,7 +72,7 @@
     <br>
 
 
-    <div class = "row loginFormRow justify-content-around ">
+    <div class = "row loginFormRow justify-content-around " data-aos="fade-up">
         <div class = "col loginButtonCol">
 
             <div class="card loginCard">
@@ -156,7 +157,7 @@
                         }
                     </style>
                     <div class="login-form loginFORM">
-                        <h2 class="text-center">Member Login</h2>
+                        <h2 class="text-center memberLog">Member Login</h2>
 
                             <div class="avatar mainAvatar">
                                 <h1>SBC</h1>
@@ -180,12 +181,15 @@
         </div>
     </div>
 </div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
+</div>
+</body>
 <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
 <script src="LoginFirebase.js"></script>
-</body>
-
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script>AOS.init();</script>
 </html>
