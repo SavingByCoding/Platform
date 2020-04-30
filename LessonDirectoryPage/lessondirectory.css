@@ -62,3 +62,17 @@
         transform: translate(24px, 0);
     }
 }
+
+.card {
+    width: 100%;
+}
+
+.card-body {
+    position: relative;
+}
+
+.enterButton {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
