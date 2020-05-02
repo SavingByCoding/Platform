@@ -14,56 +14,13 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
+    <script src="HomeworkEditor.js"></script>
 </head>
 <httpProtocol>
     <customHeaders>
         <add name="Access-Control-Allow-Origin" value="*" />
     </customHeaders>
 </httpProtocol>
-<script>
-    let HomeWorkAnswer= new String("hello"); //We manually Put in
-    $(document).ready(function () {
-
-        $("#CompileButton").click(function () {
-            let Code= editor.getValue();
-            Code= encodeURI(Code);
-            Code= Code.replace(/#/g,"~"); //To make sure Comments Work
-            let Output= ""; //Kids Code
-            let Url= "https://cors-anywhere.herokuapp.com/http://18.218.244.255:8080/"+ Code;
-
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', Url, true);
-            xhr.send();
-            xhr.onreadystatechange = processRequest;
-
-            if(HomeWorkAnswer == Output){
-                console.log("here");
-                jQuery.noConflict();
-                // $("#IncorrectAnswer").modal('hide');
-                $("#CorrectAnswer").modal('show');
-            }
-            else {
-                jQuery.noConflict();
-                // $("#CorrectAnswer").modal('hide');
-                $("#IncorrectAnswer").modal('show');
-
-            }
-            function processRequest(e) {
-                Output= xhr.responseText;
-                insertText(Output);
-            }
-
-            function insertText(text) {
-                document.getElementById("outputScreen").value = text;
-            }
-
-
-
-        });
-
-
-    });
-</script>
 <body class = "mainbod">
 
 <!--Navbar -->
@@ -121,7 +78,7 @@
 <div class="container">
     <div class="card helpCard">
         <div class="card-body ">
-            <h5 class="card-title headerEditor"><u>Python Homework Code Editor</u></h5>
+            <h5 id= "HomeworkName" class="card-title headerEditor"><u></u></h5>
         </div>
     </div>
 </div>
@@ -179,12 +136,18 @@
 <br>
 <br>
 <br>
-
 <div class = "container buttonCont">
     <div class = "row buttonRow justify-content-around">
         <div class="col-12 colButton">
-<!--            <button class="btn btn-primary CheckButton" id = "CompileButton" type="submit" data-toggle="modal" data-target="#CorrectAnswer">Check your code!</button>-->
-            <button class="btn btn-primary CheckButton" id = "CompileButton" type="submit">Check your code!</button>
+            <button class="btn btn-primary CheckButton" id = "CompileButton" type="submit"  > Compile Your Code!</button>
+        </div>
+    </div>
+</div>
+<br>
+<div class = "container buttonCont">
+    <div class = "row buttonRow justify-content-around">
+        <div class="col-12 colButton">
+            <button class="btn btn-primary CheckButton" id = "Submit" type="submit" data-toggle="modal" data-target="#CorrectAnswer" onclick="SubmitHomework()"> Submit Your Code!</button>
         </div>
     </div>
 </div>
@@ -212,7 +175,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Good Job</h4>
             <div class="modal-body">
-                <p>You completed your homework assignment correctly!</p>
+                <p>Congratulations you completed your homework assignment!</p>
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-default" data-dismiss="modal" ><a href="#"> Assignment List</a></button>
@@ -220,17 +183,17 @@
         </div>
     </div>
 </div>
-<div id="IncorrectAnswer" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content POPUP">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Try Again</h4>
-            <div class="modal-body">
-                <p> Sorry, your output was incorrect.</p>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div id="IncorrectAnswer" class="modal fade" role="dialog">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content POPUP">-->
+<!--            <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--            <h4 class="modal-title">Try Again</h4>-->
+<!--            <div class="modal-body">-->
+<!--                <p> Sorry, your output was incorrect.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 <br>
