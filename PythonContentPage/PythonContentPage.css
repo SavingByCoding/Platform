@@ -1,0 +1,142 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Asap:wght@700&family=Taviraj:wght@600&display=swap');
+.bodystuff{
+    background: #d7ebf5;
+}
+.mainNavBar{
+    background: #23233b;
+    font-family: Karla;
+}
+.listOfMenus{
+    font-family: Karla;
+}
+.home-link{
+    height: 60px;
+    width:60px;
+    transition: all 2s ease;
+}
+.home-link:hover{
+    transform: scale(1.4);
+}
+.HRROW{
+    background: #23233b;
+    height: 10px;
+}
+.overviewHeader{
+    text-align: center;
+    font-family: Karla;
+    color: #23233b;
+    background: antiquewhite;
+    border-radius: 15px;
+}
+.overviewRow{
+    font-size: 30px;
+    height: 50px;
+}
+.mainRow{
+    height:100%;
+}
+.unitNameDisplayCol, .unitDisplayCol,.unitOverviewCol{
+    border: 6px solid #23233b;
+}
+.unitNameDisplayCol{
+    border: 6px solid #23233b;
+}
+.Units{
+
+}
+.UnitButton{
+    width: 100%;
+    height: 100px;
+    color: #23233b;
+    font-family: Karla;
+    font-size: 25px;
+    background: antiquewhite;
+    border: transparent;
+    transition: all ease 0.5s;
+}
+.UnitButton:hover{
+    background: #c9beae;
+    transform: scale(1.05);
+}
+
+.ChapterButton{
+    width:100%;
+    height:50px;
+    color:#23233b;
+    font-family: Karla;
+    font-size: 12px;
+    background: antiquewhite;
+    border: transparent;
+    display: block;
+    transition: all ease 0.5s;
+}
+
+.ChapterButton:hover{
+    background: #c9beae;
+    transform: scale(1.05);
+}
+
+.UnitChapters{
+    display: none;
+}
+.u1{
+    background: antiquewhite;
+}
+.u2{
+    background: #f3cc99;
+}
+.u3{
+    background: #ffd093;
+}
+.u4{
+    background: #f8bd6e;
+}
+.u5{
+    background: #fdb344;
+}
+.chap{
+    font-family: Karla;
+    color: #23233b;
+    text-align: center;
+    transition: all 1s ease;
+
+    display: none;
+    border-radius: 25px;
+}
+.chap:hover{
+    transform: scale(1.03);
+}
+@keyframes fadeInAnimation1 {
+    0%{
+        opacity: 0;
+        transform: translateX(-30%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+.closeButton{
+    width:40%;
+    background: antiquewhite;
+    color: #23233b;
+    font-family: Karla;
+    font-size: 20px;
+    border: none;
+    transition: all ease 0.5s;
+}
+.closeButton:hover{
+    transform: scale(1.05);
+    background: #c2b8a9;
+}
+.linksColFooter, .Links{
+    color: #23233B;
+    font-family: Karla;
+}
+.FOOTER{
+    background: antiquewhite;
+    border: 2px solid #23233B;
+}
+

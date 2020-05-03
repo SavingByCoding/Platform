@@ -233,16 +233,7 @@
     border: none;
 }
 
-@keyframes fadeInAnimation {
-    0%{
-        transform: translateX(-70%);
-        opacity: 0;
-    }
-    100%{
-        transform: translateX(0%);
-        opacity: 1;
-    }
-}
+
 
 .jumboCont{
     background: url("https://media.pri.org/s3fs-public/styles/story_main/public/story/images/MDM%20Show7.jpg?itok=I6BAMl6B");
@@ -270,6 +261,16 @@
     animation: fadeInAnimation ease 3s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation {
+    0%{
+        transform: translateX(-70%);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0%);
+        opacity: 1;
+    }
 }
 .mainLinkButtons{
     width: 100%;
