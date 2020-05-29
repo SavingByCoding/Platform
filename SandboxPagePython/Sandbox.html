@@ -13,8 +13,9 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="../FirebaseCode.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="../app.js"></script>
 </head>
 <httpProtocol>
     <customHeaders>
@@ -85,7 +86,7 @@
 <div class = "container fadeCont">
     <div class = "row justify-content-around">
         <div class = "col-8"  >
-            <input class="form-control codeTitle" type="text" ng-model = "name1" id="t1" style="display: flow">
+            <input id="ProjectName" class="form-control codeTitle" type="text" ng-model = "name1" id="t1" style="display: flow">
             <input class="form-control codeTitle" type="text" ng-model = "name2" id="t2" style="display: none">
             <input class="form-control codeTitle" type="text" ng-model = "name3" id = "t3" style="display: none">
             <input class="form-control codeTitle" type="text" ng-model = "name4" id = "t4" style="display: none">
@@ -150,7 +151,6 @@
             <button class = "btn-primary projectLoadButtons" onclick="chooseActive(8)" id = "Project08" ng-model = "name">{{name8}}</button>
             <button class = "btn-primary projectLoadButtons" onclick="chooseActive(9)" id = "Project09" ng-model = "name">{{name9}}</button>
             <button class = "btn-primary projectLoadButtons" onclick="chooseActive(10)" id = "Project10" ng-model = "name">{{name10}}</button>
-        </div>
         </div>
     </div>
 </div>
