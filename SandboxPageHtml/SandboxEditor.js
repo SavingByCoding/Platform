@@ -234,6 +234,7 @@ function chooseActive(num1){
         document.getElementById("Project08").classList.remove("active");
         document.getElementById("Project09").classList.remove("active");
         document.getElementById("Project10").classList.remove("active");
+        document.getElementById("Project06").classList.add("active");
 
         document.getElementById("t1").style.display = "none";
         document.getElementById("t2").style.display = "none";
@@ -257,6 +258,7 @@ function chooseActive(num1){
         document.getElementById("Project08").classList.remove("active");
         document.getElementById("Project09").classList.remove("active");
         document.getElementById("Project10").classList.remove("active");
+        document.getElementById("Project07").classList.add("active");
 
         document.getElementById("t1").style.display = "none";
         document.getElementById("t2").style.display = "none";

@@ -28,7 +28,7 @@ $(document).ready(function () {
 
 var moduleA = angular.module("myApp",[]);
 moduleA.controller("myCont1",function($scope){
-   $scope.name1 = "Unnamed Project 1"
+    $scope.name1 = "Unnamed Project 1"
     $scope.name2 = "Unnamed Project 2"
     $scope.name3 = "Unnamed Project 3"
     $scope.name4 = "Unnamed Project 4"
@@ -52,7 +52,7 @@ function chooseActive(num1){
         document.getElementById("Project10").classList.remove("active");
         document.getElementById("Project01").classList.add("active");
 
-        document.getElementById("t1").style.display = "flex";
+        document.getElementById("t1").style.display = "flow";
         document.getElementById("t2").style.display = "none";
         document.getElementById("t3").style.display = "none";
         document.getElementById("t4").style.display = "none";
@@ -77,7 +77,7 @@ function chooseActive(num1){
         document.getElementById("Project02").classList.add("active");
 
         document.getElementById("t1").style.display = "none";
-        document.getElementById("t2").style.display = "flex";
+        document.getElementById("t2").style.display = "flow";
         document.getElementById("t3").style.display = "none";
         document.getElementById("t4").style.display = "none";
         document.getElementById("t5").style.display = "none";
@@ -102,7 +102,7 @@ function chooseActive(num1){
 
         document.getElementById("t1").style.display = "none";
         document.getElementById("t2").style.display = "none";
-        document.getElementById("t3").style.display = "flex";
+        document.getElementById("t3").style.display = "flow";
         document.getElementById("t4").style.display = "none";
         document.getElementById("t5").style.display = "none";
         document.getElementById("t6").style.display = "none";
@@ -126,7 +126,7 @@ function chooseActive(num1){
         document.getElementById("t1").style.display = "none";
         document.getElementById("t2").style.display = "none";
         document.getElementById("t3").style.display = "none";
-        document.getElementById("t4").style.display = "flex";
+        document.getElementById("t4").style.display = "flow";
         document.getElementById("t5").style.display = "none";
         document.getElementById("t6").style.display = "none";
         document.getElementById("t7").style.display = "none";
@@ -150,7 +150,7 @@ function chooseActive(num1){
         document.getElementById("t2").style.display = "none";
         document.getElementById("t3").style.display = "none";
         document.getElementById("t4").style.display = "none";
-        document.getElementById("t5").style.display = "flex";
+        document.getElementById("t5").style.display = "flow";
         document.getElementById("t6").style.display = "none";
         document.getElementById("t7").style.display = "none";
         document.getElementById("t8").style.display = "none";
@@ -168,13 +168,14 @@ function chooseActive(num1){
         document.getElementById("Project08").classList.remove("active");
         document.getElementById("Project09").classList.remove("active");
         document.getElementById("Project10").classList.remove("active");
+        document.getElementById("Project06").classList.add("active");
 
         document.getElementById("t1").style.display = "none";
         document.getElementById("t2").style.display = "none";
         document.getElementById("t3").style.display = "none";
         document.getElementById("t4").style.display = "none";
         document.getElementById("t5").style.display = "none";
-        document.getElementById("t6").style.display = "flex";
+        document.getElementById("t6").style.display = "flow";
         document.getElementById("t7").style.display = "none";
         document.getElementById("t8").style.display = "none";
         document.getElementById("t9").style.display = "none";
@@ -191,6 +192,7 @@ function chooseActive(num1){
         document.getElementById("Project08").classList.remove("active");
         document.getElementById("Project09").classList.remove("active");
         document.getElementById("Project10").classList.remove("active");
+        document.getElementById("Project07").classList.add("active");
 
         document.getElementById("t1").style.display = "none";
         document.getElementById("t2").style.display = "none";
@@ -198,7 +200,7 @@ function chooseActive(num1){
         document.getElementById("t4").style.display = "none";
         document.getElementById("t5").style.display = "none";
         document.getElementById("t6").style.display = "none";
-        document.getElementById("t7").style.display = "flex";
+        document.getElementById("t7").style.display = "flow";
         document.getElementById("t8").style.display = "none";
         document.getElementById("t9").style.display = "none";
         document.getElementById("t10").style.display = "none";
@@ -222,7 +224,7 @@ function chooseActive(num1){
         document.getElementById("t5").style.display = "none";
         document.getElementById("t6").style.display = "none";
         document.getElementById("t7").style.display = "none";
-        document.getElementById("t8").style.display = "flex";
+        document.getElementById("t8").style.display = "flow";
         document.getElementById("t9").style.display = "none";
         document.getElementById("t10").style.display = "none";
     }
@@ -246,7 +248,7 @@ function chooseActive(num1){
         document.getElementById("t6").style.display = "none";
         document.getElementById("t7").style.display = "none";
         document.getElementById("t8").style.display = "none";
-        document.getElementById("t9").style.display = "flex";
+        document.getElementById("t9").style.display = "flow";
         document.getElementById("t10").style.display = "none";
     }
     else if (num1 === 10){
@@ -270,7 +272,7 @@ function chooseActive(num1){
         document.getElementById("t7").style.display = "none";
         document.getElementById("t8").style.display = "none";
         document.getElementById("t9").style.display = "none";
-        document.getElementById("t10").style.display = "flex";
+        document.getElementById("t10").style.display = "flow";
     }
 
 }

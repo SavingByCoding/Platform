@@ -86,8 +86,8 @@
 <div class = "container fadeCont">
     <div class = "row justify-content-around">
         <div class = "col-8"  >
-            <input id="ProjectName" class="form-control codeTitle" type="text" ng-model = "name1" id="t1" style="display: flow">
-            <input class="form-control codeTitle" type="text" ng-model = "name2" id="t2" style="display: none">
+            <input id="ProjectName" class="form-control codeTitle" type="text" ng-model = "name1" id= "t1" style="display: flex">
+            <input class="form-control codeTitle" type="text" ng-model = "name2" id = "t2" style="display: none">
             <input class="form-control codeTitle" type="text" ng-model = "name3" id = "t3" style="display: none">
             <input class="form-control codeTitle" type="text" ng-model = "name4" id = "t4" style="display: none">
             <input class="form-control codeTitle" type="text" ng-model = "name5" id = "t5" style="display: none">
@@ -118,8 +118,8 @@
 
 <!--<br>-->
 <div class = "container-fluid maincont ">
-    <div class = "row my-row no-gutters">
-        <div class = "col-5 no-gutters">
+    <div class = "row my-row no-gutters" style="margin: 0">
+        <div class = "col-5 no-gutters" >
             <div class = "leftside">
                 <div id="editor"> #Put your code in here</div>
                 <div id=" compilescreen">
@@ -138,19 +138,19 @@
                 <textarea class= "outputScreen" id = "outputScreen" readonly>--> Code Output</textarea>
             </div>
         </div>
-        <div class = "col-3" style="background: #ebefeb; font-family: Karla; border: 4px solid #23233b">
+        <div class = "col-3" style="background: #ebefeb;text-align: center; font-family: Karla; border: 4px solid #23233b">
             <h3 style="text-align: center"><b><u>Projects</u></b></h3>
-            <br>
-            <button class = "btn-primary projectLoadButtons active" onclick="chooseActive(1)" id = "Project01" ng-model = "name">{{name1}}</button>
-            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(2)" id = "Project02" ng-model = "name"> {{name2}} </button>
-            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(3)" id = "Project03" ng-model = "name">{{name3}}</button>
-            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(4)" id = "Project04" ng-model = "name">{{name4}}</button>
-            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(5)" id = "Project05" ng-model = "name">{{name5}}</button>
-            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(6)" id = "Project06" ng-model = "name">{{name6}}</button>
-            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(7)" id = "Project07" ng-model = "name">{{name7}}</button>
-            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(8)" id = "Project08" ng-model = "name">{{name8}}</button>
-            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(9)" id = "Project09" ng-model = "name">{{name9}}</button>
-            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(10)" id = "Project10" ng-model = "name">{{name10}}</button>
+            <small>Access previous projects in this directory!</small>
+            <button class = "btn-primary projectLoadButtons active" onclick="chooseActive(1) " id = "Project01" ng-model = "name1">{{name1}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(2) " id = "Project02" ng-model = "name2"> {{name2}} </button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(3) " id = "Project03" ng-model = "name3"> {{name3}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(4) " id = "Project04" ng-model = "name4"> {{name4}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(5) " id = "Project05" ng-model = "name5"> {{name5}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(6) " id = "Project06" ng-model = "name6"> {{name6}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(7) " id = "Project07" ng-model = "name7"> {{name7}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(8) " id = "Project08" ng-model = "name8"> {{name8}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(9) " id = "Project09" ng-model = "name9"> {{name9}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(10) " id = "Project10" ng-model = "name10"> {{name10}}</button>
         </div>
     </div>
 </div>

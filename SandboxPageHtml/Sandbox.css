@@ -49,7 +49,7 @@ html {
     height: 700px;
     background: #354d7b;
     padding-right: 0;
-    width: 87.5%;
+    width: 100%;
 }
 .outputScreen{
     height:100%;
@@ -89,7 +89,7 @@ html {
     right: 0%;
     bottom: 0;
     left: 0;
-    width: 87.5%;
+    width: 100%;
 }
 .col no-gutters{
     width: 0%;
