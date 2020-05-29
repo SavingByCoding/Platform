@@ -65,4 +65,13 @@ input[type=submit]:hover {
         width: 100%;
         margin-top: 0;
     }
+    .linksColFooter, .Links{
+        color: #23233B;
+        font-family: Karla;
+    }
+    .FOOTER{
+        background: antiquewhite;
+        border: 2px solid #23233B;
+    }
+
 }
