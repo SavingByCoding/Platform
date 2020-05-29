@@ -2,52 +2,96 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact</title>
     <link rel = "stylesheet" type="text/css" href = "contact.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Contact Page</title>
 </head>
-<body>
-<!navbar!>
-
-<div class="container">
-    <div style="text-align:center">
-        <h1>Get in Touch</h1>
-        <p>Let's talk about how we can help. <br> Questions? Want to Volunteer? <br> <b> Email us at savingbycoding@gmail.com or contact us through the form below.</b>
-        </p>
-    </div>
-    <div class="form">
-        <form class ="contact-form" action="contact.php" method="post">
-            <div class="row">
-                <div class="column">
-                    <label for="fname">First Name</label>
-                    <input type="text" id="fname" name="fname" placeholder="Your first name..">
-                    <label for="email">Email</label>
-                    <input type="text" id="email" name="email" placeholder="Your email..">
-                </div>
-                <div class="column">
-                    <label for="lname">Last Name</label>
-                    <input type="text" id="lname" name="lname" placeholder="Your last name..">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" placeholder="Subject..">
+<body class="mainbod">
 
 
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-expand-sm navbar-dark mainNavBar" >
+    <a class="navbar-brand" href="#"><img src = SBC-logos_transparent.png class = "home-link"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav ml-auto listOfMenus">
+            <li class="nav-item linksMenu">
+                <a class="nav-link linksMenu" href="#">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link linksMenu active" href="#"> Contact Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link linksMenu" href="#">How to Access</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Course Content
+                </a>
+                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item" href="#">HTML</a>
+                    <a class="dropdown-item" href="#">Python</a>
+
                 </div>
-                <div class="message-">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="Write something.." style="height:170px"></textarea>
-                    <div class="button">
-                        <input type="submit" value="Submit">
-                    </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link linksMenu " href="#">Sandbox</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <h5>Profile</h5>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-default dropMenu"
+                     aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item " href="#">Visit Profile</a>
+                    <a class="dropdown-item " href="#">Assignments</a>
+                    <a class="dropdown-item" href="#">Logout</a>
                 </div>
-            </div>
-        </form>
+            </li>
+        </ul>
     </div>
+</nav>
+<!--/.Navbar -->
+
+
+<div class="jumbotron jumboCont jumbotron-fluid " data-aos="fade-down">
+    <div class="container">
+        <div class = "col-6 jumboWordShape align-content-center ml-auto">
+            <br>
+            <h2 style = "font-size: 40px;"><u>CONTACT US</u></h2><br>
+            <br>
+        </div>
     </div>
 </div>
+<div class= "googleform">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScbfMBxBSeJQ2KmNo0-Wt0xXoBqItGeGz900PD7HdXsFJQWCA/viewform?embedded=true" width="640" height="832" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 </div>
-<div class = "container">
-    <div class = "row HRROW" ></div>
+
+<div class = "container" data-aos="fade-up">
+    <div class = "row justify-content-around">
+        <div class = "col-8 whoWeDoItFor contactHeader">
+            <br>
+            <h1>Interested in teaching?</h1>
+            <br>
+        </div>
+    </div>
+    <br>
+    <div class = "row justify-content-around">
+        <div class = "col-8 whoWeDoItFor">
+            <h5>For those interested in teaching, <a href="#">contact us</a> and we will respond as soon as we can! We are always looking for prospective teachers and student-teachers to work with.</h5>
+        </div>
+    </div>
 </div>
-<br><br>
+
 <footer id="sticky-footer" class="py-4  FOOTER text-white-50">
     <div class="container  text-center">
         <div class = "row">
@@ -67,5 +111,9 @@
     </div>
 </footer>
 </body>
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
 </html>
