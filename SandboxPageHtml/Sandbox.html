@@ -14,16 +14,16 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
     <script src="../app.js"></script>
     <script src="../MainController.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
 </head>
 <httpProtocol>
     <customHeaders>
         <add name="Access-Control-Allow-Origin" value="*" />
     </customHeaders>
 </httpProtocol>
-<body ng-app= "ToDoList" class = "mainbod">
+<body ng-app = "myApp" ng-controller = "myCont1" class = "mainbod">
 
 <!--Navbar -->
 <nav class="mb-1 navbar navbar-expand-lg navbar-expand-sm navbar-dark mainNavBar">
@@ -87,7 +87,16 @@
 <div class = "container">
     <div class = "row justify-content-around">
         <div class = "col-8 ">
-            <input id="ProjectName" class="form-control codeTitle" type="text" placeholder="Name Your New Program">
+            <input class="form-control codeTitle" type="text" ng-model = "name1" id="t1" style="display: flow">
+            <input class="form-control codeTitle" type="text" ng-model = "name2" id="t2" style="display: none">
+            <input class="form-control codeTitle" type="text" ng-model = "name3" id = "t3" style="display: none">
+            <input class="form-control codeTitle" type="text" ng-model = "name4" id = "t4" style="display: none">
+            <input class="form-control codeTitle" type="text" ng-model = "name5" id = "t5" style="display: none">
+            <input class="form-control codeTitle" type="text" ng-model = "name6" id = "t6" style="display: none">
+            <input class="form-control codeTitle" type="text" ng-model = "name7" id = "t7" style="display: none">
+            <input class="form-control codeTitle" type="text" ng-model = "name8" id = "t8" style="display: none">
+            <input class="form-control codeTitle" type="text" ng-model = "name9" id = "t9" style="display: none">
+            <input class="form-control codeTitle" type="text" ng-model = "name10" id = "t10" style="display: none">
         </div>
     </div>
 </div>
@@ -114,21 +123,36 @@
     <div class = "row my-row no-gutters">
         <div class = "col-5 no-gutters">
             <div class = "leftside">
-                <div id="editor"></div>
+                <div id="editor"> #Put your code in here</div>
                 <div id=" compilescreen">
                     <script src="ace.js" type="text/javascript" charset="utf-8"></script>
+                    <script>
+                        var editor = ace.edit("editor");
+                        editor.setTheme("ace/theme/dracula");
+                        editor.session.setMode("ace/mode/python");
+                    </script>
                     <script src="SandboxEditor.js"></script>
                 </div>
             </div>
         </div>
         <div class = "col-4 no-gutters">
             <div class = "rightside">
-                <iframe class= "outputScreen" id = "outputScreen" frameBorder="0"></iframe>
-<!--                <textarea class= "outputScreen" id = "outputScreen" readonly>&ndash;&gt; Code Output</textarea>-->
+                <textarea class= "outputScreen" id = "outputScreen" readonly>--> Code Output</textarea>
             </div>
         </div>
-        <div class = "col-3" style="background: green">
-            Put stuff here
+        <div class = "col-3" style="background: #ebefeb; font-family: Karla; border: 4px solid #23233b">
+            <h3 style="text-align: center"><b><u>Projects</u></b></h3>
+            <br>
+            <button class = "btn-primary projectLoadButtons active" onclick="chooseActive(1)" id = "Project01" ng-model = "name">{{name1}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(2)" id = "Project02" ng-model = "name"> {{name2}} </button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(3)" id = "Project03" ng-model = "name">{{name3}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(4)" id = "Project04" ng-model = "name">{{name4}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(5)" id = "Project05" ng-model = "name">{{name5}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(6)" id = "Project06" ng-model = "name">{{name6}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(7)" id = "Project07" ng-model = "name">{{name7}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(8)" id = "Project08" ng-model = "name">{{name8}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(9)" id = "Project09" ng-model = "name">{{name9}}</button>
+            <button class = "btn-primary projectLoadButtons" onclick="chooseActive(10)" id = "Project10" ng-model = "name">{{name10}}</button>
         </div>
     </div>
 </div>

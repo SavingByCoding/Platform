@@ -249,3 +249,18 @@
     text-align: center;
     border: none;
 }
+.HRROW{
+    background: #23233b;
+    height: 10px;
+}
+.projectLoadButtons{
+    width: 100%;
+    height: 9.08%;
+    background: #ffcc4d;
+    border: 0.5px solid #23233b;
+    transition: all ease 1s;
+}
+.projectLoadButtons:hover{
+    background: #60D394;
+    transform: scale(1.01);
+}
