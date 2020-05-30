@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" type="text/css" href = "registration.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Contact Page</title>
+</head>
+<body class="mainbod">
+
+
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-expand-sm navbar-dark mainNavBar" >
+    <a class="navbar-brand" href="#"><img src = SBC-logos_transparent.png class = "home-link"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav ml-auto listOfMenus">
+            <li class="nav-item linksMenu">
+                <a class="nav-link linksMenu" href="#">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link linksMenu active" href="#"> Contact Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link linksMenu" href="#">How to Access</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Course Content
+                </a>
+                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item" href="#">HTML</a>
+                    <a class="dropdown-item" href="#">Python</a>
+
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link linksMenu " href="#">Sandbox</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <h5>Profile</h5>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-default dropMenu"
+                     aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item " href="#">Visit Profile</a>
+                    <a class="dropdown-item " href="#">Assignments</a>
+                    <a class="dropdown-item" href="#">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--/.Navbar -->
+
+
+
+
+<form id="registration1" action="javascript:void(0)">
+
+    <div class="form-control">
+        <h2 data-fontsize="64" data-lineheight="70.4px" class="fusion-responsive-typography-calculated" style="--fontSize:64; line-height: 1.1;"></h2>
+        <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated"><span style="color: #000000;">Welcome to Codeology!</span></h3>
+
+        <div class="header">
+            <p style="text-align: center;"><span style="color: #000000;">Ready to get started? It will only take a few minutes to fill out this form so an educational specialist can reach you.</span></p>
+        </div>
+
+    </div>
+    <p style="text-align: center;"><span style="color: #000000;">What's your (the parent's) name?</span></p>
+
+    <div class="formcontainer1">
+            <div class="firstname">
+                <label for ="firstname">First Name</label>
+                <input type="text" name="first_name[first_name]" id="firstname" class="firstname1" placeholder="First Name">
+
+            </div>
+            <div class="lastname">
+                <label for="lastname">Last Name</label>
+                <input type="text" name="last_name[last_name]" id="lastname" class="lastname1" placeholder="Last Name">
+            </div>
+            <div class="nextButton1">
+                <button type="button" data-action="next" class="nextButton">Next</button>
+            </div>
+
+    </div>
+    <div class ="text1">
+        <h3 class="text11">Thank you <span class="text12" data-ref="first_name" data-fallback=""></span>! Can you provide us your email as well?</h3>
+    </div>
+
+
+      <div class="emailinput">
+        <label for="emailinput">Email</label>
+          <input type="email" name="email" id="emailinput" class="emailinput1" placeholder="Email Address" data-name="email">
+          <p style="font-size: 12px;">By submitting, you consent to receiving email communication from Codeology for the purposes of providing more information about our services.&nbsp;</p>
+      </div>
+
+
+    <div class="codeexperience5">
+            <label for="codeexperience">Code Experience</label>
+           <div></div>
+        <input type="radio" name="codeexperience" data-name="codeexperience" class="codeexperience" value="None" id="codeexperience"> <span>None</span></label>
+        <div class="codeexperience">
+            <label class="ff-el-form-check-label" for="codeexperience">
+        <input type="radio" name="codeexperience" data-name="codeexperience" class="codeexperience" value="1 - 6 months" id="codeexperience"> <span>1 - 6 months</span></label></div><div class="codeexperience ff-el-form-check-"><label class="codeexperience" for="codeexperience">
+        <input type="radio" name="codeexperience" data-name="codeexperience" class="codeexperience" value="6 months or more" id="students_experience_22223cf82a2225108e826a29870ebeba"> <span>6 months or more</span></label></div><div class="ff-el-form-check ff-el-form-check-">
+        <label for="codeexperience">
+            <input type="radio" name="codeexperience" data-name="codeexperience" class="codeexperience" value="Not sure" id="codeexperience"> <span>Not sure</span></label> <div class="ff-el-group" data-name="custom_html-14667582515ed191a744e409.53995862"></div><div class="ff-el-group ff-el-form-hide_label">
+    </div>
+
+
+<div class="access">
+        <h3 class="Card_title__2RO99 fusion-responsive-typography-calculated" style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px">Do you have access to the following:</h3>
+            <p style="font-size: 12px; text-align: center;">Please note: desktop or laptop computer is required. Chromebooks and tablets are not compatible.</p>
+                </div>
+        <div class="table1"><table class="ff-table ff-checkable-grids"><thead><tr><th></th><th>Yes</th><th>No</th></tr></thead><tbody><tr><td>Desktop/Laptop computer</td><td>
+
+        <input name="do_you_have_the_following[Desktop/Laptop computer]" type="radio" value="Yes"></td><td>
+
+        <input name="do_you_have_the_following[Desktop/Laptop computer]" type="radio" value="No"></td></tr><tr><td>High-speed Internet</td><td>
+        <input name="do_you_have_the_following[High-speed Internet]" type="radio" value="Yes"></td><td>
+
+        <input name="do_you_have_the_following[High-speed Internet]" type="radio" value="No"></td></tr><tr><td>Zoom</td><td><input name="do_you_have_the_following[Zoom]" type="radio" value="Yes"></td>
+        <td><input name="do_you_have_the_following[Zoom]" type="radio" value="No"></td></tr></tbody></table></div></div>
+
+        <div class="step-nav ff_step_nav_last">
+            <button type="button" data-action="prev" class="ff-btn ff-btn-prev ff-btn-secondary">Previous</button>
+            <button type="button" data-action="next" class="ff-float-right ff-btn ff-btn-next ff-btn-secondary">Next</button>
+
+        </h2><h3 class="Card_title__2RO99 fusion-responsive-typography-calculated" style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px">Our educational specialists are much more effective with reaching people via text or call. What's the best number to reach you?&nbsp;</h3>
+
+         <input name="phone" class="ff-el-form-control ff-el-phone ff_el_with_extended_validation" type="tel" placeholder="(201) 555-0123" data-name="phone" id="ff_10_phone" autocomplete="off" data-intl-tel-input-id="0"></div>
+        <label for="ff_10_Best_time_to_contact">When is the best time for us to contact you?</label>
+
+         </div>
+    <div class="ff-el-input--content">
+        <input type="text" name="Best_time_to_contact" class="ff-el-form-control" placeholder="i.e. Monday 3pm" data-name="Best_time_to_contact" id="ff_10_Best_time_to_contact">
+        <p style="font-size: 12px;">By submitting, you consent to receiving phone or SMS communication from Code Central by phone or text message for the purposes of providing more information about our services.&nbsp;</p>
+
+    </div>
+    </div>
+</div>
+
+
+
+
+
+<footer id="sticky-footer" class="py-4  FOOTER text-white-50">
+    <div class="container  text-center">
+        <div class = "row">
+            <div class = "col-4">
+                <h5>2020 Copyright: Saving By Coding</h5>
+                <p>Make a difference in your life</p>
+            </div>
+            <div class = "col-4 linksColFooter">
+                <small><a class = "Links" href="#">Home Page</a></small><br>
+                <small><a class = "Links" href="#">About Us</a></small><br>
+                <small><a class = "Links" href="#">How to Access</a></small><br>
+                <small><a class = "Links" href="#">HTML</a></small><br>
+                <small><a class = "Links" href="#">Python</a></small><br>
+            </div>
+            <div class = "col-4"></div>
+        </div>
+    </div>
+</footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+</html>
