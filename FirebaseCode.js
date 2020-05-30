@@ -1,4 +1,4 @@
-var userID;
+var userID= "VV9kJoIQ7ieDq52DKSGvBbKeAhA2";
 firebase.initializeApp({
     apiKey: "AIzaSyBOn9KJJihPr0F0zXNcj_tlHn6tGgxIsMI",
     authDomain: "saving-by-coding.firebaseapp.com",
@@ -13,11 +13,11 @@ firebase.analytics();
 var db = firebase.firestore();
 
 
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        // User logged in already or has just logged in.
-        userID=user.uid;
-    } else {
-        // User not logged in or has just logged out.
-    }
-});
+// firebase.auth().onAuthStateChanged((user) => {
+//     if (user) {
+//         // User logged in already or has just logged in.
+//         userID=user.uid;
+//     } else {
+//         // User not logged in or has just logged out.
+//     }
+// });

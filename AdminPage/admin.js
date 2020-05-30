@@ -62,7 +62,7 @@ app.controller('AppController', ($scope) => {
     }
 
     $scope.crudUser = () => {
-        if ($scope.crudStates.user == "Create") $scope.createUser()
+        if ($scope.crudStates.user == "Create") $scope.createUser();
         else if ($scope.crudStates.user == "Edit") $scope.editUser()
     }
 
