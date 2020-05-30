@@ -167,7 +167,7 @@
         <div class = "col-3" style="background: #ebefeb;text-align: center; font-family: Karla; border: 4px solid #23233b">
             <h3 style="text-align: center"><b><u>Projects</u></b></h3>
             <small>Access previous projects in this directory!</small>
-            <button class = "btn-primary projectLoadButtons active" ng-click="DisplayProjects()" onclick="chooseActive(1) " id = "Project1" ng-model = "name1">{{name1}}</button>
+            <button class = "btn-primary projectLoadButtons active" ng-click="DisplayProjects()" ng-init="LoadProject()" onclick="chooseActive(1) " id = "Project1" ng-model = "name1">{{name1}}</button>
             <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(2) " id = "Project2" ng-model = "name2"> {{name2}} </button>
             <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(3) " id = "Project3" ng-model = "name3"> {{name3}}</button>
             <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(4) " id = "Project4" ng-model = "name4"> {{name4}}</button>
@@ -178,6 +178,9 @@
             <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(9) " id = "Project9" ng-model = "name9"> {{name9}}</button>
             <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(10) " id = "Project10" ng-model = "name10"> {{name10}}</button>
         </div>
+        <script type="text/javascript">
+                $scope.LoadProjects();
+        </script>
     </div>
 </div>
 <br><br><br><br><br><br><br><br><br>
