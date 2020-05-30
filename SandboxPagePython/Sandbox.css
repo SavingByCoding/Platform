@@ -264,3 +264,17 @@
     background: #60D394;
     transform: scale(1.01);
 }
+
+
+.POPUP{
+    text-align: center;
+}
+
+.close{
+    margin-left:-90%;
+    margin-top:1%;
+}
+
+.modal-body{
+    text-align: center;
+}
