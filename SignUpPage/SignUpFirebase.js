@@ -31,6 +31,10 @@ GoogleSignUp=()=> {
     });
 }
 
+AssignToDB = (user) => {
+
+};
+
 RegularSignUp=()=>{
     let email= document.getElementById('username').value;
     console.log(email);
