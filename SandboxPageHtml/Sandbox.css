@@ -4,10 +4,10 @@
 .my-row{
     height:500px;
     width: 100%;
+
+
 }
-html {
-    scroll-behavior: smooth;
-}
+
 .home-link{
     height: 60px;
     width:60px;
@@ -24,8 +24,9 @@ html {
 }
 .outputside {
     background: blanchedalmond;
-    height:100%;
+    height:500px;
     width:100%;
+
     padding-right: 0;
     padding-left: 0;
 }
@@ -49,7 +50,6 @@ html {
     height: 700px;
     background: #354d7b;
     padding-right: 0;
-    width: 100%;
 }
 .outputScreen{
     height:100%;
@@ -62,8 +62,7 @@ html {
     top: 0;
     resize: none;
 }
-.CheckButton{
-    visibility: visible;
+.CompileButton{
     width:100%;
     height:100%;
     border: transparent;
@@ -77,24 +76,18 @@ html {
     margin-right: 0;
     margin-left: 0;
 }
-.CheckButton:hover{
+.CompileButton:hover{
     background: #9a4444;
     transform: scale(1.03);
     color: #e7e6cb
 }
-
 #editor {
     position: absolute;
     top: 0;
     right: 0%;
     bottom: 0;
     left: 0;
-    width: 100%;
 }
-.col no-gutters{
-    width: 0%;
-}
-
 #compilescreen{
     background: black;
     height: 109%;
@@ -113,7 +106,24 @@ html {
 }
 .mainbod{
     background: #d7ebf5;
+
 }
+.fadeCont{
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
 .page-footer{
     background: #23233B;
     font-family: Karla;
@@ -212,45 +222,9 @@ html {
     color: #23233B;
     font-family: Karla;
 }
-
 .FOOTER{
     background: antiquewhite;
     border: 2px solid #23233B;
-}
-
-.CorrectButton{
-    visibility: hidden;
-    width:100%;
-    height:100%;
-    border: transparent;
-    background: #58b836;
-    font-family: "Oswald";
-    font-size: 40px;
-    color: #23233B;
-    transition: all 0.5s ease;
-    padding-left: 0;
-    padding-right: 0;
-    margin-right: 0;
-    margin-left: 0;
-}
-.CorrectButton:hover{
-    background: #45922a;
-    transform: scale(1.03);
-    color: #e7e6cb
-}
-.helpCard{
-    background: antiquewhite;
-    text-align: center;
-    color: #23233B;
-    font-family: Karla;
-}
-.POPUP{
-    text-align: center;
-}
-
-.close{
-    margin-left:-90%;
-    margin-top:1%;
 }
 .codeTitle{
     color: #23233B;
@@ -266,6 +240,18 @@ html {
 }
 .headerEditor{
     font-size: 30px;
+    font-family: Karla;
+    color: #23233b;
+}
+.headerCard{
+    background: antiquewhite;
+    font-size: 20px;
+    text-align: center;
+    border: none;
+}
+.HRROW{
+    background: #23233b;
+    height: 10px;
 }
 .projectLoadButtons{
     width: 100%;
@@ -277,4 +263,18 @@ html {
 .projectLoadButtons:hover{
     background: #60D394;
     transform: scale(1.01);
+}
+
+
+.POPUP{
+    text-align: center;
+}
+
+.close{
+    margin-left:-90%;
+    margin-top:1%;
+}
+
+.modal-body{
+    text-align: center;
 }
