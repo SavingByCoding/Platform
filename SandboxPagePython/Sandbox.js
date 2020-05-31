@@ -1,3 +1,5 @@
+var SandboxLanguage = "PYTHON";
+
 $(document).ready(function () {
 
     $("#CompileButton").click(function () {
@@ -387,7 +389,7 @@ $scope.SaveChanges = function(){
     $scope.CurrentProjectName= $("#ProjectName").val();
     let data= {
         code: editor.getValue(),   //change this for implementing autosave
-        language: $scope.CurrentProjectLanguage,
+        language: SandboxLanguage,
         name: $scope.CurrentProjectName
     };
     db.collection('projects').doc($scope.CurrentProjectUUID).set(data);
@@ -457,7 +459,6 @@ $scope.updateProjectName = function (){
                 break;
             case "Project7":
                 $scope.CurrentProjectUUID=project7UUID;
-                console.log("part 2")
                 break;
             case "Project8":
                 $scope.CurrentProjectUUID=project8UUID;
@@ -481,8 +482,7 @@ $scope.updateProjectName = function (){
                     $scope.CurrentProjectCode = CurrentProject.code;  //Current Project Code
                     $scope.CurrentProjectLanguage=CurrentProject.language; //Current Project Language
                     $scope.CurrentProjectName=CurrentProject.name; //Current Project
-                    console.log("part 4")
-                    editor.setValue($scope.CurrentProjectCode); //Changes code when you click a new project
+                    CheckLangauge();
                 }
             })
             .catch(err => {
@@ -495,6 +495,19 @@ $scope.updateProjectName = function (){
 
     };
 
+    function CheckLangauge(){
+        if ($scope.CurrentProjectLanguage != "PYTHON"){
+            $("#WrongCode").modal();
+
+        }
+        else {
+            editor.setValue($scope.CurrentProjectCode); //Changes code when you click a new project
+        }
+
+
+    }
+
+
     $(document).ready(function () {
         $scope.LoadProjects();
     });
@@ -502,5 +515,8 @@ $scope.updateProjectName = function (){
 
     //need to reset name evertime you load a new project
 });
+window.onbeforeunload = function(){ //Reminds a user to save before leaving
+    return 'Make sure to save your code';
+};
 //TODO add a function to save before you switch projects- Dope features
 //TODO notice how you could load a html code file into python sandbox
