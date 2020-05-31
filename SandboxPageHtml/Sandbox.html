@@ -7,7 +7,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase.js "></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
@@ -144,24 +143,21 @@
     </div>
 </div>
 
-<div class = "container-fluid maincont ">
-    <div class = "row my-row no-gutters" style="margin: 0">
-        <div class = "col-5 no-gutters" >
+<div class = "container-fluid maincont">
+    <div class = "row my-row no-gutters">
+        <div class = "col no-gutters">
             <div class = "leftside">
-                <div id="editor"> #Put your code in here</div>
+                <div id="editor"></div>
                 <div id=" compilescreen">
                     <script src="ace.js" type="text/javascript" charset="utf-8"></script>
-                    <script>
-                        var editor = ace.edit("editor");
-                        editor.setTheme("ace/theme/dracula");
-                        editor.session.setMode("ace/mode/python");
-                    </script>
+                    <script src="SandboxEditor.js"></script>
                 </div>
             </div>
         </div>
-        <div class = "col-4 no-gutters">
+        <div class = "col no-gutters">
             <div class = "rightside">
-                <textarea class= "outputScreen" id = "outputScreen" readonly>--> Code Output</textarea>
+                <iframe class= "outputScreen" id = "outputScreen" frameBorder="0"></iframe>
+                <!--                <textarea class= "outputScreen" id = "outputScreen" readonly>&ndash;&gt; Code Output</textarea>-->
             </div>
         </div>
         <div class = "col-3" style="background: #ebefeb;text-align: center; font-family: Karla; border: 4px solid #23233b">
@@ -189,6 +185,24 @@
         </div>
         <div class="col-6 colButton">
             <button class="btn btn-primary CompileButton" id = "CompileButton" type="submit">Run It!</button>
+        </div>
+    </div>
+</div>
+
+<div id="WrongCode" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content POPUP">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"> Project Loading Error</h4>
+            <div class="modal-body">
+                You tried loading a PYTHON project into the HTML sandbox
+            </div>
+            <div class="modal-footer justify-content-center">
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ><a href="../SandboxPagePython/Sandbox.html"> PYTHON Sandbox</a></button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -239,6 +253,7 @@
 
     </div>
 </div>
+
 
 
 <br><br>

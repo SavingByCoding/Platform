@@ -2,6 +2,15 @@ var language= "HTML";
 //Setting up the Firebase Homework Retrival
 var assignmentID="HTMLHomework1";// The actual homework you want to retrieve ONLY CHANGE THIS PLS
 
+const generateUUID = () => { // V4
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8)
+        return v.toString(16)
+    })
+}
+let UserAssignmentDocument= generateUUID();
+
+
 var Assignment_Fields;
 var Assignment_Name;
 var Assignment_Problem;
@@ -72,16 +81,18 @@ function DisplayHomework(){
 
 }
 
+
 SubmitHomework=()=>{
     let data= {
         assignment: assignmentID,
-        code: editor.getValue(),
+        output: " ",
+        code: editor.getValue().replace("<html>","").replace("</html>","").replace("<body>","").replace("</body>","").replace("<head>","").replace("</head>","").replace("<!DOCTYPE html>",""), //Manipulates the string that submits code
         completed: true,
         correct: false,
         user: userID,
         language: language
     };
-    db.collection('users-assignments').doc(assignmentID+" from "+ userID).set(data);
+    db.collection('users-assignments').doc(UserAssignmentDocument).set(data);
 };
 
 

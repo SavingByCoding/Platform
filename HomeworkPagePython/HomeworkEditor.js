@@ -2,6 +2,15 @@ var language= "PYTHON";
 //Setting up the Firebase Homework Retrival
 var assignmentID="PYTHONHomework1";// The actual homework you want to retrieve ONLY CHANGE THIS PLS
 
+const generateUUID = () => { // V4
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8)
+        return v.toString(16)
+    })
+}
+let UserAssignmentDocument= generateUUID();
+
+
 var Assignment_Fields;
 var Assignment_Name;
 var Assignment_Problem;
@@ -69,7 +78,7 @@ SubmitHomework=()=>{
         user: userID,
         language: language
     };
-    db.collection('users-assignments').doc(assignmentID+" from "+ userID).set(data);
+    db.collection('users-assignments').doc(UserAssignmentDocument).set(data);
 
 };
 function DisplayHomework(){
@@ -77,3 +86,8 @@ function DisplayHomework(){
     editor.setValue("# "+ Assignment_Problem,1);
 
 }
+
+//Todo Remove all Referecnes of Checking HW //done
+//TODO Integrate using UUID //done
+//TODO Properly link to DB // done
+

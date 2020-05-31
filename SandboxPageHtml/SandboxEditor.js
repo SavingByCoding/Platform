@@ -1,3 +1,6 @@
+var SandboxLanguage = "HTML";
+
+
 // let HomeWorkAnswer= "hello"; //We manually Put in
 // let OutputConsoleText=""; //Kids Code
 //
@@ -34,20 +37,21 @@ function download(filename, text) {
     document.body.removeChild(element);
 }
 
-$(document).ready(function () {
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/dracula");
-        editor.getSession().setMode("ace/mode/html");
-        editor.setValue(`<!DOCTYPE html>
+var editor = ace.edit("editor");
+
+CreateEditor =  () => {
+    editor.setTheme("ace/theme/dracula");
+    editor.getSession().setMode("ace/mode/html");
+    editor.setValue(`<!DOCTYPE html>
 <html>
 <head>
 </head>
-
 <body>
 </body>
-
 </html>`,1); //1 = moves cursor to end
-
+}
+$(document).ready(function () {
+        CreateEditor();
         editor.getSession().on('change', function() {
             update();
         });
@@ -65,18 +69,255 @@ $(document).ready(function () {
     }
 
     update();
+});
+$("#DownloadCodeButton").click(function () {
+    var text = editor.getValue();
+    var filename = $("#ProjectName").val();
+    var filename= filename+".html";
+    console.log(filename);
 
-    $("#DownloadCodeButton").click(function () {
-        var text = editor.getValue();
-        var filename = $("#ProjectName").val();
-        var filename= filename+".html";
-        console.log(filename);
+    download(filename, text);
 
-        download(filename, text);
-
-    });
 });
 
+
+function chooseActive(num1){
+    if(num1 === 1){
+        document.getElementById("Project2").classList.remove("active");
+        document.getElementById("Project3").classList.remove("active");
+        document.getElementById("Project4").classList.remove("active");
+        document.getElementById("Project5").classList.remove("active");
+        document.getElementById("Project6").classList.remove("active");
+        document.getElementById("Project7").classList.remove("active");
+        document.getElementById("Project8").classList.remove("active");
+        document.getElementById("Project9").classList.remove("active");
+        document.getElementById("Project10").classList.remove("active");
+        document.getElementById("Project1").classList.add("active");
+
+        // document.getElementById("t1").style.display = "flow";
+        // document.getElementById("t2").style.display = "none";
+        // document.getElementById("t3").style.display = "none";
+        // document.getElementById("t4").style.display = "none";
+        // document.getElementById("t5").style.display = "none";
+        // document.getElementById("t6").style.display = "none";
+        // document.getElementById("t7").style.display = "none";
+        // document.getElementById("t8").style.display = "none";
+        // document.getElementById("t9").style.display = "none";
+        // document.getElementById("t10").style.display = "none";
+
+    }
+    else if (num1 === 2){
+        document.getElementById("Project1").classList.remove("active");
+        document.getElementById("Project3").classList.remove("active");
+        document.getElementById("Project4").classList.remove("active");
+        document.getElementById("Project5").classList.remove("active");
+        document.getElementById("Project6").classList.remove("active");
+        document.getElementById("Project7").classList.remove("active");
+        document.getElementById("Project8").classList.remove("active");
+        document.getElementById("Project9").classList.remove("active");
+        document.getElementById("Project10").classList.remove("active");
+        document.getElementById("Project2").classList.add("active");
+
+        // document.getElementById("t1").style.display = "none";
+        // document.getElementById("t2").style.display = "flow";
+        // document.getElementById("t3").style.display = "none";
+        // document.getElementById("t4").style.display = "none";
+        // document.getElementById("t5").style.display = "none";
+        // document.getElementById("t6").style.display = "none";
+        // document.getElementById("t7").style.display = "none";
+        // document.getElementById("t8").style.display = "none";
+        // document.getElementById("t9").style.display = "none";
+        // document.getElementById("t10").style.display = "none";
+
+    }
+    else if (num1 === 3){
+        document.getElementById("Project1").classList.remove("active");
+        document.getElementById("Project2").classList.remove("active");
+        document.getElementById("Project4").classList.remove("active");
+        document.getElementById("Project5").classList.remove("active");
+        document.getElementById("Project6").classList.remove("active");
+        document.getElementById("Project7").classList.remove("active");
+        document.getElementById("Project8").classList.remove("active");
+        document.getElementById("Project9").classList.remove("active");
+        document.getElementById("Project10").classList.remove("active");
+        document.getElementById("Project3").classList.add("active");
+
+        // document.getElementById("t1").style.display = "none";
+        // document.getElementById("t2").style.display = "none";
+        // document.getElementById("t3").style.display = "flow";
+        // document.getElementById("t4").style.display = "none";
+        // document.getElementById("t5").style.display = "none";
+        // document.getElementById("t6").style.display = "none";
+        // document.getElementById("t7").style.display = "none";
+        // document.getElementById("t8").style.display = "none";
+        // document.getElementById("t9").style.display = "none";
+        // document.getElementById("t10").style.display = "none";
+    }
+    else if (num1 === 4){
+        document.getElementById("Project1").classList.remove("active");
+        document.getElementById("Project2").classList.remove("active");
+        document.getElementById("Project3").classList.remove("active");
+        document.getElementById("Project5").classList.remove("active");
+        document.getElementById("Project6").classList.remove("active");
+        document.getElementById("Project7").classList.remove("active");
+        document.getElementById("Project8").classList.remove("active");
+        document.getElementById("Project9").classList.remove("active");
+        document.getElementById("Project10").classList.remove("active");
+        document.getElementById("Project4").classList.add("active");
+
+        // document.getElementById("t1").style.display = "none";
+        // document.getElementById("t2").style.display = "none";
+        // document.getElementById("t3").style.display = "none";
+        // document.getElementById("t4").style.display = "flow";
+        // document.getElementById("t5").style.display = "none";
+        // document.getElementById("t6").style.display = "none";
+        // document.getElementById("t7").style.display = "none";
+        // document.getElementById("t8").style.display = "none";
+        // document.getElementById("t9").style.display = "none";
+        // document.getElementById("t10").style.display = "none";
+    }
+    else if (num1 === 5){
+        document.getElementById("Project1").classList.remove("active");
+        document.getElementById("Project2").classList.remove("active");
+        document.getElementById("Project3").classList.remove("active");
+        document.getElementById("Project4").classList.remove("active");
+        document.getElementById("Project6").classList.remove("active");
+        document.getElementById("Project7").classList.remove("active");
+        document.getElementById("Project8").classList.remove("active");
+        document.getElementById("Project9").classList.remove("active");
+        document.getElementById("Project10").classList.remove("active");
+        document.getElementById("Project5").classList.add("active");
+
+        // document.getElementById("t1").style.display = "none";
+        // document.getElementById("t2").style.display = "none";
+        // document.getElementById("t3").style.display = "none";
+        // document.getElementById("t4").style.display = "none";
+        // document.getElementById("t5").style.display = "flow";
+        // document.getElementById("t6").style.display = "none";
+        // document.getElementById("t7").style.display = "none";
+        // document.getElementById("t8").style.display = "none";
+        // document.getElementById("t9").style.display = "none";
+        // document.getElementById("t10").style.display = "none";
+    }
+    else if (num1 === 6){
+        var a = document.getElementsByClassName("projectLoadButtons");
+        document.getElementById("Project1").classList.remove("active");
+        document.getElementById("Project2").classList.remove("active");
+        document.getElementById("Project3").classList.remove("active");
+        document.getElementById("Project4").classList.remove("active");
+        document.getElementById("Project5").classList.remove("active");
+        document.getElementById("Project7").classList.remove("active");
+        document.getElementById("Project8").classList.remove("active");
+        document.getElementById("Project9").classList.remove("active");
+        document.getElementById("Project10").classList.remove("active");
+        document.getElementById("Project6").classList.add("active");
+
+        // document.getElementById("t1").style.display = "none";
+        // document.getElementById("t2").style.display = "none";
+        // document.getElementById("t3").style.display = "none";
+        // document.getElementById("t4").style.display = "none";
+        // document.getElementById("t5").style.display = "none";
+        // document.getElementById("t6").style.display = "flow";
+        // document.getElementById("t7").style.display = "none";
+        // document.getElementById("t8").style.display = "none";
+        // document.getElementById("t9").style.display = "none";
+        // document.getElementById("t10").style.display = "none";
+    }
+    else if (num1 === 7){
+        var a = document.getElementsByClassName("projectLoadButtons");
+        document.getElementById("Project1").classList.remove("active");
+        document.getElementById("Project2").classList.remove("active");
+        document.getElementById("Project3").classList.remove("active");
+        document.getElementById("Project4").classList.remove("active");
+        document.getElementById("Project5").classList.remove("active");
+        document.getElementById("Project6").classList.remove("active");
+        document.getElementById("Project8").classList.remove("active");
+        document.getElementById("Project9").classList.remove("active");
+        document.getElementById("Project10").classList.remove("active");
+        document.getElementById("Project7").classList.add("active");
+
+        //     document.getElementById("t1").style.display = "none";
+        //     document.getElementById("t2").style.display = "none";
+        //     document.getElementById("t3").style.display = "none";
+        //     document.getElementById("t4").style.display = "none";
+        //     document.getElementById("t5").style.display = "none";
+        //     document.getElementById("t6").style.display = "none";
+        //     document.getElementById("t7").style.display = "flow";
+        //     document.getElementById("t8").style.display = "none";
+        //     document.getElementById("t9").style.display = "none";
+        //     document.getElementById("t10").style.display = "none";
+    }
+    else if (num1 === 8){
+        document.getElementById("Project1").classList.remove("active");
+        document.getElementById("Project2").classList.remove("active");
+        document.getElementById("Project3").classList.remove("active");
+        document.getElementById("Project4").classList.remove("active");
+        document.getElementById("Project5").classList.remove("active");
+        document.getElementById("Project6").classList.remove("active");
+        document.getElementById("Project7").classList.remove("active");
+        document.getElementById("Project9").classList.remove("active");
+        document.getElementById("Project10").classList.remove("active");
+        document.getElementById("Project8").classList.add("active");
+
+        // document.getElementById("t1").style.display = "none";
+        // document.getElementById("t2").style.display = "none";
+        // document.getElementById("t3").style.display = "none";
+        // document.getElementById("t4").style.display = "none";
+        // document.getElementById("t5").style.display = "none";
+        // document.getElementById("t6").style.display = "none";
+        // document.getElementById("t7").style.display = "none";
+        // document.getElementById("t8").style.display = "flow";
+        // document.getElementById("t9").style.display = "none";
+        // document.getElementById("t10").style.display = "none";
+    }
+    else if (num1 === 9){
+        document.getElementById("Project1").classList.remove("active");
+        document.getElementById("Project2").classList.remove("active");
+        document.getElementById("Project3").classList.remove("active");
+        document.getElementById("Project4").classList.remove("active");
+        document.getElementById("Project5").classList.remove("active");
+        document.getElementById("Project6").classList.remove("active");
+        document.getElementById("Project7").classList.remove("active");
+        document.getElementById("Project8").classList.remove("active");
+        document.getElementById("Project10").classList.remove("active");
+        document.getElementById("Project9").classList.add("active");
+
+        // document.getElementById("t1").style.display = "none";
+        // document.getElementById("t2").style.display = "none";
+        // document.getElementById("t3").style.display = "none";
+        // document.getElementById("t4").style.display = "none";
+        // document.getElementById("t5").style.display = "none";
+        // document.getElementById("t6").style.display = "none";
+        // document.getElementById("t7").style.display = "none";
+        // document.getElementById("t8").style.display = "none";
+        // document.getElementById("t9").style.display = "flow";
+        // document.getElementById("t10").style.display = "none";
+    }
+    else if (num1 === 10){
+        document.getElementById("Project1").classList.remove("active");
+        document.getElementById("Project2").classList.remove("active");
+        document.getElementById("Project3").classList.remove("active");
+        document.getElementById("Project4").classList.remove("active");
+        document.getElementById("Project5").classList.remove("active");
+        document.getElementById("Project6").classList.remove("active");
+        document.getElementById("Project7").classList.remove("active");
+        document.getElementById("Project8").classList.remove("active");
+        document.getElementById("Project9").classList.remove("active");
+        document.getElementById("Project10").classList.add("active");
+
+        // document.getElementById("t1").style.display = "none";
+        // document.getElementById("t2").style.display = "none";
+        // document.getElementById("t3").style.display = "none";
+        // document.getElementById("t4").style.display = "none";
+        // document.getElementById("t5").style.display = "none";
+        // document.getElementById("t6").style.display = "none";
+        // document.getElementById("t7").style.display = "none";
+        // document.getElementById("t8").style.display = "none";
+        // document.getElementById("t9").style.display = "none";
+        // document.getElementById("t10").style.display = "flow";
+    }
+
+}
 
 var project1UUID;
 var project2UUID;
@@ -182,6 +423,7 @@ moduleA.controller("myCont1",function($scope){
                     console.log('Error getting document', err);
                 });
 
+
         });
     };
 
@@ -201,7 +443,7 @@ moduleA.controller("myCont1",function($scope){
         $scope.CurrentProjectName= $("#ProjectName").val();
         let data= {
             code: editor.getValue(),   //change this for implementing autosave
-            language: $scope.CurrentProjectLanguage,
+            language: SandboxLanguage,          //Sets the current language of the sandbox
             name: $scope.CurrentProjectName
         };
         db.collection('projects').doc($scope.CurrentProjectUUID).set(data);
@@ -295,8 +537,8 @@ moduleA.controller("myCont1",function($scope){
                     $scope.CurrentProjectCode = CurrentProject.code;  //Current Project Code
                     $scope.CurrentProjectLanguage=CurrentProject.language; //Current Project Language
                     $scope.CurrentProjectName=CurrentProject.name; //Current Project
-                    console.log("part 4")
-                    editor.setValue($scope.CurrentProjectCode); //Changes code when you click a new project
+                    CheckLangauge();
+
                 }
             })
             .catch(err => {
@@ -304,6 +546,15 @@ moduleA.controller("myCont1",function($scope){
             });
         console.log("part 5")
     };
+
+    function CheckLangauge() {
+        if ($scope.CurrentProjectLanguage != "HTML") {
+            $("#WrongCode").modal();
+
+        } else {
+            editor.setValue($scope.CurrentProjectCode); //Changes code when you click a new project
+        }
+    }
 
     $scope.DeleteProjects = function () {
 
@@ -316,5 +567,8 @@ moduleA.controller("myCont1",function($scope){
 
     //need to reset name evertime you load a new project
 });
+
+
+
 //TODO add a function to save before you switch projects- Dope features
 //TODO notice how you could load a html code file into python sandbox
