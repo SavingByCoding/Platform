@@ -16,6 +16,7 @@
     <script src="../FirebaseCode.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
     <script src="../app.js"></script>
+    <script src="Sandbox.js"></script>
 </head>
 <httpProtocol>
     <customHeaders>
@@ -134,7 +135,7 @@
 <!--            <button type="button" class="close" data-dismiss="modal">&times;</button>-->
             <h4 class="modal-title">Name Your Project</h4>
             <div class="modal-body">
-                <input class="ProjectName" type="text" id = "ProjectName" style="display: flex">
+                <input class="ProjectName" ng-model="CurrentProjectName" type="text" id = "ProjectName" style="display: flex">
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" ng-click= "SaveChanges()" class="btn btn-default" data-dismiss="modal" > Done </a></button>
@@ -155,7 +156,6 @@
                         editor.setTheme("ace/theme/dracula");
                         editor.session.setMode("ace/mode/python");
                     </script>
-                    <script src="Sandbox.js"></script>
                 </div>
             </div>
         </div>
@@ -167,7 +167,7 @@
         <div class = "col-3" style="background: #ebefeb;text-align: center; font-family: Karla; border: 4px solid #23233b">
             <h3 style="text-align: center"><b><u>Projects</u></b></h3>
             <small>Access previous projects in this directory!</small>
-            <button class = "btn-primary projectLoadButtons active" ng-click="DisplayProjects()" ng-init="LoadProject()" onclick="chooseActive(1) " id = "Project1" ng-model = "name1">{{name1}}</button>
+            <button class = "btn-primary projectLoadButtons active" ng-click="DisplayProjects()"  onclick="chooseActive(1) " id = "Project1" ng-model = "name1">{{name1}}</button>
             <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(2) " id = "Project2" ng-model = "name2"> {{name2}} </button>
             <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(3) " id = "Project3" ng-model = "name3"> {{name3}}</button>
             <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(4) " id = "Project4" ng-model = "name4"> {{name4}}</button>
@@ -178,9 +178,6 @@
             <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(9) " id = "Project9" ng-model = "name9"> {{name9}}</button>
             <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(10) " id = "Project10" ng-model = "name10"> {{name10}}</button>
         </div>
-        <script type="text/javascript">
-                $scope.LoadProjects();
-        </script>
     </div>
 </div>
 <br><br><br><br><br><br><br><br><br>

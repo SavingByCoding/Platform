@@ -274,19 +274,20 @@ var project7UUID;
 var project8UUID;
 var project9UUID;
 var project10UUID;
+
 var projectsuuid= [];
 var moduleA = angular.module("myApp",[]);
 moduleA.controller("myCont1",function($scope){
-    $scope.name1 = "Unnamed Project 1";
-    $scope.name2 = "Unnamed Project 2";
-    $scope.name3 = "Unnamed Project 3";
-    $scope.name4 = "Unnamed Project 4";
-    $scope.name5 = "Unnamed Project 5";
-    $scope.name6 = "Unnamed Project 6";
-    $scope.name7 = "Unnamed Project 7";
-    $scope.name8 = "Unnamed Project 8";
-    $scope.name9 = "Unnamed Project 9";
-    $scope.name10 = "Unnamed Project 10";
+    $scope.name1 = "Project 1";
+    $scope.name2 = "Project 2";
+    $scope.name3 = "Project 3";
+    $scope.name4 = "Project 4";
+    $scope.name5 = "Project 5";
+    $scope.name6 = "Project 6";
+    $scope.name7 = "Project 7";
+    $scope.name8 = "Project 8";
+    $scope.name9 = "Project 9";
+    $scope.name10 ="Project 10";
     $scope.UserID = userID; //Value from the Firebase Code on Auth UserChange
 
     $scope.LoadProjects = function(){ //Loads all project names //Works
@@ -331,7 +332,6 @@ ShowProjectName= function(){
                     switch (index+1){
                         case 1:
                             $scope.name1 = UserProjects.name;
-                            console.log(index);
                             break;
                         case 2:
                             $scope.name2 = UserProjects.name;
@@ -391,16 +391,52 @@ $scope.SaveChanges = function(){
         name: $scope.CurrentProjectName
     };
     db.collection('projects').doc($scope.CurrentProjectUUID).set(data);
-    $scope.LoadProjects();
+    $scope.updateProjectName();
+$scope.LoadProjects();
+}
+$scope.updateProjectName = function (){
+    switch ($scope.projectnumber) {
+        case "Project1":
+            $scope.name1= $scope.CurrentProjectName;
+            break;
+        case "Project2":
+            $scope.name1= $scope.CurrentProjectName;
+            break;
+        case "Project3":
+            $scope.name1= $scope.CurrentProjectName;
+            break;
+        case "Project4":
+            $scope.name1= $scope.CurrentProjectName;
+            break;
+        case "Project5":
+            $scope.name1= $scope.CurrentProjectName;
+            break;
+        case "Project6":
+            $scope.name1= $scope.CurrentProjectName;
+            break;
+        case "Project7":
+            $scope.name1= $scope.CurrentProjectName;
+            break;
+        case "Project8":
+            $scope.name1= $scope.CurrentProjectName;
+            break;
+        case "Project9":
+            $scope.name1= $scope.CurrentProjectName;
+            break;
+        case "Project10":
+            $scope.name1= $scope.CurrentProjectName;
+            break;
+    }
 }
 
     $scope.DisplayProjects = function (){ //Done
 //Click the on the tab -> Gets button id i.e Project1
         //Queries to get Project 1 uuid
         //Uses UUID to get code and all other attributes for specific project and loads it in
+        console.log("part 1")
         $scope.CurrentProjectUUID;
-        projectnumber = event.target.id; //gets which project it is
-        switch (projectnumber) {
+        $scope.projectnumber = event.target.id; //gets which project it is
+        switch ($scope.projectnumber) {
             case "Project1":
                 $scope.CurrentProjectUUID=project1UUID;
                 break;
@@ -421,6 +457,7 @@ $scope.SaveChanges = function(){
                 break;
             case "Project7":
                 $scope.CurrentProjectUUID=project7UUID;
+                console.log("part 2")
                 break;
             case "Project8":
                 $scope.CurrentProjectUUID=project8UUID;
@@ -432,7 +469,7 @@ $scope.SaveChanges = function(){
                 $scope.CurrentProjectUUID=project10UUID;
                 break;
         }
-
+        console.log("part 3")
         var CurrentProjectDocument = db.collection('projects').doc($scope.CurrentProjectUUID);
         let getUserProjects = CurrentProjectDocument.get()
             .then(doc => {
@@ -444,13 +481,14 @@ $scope.SaveChanges = function(){
                     $scope.CurrentProjectCode = CurrentProject.code;  //Current Project Code
                     $scope.CurrentProjectLanguage=CurrentProject.language; //Current Project Language
                     $scope.CurrentProjectName=CurrentProject.name; //Current Project
+                    console.log("part 4")
+                    editor.setValue($scope.CurrentProjectCode); //Changes code when you click a new project
                 }
             })
             .catch(err => {
                 console.log('Error getting document', err);
             });
-
-        editor.setValue($scope.CurrentProjectCode); //Changes code when you click a new project
+        console.log("part 5")
     };
 
     $scope.DeleteProjects = function () {
@@ -464,8 +502,5 @@ $scope.SaveChanges = function(){
 
     //need to reset name evertime you load a new project
 });
-//TODO set the initial project selected to 1 and load the current code, current language, and current name variable
-//Todo figure out how to make sure if you change your name of the file it will update
 //TODO add a function to save before you switch projects- Dope features
 //TODO notice how you could load a html code file into python sandbox
-//TODO fix the click bug on the project loading
