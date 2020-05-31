@@ -22,7 +22,7 @@ const generateUUID = () => { // V4
 
 app.controller('AppController', ($scope) => {
     $scope.tabs = ["Course Creation", "Group Management", "User Management", "Event Management", "Grading"]
-    $scope.currentTab = 1
+    $scope.currentTab = 4
     $scope.new = {event: {}, user: {}, lesson: {}, unit: {}, lesson: {}}
     $scope.crudStates = {
         event: "Create",
@@ -62,8 +62,12 @@ app.controller('AppController', ($scope) => {
     }
 
     $scope.crudUser = () => {
-        if ($scope.crudStates.user == "Create") $scope.createUser();
+        if ($scope.crudStates.user == "Create") $scope.createUser()
         else if ($scope.crudStates.user == "Edit") $scope.editUser()
+    }
+
+    $scope.createUser = () => {
+
     }
 
     $scope.editUser = () => {
@@ -840,6 +844,67 @@ app.controller('AppController', ($scope) => {
         $scope.lessons.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
     }
 
+    // Grading tab
+    // processHTML() to make html nice
+    $scope.currentGradingView = 1
+    $scope.currentAssignmentIndex = 0
+    $scope.assignments = []
+    $scope.usersAssignments = []
+
+    $scope.getAssignments = () => {
+        db.collection("assignments").get().then(function(qs) {
+            qs.forEach(function(doc) {
+                let assignment = { id: doc.id }
+                Object.assign(assignment, doc.data())
+                $scope.assignments.push(assignment)
+            })
+        }).then(function() {
+            $scope.$apply()
+        })
+    }
+
+    let getUserRequests = 0
+
+    $scope.loadSubmissions = (i) => {
+        $scope.currentGradingView = 2
+        $scope.currentAssignmentIndex = i
+        $scope.usersAssignments = []
+        db.collection("users-assignments")
+            .where('assignment', '==', $scope.assignments[i].id)
+            .get().then(function(qs) {
+            qs.forEach(function(doc) {
+                let userAssignment = { id: doc.id }
+                Object.assign(userAssignment, doc.data())
+                $scope.usersAssignments.push(userAssignment)
+                $scope.getUser($scope.usersAssignments.length - 1, doc.data().user)
+                getUserRequests++
+            })
+        }).then(function() {
+            $scope.$apply()
+        })
+    }
+
+    $scope.changeSubmissionStatus = (i, status) => {
+        db.collection("users-assignments")
+            .doc($scope.usersAssignments[i].id)
+            .update({ status })
+            .then(() => {
+            $scope.usersAssignments[i].status = status
+            $scope.$apply()
+        })
+    }
+
+    $scope.getUser = (i, id) => {
+        console.log(i + " " + id)
+        db.collection("users").where('userId', '==', id).get().then(function(qs) {
+            let doc = qs.docs[0]
+            console.log(doc.data().name)
+            $scope.usersAssignments[i].userName = doc.data().name
+            getUserRequests--
+            if (getUserRequests == 0) $scope.$apply()
+        })
+    }
+
     // Initialization Functions & View Management
     $scope.loaded = []
     for (let i = 0; i < $scope.tabs.length; i++) {
@@ -860,6 +925,10 @@ app.controller('AppController', ($scope) => {
             $scope.getEvents()
             $scope.loaded[3] = true
         }
+        else if ($scope.currentTab == 4 && !$scope.loaded[4]) {
+            $scope.getAssignments()
+            $scope.loaded[4] = true
+        }
     }
 
     $scope.changeTab = (t) => {
@@ -870,4 +939,35 @@ app.controller('AppController', ($scope) => {
     $scope.getUsers()
 
     $scope.loadData()
+
+
+
+    // Reusable functions
+    const formatHTML = (node, level) => {
+        var indentBefore = new Array(level++ + 1).join('  '),
+            indentAfter  = new Array(level - 1).join('  '),
+            textNode;
+        for (var i = 0; i < node.children.length; i++) {
+            textNode = document.createTextNode('\n' + indentBefore);
+            node.insertBefore(textNode, node.children[i]);
+            formatHTML(node.children[i], level);
+            if (node.lastElementChild == node.children[i]) {
+                textNode = document.createTextNode('\n' + indentAfter);
+                node.appendChild(textNode);
+            }
+        }
+        return node;
+    }
+
+    $scope.processHTML = (str) => {
+        var div = document.createElement('div');
+        div.innerHTML = str.trim();
+        return formatHTML(div, 0).innerHTML;
+    }
+})
+
+app.filter('trustHtml',function($sce){
+    return function(html){
+        return $sce.trustAsHtml(html)
+    }
 })

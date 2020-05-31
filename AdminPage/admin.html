@@ -420,6 +420,9 @@
                             <td style="width: auto;">
                                 <button type="button" id="showStudents" class="btn btn-outline-primary" ng-click="toggleShowStudents()">{{showStudents ? 'Hide': 'Show'}} Students</button>
                             </td>
+                            <td style="width: auto;">
+                                <button disabled type="button" id="createUser" class="btn btn-primary" data-toggle="modal" data-target="#crudUserModal" ng-click="launchCreateUserModal()">Create User</button>
+                            </td>
                         </tr>
                     </table>
                     <div class="modal fade" id="crudUserModal" tabindex="-1" role="dialog" aria-labelledby="crudUserModalLabel" aria-hidden="true">
@@ -440,6 +443,14 @@
                                         <div class="form-group">
                                             <label for="userDateOfBirth">Date of Birth</label>
                                             <input type="date" ng-model="new.user.dateOfBirth" class="form-control" id="userDateOfBirth">
+                                        </div>
+                                        <div class="form-group" ng-show="crudStates.user === 'Create'">
+                                            <label for="userName">Email</label>
+                                            <input type="email" ng-model="new.user.email" class="form-control" id="userEmail">
+                                        </div>
+                                        <div class="form-group" ng-show="crudStates.user === 'Create'">
+                                            <label for="userDateOfBirth">Password</label>
+                                            <input type="password" ng-model="new.user.password" class="form-control" id="userPassword">
                                         </div>
                                         <div class="form-group">
                                             <label for="userType">User Type</label>
@@ -571,7 +582,83 @@
             </div>
         </div>
         <div ng-show="currentTab == 4">
-            e
+            <div id="assignmentSelectorView" class="grid row" ng-show="currentGradingView == 1">
+                <div class="col-sm-6 col-lg-4 d-flex pb-3" ng-repeat="assignment in assignments">
+                    <div class="card assignmentCard">
+                        <div class="card-body">
+                            <h5 class="card-title">{{assignment.name}}</h5>
+                            <p class="card-text">{{assignment.description}}</p>
+                            <div style="visibility: hidden;">
+                                <a class="card-link">Filler</a>
+                            </div>
+                            <div class="assignmentActions">
+                                <a href="#" class="card-link" ng-click="loadSubmissions($index)">See Submissions</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden-md hidden-lg hidden-xl"><br/></div>
+                </div>
+            </div>
+            <div id="submissionGradingView" class="grid row" ng-show="currentGradingView == 2">
+                <div class="col-sm-3">
+                    <div class="stickyCardContainer sticky-top">
+                        <button class="btn btn-outline-primary" ng-click="currentGradingView = 1" style="width: 100%;">< See All Assignments</button>
+                        <br><br>
+                        <div class="card assignmentCard">
+                            <div class="card-body">
+                                <h5 class="card-title">{{assignments[currentAssignmentIndex].name}}</h5>
+                                <p class="card-text">{{assignments[currentAssignmentIndex].description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+                <div class="col-sm-9">
+                    <div class="grid row">
+                        <div class="col-sm-12" ng-repeat="ua in usersAssignments">
+                            <div class="card submissionCard">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        {{ua.userName}}
+                                        <span class="badge badge-secondary">{{ua.language}}</span>
+                                        <div class="btn-group btn-group-sm" role="group" style="float: right;">
+                                            <button type="button"
+                                                    class="btn btn-outline-success"
+                                                    ng-class="{'active': ua.status === 'Correct'}"
+                                                    ng-click="changeSubmissionStatus($index, 'Correct')">Correct</button>
+                                            <button type="button"
+                                                    class="btn btn-outline-danger"
+                                                    ng-class="{'active': ua.status === 'Incorrect'}"
+                                                    ng-click="changeSubmissionStatus($index, 'Incorrect')">Incorrect</button>
+                                        </div>
+                                    </h5>
+                                    <div class="grid row">
+                                        <div class="col-lg-6">
+                                            <textarea ng-show="ua.language === 'HTML'" readonly>{{ processHTML(ua.code) }}</textarea>
+                                            <textarea ng-show="ua.language === 'Python'" readonly>{{ ua.code }}</textarea>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="submissionOutputPane">
+                                                <div class="header">Output</div>
+                                                <div class="content" ng-class="{'pythonOutput': ua.language === 'Python'}">
+                                                    <div ng-show="ua.language === 'HTML'" ng-bind-html="ua.code | trustHtml"></div>
+                                                    <div ng-show="ua.language === 'Python'">{{ua.output}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                        <div class="col-sm-12" ng-show="usersAssignments.length === 0">
+                            <div class="alert alert-primary" role="alert">
+                                There are no submissions for this assignment yet.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
