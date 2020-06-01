@@ -903,9 +903,11 @@ app.controller('AppController', ($scope) => {
             name: $scope.new.resource.name,
             description: $scope.new.resource.description,
             type: $scope.new.resource.type,
-            link: $scope.new.resource.link,
             lesson: $scope.lessons[$scope.selectedLesson].id,
             ordinalNumber: ($scope.resources.length === 0) ? 1 : $scope.resources[$scope.resources.length - 1].ordinalNumber + 1
+        }
+        if (resource.type === '2' || resource.type === '3' || resource.type === '4') {
+            resource.link = $scope.new.resource.link
         }
         db.collection("resources").doc(resourceId).set(resource).then(() => {
             $scope.new.resource = {}
@@ -916,12 +918,22 @@ app.controller('AppController', ($scope) => {
     }
 
     $scope.editResource = () => {
-        db.collection("resources").doc($scope.new.resource.id).update({
+        let updatedResource = {
             name: $scope.new.resource.name,
             description: $scope.new.resource.description,
-            type: $scope.new.resource.type,
-            link: $scope.new.resource.link,
-        }).then(() => {
+            type: $scope.new.resource.type
+        }
+        switch (updatedResource.type) {
+            case '1':
+                updatedResource.link = firebase.firestore.FieldValue.delete()
+                break
+            case '2':
+            case '3':
+            case '4':
+                updatedResource.link = $scope.new.resource.link
+                break
+        }
+        db.collection("resources").doc($scope.new.resource.id).update(updatedResource).then(() => {
             for (let i = 0; i < $scope.resources.length; i++) {
                 if ($scope.resources.id == $scope.new.resource.id) {
                     $scope.resources[i].name = $scope.new.resource.name
@@ -936,6 +948,16 @@ app.controller('AppController', ($scope) => {
 
     $scope.deleteResource = (i) => {
         deleteResource($scope.resources[i].id)
+    }
+
+    $scope.nameOfResourceType = (type) => {
+        switch (type) {
+            case '1': return 'Text'
+            case '2': return 'Video'
+            case '3': return 'Article'
+            case '4': return 'Link'
+            default: return type
+        }
     }
 
     // Reorder Courses Modal Functions
@@ -1052,10 +1074,6 @@ app.controller('AppController', ($scope) => {
         $scope.lessons.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
     }
 
-
-
-
-
     // Reorder Assignments Modal Functions
     $scope.reorderedAssignments = []
 
@@ -1094,11 +1112,6 @@ app.controller('AppController', ($scope) => {
         $scope.courseCreationAssignments.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
     }
 
-
-
-
-
-
     // Reorder Resources Modal Functions
     $scope.reorderedResources = []
 
@@ -1136,10 +1149,6 @@ app.controller('AppController', ($scope) => {
         }
         $scope.resources.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
     }
-
-
-
-
 
     // Grading tab
     // processHTML() to make html nice
@@ -1263,8 +1272,8 @@ app.controller('AppController', ($scope) => {
     }
 })
 
-app.filter('trustHtml',function($sce){
-    return function(html){
+app.filter('trustHtml', function($sce) {
+    return function(html) {
         return $sce.trustAsHtml(html)
     }
 })
