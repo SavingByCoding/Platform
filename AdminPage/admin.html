@@ -100,6 +100,79 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="crudAssignmentModal" tabindex="-1" role="dialog" aria-labelledby="crudAssignmentModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="crudAssignmentModalTitle">{{crudStates.assignment}} Assignment: {{new.assignment.name}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="assignmentName">Name</label>
+                                    <input type="text" ng-model="new.assignment.name" class="form-control" id="assignmentName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="assignmentDescription">Description</label>
+                                    <textarea class="form-control" ng-model="new.assignment.description" id="assignmentDescription" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="assignmentExpectedOutput">Expected Output</label>
+                                    <textarea class="form-control" ng-model="new.assignment.expectedOutput" id="assignmentExpectedOutput" rows="3" placeholder="Only fill this out if the assignment is to be done in Python"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-click="clearCrudAssignmentModal()" class="btn btn-secondary" data-dismiss="modal">Clear</button>
+                            <button type="button" ng-click="crudAssignment()" class="btn btn-primary" data-dismiss="modal">{{crudStates.assignment}} Assignment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="crudResourceModal" tabindex="-1" role="dialog" aria-labelledby="crudResourceModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="crudResourceModalTitle">{{crudStates.resource}} Resource: {{new.resource.name}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="resourceName">Name</label>
+                                    <input type="text" ng-model="new.resource.name" class="form-control" id="resourceName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="resourceDescription">Description</label>
+                                    <textarea class="form-control" ng-model="new.resource.description" id="resourceDescription" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="resourceType">Type</label>
+                                    <select ng-model="new.resource.type" class="form-control" id="resourceType">
+                                        <option value="1">Text</option>
+                                        <option value="2">Link to Video</option>
+                                        <option value="3">Link to Article</option>
+                                        <option value="4">Other Link</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" ng-show="new.resource.type === '2' || new.resource.type === '3'">
+                                    <label for="resourceLink">Link</label>
+                                    <input type="text" ng-model="new.resource.link" class="form-control" id="resourceLink">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-click="clearCrudResourceModal()" class="btn btn-secondary" data-dismiss="modal">Clear</button>
+                            <button type="button" ng-click="crudResource()" class="btn btn-primary" data-dismiss="modal">{{crudStates.resource}} Resource</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="modal fade" id="reorderCoursesModal" tabindex="-1" role="dialog" aria-labelledby="reorderCoursesModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -187,6 +260,64 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="reorderAssignmentsModal" tabindex="-1" role="dialog" aria-labelledby="reorderAssignmentsModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="reorderAssignmentsModalTitle">Reorder Assignments</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" ng-repeat="assignment in reorderedAssignments">
+                                    <svg ng-click="shiftAssignmentUp($index)" class="bi bi-chevron-up shiftOrderIcon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <svg ng-click="shiftAssignmentDown($index)" style="margin-left: 5px;" class="bi bi-chevron-down shiftOrderIcon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span style="margin-left: 10px;">{{assignment.name}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Clear</button>
+                            <button type="button" ng-click="reorderAssignments()" class="btn btn-primary" data-dismiss="modal">Reorder Assignments</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="reorderResourcesModal" tabindex="-1" role="dialog" aria-labelledby="reorderResourcesModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="reorderResourcesModalTitle">Reorder Resources</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" ng-repeat="resource in reorderedResources">
+                                    <svg ng-click="shiftResourceUp($index)" class="bi bi-chevron-up shiftOrderIcon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <svg ng-click="shiftResourceDown($index)" style="margin-left: 5px;" class="bi bi-chevron-down shiftOrderIcon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span style="margin-left: 10px;">{{resource.name}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Clear</button>
+                            <button type="button" ng-click="reorderResources()" class="btn btn-primary" data-dismiss="modal">Reorder Resources</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <table style="width: 100%;">
                 <tr>
                     <td style="width: 33.333%;">
@@ -212,7 +343,7 @@
                                             <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd"/>
                                             <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0 00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z" clip-rule="evenodd"/>
                                         </svg>
-                                        <svg class="bi bi-x" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <svg ng-click="deleteCourse($index)" class="bi bi-x" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
                                             <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
                                         </svg>
@@ -246,7 +377,7 @@
                                             <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd"/>
                                             <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0 00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z" clip-rule="evenodd"/>
                                         </svg>
-                                        <svg class="bi bi-x" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <svg ng-click="deleteUnit($index)" class="bi bi-x" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
                                             <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
                                         </svg>
@@ -281,7 +412,7 @@
                                             <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd"/>
                                             <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0 00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z" clip-rule="evenodd"/>
                                         </svg>
-                                        <svg class="bi bi-x" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <svg ng-click="deleteLesson($index)" class="bi bi-x" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
                                             <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
                                         </svg>
@@ -297,6 +428,93 @@
                     </td>
                 </tr>
             </table>
+            <br />
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 50%;">
+                        <div class="directoryContainer">
+                            <div class="titleItem">
+                                Assignments
+                                <svg ng-click="launchReorderAssignmentsModal()" ng-hide="courseCreationAssignments.length === 0" data-toggle="modal" data-target="#reorderAssignmentsModal" class="bi bi-arrow-up-down reorderIcon" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M11 3.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V4a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+                                    <path fill-rule="evenodd" d="M10.646 2.646a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L11 3.707 8.354 6.354a.5.5 0 11-.708-.708l3-3zm-9 7a.5.5 0 01.708 0L5 12.293l2.646-2.647a.5.5 0 11.708.708l-3 3a.5.5 0 01-.708 0l-3-3a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                                    <path fill-rule="evenodd" d="M5 2.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V3a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div class="directoryList">
+                                <div class="directoryItemContainer" ng-repeat="assignment in courseCreationAssignments">
+                                    <div class="directoryItem noHover">
+                                        <div class="boldText">{{assignment.name}}</div>
+                                        <div>{{assignment.description}}</div>
+                                    </div>
+                                    <div class="directoryItemActions">
+                                        <svg data-toggle="modal" data-target="#crudAssignmentModal" ng-click="launchEditAssignmentModal($index)" class="bi bi-pencil" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd"/>
+                                            <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0 00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <svg ng-click="deleteAssignment($index)" class="bi bi-x" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                                            <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="emptyMessage" ng-show="selectedLesson === null">Select a lesson to see its assignments.</div>
+                                <div class="emptyMessage" ng-show="selectedLesson !== null && courseCreationAssignments.length === 0">There are no assignments in this lesson.</div>
+                            </div>
+                            <div class="actionItem" data-toggle="modal" data-target="#crudAssignmentModal" ng-click="launchCreateAssignmentModal()" ng-class="{'disabled': selectedLesson === null}">
+                                <span>+ Create New Assignment</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width: 50%;">
+                        <div class="directoryContainer">
+                            <div class="titleItem">
+                                Resources
+                                <svg ng-click="launchReorderResourcesModal()" ng-hide="resources.length === 0" data-toggle="modal" data-target="#reorderResourcesModal" class="bi bi-arrow-up-down reorderIcon" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M11 3.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V4a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+                                    <path fill-rule="evenodd" d="M10.646 2.646a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L11 3.707 8.354 6.354a.5.5 0 11-.708-.708l3-3zm-9 7a.5.5 0 01.708 0L5 12.293l2.646-2.647a.5.5 0 11.708.708l-3 3a.5.5 0 01-.708 0l-3-3a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                                    <path fill-rule="evenodd" d="M5 2.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V3a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div class="directoryList">
+                                <div class="directoryItemContainer" ng-repeat="resource in resources">
+                                    <div class="directoryItem noHover">
+                                        <div class="boldText">
+                                            {{resource.name}}
+                                            <a ng-show="resource.type === '2' || resource.type === '3' || resource.type === '4'" href="{{resource.link}}" target="_blank">
+                                                <svg class="bi bi-link" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6.354 5.5H4a3 3 0 000 6h3a3 3 0 002.83-4H9c-.086 0-.17.01-.25.031A2 2 0 017 10.5H4a2 2 0 110-4h1.535c.218-.376.495-.714.82-1z"/>
+                                                    <path d="M6.764 6.5H7c.364 0 .706.097 1 .268A1.99 1.99 0 019 6.5h.236A3.004 3.004 0 008 5.67a3 3 0 00-1.236.83z"/>
+                                                    <path d="M9 5.5a3 3 0 00-2.83 4h1.098A2 2 0 019 6.5h3a2 2 0 110 4h-1.535a4.02 4.02 0 01-.82 1H12a3 3 0 100-6H9z"/>
+                                                    <path d="M8 11.33a3.01 3.01 0 001.236-.83H9a1.99 1.99 0 01-1-.268 1.99 1.99 0 01-1 .268h-.236c.332.371.756.66 1.236.83z"/>
+                                                </svg>
+                                            </a>
+                                            <span class="badge badge-secondary">{{nameOfResourceType(resource.type)}}</span>
+                                        </div>
+                                        <div>{{resource.description}}</div>
+                                    </div>
+                                    <div class="directoryItemActions">
+                                        <svg data-toggle="modal" data-target="#crudResourceModal" ng-click="launchEditResourceModal($index)" class="bi bi-pencil" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd"/>
+                                            <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0 00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <svg ng-click="deleteResource($index)" class="bi bi-x" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                                            <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="emptyMessage" ng-show="selectedLesson === null">Select a lesson to see its resources.</div>
+                                <div class="emptyMessage" ng-show="selectedLesson !== null && resources.length === 0">There are no resources in this lesson.</div>
+                            </div>
+                            <div class="actionItem" data-toggle="modal" data-target="#crudResourceModal" ng-click="launchCreateResourceModal()" ng-class="{'disabled': selectedLesson === null}">
+                                <span>+ Create New Resource</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <br />
         </div>
         <div ng-show="currentTab === 1">
             <div class="grid row equal">

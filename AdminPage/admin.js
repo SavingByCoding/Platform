@@ -22,14 +22,16 @@ const generateUUID = () => { // V4
 
 app.controller('AppController', ($scope) => {
     $scope.tabs = ["Course Creation", "Group Management", "User Management", "Event Management", "Grading"]
-    $scope.currentTab = 4
-    $scope.new = {event: {}, user: {}, lesson: {}, unit: {}, lesson: {}}
+    $scope.currentTab = 0
+    $scope.new = {event: {}, user: {}, lesson: {}, unit: {}, lesson: {}, assignment: {}, resource: {}}
     $scope.crudStates = {
         event: "Create",
         user: "Create",
         course: "Create",
         unit: "Create",
-        lesson: "Create"
+        lesson: "Create",
+        assignment: "Create",
+        resource: "Create",
     }
 
     // User Variables
@@ -283,7 +285,6 @@ app.controller('AppController', ($scope) => {
     }
 
     $scope.createGroup = () => {
-        debugger
         let groupId = generateUUID()
         let group = {
             name: $scope.new.group.name,
@@ -390,6 +391,8 @@ app.controller('AppController', ($scope) => {
     $scope.selectedUnit = null
     $scope.lessons = []
     $scope.selectedLesson = null
+    $scope.courseCreationAssignments = []
+    $scope.resources = []
 
     // Course/Unit/Lesson Deletes
 
@@ -409,6 +412,14 @@ app.controller('AppController', ($scope) => {
                     break
                 }
             }
+            $scope.selectedCourse = null
+            $scope.selectedUnit = null
+            $scope.selectedLesson = null
+            $scope.units = []
+            $scope.lessons = []
+            $scope.courseCreationAssignments = []
+            $scope.resources = []
+            $scope.$apply()
         })
         db.collection("units").where("course", "==", id).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -425,6 +436,12 @@ app.controller('AppController', ($scope) => {
                     break
                 }
             }
+            $scope.selectedUnit = null
+            $scope.selectedLesson = null
+            $scope.lessons = []
+            $scope.courseCreationAssignments = []
+            $scope.resources = []
+            $scope.$apply()
         })
         db.collection("lessons").where("unit", "==", id).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -443,7 +460,10 @@ app.controller('AppController', ($scope) => {
                     break
                 }
             }
-            // Set view lesson to null TODO *****************************
+            $scope.selectedLesson = null
+            $scope.courseCreationAssignments = []
+            $scope.resources = []
+            $scope.$apply()
         })
         // Delete groups-lessons
         db.collection("groups-lessons").where("lesson", "==", id).get().then(deleteAllFromQuerySnapshot)
@@ -457,8 +477,33 @@ app.controller('AppController', ($scope) => {
                 assignmentIds.push(doc.id)
                 assignmentBatch.delete(doc.ref)
             })
+            assignmentBatch.commit()
             // Delete all users-assignments
             db.collection("users-assignments").where("assignment", "in", assignmentIds).get().then(deleteAllFromQuerySnapshot)
+        })
+    }
+
+    const deleteAssignment = (id) => {
+        db.collection("assignments").doc(id).delete().then(() => {
+            for (let i = 0; i < $scope.courseCreationAssignments.length; i++) {
+                if ($scope.courseCreationAssignments[i].id === id) {
+                    $scope.courseCreationAssignments.splice(i, 1)
+                    $scope.$apply()
+                    break
+                }
+            }
+        })
+    }
+
+    const deleteResource = (id) => {
+        db.collection("resources").doc(id).delete().then(() => {
+            for (let i = 0; i < $scope.resources.length; i++) {
+                if ($scope.resources[i].id === id) {
+                    $scope.resources.splice(i, 1)
+                    $scope.$apply()
+                    break
+                }
+            }
         })
     }
 
@@ -523,6 +568,36 @@ app.controller('AppController', ($scope) => {
         })
     }
 
+    $scope.getCourseCreationAssignments = () => {
+        $scope.courseCreationAssignments = []
+        db.collection("assignments").where("lesson", "==", $scope.lessons[$scope.selectedLesson].id)
+            .get().then((querySnapshot) => {
+            for (let i = 0; i < querySnapshot.docs.length; i++) {
+                let doc = querySnapshot.docs[i]
+                let assignment = { id: doc.id }
+                Object.assign(assignment, doc.data())
+                $scope.courseCreationAssignments.push(assignment)
+            }
+            $scope.courseCreationAssignments.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
+            $scope.$apply()
+        })
+    }
+
+    $scope.getResources = () => {
+        $scope.resources = []
+        db.collection("resources").where("lesson", "==", $scope.lessons[$scope.selectedLesson].id)
+            .get().then((querySnapshot) => {
+            for (let i = 0; i < querySnapshot.docs.length; i++) {
+                let doc = querySnapshot.docs[i]
+                let resource = { id: doc.id }
+                Object.assign(resource, doc.data())
+                $scope.resources.push(resource)
+            }
+            $scope.resources.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
+            $scope.$apply()
+        })
+    }
+
     $scope.changeSelectedCourse = (i) => {
         if ($scope.selectedCourse === i) {
             $scope.selectedCourse = null
@@ -535,6 +610,8 @@ app.controller('AppController', ($scope) => {
         $scope.selectedLesson = null
         $scope.units = []
         $scope.lessons = []
+        $scope.courseCreationAssignments = []
+        $scope.resources = []
     }
 
     $scope.changeSelectedUnit = (i) => {
@@ -546,7 +623,9 @@ app.controller('AppController', ($scope) => {
             $scope.getLessons()
         }
         $scope.selectedLesson = null
-            $scope.lessons = []
+        $scope.lessons = []
+        $scope.courseCreationAssignments = []
+        $scope.resources = []
     }
 
     $scope.changeSelectedLesson = (i) => {
@@ -555,7 +634,11 @@ app.controller('AppController', ($scope) => {
         }
         else {
             $scope.selectedLesson = i
+            $scope.getCourseCreationAssignments()
+            $scope.getResources()
         }
+        $scope.courseCreationAssignments = []
+        $scope.resources = []
     }
 
     // Course CRUD Functions
@@ -730,6 +813,153 @@ app.controller('AppController', ($scope) => {
         deleteLesson($scope.lessons[i].id)
     }
 
+    // Assignment CRUD Functions
+    $scope.clearCrudAssignmentModal = () => {
+        $scope.new.assignment = {
+            name: "",
+            description: ""
+        }
+    }
+
+    $scope.launchEditAssignmentModal = (i) => {
+        $scope.crudStates.assignment = 'Edit'
+        $scope.new.assignment = $scope.courseCreationAssignments[i]
+    }
+
+    $scope.launchCreateAssignmentModal = () => {
+        $scope.crudStates.assignment = 'Create'
+        $scope.new.assignment = {}
+    }
+
+    $scope.crudAssignment = () => {
+        if ($scope.crudStates.assignment == "Create") $scope.createAssignment()
+        else if ($scope.crudStates.assignment == "Edit") $scope.editAssignment()
+    }
+
+    $scope.createAssignment = () => {
+        let assignmentId = generateUUID()
+        let assignment = {
+            name: $scope.new.assignment.name,
+            description: $scope.new.assignment.description,
+            expectedOutput: $scope.new.assignment.expectedOutput,
+            lesson: $scope.lessons[$scope.selectedLesson].id,
+            ordinalNumber: ($scope.courseCreationAssignments.length === 0) ? 1 : $scope.courseCreationAssignments[$scope.courseCreationAssignments.length - 1].ordinalNumber + 1
+        }
+        db.collection("assignments").doc(assignmentId).set(assignment).then(() => {
+            $scope.new.assignment = {}
+            assignment.id = assignmentId
+            $scope.courseCreationAssignments.push(assignment)
+            $scope.$apply()
+        })
+    }
+
+    $scope.editAssignment = () => {
+        db.collection("assignments").doc($scope.new.assignment.id).update({
+            name: $scope.new.assignment.name,
+            description: $scope.new.assignment.description,
+            expectedOutput: $scope.new.assignment.expectedOutput,
+        }).then(() => {
+            for (let i = 0; i < $scope.assignments.length; i++) {
+                if ($scope.assignments.id == $scope.new.assignment.id) {
+                    $scope.assignments[i].name = $scope.new.assignment.name
+                    $scope.assignments[i].description = $scope.new.assignment.description
+                    $scope.assignments[i].expectedOutput = $scope.new.assignment.expectedOutput
+                    return
+                }
+            }
+        })
+    }
+
+    $scope.deleteAssignment = (i) => {
+        deleteAssignment($scope.courseCreationAssignments[i].id)
+    }
+
+    // Resource CRUD Functions
+    $scope.clearCrudResourceModal = () => {
+        $scope.new.resource = {
+            name: "",
+            description: ""
+        }
+    }
+
+    $scope.launchEditResourceModal = (i) => {
+        $scope.crudStates.resource = 'Edit'
+        $scope.new.resource = $scope.resources[i]
+    }
+
+    $scope.launchCreateResourceModal = () => {
+        $scope.crudStates.resource = 'Create'
+        $scope.new.resource = {}
+    }
+
+    $scope.crudResource = () => {
+        if ($scope.crudStates.resource == "Create") $scope.createResource()
+        else if ($scope.crudStates.resource == "Edit") $scope.editResource()
+    }
+
+    $scope.createResource = () => {
+        let resourceId = generateUUID()
+        let resource = {
+            name: $scope.new.resource.name,
+            description: $scope.new.resource.description,
+            type: $scope.new.resource.type,
+            lesson: $scope.lessons[$scope.selectedLesson].id,
+            ordinalNumber: ($scope.resources.length === 0) ? 1 : $scope.resources[$scope.resources.length - 1].ordinalNumber + 1
+        }
+        if (resource.type === '2' || resource.type === '3' || resource.type === '4') {
+            resource.link = $scope.new.resource.link
+        }
+        db.collection("resources").doc(resourceId).set(resource).then(() => {
+            $scope.new.resource = {}
+            resource.id = resourceId
+            $scope.resources.push(resource)
+            $scope.$apply()
+        })
+    }
+
+    $scope.editResource = () => {
+        let updatedResource = {
+            name: $scope.new.resource.name,
+            description: $scope.new.resource.description,
+            type: $scope.new.resource.type
+        }
+        switch (updatedResource.type) {
+            case '1':
+                updatedResource.link = firebase.firestore.FieldValue.delete()
+                break
+            case '2':
+            case '3':
+            case '4':
+                updatedResource.link = $scope.new.resource.link
+                break
+        }
+        db.collection("resources").doc($scope.new.resource.id).update(updatedResource).then(() => {
+            for (let i = 0; i < $scope.resources.length; i++) {
+                if ($scope.resources.id == $scope.new.resource.id) {
+                    $scope.resources[i].name = $scope.new.resource.name
+                    $scope.resources[i].description = $scope.new.resource.description
+                    $scope.resources[i].type = $scope.new.resource.type
+                    $scope.resources[i].link = $scope.new.resource.link
+                    return
+                }
+            }
+        })
+    }
+
+    $scope.deleteResource = (i) => {
+        deleteResource($scope.resources[i].id)
+    }
+
+    $scope.nameOfResourceType = (type) => {
+        switch (type) {
+            case '1': return 'Text'
+            case '2': return 'Video'
+            case '3': return 'Article'
+            case '4': return 'Link'
+            default: return type
+        }
+    }
+
     // Reorder Courses Modal Functions
     $scope.reorderedCourses = []
 
@@ -842,6 +1072,82 @@ app.controller('AppController', ($scope) => {
             $scope.lessons[index].ordinalNumber = i + 1
         }
         $scope.lessons.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
+    }
+
+    // Reorder Assignments Modal Functions
+    $scope.reorderedAssignments = []
+
+    $scope.launchReorderAssignmentsModal = () => {
+        $scope.reorderedAssignments = []
+        for (let assignment of $scope.courseCreationAssignments) {
+            $scope.reorderedAssignments.push({
+                id: assignment.id,
+                name: assignment.name,
+                ordinalNumber: assignment.ordinalNumber
+            })
+        }
+        $scope.$apply()
+    }
+
+    $scope.shiftAssignmentUp = (i) => {
+        if (i === 0) return
+        [$scope.reorderedAssignments[i-1], $scope.reorderedAssignments[i]] = [$scope.reorderedAssignments[i], $scope.reorderedAssignments[i-1]]
+    }
+
+    $scope.shiftAssignmentDown = (i) => {
+        if (i === $scope.reorderedAssignments.length - 1) return
+        [$scope.reorderedAssignments[i+1], $scope.reorderedAssignments[i]] = [$scope.reorderedAssignments[i], $scope.reorderedAssignments[i+1]]
+    }
+
+    $scope.reorderAssignments = () => {
+        for (let i = 0; i < $scope.reorderedAssignments.length; i++) {
+            let assignment = $scope.reorderedAssignments[i]
+            if (assignment.ordinalNumber === i + 1) continue
+            db.collection("assignments").doc(assignment.id).update({
+                ordinalNumber: i + 1
+            })
+            const index = $scope.courseCreationAssignments.findIndex(c => c.id === assignment.id)
+            $scope.courseCreationAssignments[index].ordinalNumber = i + 1
+        }
+        $scope.courseCreationAssignments.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
+    }
+
+    // Reorder Resources Modal Functions
+    $scope.reorderedResources = []
+
+    $scope.launchReorderResourcesModal = () => {
+        $scope.reorderedResources = []
+        for (let resource of $scope.resources) {
+            $scope.reorderedResources.push({
+                id: resource.id,
+                name: resource.name,
+                ordinalNumber: resource.ordinalNumber
+            })
+        }
+        $scope.$apply()
+    }
+
+    $scope.shiftResourceUp = (i) => {
+        if (i === 0) return
+        [$scope.reorderedResources[i-1], $scope.reorderedResources[i]] = [$scope.reorderedResources[i], $scope.reorderedResources[i-1]]
+    }
+
+    $scope.shiftResourceDown = (i) => {
+        if (i === $scope.reorderedResources.length - 1) return
+        [$scope.reorderedResources[i+1], $scope.reorderedResources[i]] = [$scope.reorderedResources[i], $scope.reorderedResources[i+1]]
+    }
+
+    $scope.reorderResources = () => {
+        for (let i = 0; i < $scope.reorderedResources.length; i++) {
+            let resource = $scope.reorderedResources[i]
+            if (resource.ordinalNumber === i + 1) continue
+            db.collection("resources").doc(resource.id).update({
+                ordinalNumber: i + 1
+            })
+            const index = $scope.resources.findIndex(c => c.id === resource.id)
+            $scope.resources[index].ordinalNumber = i + 1
+        }
+        $scope.resources.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
     }
 
     // Grading tab
@@ -966,8 +1272,8 @@ app.controller('AppController', ($scope) => {
     }
 })
 
-app.filter('trustHtml',function($sce){
-    return function(html){
+app.filter('trustHtml', function($sce) {
+    return function(html) {
         return $sce.trustAsHtml(html)
     }
 })
