@@ -1,4 +1,7 @@
-@import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
+@import url(http://fonts.googleapis.com/css?family=Karla:400,300,700);
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Asap:wght@700&family=Taviraj:wght@600&display=swap');
+
 .my-nav{
     background:#d4c3aa ;
 }
@@ -30,7 +33,7 @@
     transition: all 0.5s ease;
 }
 .main-title{
-    font-family: "Roboto Thin";
+    font-family: "Karla";
     color: #000000;
     font-stretch: ultra-expanded;
     font-stretch: expanded;
@@ -79,7 +82,7 @@
 
 .joinNowCard{
     height: 358px;
-    font-family: Oswald;
+    font-family: Karla;
     border: transparent;
     background: antiquewhite;
     text-align: center;
@@ -94,19 +97,19 @@
 }
 
 .cardLoginPageText{
-    font-family: Oswald;
+    font-family: Karla;
     color: #08174c;
     font-size: 40px;
 }
 .loginCard{
     background: antiquewhite;
-    font-family: Oswald;
+    font-family: Karla;
     border: transparent;
 }
 .loginHeaderCard{
     background: antiquewhite;
     border: transparent;
-    font-family: "Oswald";
+    font-family: "Karla";
 }
 .cardBody{
     text-align: center;
@@ -122,7 +125,7 @@
 }
 .SignUpLinkButton1{
     color: antiquewhite;
-    font-family: Oswald;
+    font-family: Karla;
     background:#412f7b ;
     transition: all 1s ease;
     font-stretch:extra-condensed;
@@ -140,7 +143,7 @@
 }
 .mainNavBar{
     background: #354d7b;
-    font-family: Oswald;
+    font-family: Karla;
 
 }
 .footerRow{
