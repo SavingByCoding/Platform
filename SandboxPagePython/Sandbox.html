@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
+
+
 <head>
     <title>Python Sandbox</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel = "stylesheet" type= "text/css" href = "Sandbox.css">
+    <link rel = "stylesheet" type="text/css" href="../navbarCSS.css">
+
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -14,71 +21,62 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
-    <script src="../app.js"></script>
     <script src="Sandbox.js"></script>
+
 </head>
 <httpProtocol>
     <customHeaders>
         <add name="Access-Control-Allow-Origin" value="*" />
     </customHeaders>
 </httpProtocol>
-<body class = "mainbod" ng-app = "myApp" ng-controller = "myCont1">
+<body class = "mainbod" ng-app = "myApp" >
 
 <!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-expand-sm navbar-dark mainNavBar">
-    <a class="navbar-brand" href="../HomePage/index.html"><img src = SBC-logos_transparent.png class = "home-link"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+
+<nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
+    <a href = "#"><img id = "logo" ng-src="{{logo}}" style="width: 50px; height: 50px"></a>
+    <a class="navbar-brand" href="#" ng-model="websiteTitle" style="font-size: 20px">{{websiteTitle}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-        <ul class="navbar-nav ml-auto listOfMenus">
-            <li class="nav-item linksMenu">
-                <a class="nav-link linksMenu" href="../HomePage/index.html">Home
-                    <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link linksMenu" href="../AboutPage/AboutPage.html">About Us</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link linksMenu" href="#">How to Access</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link linksMenu" href="../ContactPage/contact.html">Contact Us</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">Course Content
-                </a>
-                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class="dropdown-item" href="../HTMLContentPage/HTMLContentPage.html">HTML</a>
-                    <a class="dropdown-item" href="../PythonContentPage/PythonContentPage.html">Python</a>
 
-                </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id = "m2" href="#" ng-model = "menuName2"> {{menuName2}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id = "m3" href="#" ng-model = "menuName3">{{menuName3}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id = "m4" href="#" ng-model = "menuName4">{{menuName4}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id = "m5" href="#" ng-model = "menuName5">{{menuName5}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id = "m6" href="#" ng-model = "menuName6">{{menuName6}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id = "m7" href="#" ng-model = "menuName7">{{menuName7}}</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">Sandbox
+                <a class="nav-link dropdown-toggle mr-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                    {{dropdownName}}
                 </a>
-                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class="dropdown-item" href="../SandboxPageHtml/Sandbox.html">HTML</a>
-                    <a class="dropdown-item" href="../SandboxPagePython/Sandbox.html">Python</a>
-
-                </div>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto nav-flex-icons">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    <h5>Profile</h5>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-default dropMenu"
-                     aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class="dropdown-item " href="#">Visit Profile</a>
-                    <a class="dropdown-item " href="#">Assignments</a>
-                    <a class="dropdown-item" href="#">Logout</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#" id="s1">{{sand1}}</a>
+                    <a class="dropdown-item" href="#" id = "s2">{{sand2}}</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" id="d1">{{dropdown1}}</a>
+                    <a class="dropdown-item" href="#" id = "d2">{{dropdown2}}</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" id="d3">{{dropdown3}}</a>
+                    <a class="dropdown-item" href="#" id="d4">{{dropdown4}}</a>
+                    <a class="dropdown-item" href="#" id="d5">{{dropdown5}}</a>
                 </div>
             </li>
         </ul>
@@ -86,6 +84,7 @@
 </nav>
 <!--/.Navbar -->
 <!--<br>-->
+<br>
 <div class="container fadeCont">
     <div class="card helpCard">
         <div class="card-body headerCard">
@@ -278,4 +277,8 @@
     </div>
 </footer>
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
+<script src="../navigationLinks.js"></script>
+
 </html>
