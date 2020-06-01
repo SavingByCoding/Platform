@@ -65,10 +65,10 @@
 .directoryItem {
     border-bottom: 1px solid #dedede;
     padding: 10px;
-    cursor: pointer;
 }
 
-.directoryItem:hover {
+.directoryItem:not(.noHover):hover {
+    cursor: pointer;
     background: rgba(0, 123, 255, 0.31);
     border-bottom: 1px solid rgba(0, 123, 255, 0.31);
 }
