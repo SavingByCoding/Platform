@@ -21,8 +21,8 @@ const generateUUID = () => { // V4
 }
 
 app.controller('AppController', ($scope) => {
-    $scope.tabs = ["Course Creation", "Group Management", "User Management", "Event Management", "Grading"]
-    $scope.currentTab = 0
+    $scope.tabs = ["Course Creation", "Group Management", "User Management", "Event Management", "Grading", "Registrations"]
+    $scope.currentTab = 5
     $scope.new = {event: {}, user: {}, lesson: {}, unit: {}, lesson: {}, assignment: {}, resource: {}}
     $scope.crudStates = {
         event: "Create",
@@ -1204,11 +1204,82 @@ app.controller('AppController', ($scope) => {
         console.log(i + " " + id)
         db.collection("users").where('userId', '==', id).get().then(function(qs) {
             let doc = qs.docs[0]
-            console.log(doc.data().name)
             $scope.usersAssignments[i].userName = doc.data().name
             getUserRequests--
             if (getUserRequests == 0) $scope.$apply()
         })
+    }
+
+    // User Registrations
+    $scope.currentRegistrationCourse = null
+    $scope.registrationCourses = []
+    $scope.registrations = []
+
+    $scope.getRegistrationCourses = () => {
+        db.collection("courses").get().then((qs) => {
+            qs.forEach((doc) => {
+                let course = {id: doc.id}
+                Object.assign(course, doc.data())
+                $scope.registrationCourses.push(course)
+            })
+            $scope.courses.sort((a,b) => a.ordinalNumber - b.ordinalNumber)
+            $scope.$apply()
+        })
+    }
+
+    let getUserRequestsForRegistrations = 0
+
+    $scope.loadRegistrations = (i) => {
+        $scope.currentRegistrationCourse = i
+        $scope.registrations = []
+        db.collection("registrations")
+            .where("courseId", "==", $scope.registrationCourses[i].id)
+            .get()
+            .then((qs) => {
+                qs.forEach((doc) => {
+                    const docData = doc.data()
+                    let registration = {id: doc.id, fields: []}
+                    for (const prop in docData) {
+                        registration.fields.push({key: prop, value: docData[prop]})
+                    }
+                    registration.userId = docData.userId
+                    registration.paid = docData.paid
+                    registration.courseId = docData.courseId
+                    registration.date = docData.date
+                    registration.compact = true
+                    $scope.registrations.push(registration)
+                    $scope.getRegistrationUser($scope.registrations.length - 1, doc.data().userId)
+                    getUserRequestsForRegistrations++
+                })
+                $scope.$apply()
+            })
+    }
+
+    $scope.getRegistrationUser = (i, id) => {
+        db.collection("users")
+            .where("userId", "==", id)
+            .get()
+            .then((qs) => {
+                let doc = qs.docs[0]
+                let user = {id: doc.id}
+                Object.assign(user, doc.data())
+                $scope.registrations[i].userObj = user
+                getUserRequestsForRegistrations--
+                if (getUserRequestsForRegistrations == 0) {
+                    $scope.$apply()
+                    console.log($scope.registrations)
+                }
+            })
+    }
+
+    $scope.toggleRegistrationCompact = (i) => {
+        $scope.registrations[i].compact = !$scope.registrations[i].compact
+    }
+
+    $scope.toDate = (timeObj) => {
+        let t = new Date(1970, 0, 1)
+        t.setSeconds(timeObj.seconds)
+        return t
     }
 
     // Initialization Functions & View Management
@@ -1235,6 +1306,11 @@ app.controller('AppController', ($scope) => {
             $scope.getAssignments()
             $scope.loaded[4] = true
         }
+        else if ($scope.currentTab == 5 && !$scope.loaded[5]) {
+            $scope.getRegistrationCourses()
+            $scope.loaded[5] = true
+        }
+
     }
 
     $scope.changeTab = (t) => {
@@ -1245,8 +1321,6 @@ app.controller('AppController', ($scope) => {
     $scope.getUsers()
 
     $scope.loadData()
-
-
 
     // Reusable functions
     const formatHTML = (node, level) => {
