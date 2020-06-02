@@ -88,8 +88,8 @@
     <div class = "container">
         <div class = "row justify-content-around">
             <div class = "col-10" style="text-align: center; font-family: Karla" data-aos="zoom-out-up" ng-model = "name">
-                <h2><b><u>Hey {{name}}!</u></b></h2>
-                <small>Access content fine tuned for your learning experience on this page! Keep scrolling for more.</small>
+                <h2><b>Hey {{user.name}}!</b></h2>
+                <small>Access content fine-tuned for your learning experience on this page! Keep scrolling for more.</small>
             </div>
         </div>
     </div>
@@ -98,7 +98,6 @@
         <div class = "row justify-content-around">
             <div class = "col-4">
                 <div class="card text-white bg-dark mb-3">
-                    <div class="card-header"> Check out what's next!</div>
                     <div class="card-body">
                         <h5 class="card-title"><b>Upcoming Events</b></h5>
                         <hr  style="background: antiquewhite; height: 2px">
@@ -113,35 +112,76 @@
                                 </svg>
                             </a>
                         </div>
+                        <div class="noEventsContainer" ng-show="events.length === 0">
+                            <p>You don't have any upcoming events!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Your Groups</b></h5>
+                        <hr  style="background: antiquewhite; height: 2px">
+                        <div class="eventContainer" ng-repeat="group in groups">
+                            <p class="card-text eventName">{{group.name}}</p>
+                            <p class="card-text eventTime">{{group.users.length}} Members</p>
+                            <p class="card-text eventDescription">{{group.description}}</p>
+                            <hr style="background: antiquewhite; height: 2px">
+                        </div>
+                        <div class="noGroupsContainer" ng-show="groups.length === 0">
+                            <p>You aren't in any groups!</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class = "col-8">
                 <div class = "row justify-content-around">
+                    <div class="col-12">
+                        <div class="grid row">
+                            <div class="col-4">
+                                <a class="linkContainer" href="../LessonDirectoryPage/lessondirectory.html">
+                                    <div class="card text-white bg-dark mb-3 linkCard">
+                                        <h6>Course Directory</h6>
+                                        <svg class="bi bi-arrow-right-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path fill-rule="evenodd" d="M7.646 11.354a.5.5 0 0 1 0-.708L10.293 8 7.646 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0z"/>
+                                            <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+                                        </svg>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-4">
+                                <a class="linkContainer" href="../SandboxPageHtml/Sandbox.html">
+                                    <div class="card text-white bg-dark mb-3 linkCard">
+                                        <h6>HTML Sandbox</h6>
+                                        <svg class="bi bi-arrow-right-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path fill-rule="evenodd" d="M7.646 11.354a.5.5 0 0 1 0-.708L10.293 8 7.646 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0z"/>
+                                            <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+                                        </svg>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-4">
+                                <a class="linkContainer" href="../SandboxPagePython/Sandbox.html">
+                                    <div class="card text-white bg-dark mb-3 linkCard">
+                                        <h6>Python Sandbox</h6>
+                                        <svg class="bi bi-arrow-right-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path fill-rule="evenodd" d="M7.646 11.354a.5.5 0 0 1 0-.708L10.293 8 7.646 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0z"/>
+                                            <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+                                        </svg>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class = "col-12">
                         <div class="card text-white bg-dark mb-3" >
-                            <div class="card-header"><i>Important Events show up here</i></div>
                             <div class="card-body">
-                                <h5 class="card-title"><b>Announcements</b></h5>
-                                <p class="card-text">You ugly</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class = "col-12">
-                        <div class="card text-white bg-dark mb-3">
-                            <div class="card-header"><i>Check out your upcoming lesson or access homework!</i></div>
-                            <div class="card-body">
-                                <h5 class="card-title"><b>Lesson Directory</b></h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class = "col-12">
-                        <div class="card text-white bg-dark mb-3">
-                            <div class="card-header"><i>Use our helpful online code editor to work on your own projects!</i></div>
-                            <div class="card-body">
-                                <h5 class="card-title"><b>Sandbox</b></h5>
-                                <p class="card-text" >-<a href="#" >Python Sandbox</a></p>
+                                <h5 class="card-title" style="margin-bottom: 25px;"><b>Announcements</b></h5>
+                                <p class="card-text" ng-repeat="announcement in announcements">
+                                    {{announcement}}
+                                </p>
                             </div>
                         </div>
                     </div>

@@ -34,3 +34,42 @@
 .arrowIcon:active {
     color: rgba(250, 235, 215, 0.3);
 }
+
+a {
+    text-decoration: none !important;
+}
+
+.linkCard {
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.2s ease all;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.linkCard h6 {
+    margin-bottom: 0;
+}
+
+.linkCard:hover {
+    background: #999 !important;
+}
+
+.linkCard:active {
+    background: #BBB !important;
+}
+
+.linkCard .bi-arrow-right-circle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    opacity: 0;
+    float: right;
+    transition: 0.2s ease all;
+}
+
+.linkCard:hover .bi-arrow-right-circle {
+    opacity: 1;
+}

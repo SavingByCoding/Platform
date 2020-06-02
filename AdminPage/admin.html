@@ -705,6 +705,34 @@
         </div>
         <div ng-show="currentTab === 3">
             <div class="grid row equal">
+                <div class="modal fade" id="changeEventMembershipModal" tabindex="-1" role="dialog" aria-labelledby="changeEventMembershipModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="changeEventMembershipModalTitle">Change Membership: {{events[currentEventMembership].name}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="name" ng-model="eventMembershipQuery" class="form-control" id="eventMembershipQuery" placeholder="Search for Groups...">
+                                <br>
+                                <ul class="list-group">
+                                    <li class="list-group-item eventMembershipItem" ng-repeat="group in eventMembership" ng-show="group.name.toLowerCase().includes(eventMembershipQuery.toLowerCase()) || !eventMembershipQuery" ng-click="selectGroupMembership($index)" ng-class="{'bg-primary': group.selected, 'whiteText': group.selected}">
+                                        <span style="margin-left: 10px;">{{group.name}}</span>
+                                        <svg ng-show="group.selected" style="float: right;" class="bi bi-check" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Clear</button>
+                                <button type="button" ng-click="changeEventMembership()" class="btn btn-primary" data-dismiss="modal">Change</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-sm-12">
                     <table style="width: 100%;">
                         <tr>
@@ -767,7 +795,7 @@
                     </div>
                     <br/>
                 </div>
-                <div class="col-md-6 col-lg-4 d-flex pb-3" ng-repeat="event in events" ng-hide="(event.archived && !showArchivedEvents) || (!event.name.toLowerCase().includes(eventsQuery.toLowerCase()) && !event.description.toLowerCase().includes(eventsQuery.toLowerCase()) && eventsQuery)">
+                <div class="col-lg-6 d-flex pb-3" ng-repeat="event in events" ng-hide="(event.archived && !showArchivedEvents) || (!event.name.toLowerCase().includes(eventsQuery.toLowerCase()) && !event.description.toLowerCase().includes(eventsQuery.toLowerCase()) && eventsQuery)">
                     <div class="card eventCard" ng-class="{'archivedCard': event.archived}">
                         <div class="card-body">
                             <h5 class="card-title">
@@ -790,6 +818,7 @@
                             </div>
                             <div class="eventActions">
                                 <a href="#" class="card-link" data-toggle="modal" data-target="#crudEventModal" ng-click="launchEditEventModal($index)">Edit</a>
+                                <a href="#" class="card-link" data-toggle="modal" data-target="#changeEventMembershipModal" ng-click="launchChangeEventMembershipModal($index)">Change Membership</a>
                                 <a href="#" class="card-link" ng-click="toggleEventArchived($index)">{{event.archived ? "Unarchive" : "Archive"}}</a>
                                 <a href="#" class="card-link" ng-click="deleteEvent($index)">Delete</a>
                             </div>

@@ -22,7 +22,7 @@ const generateUUID = () => { // V4
 
 app.controller('AppController', ($scope) => {
     $scope.tabs = ["Course Creation", "Group Management", "User Management", "Event Management", "Grading", "Registrations"]
-    $scope.currentTab = 5
+    $scope.currentTab = 3
     $scope.new = {event: {}, user: {}, lesson: {}, unit: {}, lesson: {}, assignment: {}, resource: {}}
     $scope.crudStates = {
         event: "Create",
@@ -117,8 +117,8 @@ app.controller('AppController', ($scope) => {
                     userId: doc.data().userId,
                     name: doc.data().name,
                     userType: doc.data().userType,
-                    dateOfBirth: doc.data().dateOfBirth.toDate(),
-                    dateJoined: doc.data().dateJoined.toDate()
+                    dateOfBirth: $scope.toDate(doc.data().dateOfBirth),
+                    dateJoined: $scope.toDate(doc.data().dateJoined)
                 })
             }
 
@@ -380,6 +380,50 @@ app.controller('AppController', ($scope) => {
             users: userIds
         }).then(() => {
             $scope.groups[$scope.currentGroupMembership].users = userIds
+            $scope.$apply()
+        })
+    }
+
+    // Event Membership Modal
+
+    $scope.launchChangeEventMembershipModal = (i) => {
+        debugger
+        $scope.currentEventMembership = i
+        $scope.eventMembership = []
+        for (let group of $scope.groups) {
+            $scope.eventMembership.push({
+                groupId: group.id,
+                name: group.name,
+                inEvent: false,
+                selected: false
+            })
+        }
+        let groupsInEvent = $scope.events[i].groups
+        for (let j = 0; j < $scope.eventMembership.length; j++) {
+            for (let k = 0; k < groupsInEvent.length; k++) {
+                if ($scope.eventMembership[j].groupId == groupsInEvent[k]) {
+                    $scope.eventMembership[j].inEvent = true
+                    $scope.eventMembership[j].selected = true
+                }
+            }
+        }
+    }
+
+    $scope.selectGroupMembership = (i) => {
+        $scope.eventMembership[i].selected = !$scope.eventMembership[i].selected
+    }
+
+    $scope.changeEventMembership = () => {
+        let groupIds = []
+        for (let group of $scope.eventMembership) {
+            if (group.selected) {
+                groupIds.push(group.groupId)
+            }
+        }
+        db.collection("events").doc($scope.events[$scope.currentEventMembership].id).update({
+            groups: groupIds
+        }).then(() => {
+            $scope.events[$scope.currentEventMembership].groups = groupIds
             $scope.$apply()
         })
     }
@@ -1287,16 +1331,13 @@ app.controller('AppController', ($scope) => {
     for (let i = 0; i < $scope.tabs.length; i++) {
         $scope.loaded.push(false)
     }
+    $scope.loaded[1] = true
     $scope.loaded[2] = true
 
     $scope.loadData = () => {
         if ($scope.currentTab == 0 && !$scope.loaded[0]) {
             $scope.getCourses()
             $scope.loaded[0] = true
-        }
-        else if ($scope.currentTab == 1 && !$scope.loaded[1]) {
-            $scope.getGroups()
-            $scope.loaded[1] = true
         }
         else if ($scope.currentTab == 3 && !$scope.loaded[3]) {
             $scope.getEvents()
@@ -1319,6 +1360,7 @@ app.controller('AppController', ($scope) => {
     }
 
     $scope.getUsers()
+    $scope.getGroups()
 
     $scope.loadData()
 
