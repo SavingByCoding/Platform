@@ -24,7 +24,7 @@ mainMod.controller('MainContentController', ($scope) => {
     ]
     $scope.announcements = []
 
-    $scope.userId = 'VV9kJoIQ7ieDq52DKSGvBbKeAhA2' // TODO GET ID FROM FIREBASE AUTH
+    $scope.userId =  // TODO GET ID FROM FIREBASE AUTH
 
     $scope.getGroups = () => {
         db.collection('groups')
