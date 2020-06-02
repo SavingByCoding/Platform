@@ -38,6 +38,7 @@ mainMod.controller('MainContentController', ($scope) => {
                 })
             })
             .then(() => {
+                $scope.$apply()
                 $scope.getEvents()
             })
     }
