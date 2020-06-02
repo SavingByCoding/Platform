@@ -26,7 +26,7 @@ mainMod.controller('MainContentController', ($scope) => {
 
     $scope.userId = userID; // TODO GET ID FROM FIREBASE AUTH
 
-    var UserProjectsDocument = db.collection('users').doc(userID);
+    var UserProjectsDocnument = db.collection('users').doc(userID);
     let getUserProjects = UserProjectsDocument.get()
         .then(doc => {
             if (!doc.exists) {
