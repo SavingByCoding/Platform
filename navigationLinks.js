@@ -18,9 +18,7 @@ mainMod.controller("myCont1", function ($scope) {
     m2.href = $scope.menuName2Link;
 
     $scope.menuName3 = "-Course Content-";
-    $scope.menuName3Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
-    let m3 = document.getElementById("m3")
-    m3.href = $scope.menuName3Link;
+
 
     $scope.menuName4 = "-Contact Us-";
     $scope.menuName4Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
@@ -37,10 +35,6 @@ mainMod.controller("myCont1", function ($scope) {
     let m6 = document.getElementById("m6")
     m6.href = $scope.menuName6Link;
 
-    $scope.menuName7 = "-Volunteer-"
-    $scope.menuName7Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
-    let m7 = document.getElementById("m7")
-    m7.href = $scope.menuName7Link;
 
     $scope.dropdownName = "Profile";
 
