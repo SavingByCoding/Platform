@@ -187,6 +187,14 @@
                     <button type="button"  class="nextbtn"onclick="next5()">Next</button>
                 </div>
             </div>
+
+            <div class="formcontainer6" id="formcontainer6">
+                <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated"><span style="color: #000000;">Finish & Pay</span></h3>
+                <div class="btn" id="btn">
+                    <button type="button" class="previousbtn" onclick="previous5()">Previous</button>
+                    <button type="button"  class="submit">Submit & Pay</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>
@@ -198,10 +206,14 @@
    var z= document.getElementById("formcontainer3");
    var a=document.getElementById("formcontainer4");
    var b=document.getElementById("formcontainer5");
-   a.style.display="none";
+    var c=document.getElementById("formcontainer6");
+
+    a.style.display="none";
    y.style.display="none";
    z.style.display="none";
     b.style.display="none";
+    c.style.display="none";
+
 
     function next1()
     {
@@ -245,7 +257,13 @@
     }
     function next5()
     {
-
+        b.style.display="none";
+        c.style.display="block";
+    }
+    function previous5()
+    {
+        c.style.display="none";
+        b.style.display="block";
     }
 </script>
 
