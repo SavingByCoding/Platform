@@ -51,3 +51,17 @@
     font-size: 16px;
     background: antiquewhite;
 }
+.linksColFooter, .Links{
+    color: #23233B;
+    font-family: Karla;
+}
+.FOOTER{
+    background: antiquewhite;
+    border: 2px solid #23233B;
+}
+.registerButton{
+    transition: background-color 0.5s ease;
+}
+.registerButton:hover{
+    background: #b6aa9b;
+}
