@@ -1,6 +1,12 @@
 var language= "PYTHON";
 //Setting up the Firebase Homework Retrival
-var assignmentID="PYTHONHomework1";// The actual homework you want to retrieve ONLY CHANGE THIS PLS
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const assignmentid = urlParams.get('assignmentid')
+var assignmentID= assignmentid;
+
+
 
 const generateUUID = () => { // V4
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -87,7 +93,4 @@ function DisplayHomework(){
 
 }
 
-//Todo Remove all Referecnes of Checking HW //done
-//TODO Integrate using UUID //done
-//TODO Properly link to DB // done
 

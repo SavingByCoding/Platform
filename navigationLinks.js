@@ -1,5 +1,5 @@
 
-let mainMod = angular.module("myApp", []);
+var mainMod = angular.module("myApp", []);
 mainMod.controller("myCont1", function ($scope) {
 
     $scope.logo = "../SBC-logos_transparent.png";
@@ -79,3 +79,4 @@ mainMod.controller("myCont1", function ($scope) {
     let d5 = document.getElementById("d5")
     d5.href = $scope.dropdown5Link
 });
+
