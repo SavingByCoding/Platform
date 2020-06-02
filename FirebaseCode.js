@@ -1,4 +1,6 @@
 var userID;
+var signedIn= false;
+
 firebase.initializeApp({
     apiKey: "AIzaSyBOn9KJJihPr0F0zXNcj_tlHn6tGgxIsMI",
     authDomain: "saving-by-coding.firebaseapp.com",
@@ -16,13 +18,57 @@ var db = firebase.firestore();
 
 firebase.auth().onAuthStateChanged(function(user){
     if (user) {
-
        userID= user.uid;
+       signedIn= true;
        userInit(); //Initializes user if they dont have an account
     } else {
         // User not logged in or has just logged out.
+        signedIn= false;
     }
 });
+
+
+//Functionality to add
+// Create a function that returns a boolean if the user is logged in
+function isUserLoggedIn(){
+    return signedIn
+}
+
+
+
+
+//Functions to add in the nav bar angular file
+//Create a function to display sign out on the nav bar if the user is signed in
+//If the user isn't signed in the button should only display sign in
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function userInit (){
     db.collection('users').doc(userID).get() //Checks if the Document Exists
