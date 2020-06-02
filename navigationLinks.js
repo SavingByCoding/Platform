@@ -1,5 +1,5 @@
 
-let mainMod = angular.module("myApp", []);
+var mainMod = angular.module("myApp", []);
 mainMod.controller("myCont1", function ($scope) {
 
     $scope.logo = "../SBC-logos_transparent.png";

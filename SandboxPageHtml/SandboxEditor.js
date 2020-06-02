@@ -331,8 +331,7 @@ var project9UUID;
 var project10UUID;
 
 var projectsuuid= [];
-var moduleA = angular.module("myApp",[]);
-moduleA.controller("myCont1",function($scope){
+mainMod.controller("HTMLSandbox",function($scope){
     $scope.name1 = "Project 1";
     $scope.name2 = "Project 2";
     $scope.name3 = "Project 3";
@@ -432,10 +431,10 @@ moduleA.controller("myCont1",function($scope){
         //Create a document under user-projects
         //Generate a UUID For the project name
     };
-    $scope.SaveProject = function(){
+    SaveProject = function(){
         $("#ProjectName").val($scope.CurrentProjectName);
     };
-    $scope.SaveChanges = function(){
+    SaveChanges = function(){
         //Click save
         //Opens modal
         //Loads the current name of the project
@@ -448,39 +447,40 @@ moduleA.controller("myCont1",function($scope){
         };
         db.collection('projects').doc($scope.CurrentProjectUUID).set(data);
         $scope.updateProjectName();
-        $scope.LoadProjects();
+        $scope.$apply();
     }
     $scope.updateProjectName = function (){
+        console.log("project number"+ $scope.projectnumber)
         switch ($scope.projectnumber) {
             case "Project1":
                 $scope.name1= $scope.CurrentProjectName;
                 break;
             case "Project2":
-                $scope.name1= $scope.CurrentProjectName;
+                $scope.name2= $scope.CurrentProjectName;
                 break;
             case "Project3":
-                $scope.name1= $scope.CurrentProjectName;
+                $scope.name3= $scope.CurrentProjectName;
                 break;
             case "Project4":
-                $scope.name1= $scope.CurrentProjectName;
+                $scope.name4= $scope.CurrentProjectName;
                 break;
             case "Project5":
-                $scope.name1= $scope.CurrentProjectName;
+                $scope.name5= $scope.CurrentProjectName;
                 break;
             case "Project6":
-                $scope.name1= $scope.CurrentProjectName;
+                $scope.name6= $scope.CurrentProjectName;
                 break;
             case "Project7":
-                $scope.name1= $scope.CurrentProjectName;
+                $scope.name7= $scope.CurrentProjectName;
                 break;
             case "Project8":
-                $scope.name1= $scope.CurrentProjectName;
+                $scope.name8= $scope.CurrentProjectName;
                 break;
             case "Project9":
-                $scope.name1= $scope.CurrentProjectName;
+                $scope.name9= $scope.CurrentProjectName;
                 break;
             case "Project10":
-                $scope.name1= $scope.CurrentProjectName;
+                $scope.name10= $scope.CurrentProjectName;
                 break;
         }
     }
@@ -548,7 +548,7 @@ moduleA.controller("myCont1",function($scope){
     };
 
     function CheckLangauge() {
-        if ($scope.CurrentProjectLanguage != "HTML") {
+        if (($scope.CurrentProjectLanguage != "HTML") || ($scope.CurrentProjectLanguage != "EMPTY") ) { //checks if project is empty or HTML
             $("#WrongCode").modal();
 
         } else {
@@ -562,6 +562,7 @@ moduleA.controller("myCont1",function($scope){
 
     $(document).ready(function () {
         $scope.LoadProjects();
+
     });
 
 
