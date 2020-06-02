@@ -170,6 +170,14 @@
     background: rgba(0, 123, 255, 0.31);
 }
 
+.eventMembershipItem {
+    cursor: pointer;
+}
+
+.eventMembershipItem:hover {
+    background: rgba(0, 123, 255, 0.31);
+}
+
 .groupCard {
     width: 100%;
 }
