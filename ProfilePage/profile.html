@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="profile.css" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel = "stylesheet" type="text/css" href="../navbarCSS.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -15,8 +19,9 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="profile.js"></script>
+
 </head>
-<body ng-app = "myApp">
+<body ng-app = "myApp" style="background: antiquewhite">
 
 
 <!--Navbar -->
@@ -30,25 +35,34 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
+                <a style="color: #23233b">----</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id = "m2" href="#" ng-model = "menuName2"> {{menuName2}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id = "m3" href="#" ng-model = "menuName3">{{menuName3}}</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" id = "m4" href="#" ng-model = "menuName4">{{menuName4}}</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id = "m5" href="#" ng-model = "menuName5">{{menuName5}}</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                    {{menuName3}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#" ng-model = "menuName5" id="m5">{{menuName5}}</a>
+                    <a class="dropdown-item" href="#" ng-model = "menuName6" id = "m6">{{menuName6}}</a>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id = "m6" href="#" ng-model = "menuName6">{{menuName6}}</a>
+                <a style="color: #23233b">-----------------------------------------------</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id = "m7" href="#" ng-model = "menuName7">{{menuName7}}</a>
+                <button class = "btn btn-primary registerButton" style="background: antiquewhite; color: #23233b; border: transparent">Register Now</button>
+            </li>
+            <li class="nav-item">
+                <a style="color: #23233b">---------</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle mr-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
@@ -70,9 +84,122 @@
     </div>
 </nav>
 <!--/.Navbar -->
+<br>
+<div class = "container">
+    <div class = "row justify-content-around">
+        <div class = "col-10" style="text-align: center; font-family: Karla" data-aos="zoom-out-up">
+            <h2><b><u>Hey Neel!</u></b></h2>
+            <small>Access content fine tuned for your learning experience on this page! Keep scrolling for more.</small>
+        </div>
+    </div>
+</div>
+<br>
+<div class = "container" style="font-family: Karla">
+    <div class = "row justify-content-around">
+        <div class = "col-4">
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-header"> Check out what's next!</div>
+                <div class="card-body" style="height: 71.3VH">
+                    <h5 class="card-title"><b>Upcoming Events</b></h5>
+                    <hr  style="background: antiquewhite; height: 2px">
+                    <p class="card-text">EVENT 1</p>
+                    <hr  style="background: antiquewhite; height: 2px">
+                    <p class="card-text">EVENT 2</p>
+                    <hr  style="background: antiquewhite; height: 2px">
+                    <p class="card-text">EVENT 3</p>
+                    <hr  style="background: antiquewhite; height: 2px">
+                    <p class="card-text">EVENT 4</p>
+                    <hr  style="background: antiquewhite; height: 2px">
+                    <p class="card-text">EVENT 5</p>
+                    <hr  style="background: antiquewhite; height: 2px">
+                </div>
+            </div>
+        </div>
+        <div class = "col-8">
+            <div class = "row justify-content-around">
+                <div class = "col-12">
+                    <div class="card text-white bg-dark mb-3" >
+                        <div class="card-header"><i>Important Events show up here</i></div>
+                        <div class="card-body">
+                            <h5 class="card-title"><b>Announcements</b></h5>
+                            <p class="card-text">You ugly</p>
+                        </div>
+                    </div>
+                </div>
+                <div class = "col-12">
+                    <div class="card text-white bg-dark mb-3">
+                        <div class="card-header"><i>Check out your upcoming lesson or access homework!</i></div>
+                        <div class="card-body">
+                            <h5 class="card-title"><b>Lesson Directory</b></h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class = "col-12">
+                    <div class="card text-white bg-dark mb-3">
+                        <div class="card-header"><i>Use our helpful online code editor to work on your own projects!</i></div>
+                        <div class="card-body">
+                            <h5 class="card-title"><b>Sandbox</b></h5>
+                            <p class="card-text" >-<a href="#" >Python Sandbox</a></p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+</div>
 
+<div class = "container" style="font-family: Karla">
+    <div class = "row justify-content-around">
+        <div class = "col-8">
+            <div class="card text-white bg-dark mb-3" style="height: 50Vh" data-aos="zoom-out-up">
+                <div class="card-header"><i>Access resources that can help you learn more!</i></div>
+                <div class="card-body">
+                    <h5 class="card-title"><b>General Resources</b></h5>
+                    <p class="card-text">Hey1</p>
+                </div>
+            </div>
+        </div>
+        <div class = "col-4">
+            <div class="card text-white bg-dark mb-3" style="height: 50VH" data-aos="zoom-out-up">
+                <div class="card-header"><i>Any problems? Contact us and we'll help you out!</i></div>
+                <div class="card-body">
+                    <h5 class="card-title"><b>Contact</b></h5>
+                    <p class="card-text">
+                        HEY
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer id="sticky-footer" class="py-4  FOOTER text-white-50" ng-controller = "MyCont2" style="border-top: 10px solid #23233b">
+    <div class="container  text-center">
+        <div class = "row">
+            <div class = "col-4" style="color: #23233b">
+                <h5>2020 Copyright: Saving By Coding</h5>
+                <p>Make a difference in your life</p>
+            </div>
+            <div class = "col-4 linksColFooter">
+                <small><a class = "Links" href="#" id = "f1" mg-model = "footerMenuName1">{{footerMenuName1}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f2" mg-model = "footerMenuName2">{{footerMenuName2}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f3" mg-model = "footerMenuName3">{{footerMenuName3}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f4" mg-model = "footerMenuName4">{{footerMenuName4}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f5" mg-model = "footerMenuName5">{{footerMenuName5}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f6" mg-model = "footerMenuName6">{{footerMenuName6}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f7" mg-model = "footerMenuName7">{{footerMenuName7}}</a></small><br>
+            </div>
+            <div class = "col-4"></div>
+        </div>
+    </div>
+</footer>
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
 <script src="../navigationLinks.js"></script>
+
+<script>
+    AOS.init();
+</script>
 </html>
