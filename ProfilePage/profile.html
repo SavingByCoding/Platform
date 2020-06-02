@@ -18,8 +18,6 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
-    <script src="profile.js"></script>
-
 </head>
 <body ng-app = "myApp" style="background: antiquewhite">
 
@@ -84,94 +82,123 @@
     </div>
 </nav>
 <!--/.Navbar -->
-<br>
-<div class = "container">
-    <div class = "row justify-content-around">
-        <div class = "col-10" style="text-align: center; font-family: Karla" data-aos="zoom-out-up">
-            <h2><b><u>Hey Neel!</u></b></h2>
-            <small>Access content fine tuned for your learning experience on this page! Keep scrolling for more.</small>
+<div ng-controller="MainContentController">
+    <br>
+    <div class = "container">
+        <div class = "row justify-content-around">
+            <div class = "col-10" style="text-align: center; font-family: Karla" data-aos="zoom-out-up">
+                <h2><b><u>Hey Neel!</u></b></h2>
+                <small>Access content fine tuned for your learning experience on this page! Keep scrolling for more.</small>
+            </div>
         </div>
     </div>
-</div>
-<br>
-<div class = "container" style="font-family: Karla">
-    <div class = "row justify-content-around">
-        <div class = "col-4">
-            <div class="card text-white bg-dark mb-3">
-                <div class="card-header"> Check out what's next!</div>
-                <div class="card-body" style="height: 71.3VH">
-                    <h5 class="card-title"><b>Upcoming Events</b></h5>
-                    <hr  style="background: antiquewhite; height: 2px">
-                    <p class="card-text">EVENT 1</p>
-                    <hr  style="background: antiquewhite; height: 2px">
-                    <p class="card-text">EVENT 2</p>
-                    <hr  style="background: antiquewhite; height: 2px">
-                    <p class="card-text">EVENT 3</p>
-                    <hr  style="background: antiquewhite; height: 2px">
-                    <p class="card-text">EVENT 4</p>
-                    <hr  style="background: antiquewhite; height: 2px">
-                    <p class="card-text">EVENT 5</p>
-                    <hr  style="background: antiquewhite; height: 2px">
+    <br>
+    <div class = "container" style="font-family: Karla">
+        <div class = "row justify-content-around">
+            <div class = "col-4">
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-header"> Check out what's next!</div>
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Upcoming Events</b></h5>
+                        <hr  style="background: antiquewhite; height: 2px">
+                        <div class="eventContainer" ng-repeat="_event in events">
+                            <p class="card-text eventName">{{_event.name}}</p>
+                            <p class="card-text eventTime">{{toDate(_event.time) | date:"MMM d, y @ h:mm a"}}</p>
+                            <p class="card-text eventDescription">{{_event.description}}</p>
+                            <hr  style="background: antiquewhite; height: 2px">
+                            <a class="arrowIcon" href="{{_event.link}}" target="_blank">
+                                <svg class="bi bi-arrow-right-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-8.354 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L9.793 7.5H5a.5.5 0 0 0 0 1h4.793l-2.147 2.146z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "col-8">
+                <div class = "row justify-content-around">
+                    <div class = "col-12">
+                        <div class="card text-white bg-dark mb-3" >
+                            <div class="card-header"><i>Important Events show up here</i></div>
+                            <div class="card-body">
+                                <h5 class="card-title"><b>Announcements</b></h5>
+                                <p class="card-text">You ugly</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "col-12">
+                        <div class="card text-white bg-dark mb-3">
+                            <div class="card-header"><i>Check out your upcoming lesson or access homework!</i></div>
+                            <div class="card-body">
+                                <h5 class="card-title"><b>Lesson Directory</b></h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "col-12">
+                        <div class="card text-white bg-dark mb-3">
+                            <div class="card-header"><i>Use our helpful online code editor to work on your own projects!</i></div>
+                            <div class="card-body">
+                                <h5 class="card-title"><b>Sandbox</b></h5>
+                                <p class="card-text" >-<a href="#" >Python Sandbox</a></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class = "col-8">
-            <div class = "row justify-content-around">
-                <div class = "col-12">
-                    <div class="card text-white bg-dark mb-3" >
-                        <div class="card-header"><i>Important Events show up here</i></div>
-                        <div class="card-body">
-                            <h5 class="card-title"><b>Announcements</b></h5>
-                            <p class="card-text">You ugly</p>
-                        </div>
-                    </div>
-                </div>
-                <div class = "col-12">
-                    <div class="card text-white bg-dark mb-3">
-                        <div class="card-header"><i>Check out your upcoming lesson or access homework!</i></div>
-                        <div class="card-body">
-                            <h5 class="card-title"><b>Lesson Directory</b></h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class = "col-12">
-                    <div class="card text-white bg-dark mb-3">
-                        <div class="card-header"><i>Use our helpful online code editor to work on your own projects!</i></div>
-                        <div class="card-body">
-                            <h5 class="card-title"><b>Sandbox</b></h5>
-                            <p class="card-text" >-<a href="#" >Python Sandbox</a></p>
-                        </div>
-                    </div>
-                </div>
-        </div>
-        </div>
     </div>
-</div>
 
-<div class = "container" style="font-family: Karla">
-    <div class = "row justify-content-around">
-        <div class = "col-8">
-            <div class="card text-white bg-dark mb-3" style="height: 50Vh" data-aos="zoom-out-up">
-                <div class="card-header"><i>Access resources that can help you learn more!</i></div>
-                <div class="card-body">
-                    <h5 class="card-title"><b>General Resources</b></h5>
-                    <p class="card-text">Hey1</p>
+    <div class = "container" style="font-family: Karla">
+        <div class = "row justify-content-around">
+            <div class = "col-8">
+                <div class="card text-white bg-dark mb-3" style="height: 50Vh" data-aos="zoom-out-up">
+                    <div class="card-header"><i>Access resources that can help you learn more!</i></div>
+                    <div class="card-body">
+                        <h5 class="card-title"><b>General Resources</b></h5>
+                        <p class="card-text">Hey1</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class = "col-4">
-            <div class="card text-white bg-dark mb-3" style="height: 50VH" data-aos="zoom-out-up">
-                <div class="card-header"><i>Any problems? Contact us and we'll help you out!</i></div>
-                <div class="card-body">
-                    <h5 class="card-title"><b>Contact</b></h5>
-                    <p class="card-text">
-                        HEY
-                    </p>
+            <div class = "col-4">
+                <div class="card text-white bg-dark mb-3" style="height: 50VH" data-aos="zoom-out-up">
+                    <div class="card-header"><i>Any problems? Contact us and we'll help you out!</i></div>
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Contact</b></h5>
+                        <p class="card-text">
+                            HEY
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class = "container" style="font-family: Karla">
+        <div class = "row justify-content-around">
+            <div class = "col-8">
+                <div class="card text-white bg-dark mb-3" style="height: 50Vh" data-aos="zoom-out-up">
+                    <div class="card-header"><i>Access resources that can help you learn more!</i></div>
+                    <div class="card-body">
+                        <h5 class="card-title"><b>General Resources</b></h5>
+                        <p class="card-text">Hey1</p>
+                    </div>
+                </div>
+            </div>
+            <div class = "col-4">
+                <div class="card text-white bg-dark mb-3" style="height: 50VH" data-aos="zoom-out-up">
+                    <div class="card-header"><i>Any problems? Contact us and we'll help you out!</i></div>
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Contact</b></h5>
+                        <p class="card-text">
+                            HEY
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <footer id="sticky-footer" class="py-4  FOOTER text-white-50" ng-controller = "MyCont2" style="border-top: 10px solid #23233b">
@@ -198,6 +225,7 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
 <script src="../navigationLinks.js"></script>
+<script src="profile.js"></script>
 
 <script>
     AOS.init();
