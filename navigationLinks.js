@@ -80,3 +80,39 @@ mainMod.controller("myCont1", function ($scope) {
     d5.href = $scope.dropdown5Link
 });
 
+mainMod.controller("MyCont2", function ($scope) {
+    $scope.footerMenuName1 = "Home";
+    $scope.footerMenuName1Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    let f1 = document.getElementById("f1")
+    f1.href = $scope.footerMenuName1Link;
+
+    $scope.footerMenuName2 = "About Us";
+    $scope.footerMenuName2Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    let f2 = document.getElementById("f2")
+    f2.href = $scope.footerMenuName2Link;
+
+    $scope.footerMenuName3 = "Donate";
+    $scope.footerMenuName3Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    let f3 = document.getElementById("f3")
+    f3.href = $scope.footerMenuName3Link;
+
+    $scope.footerMenuName4 = "Contact Us";
+    $scope.footerMenuName4Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    let f4 = document.getElementById("f4")
+    f4.href = $scope.footerMenuName4Link;
+
+    $scope.footerMenuName5 = "HTML Course Overview";
+    $scope.footerMenuName5Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    let f5 = document.getElementById("f5")
+    f5.href = $scope.footerMenuName5Link;
+
+    $scope.footerMenuName6 = "Python Course Overview";
+    $scope.footerMenuName6Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    let f6 = document.getElementById("f6")
+    f6.href = $scope.footerMenuName6Link;
+
+    $scope.footerMenuName7 = "Volunteer";
+    $scope.footerMenuName7Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    let f7 = document.getElementById("f7")
+    f7.href = $scope.footerMenuName7Link;
+});
