@@ -1,5 +1,4 @@
 var userID;
-var signedIn= false;
 
 firebase.initializeApp({
     apiKey: "AIzaSyBOn9KJJihPr0F0zXNcj_tlHn6tGgxIsMI",
@@ -15,24 +14,16 @@ firebase.analytics();
 var db = firebase.firestore();
 
 
-
-firebase.auth().onAuthStateChanged(function(user){
-    if (user) {
-       userID= user.uid;
-       signedIn= true;
-       userInit(); //Initializes user if they dont have an account
-    } else {
-        // User not logged in or has just logged out.
-        signedIn= false;
-    }
-});
-
-
-//Functionality to add
-// Create a function that returns a boolean if the user is logged in
-function isUserLoggedIn(){
-    return signedIn
+function SignOut(){
+    firebase.auth().signOut().then(function() {
+        console.log("sign out works")
+    }, function(error) {
+        console.log("sign out didnt work")
+    });
 }
+
+//Code for sign in sign out is on navigation link js file
+
 
 
 

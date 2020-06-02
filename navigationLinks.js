@@ -8,7 +8,7 @@ mainMod.controller("myCont1", function ($scope) {
     $scope.websiteTitle = "Codeology";
 
     $scope.menuName1 = "Home";
-    $scope.menuName1Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    $scope.menuName1Link = "../HomePage/index.html";
     let m1 = document.getElementById("m1")
     m1.href = $scope.menuName1Link;
 
@@ -36,6 +36,9 @@ mainMod.controller("myCont1", function ($scope) {
     m6.href = $scope.menuName6Link;
 
 
+    $scope.registerNowLink= "#";
+    $("#RegisterNow").attr("href",$scope.registerNowLink); //Added a registernow link so you could just put the link here
+
     $scope.dropdownName = "Profile";
 
     $scope.sand1 = "HTML Sandbox"
@@ -53,25 +56,83 @@ mainMod.controller("myCont1", function ($scope) {
     let d1 = document.getElementById("d1")
     d1.href = $scope.dropdown1Link;
 
-    $scope.dropdown2 = "Assignments"
-    $scope.dropdown2Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
-    let d2 = document.getElementById("d2")
-    d2.href = $scope.dropdown2Link;
+    // $scope.dropdown2 = "Assignments"
+    // $scope.dropdown2Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    // let d2 = document.getElementById("d2")
+    // d2.href = $scope.dropdown2Link;
 
     $scope.dropdown3 = "Sign-up"
-    $scope.dropdown3Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
-    let d3 = document.getElementById("d2")
+    $scope.dropdown3Link = "../SignUpPage/SignUp.html";
+    let d3 = document.getElementById("d3")
     d3.href = $scope.dropdown3Link;
 
     $scope.dropdown4 = "Logout"
-    $scope.dropdown4Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    $scope.dropdown4Link = "../HomePage/index.html"; //not done
     let d4 = document.getElementById("d4")
     d4.href = $scope.dropdown4Link;
 
     $scope.dropdown5 = "Login"
-    $scope.dropdown5Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    $scope.dropdown5Link = "../LoginPage/Login.html";
     let d5 = document.getElementById("d5")
     d5.href = $scope.dropdown5Link
+
+    $scope.signedIn; //Code for sign in sign out
+
+    firebase.auth().onAuthStateChanged(function(user){
+        if (user) {
+            userID= user.uid;
+            $scope.signedIn= true;
+            $scope.ChangeNavBar();
+            userInit(); //Initializes user if they dont have an account
+        } else {
+            // User not logged in or has just logged out.
+            $scope.signedIn= false;
+            $scope.ChangeNavBar();
+        }
+    });
+
+
+//Functionality to add
+// Create a function that returns a boolean if the user is logged in
+    function isUserLoggedIn(){
+        return $scope.signedIn
+    }
+
+    function getUserID(){
+        return userID;
+    }
+
+    $scope.ChangeNavBar=()=> {
+        console.log(isUserLoggedIn());
+        if(isUserLoggedIn()){
+            $("#d3").hide();
+            $("#d3").attr("href", "#"); //Hides the SignUp
+            $("#d5").hide();
+            $("#d5").attr("href", "#"); // Hides the LogIn
+            $("#RegisterNow").hide();
+            $("#RegisterNow").attr("href","#");
+
+        }
+        else{//Hides if the user is not logged in
+            $('#divider1').hide(); //Hides Dividers on the Screen
+            $('#divider2').hide();
+            $("#d4").hide();
+            $("#d4").attr("href", "#"); //Hides the Logout
+            $("#s1").hide();
+            $("#s1").attr("href", "#"); // Hides the Sandbox
+            $("#s2").hide();
+            $("#s2").attr("href", "#"); // Hides the Sandbox
+            $("#d1").hide();
+            $("#d1").attr("href", "#");
+        }
+    };
+
+
+    //Functions to implement
+    //If user logged in show : sandbox,view profile,Logout, and the dividers
+    //If user not logged in show: sign up and login
+    $(document).ready(function () {
+    });
 });
 
 mainMod.controller("MyCont2", function ($scope) {
@@ -109,4 +170,5 @@ mainMod.controller("MyCont2", function ($scope) {
     $scope.footerMenuName7Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
     let f7 = document.getElementById("f7")
     f7.href = $scope.footerMenuName7Link;
+
 });
