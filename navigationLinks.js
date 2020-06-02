@@ -52,7 +52,7 @@ mainMod.controller("myCont1", function ($scope) {
     s2.href = "https://www.youtube.com/watch?v=SWYPm24qVd8"
 
     $scope.dropdown1 = "View Profile"
-    $scope.dropdown1Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    $scope.dropdown1Link = "../ProfilePage/profile.html";
     let d1 = document.getElementById("d1")
     d1.href = $scope.dropdown1Link;
 
@@ -77,10 +77,11 @@ mainMod.controller("myCont1", function ($scope) {
     d5.href = $scope.dropdown5Link
 
     $scope.signedIn; //Code for sign in sign out
+    $scope.currentid;
 
     firebase.auth().onAuthStateChanged(function(user){
         if (user) {
-            userID= user.uid;
+            $scope.currentid= user.uid;
             $scope.signedIn= true;
             $scope.ChangeNavBar();
             userInit(); //Initializes user if they dont have an account
@@ -96,10 +97,6 @@ mainMod.controller("myCont1", function ($scope) {
 // Create a function that returns a boolean if the user is logged in
     function isUserLoggedIn(){
         return $scope.signedIn
-    }
-
-    function getUserID(){
-        return userID;
     }
 
     $scope.ChangeNavBar=()=> {

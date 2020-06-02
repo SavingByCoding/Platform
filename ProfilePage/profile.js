@@ -1,18 +1,4 @@
-firebase.initializeApp({
-    apiKey: "AIzaSyBOn9KJJihPr0F0zXNcj_tlHn6tGgxIsMI",
-    authDomain: "saving-by-coding.firebaseapp.com",
-    databaseURL: "https://saving-by-coding.firebaseio.com",
-    projectId: "saving-by-coding",
-    storageBucket: "saving-by-coding.appspot.com",
-    messagingSenderId: "1001321494305",
-    appId: "1:1001321494305:web:7261fc3516fd79bc557060",
-    measurementId: "G-GLKDW56H9N"
-})
-firebase.analytics()
-
-var db = firebase.firestore()
-
-mainMod.controller('MainContentController', ($scope) => {
+mainMod.controller('MainContentController', function($scope){
     // Data is static for now,
     $scope.groups = []
     $scope.events = [ // TODO REMOVE STATIC DATA
@@ -25,16 +11,18 @@ mainMod.controller('MainContentController', ($scope) => {
     $scope.announcements = []
 
     $scope.userId = userID; // TODO GET ID FROM FIREBASE AUTH
+    console.log()
 
-    var UserProjectsDocnument = db.collection('users').doc(userID);
-    let getUserProjects = UserProjectsDocument.get()
+    var UserInfo = db.collection('users').doc($scope.userId);
+    let getUserinfo = UserInfo.get()
         .then(doc => {
             if (!doc.exists) {
                 console.log('No such document!');
             } else {
                 console.log('Document data:', doc.data());
-                let UserProjects =doc.data();
-                $scope.name = UserProjects.name;
+                Username =doc.data(); //Loads all UUID for all project
+                $scope.name =Username.name;
+
             }
         })
         .catch(err => {

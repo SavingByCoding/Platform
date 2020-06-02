@@ -11,13 +11,12 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
-    <script src="profile.js"></script>
+
 
 </head>
 <body ng-app = "myApp" style="background: antiquewhite">
@@ -46,7 +45,7 @@
                 <a class="nav-link" id = "m4" href="#" ng-model = "menuName4">{{menuName4}}</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
                     {{menuName3}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -55,10 +54,10 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a style="color: #23233b">-----------------------------------------------</a>
+                <a style="color: #23233b">-----------------------------------------------------------------------</a>
             </li>
             <li class="nav-item">
-                <button class = "btn btn-primary registerButton" style="background: antiquewhite; color: #23233b; border: transparent">Register Now</button>
+                <button class = "btn btn-primary registerButton" id="RegisterNow" href= "../RegistrationForm/registration.html" style="background: antiquewhite; color: #23233b; border: transparent">Register Now</button>
             </li>
             <li class="nav-item">
                 <a style="color: #23233b">---------</a>
@@ -68,15 +67,15 @@
                     {{dropdownName}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#" id="s1">{{sand1}}</a>
-                    <a class="dropdown-item" href="#" id = "s2">{{sand2}}</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" id="d1">{{dropdown1}}</a>
-                    <a class="dropdown-item" href="#" id = "d2">{{dropdown2}}</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" id="d3">{{dropdown3}}</a>
-                    <a class="dropdown-item" href="#" id="d4">{{dropdown4}}</a>
-                    <a class="dropdown-item" href="#" id="d5">{{dropdown5}}</a>
+                    <a class="dropdown-item" href="" id="s1">{{sand1}}</a>
+                    <a class="dropdown-item" href="" id = "s2">{{sand2}}</a>
+                    <div class="dropdown-divider" id="divider1"></div>
+                    <a class="dropdown-item" href="" id="d1">{{dropdown1}}</a>
+                    <!--                    <a class="dropdown-item" href="" id = "d2">{{dropdown2}}</a>-->
+                    <div class="dropdown-divider" id="divider2"></div>
+                    <a class="dropdown-item" href="" id="d3">{{dropdown3}}</a>
+                    <a class="dropdown-item" onclick="SignOut()" href="" id="d4">{{dropdown4}}</a>
+                    <a class="dropdown-item" href="" id="d5">{{dropdown5}}</a>
                 </div>
             </li>
         </ul>

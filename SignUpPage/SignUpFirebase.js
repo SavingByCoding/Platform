@@ -8,9 +8,6 @@ GoogleSignUp=()=> {
         // The signed-in user info.
         var user = result.user;
 
-
-        userID= user.uid; // Sets userID
-
         db.collection('users').doc(userID).get() //Checks if the Document Exists
             .then((docSnapshot) => {
                 if (docSnapshot.exists) {
@@ -45,5 +42,3 @@ SignOut=()=>{
     });
 }
 
-
-//TODO create a function that
