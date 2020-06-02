@@ -109,8 +109,6 @@ mainMod.controller("myCont1", function ($scope) {
             $("#d3").attr("href", "#"); //Hides the SignUp
             $("#d5").hide();
             $("#d5").attr("href", "#"); // Hides the LogIn
-            $("#RegisterNow").hide();
-            $("#RegisterNow").attr("href","#");
 
         }
         else{//Hides if the user is not logged in
@@ -124,6 +122,9 @@ mainMod.controller("myCont1", function ($scope) {
             $("#s2").attr("href", "#"); // Hides the Sandbox
             $("#d1").hide();
             $("#d1").attr("href", "#");
+            $("#RegisterNow").hide();
+            $("#RegisterNow").attr("href","#");
+
         }
     };
 
