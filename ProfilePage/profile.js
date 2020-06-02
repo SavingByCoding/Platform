@@ -24,7 +24,23 @@ mainMod.controller('MainContentController', ($scope) => {
     ]
     $scope.announcements = []
 
-    $scope.userId = 'VV9kJoIQ7ieDq52DKSGvBbKeAhA2' // TODO GET ID FROM FIREBASE AUTH
+    $scope.userId = userID; // TODO GET ID FROM FIREBASE AUTH
+
+    var UserProjectsDocument = db.collection('users').doc(userID);
+    let getUserProjects = UserProjectsDocument.get()
+        .then(doc => {
+            if (!doc.exists) {
+                console.log('No such document!');
+            } else {
+                console.log('Document data:', doc.data());
+                let UserProjects =doc.data();
+                $scope.name = UserProjects.name;
+            }
+        })
+        .catch(err => {
+            console.log('Error getting document', err);
+        });
+
 
     $scope.getGroups = () => {
         db.collection('groups')
