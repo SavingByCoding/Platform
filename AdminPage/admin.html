@@ -617,7 +617,7 @@
                 </div>
             </div>
         </div>
-        <div ng-show="currentTab == 2">
+        <div ng-show="currentTab === 2">
             <div class="grid row">
                 <div class="col-sm-12">
                     <table style="width: 100%;">
@@ -703,7 +703,7 @@
                 </div>
             </div>
         </div>
-        <div ng-show="currentTab == 3">
+        <div ng-show="currentTab === 3">
             <div class="grid row equal">
                 <div class="col-sm-12">
                     <table style="width: 100%;">
@@ -799,7 +799,7 @@
                 </div>
             </div>
         </div>
-        <div ng-show="currentTab == 4">
+        <div ng-show="currentTab === 4">
             <div id="assignmentSelectorView" class="grid row" ng-show="currentGradingView == 1">
                 <div class="col-sm-6 col-lg-4 d-flex pb-3" ng-repeat="assignment in assignments">
                     <div class="card assignmentCard">
@@ -826,6 +826,12 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{assignments[currentAssignmentIndex].name}}</h5>
                                 <p class="card-text">{{assignments[currentAssignmentIndex].description}}</p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-title" style="margin-bottom: 0 !important;">{{usersAssignments.length}} Submissions</h6>
                             </div>
                         </div>
                     </div>
@@ -873,6 +879,115 @@
                             <div class="alert alert-primary" role="alert">
                                 There are no submissions for this assignment yet.
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="currentTab === 5">
+            <div class="grid row" id="coursesList" ng-show="currentRegistrationCourse === null">
+                <div class="col-sm-6 col-lg-4 d-flex pb-3" ng-repeat="course in registrationCourses">
+                    <div class="card assignmentCard">
+                        <div class="card-body">
+                            <h5 class="card-title">{{course.name}}</h5>
+                            <p class="card-text">{{course.description}}</p>
+                            <div style="visibility: hidden;">
+                                <a class="card-link">Filler</a>
+                            </div>
+                            <div class="assignmentActions">
+                                <a href="#" class="card-link" ng-click="loadRegistrations($index)">See Registrations</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden-md hidden-lg hidden-xl"><br/></div>
+                </div>
+            </div>
+            <div id="registrationsList" ng-hide="currentRegistrationCourse === null">
+                <div class="grid row">
+                    <div class="col-sm-3">
+                        <div class="stickyCardContainer sticky-top">
+                            <button class="btn btn-outline-primary" ng-click="currentRegistrationCourse = null" style="width: 100%;">< See All Courses</button>
+                            <br><br>
+                            <div class="card assignmentCard">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{registrationCourses[currentRegistrationCourse].name}}</h5>
+                                    <p class="card-text">{{registrationCourses[currentRegistrationCourse].description}}</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title" style="margin-bottom: 0 !important;">{{registrations.length}} Registrations</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="col-sm-9" ng-hide="registrations.length === 0">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="r in registrations">
+                                <h4>{{r.userObj.name}}</h4>
+                                <div class="registrationInformation" ng-hide="r.compact">
+                                    <h5>User Info</h5>
+                                    <table class="table table-sm">
+                                        <thead>
+                                        <tr>
+                                            <th>Field</th>
+                                            <th>Value</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th>Name</th>
+                                            <td>{{r.userObj.name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Authentication/User ID</th>
+                                            <td>{{r.userObj.userId}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Non-Authentication ID</th>
+                                            <td>{{r.userObj.id}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>User Type</th>
+                                            <td>{{r.userObj.userType}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Date Of Birth</th>
+                                            <td>{{toDate(r.userObj.dateOfBirth) | date:"MMM d, y"}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Date Joined</th>
+                                            <td>{{toDate(r.userObj.dateJoined) | date:"MMM d, y @ h:mm:ss a"}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <h5>Registration Info</h5>
+                                    <table class="table table-sm">
+                                        <thead>
+                                        <tr>
+                                            <th>Field</th>
+                                            <th>Value</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="entry in r.fields">
+                                            <th>{{entry.key}}</th>
+                                            <td>{{entry.value}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <svg ng-class="{'flipped': r.compact}" ng-click="toggleRegistrationCompact($index)" class="bi bi-chevron-up toggleCompactIcon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                                </svg>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-9" ng-show="registrations.length === 0">
+                        <div class="alert alert-primary" role="alert">
+                            There are no registrations for this course yet.
                         </div>
                     </div>
                 </div>
