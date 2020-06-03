@@ -9,6 +9,7 @@ GoogleSignIn=()=>{
         // The signed-in user info.
         var user = result.user;
         console.log("id from login"+  user.uid);
+        window.open ('../ProfilePage/profile.html','_self',false);
         // ...
     }).catch(function(error) {
         // Handle Errors here.
@@ -22,6 +23,7 @@ GoogleSignIn=()=>{
     });
 
 
+
 }
 
 RegularLogIn=()=>{
@@ -33,6 +35,7 @@ RegularLogIn=()=>{
         var errorMessage = error.message;
         console.log(errorCode);
         console.log(errorMessage);
+        window.open ('../ProfilePage/profile.html','_self',false);
         // ...
     });
 }

@@ -24,6 +24,7 @@ var SandboxLanguage = "HTML";
 // }
 //
 //download code locally
+
 function download(filename, text) {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -332,6 +333,27 @@ var project10UUID;
 
 var projectsuuid= [];
 mainMod.controller("HTMLSandbox",function($scope){
+
+    $scope.getLoggedInUser = () => {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                userID = user.uid;
+                console.log("hello")
+                db.collection("users")
+                    .where("userId", "==", userID)
+                    .get()
+                    .then((qs) => {
+                        let doc = qs.docs[0]
+                        let user = {id: doc.id}
+                        Object.assign(user, doc.data())
+                        userID= user
+                    })
+            }
+        });
+    };
+    $scope.getLoggedInUser();
+
+    //Value from the Firebase Code on Auth UserChange
     $scope.name1 = "Project 1";
     $scope.name2 = "Project 2";
     $scope.name3 = "Project 3";
@@ -342,8 +364,7 @@ mainMod.controller("HTMLSandbox",function($scope){
     $scope.name8 = "Project 8";
     $scope.name9 = "Project 9";
     $scope.name10 ="Project 10";
-    $scope.UserID = userID; //Value from the Firebase Code on Auth UserChange
-
+    $scope.UserID = userID;
     $scope.LoadProjects = function(){ //Loads all project names //Works
         var UserProjectsDocument = db.collection('user-projects').doc(userID);
         let getUserProjects = UserProjectsDocument.get()

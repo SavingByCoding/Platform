@@ -16,10 +16,9 @@ GoogleSignUp=()=> {
                 }
             });
 
-
         // ...
     }).catch(function (error) {
-
+        window.open ('../ProfilePage/profile.html','_self',false);
     });
 };
 
@@ -32,6 +31,7 @@ RegularSignUp=()=>{
         var errorCode = error.code;
         var errorMessage = error.message;
     });
+    window.open ('../LoginPage/Login.html','_self',false);
 };
 SignOut=()=>{
     firebase.auth().signOut().then(function () {

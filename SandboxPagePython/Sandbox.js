@@ -28,6 +28,9 @@ $(document).ready(function () {
 
 });
 
+
+
+
 function chooseActive(num1){
     if(num1 === 1){
         document.getElementById("Project2").classList.remove("active");
@@ -279,20 +282,28 @@ var project10UUID;
 
 var projectsuuid= [];
 mainMod.controller("PYTHONSandbox",function($scope){
-    $scope.name1 = "Project 1";
-    $scope.name2 = "Project 2";
-    $scope.name3 = "Project 3";
-    $scope.name4 = "Project 4";
-    $scope.name5 = "Project 5";
-    $scope.name6 = "Project 6";
-    $scope.name7 = "Project 7";
-    $scope.name8 = "Project 8";
-    $scope.name9 = "Project 9";
-    $scope.name10 ="Project 10";
-    $scope.UserID = userID; //Value from the Firebase Code on Auth UserChange
+    $scope.getLoggedInUser = () => {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                $scope.UserID = user.uid;
+                $scope.name1 = "Project 1";
+                $scope.name2 = "Project 2";
+                $scope.name3 = "Project 3";
+                $scope.name4 = "Project 4";
+                $scope.name5 = "Project 5";
+                $scope.name6 = "Project 6";
+                $scope.name7 = "Project 7";
+                $scope.name8 = "Project 8";
+                $scope.name9 = "Project 9";
+                $scope.name10 ="Project 10";
+            }
+        });
+    };
+
+    $scope.getLoggedInUser();
 
     $scope.LoadProjects = function(){ //Loads all project names //Works
-        var UserProjectsDocument = db.collection('user-projects').doc(userID);
+        var UserProjectsDocument = db.collection('user-projects').doc( $scope.UserID);
         let getUserProjects = UserProjectsDocument.get()
             .then(doc => {
                 if (!doc.exists) {
