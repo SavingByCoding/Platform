@@ -32,7 +32,6 @@ RegularSignUp=()=>{
         var errorCode = error.code;
         var errorMessage = error.message;
     });
-
 };
 SignOut=()=>{
     firebase.auth().signOut().then(function () {

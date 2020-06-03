@@ -75,8 +75,8 @@ const generateUUID = () => { // V4
 CreateAccountInDB= () => {
     let data = {
         userId: userID,
-        name: "henrey", //Add name from input
-        userType: 2,
+        name: document.getElementById("name").value, //Add name from input
+        userType: 1,
         dateOfBirth: getCurrentDate(), //Change to Date of Birth from input
         dateJoined: getCurrentDate(),
         isSpaceAllocated: true,

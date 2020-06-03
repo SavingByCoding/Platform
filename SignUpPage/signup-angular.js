@@ -1,0 +1,3 @@
+mainMod.controller("MainContentController", ($scope) => {
+
+})
