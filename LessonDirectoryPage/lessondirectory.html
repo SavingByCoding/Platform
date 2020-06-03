@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel = "stylesheet" type="text/css" href="../navbarCSS.css">
     <link rel="stylesheet" href="lessondirectory.css" type="text/css">
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase.js "></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
@@ -13,11 +14,11 @@
     <script src="../redirectToLogin.js"></script>
     <title>Lesson Directory</title>
 </head>
-<body ng-app="SBCLessonDirectory" ng-controller="AppController">
+<body ng-app="SBCLessonDirectory" ng-controller="AppController" style="background: antiquewhite;">
     <br />
     <div class="container">
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
+            <ol class="breadcrumb text-white bg-dark mb-3">
                 <li class="breadcrumb-item" ng-repeat="component in directory" ng-class="{'active': $index == directory.length - 1}">
                     <a>{{component}}</a>
                 </li>
@@ -28,9 +29,9 @@
                 <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
             </div>
             <div class="col-sm-4 d-flex pb-3" ng-repeat="item in items">
-                <div class="card">
+                <div class="card text-white bg-dark mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">{{item.name}}</h5>
+                        <h5 class="card-title"><b>{{item.name}}</b></h5>
                         <p class="card-text">{{item.description}}</p>
                         <a class="btn btn-primary" style="visibility: hidden;">Enter</a> <!-- Fake button -->
                         <a class="btn btn-primary enterButton" ng-click="switchView($index)">Enter</a>

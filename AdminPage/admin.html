@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title>Admin</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel = "stylesheet" type="text/css" href="../navbarCSS.css">
     <link rel="stylesheet" href="admin.css" type="text/css">
 </head>
 <body ng-app="SBCAdmin" ng-controller="AppController">
     <br />
     <div class="container">
-        <ul class="nav nav-pills nav-fill">
+        <ul class="nav nav-pills nav-fill bg-dark">
             <li class="nav-item" ng-repeat="tab in tabs">
                 <a class="nav-link" href="#" ng-class="{'active': $index == currentTab}" ng-click="changeTab($index)">{{tab}}</a>
             </li>
@@ -39,7 +40,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" ng-click="clearCrudCourseModal()" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                            <button type="button" ng-click="crudCourse()" class="btn btn-primary" data-dismiss="modal">{{crudStates.course}} Course</button>
+                            <button type="button" ng-click="crudCourse()" class="btn btn-dark" data-dismiss="modal">{{crudStates.course}} Course</button>
                         </div>
                     </div>
                 </div>
@@ -67,7 +68,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" ng-click="clearCrudUnitModal()" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                            <button type="button" ng-click="crudUnit()" class="btn btn-primary" data-dismiss="modal">{{crudStates.unit}} Unit</button>
+                            <button type="button" ng-click="crudUnit()" class="btn btn-dark" data-dismiss="modal">{{crudStates.unit}} Unit</button>
                         </div>
                     </div>
                 </div>
@@ -95,7 +96,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" ng-click="clearCrudLessonModal()" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                            <button type="button" ng-click="crudLesson()" class="btn btn-primary" data-dismiss="modal">{{crudStates.lesson}} Lesson</button>
+                            <button type="button" ng-click="crudLesson()" class="btn btn-dark" data-dismiss="modal">{{crudStates.lesson}} Lesson</button>
                         </div>
                     </div>
                 </div>
@@ -127,7 +128,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" ng-click="clearCrudAssignmentModal()" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                            <button type="button" ng-click="crudAssignment()" class="btn btn-primary" data-dismiss="modal">{{crudStates.assignment}} Assignment</button>
+                            <button type="button" ng-click="crudAssignment()" class="btn btn-dark" data-dismiss="modal">{{crudStates.assignment}} Assignment</button>
                         </div>
                     </div>
                 </div>
@@ -168,7 +169,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" ng-click="clearCrudResourceModal()" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                            <button type="button" ng-click="crudResource()" class="btn btn-primary" data-dismiss="modal">{{crudStates.resource}} Resource</button>
+                            <button type="button" ng-click="crudResource()" class="btn btn-dark" data-dismiss="modal">{{crudStates.resource}} Resource</button>
                         </div>
                     </div>
                 </div>
@@ -183,8 +184,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <ul class="list-group">
-                                <li class="list-group-item" ng-repeat="course in reorderedCourses">
+                            <ul class="list-group text-white mb-3">
+                                <li class="list-group-item bg-dark" ng-repeat="course in reorderedCourses">
                                     <svg ng-click="shiftCourseUp($index)" class="bi bi-chevron-up shiftOrderIcon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"/>
                                     </svg>
@@ -197,7 +198,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                            <button type="button" ng-click="reorderCourses()" class="btn btn-primary" data-dismiss="modal">Reorder Courses</button>
+                            <button type="button" ng-click="reorderCourses()" class="btn btn-dark" data-dismiss="modal">Reorder Courses</button>
                         </div>
                     </div>
                 </div>
@@ -212,8 +213,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <ul class="list-group">
-                                <li class="list-group-item" ng-repeat="unit in reorderedUnits">
+                            <ul class="list-group text-white mb-3">
+                                <li class="list-group-item bg-dark" ng-repeat="unit in reorderedUnits">
                                     <svg ng-click="shiftUnitUp($index)" class="bi bi-chevron-up shiftOrderIcon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"/>
                                     </svg>
@@ -226,7 +227,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                            <button type="button" ng-click="reorderUnits()" class="btn btn-primary" data-dismiss="modal">Reorder Units</button>
+                            <button type="button" ng-click="reorderUnits()" class="btn btn-dark" data-dismiss="modal">Reorder Units</button>
                         </div>
                     </div>
                 </div>
@@ -241,8 +242,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <ul class="list-group">
-                                <li class="list-group-item" ng-repeat="lesson in reorderedLessons">
+                            <ul class="list-group text-white mb-3">
+                                <li class="list-group-item bg-dark" ng-repeat="lesson in reorderedLessons">
                                     <svg ng-click="shiftLessonUp($index)" class="bi bi-chevron-up shiftOrderIcon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"/>
                                     </svg>
@@ -255,7 +256,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                            <button type="button" ng-click="reorderLessons()" class="btn btn-primary" data-dismiss="modal">Reorder Lessons</button>
+                            <button type="button" ng-click="reorderLessons()" class="btn btn-dark" data-dismiss="modal">Reorder Lessons</button>
                         </div>
                     </div>
                 </div>
@@ -270,8 +271,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <ul class="list-group">
-                                <li class="list-group-item" ng-repeat="assignment in reorderedAssignments">
+                            <ul class="list-group text-white mb-3">
+                                <li class="list-group-item bg-dark" ng-repeat="assignment in reorderedAssignments">
                                     <svg ng-click="shiftAssignmentUp($index)" class="bi bi-chevron-up shiftOrderIcon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"/>
                                     </svg>
@@ -284,7 +285,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                            <button type="button" ng-click="reorderAssignments()" class="btn btn-primary" data-dismiss="modal">Reorder Assignments</button>
+                            <button type="button" ng-click="reorderAssignments()" class="btn btn-dark" data-dismiss="modal">Reorder Assignments</button>
                         </div>
                     </div>
                 </div>
@@ -299,8 +300,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <ul class="list-group">
-                                <li class="list-group-item" ng-repeat="resource in reorderedResources">
+                            <ul class="list-group text-white mb-3">
+                                <li class="list-group-item bg-dark" ng-repeat="resource in reorderedResources">
                                     <svg ng-click="shiftResourceUp($index)" class="bi bi-chevron-up shiftOrderIcon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"/>
                                     </svg>
@@ -313,7 +314,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                            <button type="button" ng-click="reorderResources()" class="btn btn-primary" data-dismiss="modal">Reorder Resources</button>
+                            <button type="button" ng-click="reorderResources()" class="btn btn-dark" data-dismiss="modal">Reorder Resources</button>
                         </div>
                     </div>
                 </div>
@@ -338,7 +339,7 @@
                                         </div>
                                         <div>{{course.description}}</div>
                                     </div>
-                                    <div class="directoryItemActions">
+                                    <div class="directoryItemActions" ng-class="{'selected': selectedCourse === $index}">
                                         <svg data-toggle="modal" data-target="#crudCourseModal" ng-click="launchEditCourseModal($index)" class="bi bi-pencil" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd"/>
                                             <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0 00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z" clip-rule="evenodd"/>
@@ -372,7 +373,7 @@
                                         <div class="boldText">{{unit.name}}</div>
                                         <div>{{unit.description}}</div>
                                     </div>
-                                    <div class="directoryItemActions">
+                                    <div class="directoryItemActions" ng-class="{'selected': selectedUnit === $index}">
                                         <svg data-toggle="modal" data-target="#crudUnitModal" ng-click="launchEditUnitModal($index)" class="bi bi-pencil" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd"/>
                                             <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0 00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z" clip-rule="evenodd"/>
@@ -407,7 +408,7 @@
                                         <div class="boldText">{{lesson.name}}</div>
                                         <div>{{lesson.description}}</div>
                                     </div>
-                                    <div class="directoryItemActions">
+                                    <div class="directoryItemActions" ng-class="{'selected': selectedLesson === $index}">
                                         <svg data-toggle="modal" data-target="#crudLessonModal" ng-click="launchEditLessonModal($index)" class="bi bi-pencil" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd"/>
                                             <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0 00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z" clip-rule="evenodd"/>
@@ -535,7 +536,7 @@
                                 </div>
                             </td>
                             <td style="width: auto;">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crudGroupModal" ng-click="launchCreateGroupModal()">Create Group</button>
+                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#crudGroupModal" ng-click="launchCreateGroupModal()">Create Group</button>
                             </td>
                         </tr>
                     </table>
@@ -562,7 +563,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" ng-click="clearCrudGroupModal()" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                                    <button type="button" ng-click="crudGroup()" class="btn btn-primary" data-dismiss="modal">{{crudStates.group}} Group</button>
+                                    <button type="button" ng-click="crudGroup()" class="btn btn-dark" data-dismiss="modal">{{crudStates.group}} Group</button>
                                 </div>
                             </div>
                         </div>
@@ -579,8 +580,8 @@
                                 <div class="modal-body">
                                     <input type="name" ng-model="groupMembershipQuery" class="form-control" id="groupMembershipQuery" placeholder="Search for Users...">
                                     <br>
-                                    <ul class="list-group">
-                                        <li class="list-group-item groupMembershipItem" ng-repeat="user in groupMembership" ng-show="user.name.toLowerCase().includes(groupMembershipQuery.toLowerCase()) || !groupMembershipQuery" ng-click="selectUserMembership($index)" ng-class="{'bg-primary': user.selected, 'whiteText': user.selected}">
+                                    <ul class="list-group text-white mb-3">
+                                        <li class="list-group-item groupMembershipItem bg-dark" ng-repeat="user in groupMembership" ng-show="user.name.toLowerCase().includes(groupMembershipQuery.toLowerCase()) || !groupMembershipQuery" ng-click="selectUserMembership($index)" ng-class="{'selected': user.selected}">
                                             <span style="margin-left: 10px;">{{user.name}}</span>
                                             <svg ng-show="user.selected" style="float: right;" class="bi bi-check" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z" clip-rule="evenodd"/>
@@ -590,7 +591,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                                    <button type="button" ng-click="changeGroupMembership()" class="btn btn-primary" data-dismiss="modal">Change</button>
+                                    <button type="button" ng-click="changeGroupMembership()" class="btn btn-dark" data-dismiss="modal">Change</button>
                                 </div>
                             </div>
                         </div>
@@ -598,7 +599,7 @@
                     <br/>
                 </div>
                 <div class="col-sm-6 col-lg-4 d-flex pb-3" ng-repeat="group in groups" ng-hide="!group.name.toLowerCase().includes(groupsQuery.toLowerCase()) && !group.description.toLowerCase().includes(groupsQuery.toLowerCase()) && groupsQuery">
-                    <div class="card groupCard">
+                    <div class="card groupCard text-white bg-dark mb-3">
                         <div class="card-body">
                             <h5 class="card-title">{{group.name}}</h5>
                             <h6 class="card-subtitle mb-2">{{group.users.length}} Users</h6>
@@ -636,10 +637,10 @@
                                 </div>
                             </td>
                             <td style="width: auto;">
-                                <button type="button" id="showStudents" class="btn btn-outline-primary" ng-click="toggleShowStudents()">{{showStudents ? 'Hide': 'Show'}} Students</button>
+                                <button type="button" id="showStudents" class="btn btn-dark" ng-click="toggleShowStudents()">{{showStudents ? 'Hide': 'Show'}} Students</button>
                             </td>
                             <td style="width: auto;">
-                                <button disabled type="button" id="createUser" class="btn btn-primary" data-toggle="modal" data-target="#crudUserModal" ng-click="launchCreateUserModal()">Create User</button>
+                                <button disabled type="button" id="createUser" class="btn btn-dark" data-toggle="modal" data-target="#crudUserModal" ng-click="launchCreateUserModal()">Create User</button>
                             </td>
                         </tr>
                     </table>
@@ -681,7 +682,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" ng-click="clearCrudUserModal()" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                                    <button type="button" ng-click="crudUser()" class="btn btn-primary" data-dismiss="modal">{{crudStates.user}} User</button>
+                                    <button type="button" ng-click="crudUser()" class="btn btn-dark" data-dismiss="modal">{{crudStates.user}} User</button>
                                 </div>
                             </div>
                         </div>
@@ -689,9 +690,12 @@
                     <br/>
                 </div>
                 <div class="col-sm-6 col-lg-4" ng-repeat="user in users" ng-hide="(!showStudents && user.userType === '1') || (!user.name.toLowerCase().includes(usersQuery.toLowerCase()) && usersQuery)">
-                    <div class="card" ng-class="{'bg-primary': user.userType === '2', 'text-white': user.userType === '2'}">
+                    <div class="card userCard text-white bg-dark mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">{{user.name}}</h5>
+                            <h5 class="card-title">
+                                {{user.name}}
+                            </h5>
+                            <span ng-show="user.userType === '2'" class="badge badge-pill badge-light">A</span>
                             <h6 class="card-subtitle mb-2">Joined: {{user.dateJoined | date: 'M/d/yyyy h:mm a'}}</h6>
                             <p class="card-text">Birthday: {{user.dateOfBirth | date: 'MMMM d, yyyy'}}</p>
                             <a href="#" class="card-link" ng-class="{'whiteText': user.userType === '2'}" data-toggle="modal" data-target="#crudUserModal" ng-click="launchEditUserModal($index)">Edit</a>
@@ -717,8 +721,8 @@
                             <div class="modal-body">
                                 <input type="name" ng-model="eventMembershipQuery" class="form-control" id="eventMembershipQuery" placeholder="Search for Groups...">
                                 <br>
-                                <ul class="list-group">
-                                    <li class="list-group-item eventMembershipItem" ng-repeat="group in eventMembership" ng-show="group.name.toLowerCase().includes(eventMembershipQuery.toLowerCase()) || !eventMembershipQuery" ng-click="selectGroupMembership($index)" ng-class="{'bg-primary': group.selected, 'whiteText': group.selected}">
+                                <ul class="list-group text-white mb-3">
+                                    <li class="list-group-item eventMembershipItem bg-dark" ng-repeat="group in eventMembership" ng-show="group.name.toLowerCase().includes(eventMembershipQuery.toLowerCase()) || !eventMembershipQuery" ng-click="selectGroupMembership($index)" ng-class="{'selected': group.selected}">
                                         <span style="margin-left: 10px;">{{group.name}}</span>
                                         <svg ng-show="group.selected" style="float: right;" class="bi bi-check" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z" clip-rule="evenodd"/>
@@ -728,7 +732,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                                <button type="button" ng-click="changeEventMembership()" class="btn btn-primary" data-dismiss="modal">Change</button>
+                                <button type="button" ng-click="changeEventMembership()" class="btn btn-dark" data-dismiss="modal">Change</button>
                             </div>
                         </div>
                     </div>
@@ -750,10 +754,10 @@
                                 </div>
                             </td>
                             <td style="width: auto;">
-                                <button type="button" id="showArchivedEvents" class="btn btn-outline-primary" ng-click="toggleShowArchivedEvents()">{{showArchivedEvents ? 'Hide': 'Show'}} Archived Events</button>
+                                <button type="button" id="showArchivedEvents" class="btn btn-dark" ng-click="toggleShowArchivedEvents()">{{showArchivedEvents ? 'Hide': 'Show'}} Archived Events</button>
                             </td>
                             <td style="width: auto;">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crudEventModal" ng-click="launchCreateEventModal()">Create Event</button>
+                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#crudEventModal" ng-click="launchCreateEventModal()">Create Event</button>
                             </td>
                         </tr>
                     </table>
@@ -788,7 +792,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" ng-click="clearCrudEventModal()" class="btn btn-secondary" data-dismiss="modal">Clear</button>
-                                    <button type="button" ng-click="crudEvent()" class="btn btn-primary" data-dismiss="modal">{{crudStates.event}} Event</button>
+                                    <button type="button" ng-click="crudEvent()" class="btn btn-dark" data-dismiss="modal">{{crudStates.event}} Event</button>
                                 </div>
                             </div>
                         </div>
@@ -796,7 +800,7 @@
                     <br/>
                 </div>
                 <div class="col-lg-6 d-flex pb-3" ng-repeat="event in events" ng-hide="(event.archived && !showArchivedEvents) || (!event.name.toLowerCase().includes(eventsQuery.toLowerCase()) && !event.description.toLowerCase().includes(eventsQuery.toLowerCase()) && eventsQuery)">
-                    <div class="card eventCard" ng-class="{'archivedCard': event.archived}">
+                    <div class="card eventCard text-white bg-dark mb-3" ng-class="{'archivedCard': event.archived}">
                         <div class="card-body">
                             <h5 class="card-title">
                                 <span>
@@ -831,7 +835,7 @@
         <div ng-show="currentTab === 4">
             <div id="assignmentSelectorView" class="grid row" ng-show="currentGradingView == 1">
                 <div class="col-sm-6 col-lg-4 d-flex pb-3" ng-repeat="assignment in assignments">
-                    <div class="card assignmentCard">
+                    <div class="card assignmentCard text-white bg-dark mb-3">
                         <div class="card-body">
                             <h5 class="card-title">{{assignment.name}}</h5>
                             <p class="card-text">{{assignment.description}}</p>
@@ -849,16 +853,15 @@
             <div id="submissionGradingView" class="grid row" ng-show="currentGradingView == 2">
                 <div class="col-sm-3">
                     <div class="stickyCardContainer sticky-top">
-                        <button class="btn btn-outline-primary" ng-click="currentGradingView = 1" style="width: 100%;">< See All Assignments</button>
+                        <button class="btn btn-dark" ng-click="currentGradingView = 1" style="width: 100%;">< See All Assignments</button>
                         <br><br>
-                        <div class="card assignmentCard">
+                        <div class="card assignmentCard text-white bg-dark mb-3">
                             <div class="card-body">
                                 <h5 class="card-title">{{assignments[currentAssignmentIndex].name}}</h5>
                                 <p class="card-text">{{assignments[currentAssignmentIndex].description}}</p>
                             </div>
                         </div>
-                        <br>
-                        <div class="card">
+                        <div class="card text-white bg-dark mb-3">
                             <div class="card-body">
                                 <h6 class="card-title" style="margin-bottom: 0 !important;">{{usersAssignments.length}} Submissions</h6>
                             </div>
@@ -869,7 +872,7 @@
                 <div class="col-sm-9">
                     <div class="grid row">
                         <div class="col-sm-12" ng-repeat="ua in usersAssignments" ng-show="ua.completed">
-                            <div class="card submissionCard">
+                            <div class="card submissionCard text-white bg-dark mb-3">
                                 <div class="card-body">
                                     <h5 class="card-title">
                                         {{ua.userName}}
@@ -905,7 +908,7 @@
                             <br />
                         </div>
                         <div class="col-sm-12" ng-show="usersAssignments.length === 0">
-                            <div class="alert alert-primary" role="alert">
+                            <div class="alert bg-dark text-white mb-3" role="alert">
                                 There are no submissions for this assignment yet.
                             </div>
                         </div>
@@ -916,7 +919,7 @@
         <div ng-show="currentTab === 5">
             <div class="grid row" id="coursesList" ng-show="currentRegistrationCourse === null">
                 <div class="col-sm-6 col-lg-4 d-flex pb-3" ng-repeat="course in registrationCourses">
-                    <div class="card assignmentCard">
+                    <div class="card assignmentCard text-white bg-dark mb-3">
                         <div class="card-body">
                             <h5 class="card-title">{{course.name}}</h5>
                             <p class="card-text">{{course.description}}</p>
@@ -935,16 +938,15 @@
                 <div class="grid row">
                     <div class="col-sm-3">
                         <div class="stickyCardContainer sticky-top">
-                            <button class="btn btn-outline-primary" ng-click="currentRegistrationCourse = null" style="width: 100%;">< See All Courses</button>
+                            <button class="btn btn-dark" ng-click="currentRegistrationCourse = null" style="width: 100%;">< See All Courses</button>
                             <br><br>
-                            <div class="card assignmentCard">
+                            <div class="card assignmentCard text-white bg-dark mb-3">
                                 <div class="card-body">
                                     <h5 class="card-title">{{registrationCourses[currentRegistrationCourse].name}}</h5>
                                     <p class="card-text">{{registrationCourses[currentRegistrationCourse].description}}</p>
                                 </div>
                             </div>
-                            <br>
-                            <div class="card">
+                            <div class="card text-white bg-dark mb-3">
                                 <div class="card-body">
                                     <h6 class="card-title" style="margin-bottom: 0 !important;">{{registrations.length}} Registrations</h6>
                                 </div>
@@ -953,8 +955,8 @@
                         <br />
                     </div>
                     <div class="col-sm-9" ng-hide="registrations.length === 0">
-                        <ul class="list-group">
-                            <li class="list-group-item" ng-repeat="r in registrations">
+                        <ul class="list-group text-white mb-3">
+                            <li class="list-group-item bg-dark" ng-repeat="r in registrations">
                                 <h4>{{r.userObj.name}}</h4>
                                 <div class="registrationInformation" ng-hide="r.compact">
                                     <h5>User Info</h5>
@@ -1015,7 +1017,7 @@
                         </ul>
                     </div>
                     <div class="col-sm-9" ng-show="registrations.length === 0">
-                        <div class="alert alert-primary" role="alert">
+                        <div class="alert bg-dark text-white mb-3" role="alert">
                             There are no registrations for this course yet.
                         </div>
                     </div>

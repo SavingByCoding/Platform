@@ -1,3 +1,7 @@
+* {
+    font-family: Karla !important;
+}
+
 .stickyCardContainer {
     top: 20px;
 }

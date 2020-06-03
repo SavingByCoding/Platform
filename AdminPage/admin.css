@@ -2,6 +2,92 @@
     /*transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     -webkit-transition: all 0.3s cubic-bezier(.25,.8,.25,1);*/
     opacity: 1;
+    font-family: Karla !important;
+    /*transition: 0.1s ease all;*/
+}
+
+body {
+    background: antiquewhite;
+}
+
+.nav {
+    border-radius: 4px;
+    padding: 5px 0;
+}
+
+.nav-link {
+    color: #343A40;
+}
+
+.nav-pills .nav-link:not(.active) {
+    color: rgba(250, 235, 215, 0.4);
+    background: #343A40;
+}
+
+.nav-pills .nav-link.active {
+    color: #FAEBD7;
+    background: #343A40;
+}
+
+.input-group input, .input-group input:active  {
+    background: #343A40 !important;
+    color: #FAEBD7 !important;
+    border: 0.5px solid black !important;
+}
+
+.input-group .input-group-text {
+    background: black !important;
+    color: #FAEBD7 !important;
+    border: 1px solid black !important;
+}
+
+.btn-dark {
+    color: #FAEBD7 !important;
+}
+
+.badge-light {
+    background: #FAEBD7 !important;
+}
+
+.modal-content {
+    border: 0;
+    background: #343A40;
+}
+
+.modal-header {
+    background: #343A40;
+    color: antiquewhite;
+}
+
+.modal label {
+    color: antiquewhite;
+}
+
+.modal input, .modal textarea, .modal select, .modal input:active, .modal textarea:active {
+    background: #343A40 !important;
+    color: antiquewhite !important;
+}
+
+.modal .btn-secondary {
+    background: black !important;
+    color: white !important;
+    border: 0 !important;
+}
+
+.modal .btn-dark {
+    background: #FAEBD7 !important;
+    color: #343A40 !important;
+    border: 0 !important;
+}
+
+.list-group-item {
+    border: 1px solid antiquewhite;
+    color: antiquewhite;
+}
+
+.list-group-item.selected {
+    background: #FAEBD7 !important;
+    color: #343A40 !important;
 }
 
 /*.card {
@@ -11,6 +97,20 @@
 .card:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }*/
+
+.userCard {
+    position: relative;
+}
+
+.badge-light {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.card .card-link {
+    color: #FAEBD7 !important;
+}
 
 .archivedCard {
     background-color: #dedede;
@@ -22,7 +122,9 @@
 
 .directoryContainer {
     width: 100%;
-    border: 1px solid #dedede;
+    border: 1px solid #343A40;
+    background: #343A40;
+    color: antiquewhite;
 }
 
 .directoryList {
@@ -46,16 +148,13 @@
     padding: 10px;
     text-align: center;
     width: 100%;
-    border-top: 1px solid #dedede;
+    border-top: 1px solid antiquewhite;
 }
 
 .actionItem:hover {
-    background: #dedede;
+    background: antiquewhite;
+    color: black;
     cursor: pointer;
-}
-
-.actionItem:active {
-    background: #aaaaaa;
 }
 
 .actionItem.disabled {
@@ -69,12 +168,13 @@
 
 .directoryItem:not(.noHover):hover {
     cursor: pointer;
-    background: rgba(0, 123, 255, 0.31);
-    border-bottom: 1px solid rgba(0, 123, 255, 0.31);
+    background: rgba(250, 235, 215, 0.31);
+    border-bottom: 1px solid rgba(250, 235, 215, 0.31);
 }
 
 .directoryItem.selected {
-    color: #007BFF;
+    background: antiquewhite !important;
+    color: #343A40 !important;
 }
 
 .overflowEllipsis {
@@ -104,7 +204,7 @@
 }
 
 .reorderIcon:hover {
-    color: #007BFF;
+    color: rgba(250, 235, 215, 0.7);
 }
 
 .modal .list-group-item {
@@ -118,7 +218,7 @@
 }
 
 .shiftOrderIcon:hover {
-    color: #007BFF;
+    color: rgba(250, 235, 215, 0.7);
 }
 
 .eventCard {
@@ -154,11 +254,19 @@
     cursor: pointer;
 }
 
-.directoryItemActions .bi-pencil:hover {
-    color: #007BFF;
+.directoryItemActions.selected svg {
+    color: #343A40;
 }
 
-.directoryItemActions .bi-x:hover {
+.directoryItemActions .bi-pencil:hover {
+    color: rgba(250, 235, 215, 0.7);
+}
+
+.directoryItemActions.selected svg:hover {
+    color: rgba(52, 58, 64, 0.7);
+}
+
+.directoryItemActions .bi-x:hover, .directoryItemActions.selected .bi-x:hover {
     color: #DD3446;
 }
 
@@ -167,7 +275,7 @@
 }
 
 .groupMembershipItem:hover {
-    background: rgba(0, 123, 255, 0.31);
+    background: rgba(250, 235, 215, 0.31);
 }
 
 .eventMembershipItem {
@@ -175,7 +283,7 @@
 }
 
 .eventMembershipItem:hover {
-    background: rgba(0, 123, 255, 0.31);
+    background: rgba(250, 235, 215, 0.31);
 }
 
 .groupCard {
@@ -256,7 +364,7 @@
 }
 
 .toggleCompactIcon:hover {
-    color: rgb(72,123,255);
+    color: rgba(250, 235, 215, 0.7);
 }
 
 .toggleCompactIcon.flipped {

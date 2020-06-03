@@ -1,3 +1,11 @@
+* {
+    font-family: Karla !important;
+}
+
+.breadcrumb-item.active {
+    color: white !important;
+}
+
 .loadingCol {
     text-align: center;
 }
@@ -75,4 +83,18 @@
     position: absolute;
     bottom: 20px;
     left: 20px;
+    background: antiquewhite !important;
+    border: 0;
+    font-size: 14px;
+    color: black !important;
+}
+
+.enterButton:hover {
+    background: rgba(250, 235, 215, 0.7) !important;
+    color: black !important;
+}
+
+.enterButton:active {
+    background: rgba(250, 235, 215, 0.4) !important;
+    color: black !important;
 }

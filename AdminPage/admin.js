@@ -22,7 +22,7 @@ const generateUUID = () => { // V4
 
 app.controller('AppController', ($scope) => {
     $scope.tabs = ["Course Creation", "Group Management", "User Management", "Event Management", "Grading", "Registrations"]
-    $scope.currentTab = 3
+    $scope.currentTab = 0
     $scope.new = {event: {}, user: {}, lesson: {}, unit: {}, lesson: {}, assignment: {}, resource: {}}
     $scope.crudStates = {
         event: "Create",

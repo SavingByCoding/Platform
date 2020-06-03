@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>View Lesson</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel = "stylesheet" type="text/css" href="../navbarCSS.css">
     <link rel="stylesheet" href="viewlesson.css" type="text/css">
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase.js "></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
@@ -13,13 +14,13 @@
     <script src="../FirebaseCode.js"></script>
     <script src="../redirectToLogin.js"></script>
 </head>
-<body ng-app="SBCViewLesson" ng-controller="AppController">
+<body ng-app="SBCViewLesson" ng-controller="AppController" style="background: antiquewhite">
     <br />
     <div class="container">
         <div class="grid row">
             <div class="col-sm-12">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
+                    <ol class="breadcrumb text-white bg-dark mb-3">
                         <li class="breadcrumb-item"><a>Course Directory</a></li>
                         <li class="breadcrumb-item"><a>{{course.name}}</a></li>
                         <li class="breadcrumb-item"><a>{{unit.name}}</a></li>
@@ -29,9 +30,8 @@
             </div>
             <div class="col-md-6 col-lg-4">
                 <div class="stickyCardContainer sticky-top">
-                    <button class="btn btn-outline-primary" ng-click="visitCourseDirectory()" style="width: 100%;">< Course Directory</button>
-                    <br><br>
-                    <div class="card">
+                    <button class="btn btn-dark btn-lg btn-block" ng-click="visitCourseDirectory()" style="width: 100%; margin-bottom: 16px;">< Course Directory</button>
+                    <div class="card text-white bg-dark mb-3">
                         <div class="card-body">
                             <h5 class="card-title">{{name}}</h5>
                             <p class="card-text">{{description}}</p>
@@ -40,28 +40,33 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-8">
-                <div class="list-group">
-                    <a class="list-group-item">
+                <div class="list-group text-white mb-3">
+                    <a class="list-group-item bg-dark">
                         <div class="d-flex w-100 justify-content-between">
                             <b>Assignments</b>
                         </div>
                     </a>
-                    <a class="list-group-item list-group-item-action" ng-repeat="assignment in assignments">
+                    <a class="list-group-item bg-dark" ng-show="assignments.length === 0">
+                        <p class="mb-1">There are no assignments for this lesson!</p>
+                    </a>
+                    <a class="list-group-item list-group-item-action bg-dark" ng-repeat="assignment in assignments">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">{{assignment.name}}</h5>
+                            <h5 class="mb-1"><b>{{assignment.name}}</b></h5>
                         </div>
                         <p class="mb-1">{{assignment.description}}</p>
                         <small class="text-muted">{{assignment.status}}</small>
                     </a>
                 </div>
-                <br />
-                <div class="list-group">
-                    <a class="list-group-item">
+                <div class="list-group text-white mb-3">
+                    <a class="list-group-item bg-dark">
                         <div class="d-flex w-100 justify-content-between">
                             <b>Resources</b>
                         </div>
                     </a>
-                    <a class="list-group-item list-group-item-action" ng-repeat="resource in resources">
+                    <a class="list-group-item bg-dark" ng-show="resources.length === 0">
+                        <p class="mb-1">There are no resources for this lesson!</p>
+                    </a>
+                    <a class="list-group-item list-group-item-action bg-dark" ng-repeat="resource in resources">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">{{resource.name}}</h5>
                         </div>
