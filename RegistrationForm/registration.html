@@ -5,6 +5,8 @@
     <link rel = "stylesheet" type="text/css" href = "registration.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel = "stylesheet" type="text/css" href="../navbarCSS.css">
+
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
@@ -14,60 +16,70 @@
     <script src="registration.js"></script>
     <title>Contact Page</title>
 </head>
-<body class="mainbod">
+<body class="mainbod" ng-app = "myApp">
 
 
 <!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-expand-sm navbar-dark mainNavBar" >
-    <a class="navbar-brand" href="#"><img src = SBC-logos_transparent.png class = "home-link"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
+    <a href = "#"><img id = "logo" ng-src="{{logo}}" style="width: 50px; height: 50px"></a>
+    <a class="navbar-brand" href="#" ng-model="websiteTitle" style="font-size: 20px">{{websiteTitle}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-        <ul class="navbar-nav ml-auto listOfMenus">
-            <li class="nav-item linksMenu">
-                <a class="nav-link linksMenu" href="#">Home
-                    <span class="sr-only">(current)</span>
-                </a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a style="color: #23233b">----</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link linksMenu active" href="#"> Contact Us</a>
+                <a class="nav-link" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link linksMenu" href="#">How to Access</a>
+                <a class="nav-link" id = "m2" href="#" ng-model = "menuName2"> {{menuName2}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id = "m4" href="#" ng-model = "menuName4">{{menuName4}}</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">Course Content
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                    {{menuName3}}
                 </a>
-                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class="dropdown-item" href="#">HTML</a>
-                    <a class="dropdown-item" href="#">Python</a>
-
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#" ng-model = "menuName5" id="m5">{{menuName5}}</a>
+                    <a class="dropdown-item" href="#" ng-model = "menuName6" id = "m6">{{menuName6}}</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link linksMenu " href="#">Sandbox</a>
+                <a style="color: #23233b">-----------------------------------------------------------------------</a>
             </li>
-        </ul>
-        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item">
+                <button class = "btn btn-primary registerButton" id="RegisterNow" href= "../RegistrationForm/registration.html" style="background: antiquewhite; color: #23233b; border: transparent">Register Now</button>
+            </li>
+            <li class="nav-item">
+                <a style="color: #23233b">---------</a>
+            </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    <h5>Profile</h5>
+                <a class="nav-link dropdown-toggle mr-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                    {{dropdownName}}
                 </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-default dropMenu"
-                     aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class="dropdown-item " href="#">Visit Profile</a>
-                    <a class="dropdown-item " href="#">Assignments</a>
-                    <a class="dropdown-item" href="#">Logout</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="" id="s1">{{sand1}}</a>
+                    <a class="dropdown-item" href="" id = "s2">{{sand2}}</a>
+                    <div class="dropdown-divider" id="divider1"></div>
+                    <a class="dropdown-item" href="" id="d1">{{dropdown1}}</a>
+                    <!--                    <a class="dropdown-item" href="" id = "d2">{{dropdown2}}</a>-->
+                    <div class="dropdown-divider" id="divider2"></div>
+                    <a class="dropdown-item" href="" id="d3">{{dropdown3}}</a>
+                    <a class="dropdown-item" onclick="SignOut()" href="" id="d4">{{dropdown4}}</a>
+                    <a class="dropdown-item" href="" id="d5">{{dropdown5}}</a>
                 </div>
             </li>
         </ul>
     </div>
 </nav>
 <!--/.Navbar -->
+
 
 <div class ="hero">
     <div class="form-box">
@@ -293,6 +305,10 @@
     </div>
 </footer>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
+<script src="../navigationLinks.js"></script>
+
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

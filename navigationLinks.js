@@ -13,7 +13,7 @@ mainMod.controller("myCont1", function ($scope) {
     m1.href = $scope.menuName1Link;
 
     $scope.menuName2 = "-About Us-";
-    $scope.menuName2Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    $scope.menuName2Link = "../AboutPage/AboutPage.html";
     let m2 = document.getElementById("m2")
     m2.href = $scope.menuName2Link;
 
@@ -21,17 +21,17 @@ mainMod.controller("myCont1", function ($scope) {
 
 
     $scope.menuName4 = "-Contact Us-";
-    $scope.menuName4Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    $scope.menuName4Link = "../ContactPage/contact.html";
     let m4 = document.getElementById("m4")
     m4.href = $scope.menuName4Link;
 
     $scope.menuName5 = "-HTML Course Overview-";
-    $scope.menuName5Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    $scope.menuName5Link = "../HTMLContentPage/HTMLContentPage.html";
     let m5 = document.getElementById("m5")
     m5.href = $scope.menuName5Link;
 
     $scope.menuName6 = "-Python Course Overview-";
-    $scope.menuName6Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
+    $scope.menuName6Link = "../PythonContentPage/PythonContentPage.html";
     let m6 = document.getElementById("m6")
     m6.href = $scope.menuName6Link;
 
@@ -42,12 +42,12 @@ mainMod.controller("myCont1", function ($scope) {
     $scope.dropdownName = "Profile";
 
     $scope.sand1 = "HTML Sandbox"
-    $scope.sandboxHTMLLink = "https://www.youtube.com/watch?v=SWYPm24qVd8"
+    $scope.sandboxHTMLLink = "../SandboxPageHtml/Sandbox.html"
     let s1 = document.getElementById("s1")
     s1.href = $scope.sandboxHTMLLink
 
     $scope.sand2 = "Python Sandbox"
-    $scope.sandboxPythonLink = "https://www.youtube.com/watch?v=SWYPm24qVd8"
+    $scope.sandboxPythonLink = "../SandboxPagePython/Sandbox.html"
     let s2 = document.getElementById("s2")
     s2.href = "https://www.youtube.com/watch?v=SWYPm24qVd8"
 
