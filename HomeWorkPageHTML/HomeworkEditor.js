@@ -1,6 +1,10 @@
 var language= "HTML";
-//Setting up the Firebase Homework Retrival
-var assignmentID="HTMLHomework1";// The actual homework you want to retrieve ONLY CHANGE THIS PLS
+
+//Gets the assignmentid from the URL
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const assignmentid = urlParams.get('assignmentid')
+var assignmentID= assignmentid;
 
 const generateUUID = () => { // V4
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {

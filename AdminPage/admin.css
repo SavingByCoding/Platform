@@ -170,6 +170,14 @@
     background: rgba(0, 123, 255, 0.31);
 }
 
+.eventMembershipItem {
+    cursor: pointer;
+}
+
+.eventMembershipItem:hover {
+    background: rgba(0, 123, 255, 0.31);
+}
+
 .groupCard {
     width: 100%;
 }
@@ -236,4 +244,29 @@
     color: lawngreen;
     font-family: menlo;
     font-size: 14px;
+}
+
+.toggleCompactIcon {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    transition: 0.2s ease all;
+    cursor: pointer;
+}
+
+.toggleCompactIcon:hover {
+    color: rgb(72,123,255);
+}
+
+.toggleCompactIcon.flipped {
+    transform:rotate(180deg);
+    -webkit-transform:rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+}
+
+#registrationsList .list-group-item {
+    position: relative;
 }

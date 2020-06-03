@@ -361,13 +361,7 @@ html {
     border: 2px solid #23233B;
 }
 
-.stepbody{
-    width: 600%
 
-}
-.stepactive{
-    width: 16.6667%
-}
 .registration1
 {
     text-align: center;
@@ -381,33 +375,73 @@ html {
     text-align: center;
     fontSize:32;
     line-height: 1.5;
-    data-fontsize="32"
-    data-lineheight="48px"
+
 
 }
-.emailinput
+
+
+.form-box
 {
-    text-align: center;
+    width: 380px;
+    height:480px;
+    position: relative;
+    margin: 6% auto;
+    background: white;
+    padding: 5px
 }
-.emailinput
-{
-    text-after: center;
+.input-group{
+    top:0px;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
 }
-.codeexperience5
+.input-field
 {
-    text-align: center;
+    width: 100%;
+    padding: 10px 0;
+    margin: 5px 0;
+    border-left:0;
+    border-top:0;
+    border-right:0;
+    border-bottom:1px solid #999;
+    outline: none;
+    background: transparent;
 }
-.access
+.btn
 {
-    text-align: center;
+
+    display: inline-block;
+    padding: 10px 30px;
+    cursor: pointer;
+    margin: auto;
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+}
+.previousbtn
+{
+    background: white;
+    outline: black;
+    padding: 10px 30px;
+}
+.nextbtn
+{
+    background: white;
+    outline: black;
+    padding: 10px 30px;
 
 }
-.table1
+btn:hover
 {
-    margin-left: 35%;
-    margin-right: auto;
+    background-color: #ddd;
+    color:black;
 }
-.ff-el-input--content
+
+.txt1
 {
     text-align: center;
+    --fontSize:24;
+    line-height: 1.5;
+    data-fontsize:"32";
+    data-lineheight:"48px";
 }

@@ -15,16 +15,15 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
-    <script src="../app.js"></script>
-    <script src="SandboxEditor.js"></script>
+    <script src="../redirectToLogin.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
 </head>
 <httpProtocol>
     <customHeaders>
         <add name="Access-Control-Allow-Origin" value="*" />
     </customHeaders>
 </httpProtocol>
-<body class = "mainbod" ng-app = "myApp">
+<body class = "mainbod" ng-app = "myApp" >
 
 <!--Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
@@ -120,7 +119,7 @@
 <!--<br>-->
 
 <!--<br>-->
-<div id="SubmitProject" class="modal fade" role="dialog">
+<div id="SubmitProject" class="modal fade" role="dialog" ng-controller="HTMLSandbox">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content POPUP">
@@ -130,7 +129,7 @@
                 <input class="ProjectName" ng-model="CurrentProjectName" type="text" id = "ProjectName" style="display: flex">
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" ng-click= "SaveChanges()" class="btn btn-default" data-dismiss="modal" > Done </a></button>
+                <button type="button" onclick="SaveChanges()" class="btn btn-default" data-dismiss="modal" > Done </a></button>
             </div>
         </div>
     </div>
@@ -141,7 +140,7 @@
         <h5>Description</h5>
     </div>
 </div>
-<div class = "container-fluid maincont">
+<div class = "container-fluid maincont" ng-controller="HTMLSandbox">
     <div class = "row my-row no-gutters">
         <div class = "col no-gutters">
             <div class = "leftside">
@@ -176,10 +175,10 @@
 </div>
 <br><br><br><br><br><br><br><br><br>
 
-<div class = "container buttonCont">
+<div class = "container buttonCont" >
     <div class = "row buttonRow justify-content-around">
         <div class="col-6 colButton">
-            <button class="btn btn-primary CompileButton" ng-click="SaveProject()" data-toggle="modal" data-target="#SubmitProject" id = "SaveButton" type="submit">Save It!</button>
+            <button class="btn btn-primary CompileButton" onclick="SaveProject()" data-toggle="modal" data-target="#SubmitProject" id = "SaveButton" type="submit">Save It!</button>
         </div>
         <div class="col-6 colButton">
             <button class="btn btn-primary CompileButton" id = "CompileButton" type="submit">Run It!</button>
@@ -276,5 +275,5 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
 <script src="../navigationLinks.js"></script>
-
+<script src="SandboxEditor.js"></script>
 </html>

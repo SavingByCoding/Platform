@@ -6,6 +6,12 @@
     <link rel = "stylesheet" type="text/css" href = "index.css">
     <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../navbarCSS.css">
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+    <script src="../FirebaseCode.js"></script>
     <title>Saving By Coding</title>
 </head>
 <body class = "mainbod" ng-app = "myApp">
@@ -20,46 +26,56 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
+                <a style="color: #23233b">----</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id = "m2" href="#" ng-model = "menuName2"> {{menuName2}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id = "m3" href="#" ng-model = "menuName3">{{menuName3}}</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" id = "m4" href="#" ng-model = "menuName4">{{menuName4}}</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id = "m5" href="#" ng-model = "menuName5">{{menuName5}}</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                    {{menuName3}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#" ng-model = "menuName5" id="m5">{{menuName5}}</a>
+                    <a class="dropdown-item" href="#" ng-model = "menuName6" id = "m6">{{menuName6}}</a>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id = "m6" href="#" ng-model = "menuName6">{{menuName6}}</a>
+                <a style="color: #23233b">-----------------------------------------------------------------------</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id = "m7" href="#" ng-model = "menuName7">{{menuName7}}</a>
+                <button class = "btn btn-primary registerButton" id="RegisterNow" href= "../RegistrationForm/registration.html" style="background: antiquewhite; color: #23233b; border: transparent">Register Now</button>
+            </li>
+            <li class="nav-item">
+                <a style="color: #23233b">---------</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle mr-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
                     {{dropdownName}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#" id="s1">{{sand1}}</a>
-                    <a class="dropdown-item" href="#" id = "s2">{{sand2}}</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" id="d1">{{dropdown1}}</a>
-                    <a class="dropdown-item" href="#" id = "d2">{{dropdown2}}</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" id="d3">{{dropdown3}}</a>
-                    <a class="dropdown-item" href="#" id="d4">{{dropdown4}}</a>
-                    <a class="dropdown-item" href="#" id="d5">{{dropdown5}}</a>
+                    <a class="dropdown-item" href="" id="s1">{{sand1}}</a>
+                    <a class="dropdown-item" href="" id = "s2">{{sand2}}</a>
+                    <div class="dropdown-divider" id="divider1"></div>
+                    <a class="dropdown-item" href="" id="d1">{{dropdown1}}</a>
+<!--                    <a class="dropdown-item" href="" id = "d2">{{dropdown2}}</a>-->
+                    <div class="dropdown-divider" id="divider2"></div>
+                    <a class="dropdown-item" href="" id="d3">{{dropdown3}}</a>
+                    <a class="dropdown-item" onclick="SignOut()" href="" id="d4">{{dropdown4}}</a>
+                    <a class="dropdown-item" href="" id="d5">{{dropdown5}}</a>
                 </div>
             </li>
         </ul>
     </div>
 </nav>
 <!--/.Navbar -->
+
 
 <div class="jumbotron jumboCont jumbotron-fluid ">
     <div class="container ">
@@ -206,19 +222,21 @@
 <br><br>
 
 
-<footer id="sticky-footer" class="py-4  FOOTER text-white-50">
+<footer id="sticky-footer" class="py-4  FOOTER text-white-50" ng-controller = "MyCont2" style="border-top: 10px solid #23233b">
     <div class="container  text-center">
         <div class = "row">
-            <div class = "col-4">
+            <div class = "col-4" style="color: #23233b">
                 <h5>2020 Copyright: Saving By Coding</h5>
                 <p>Make a difference in your life</p>
             </div>
             <div class = "col-4 linksColFooter">
-                <small><a class = "Links" href="../HomePage/index.html">Home Page</a></small><br>
-                <small><a class = "Links" href="../AboutPage/AboutPage.html">About Us</a></small><br>
-                <small><a class = "Links" href="../ContactPage/contact.html">Contact Us</a></small><br>
-                <small><a class = "Links" href="../HTMLContentPage/HTMLContentPage.html">HTML</a></small><br>
-                <small><a class = "Links" href="#">Python</a></small><br>
+                <small><a class = "Links" href="#" id = "f1" mg-model = "footerMenuName1">{{footerMenuName1}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f2" mg-model = "footerMenuName2">{{footerMenuName2}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f3" mg-model = "footerMenuName3">{{footerMenuName3}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f4" mg-model = "footerMenuName4">{{footerMenuName4}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f5" mg-model = "footerMenuName5">{{footerMenuName5}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f6" mg-model = "footerMenuName6">{{footerMenuName6}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f7" mg-model = "footerMenuName7">{{footerMenuName7}}</a></small><br>
             </div>
             <div class = "col-4"></div>
         </div>
@@ -229,15 +247,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
 <script src="../navigationLinks.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="LoginFirebase.js"></script>
 <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
 <script>AOS.init();</script>
 </html>

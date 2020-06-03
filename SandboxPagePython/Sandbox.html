@@ -20,8 +20,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
-    <script src="Sandbox.js"></script>
+    <script src="../redirectToLogin.js"></script>
 
 </head>
 <httpProtocol>
@@ -126,7 +125,7 @@
 <!--<br>-->
 
 <!--<br>-->
-<div id="SubmitProject" class="modal fade" role="dialog">
+<div id="SubmitProject" class="modal fade" role="dialog"ng-controller="PYTHONSandbox">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content POPUP">
@@ -136,13 +135,13 @@
                 <input class="ProjectName" ng-model="CurrentProjectName" type="text" id = "ProjectName" style="display: flex">
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" ng-click= "SaveChanges()" class="btn btn-default" data-dismiss="modal" > Done </a></button>
+                <button type="button" onclick="SaveChanges()" class="btn btn-default" data-dismiss="modal" > Done </a></button>
             </div>
         </div>
     </div>
 </div>
 
-<div id="WrongCode" class="modal fade" role="dialog">
+<div id="WrongCode" class="modal fade" role="dialog"ng-controller="PYTHONSandbox">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content POPUP">
@@ -165,7 +164,7 @@
         <h5>Description</h5>
     </div>
 </div>
-<div class = "container-fluid maincont ">
+<div class = "container-fluid maincont "ng-controller="PYTHONSandbox">
     <div class = "row my-row no-gutters" style="margin: 0">
         <div class = "col-5 no-gutters" >
             <div class = "leftside">
@@ -206,7 +205,7 @@
 <div class = "container buttonCont">
     <div class = "row buttonRow justify-content-around">
         <div class="col-6 colButton">
-            <button class="btn btn-primary CompileButton" ng-click="SaveProject()" data-toggle="modal" data-target="#SubmitProject" id = "SaveButton" type="submit">Save It!</button>
+            <button class="btn btn-primary CompileButton" onclick="SaveProject()" data-toggle="modal" data-target="#SubmitProject" id = "SaveButton" type="submit">Save It!</button>
         </div>
         <div class="col-6 colButton">
             <button class="btn btn-primary CompileButton" id = "CompileButton" type="submit">Run It!</button>
@@ -263,7 +262,7 @@
 
 
 <br><br>
-<footer id="sticky-footer" class="py-4  FOOTER text-white-50">
+<footer id="sticky-footer" class="py-4  FOOTER text-white-50" ng-controller = "MyCont2">
     <div class="container  text-center">
         <div class = "row">
             <div class = "col-4">
@@ -271,11 +270,13 @@
                 <p>Make a difference in your life</p>
             </div>
             <div class = "col-4 linksColFooter">
-                <small><a class = "Links" href="#">Home Page</a></small><br>
-                <small><a class = "Links" href="#">About Us</a></small><br>
-                <small><a class = "Links" href="#">How to Access</a></small><br>
-                <small><a class = "Links" href="#">HTML</a></small><br>
-                <small><a class = "Links" href="#">Python</a></small><br>
+                <small><a class = "Links" href="#" id = "f1" mg-model = "footerMenuName1">{{footerMenuName1}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f2" mg-model = "footerMenuName2">{{footerMenuName2}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f3" mg-model = "footerMenuName3">{{footerMenuName3}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f4" mg-model = "footerMenuName4">{{footerMenuName4}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f5" mg-model = "footerMenuName5">{{footerMenuName5}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f6" mg-model = "footerMenuName6">{{footerMenuName6}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f7" mg-model = "footerMenuName7">{{footerMenuName7}}</a></small><br>
             </div>
             <div class = "col-4"></div>
         </div>
