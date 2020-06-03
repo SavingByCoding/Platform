@@ -37,6 +37,12 @@
                             <p class="card-text">{{description}}</p>
                         </div>
                     </div>
+                    <div class="list-group text-white mb3">
+                        <div class="list-group-item bg-dark">{{submissionStatusCounts['Correct']}} Correct Submissions</div>
+                        <div class="list-group-item bg-dark">{{submissionStatusCounts['Incorrect']}} Incorrect Submissions</div>
+                        <div class="list-group-item bg-dark">{{submissionStatusCounts['Not Graded Yet']}} Submissions Pending Grading</div>
+                        <div class="list-group-item bg-dark">{{submissionStatusCounts['Not Submitted Yet']}} Unfinished Assignments</div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-8">
@@ -49,12 +55,17 @@
                     <a class="list-group-item bg-dark" ng-show="assignments.length === 0">
                         <p class="mb-1">There are no assignments for this lesson!</p>
                     </a>
-                    <a class="list-group-item list-group-item-action bg-dark" ng-repeat="assignment in assignments">
+                    <a class="list-group-item list-group-item-action bg-dark assignmentListGroupItem"
+                       ng-repeat="assignment in assignments"
+                       href="{{homeworkURL(assignment.id, assignment.userAssignment.id, assignment.language)}}">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1"><b>{{assignment.name}}</b></h5>
                         </div>
                         <p class="mb-1">{{assignment.description}}</p>
-                        <small class="text-muted">{{assignment.status}}</small>
+                        <small class="text-muted">{{assignmentStatus(assignment.completed, assignment.status)}}</small>
+                        <svg class="bi bi-arrow-right-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-8.354 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L9.793 7.5H5a.5.5 0 0 0 0 1h4.793l-2.147 2.146z"/>
+                        </svg>
                     </a>
                 </div>
                 <div class="list-group text-white mb-3">
@@ -66,11 +77,45 @@
                     <a class="list-group-item bg-dark" ng-show="resources.length === 0">
                         <p class="mb-1">There are no resources for this lesson!</p>
                     </a>
-                    <a class="list-group-item list-group-item-action bg-dark" ng-repeat="resource in resources">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">{{resource.name}}</h5>
-                        </div>
-                        <p class="mb-1">{{resource.description}}</p>
+                    <a
+                        class="list-group-item list-group-item-action bg-dark"
+                        ng-repeat="resource in resources"
+                        href="{{resource.link}}"
+                        target="_blank">
+                        <table>
+                            <tr>
+                                <td class="resourceIconCell">
+                                    <svg ng-show="resource.type === '1'" class="bi bi-justify-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                                    </svg>
+                                    <svg ng-show="resource.type === '2'" class="bi bi-camera-video" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M2.667 3.5c-.645 0-1.167.522-1.167 1.167v6.666c0 .645.522 1.167 1.167 1.167h6.666c.645 0 1.167-.522 1.167-1.167V4.667c0-.645-.522-1.167-1.167-1.167H2.667zM.5 4.667C.5 3.47 1.47 2.5 2.667 2.5h6.666c1.197 0 2.167.97 2.167 2.167v6.666c0 1.197-.97 2.167-2.167 2.167H2.667A2.167 2.167 0 0 1 .5 11.333V4.667z"/>
+                                        <path fill-rule="evenodd" d="M11.25 5.65l2.768-1.605a.318.318 0 0 1 .482.263v7.384c0 .228-.26.393-.482.264l-2.767-1.605-.502.865 2.767 1.605c.859.498 1.984-.095 1.984-1.129V4.308c0-1.033-1.125-1.626-1.984-1.128L10.75 4.785l.502.865z"/>
+                                    </svg>
+                                    <svg ng-show="resource.type === '3'" class="bi bi-file-earmark-text" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 1h5v1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6h1v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z"/>
+                                        <path d="M9 4.5V1l5 5h-3.5A1.5 1.5 0 0 1 9 4.5z"/>
+                                        <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                                    </svg>
+                                    <svg ng-show="resource.type === '4'" class="bi bi-link-45deg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.715 6.542L3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.001 1.001 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
+                                        <path d="M5.712 6.96l.167-.167a1.99 1.99 0 0 1 .896-.518 1.99 1.99 0 0 1 .518-.896l.167-.167A3.004 3.004 0 0 0 6 5.499c-.22.46-.316.963-.288 1.46z"/>
+                                        <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 0 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 0 0-4.243-4.243L6.586 4.672z"/>
+                                        <path d="M10 9.5a2.99 2.99 0 0 0 .288-1.46l-.167.167a1.99 1.99 0 0 1-.896.518 1.99 1.99 0 0 1-.518.896l-.167.167A3.004 3.004 0 0 0 10 9.501z"/>
+                                    </svg>
+                                    <span class="iconLabel">{{resourceType(resource.type)}}</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{resource.name}}</h5>
+                                    </div>
+                                    <p class="mb-1">{{resource.description}}</p>
+                                </td>
+                            </tr>
+                        </table>
+                        <svg ng-hide="resource.type === '1'" class="bi bi-arrow-right-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-8.354 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L9.793 7.5H5a.5.5 0 0 0 0 1h4.793l-2.147 2.146z"/>
+                        </svg>
                     </a>
                 </div>
             </div>

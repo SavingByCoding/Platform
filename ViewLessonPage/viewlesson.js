@@ -24,11 +24,45 @@ const getParameterByName = (name, url = window.location.href) => {
 app.controller('AppController', ($scope) => {
     $scope.directory = ["Course Directory", "", "", ""]
     $scope.lessonId = getParameterByName('lessonid')
+    $scope.userId = ''
     $scope.assignments = []
+    $scope.submissionStatusCounts = {'Correct': 0, 'Incorrect': '0', 'Not Graded Yet': 0, 'Not Submitted Yet': 0}
     $scope.resources = []
 
     $scope.visitCourseDirectory = () => {
         window.location.href = "../LessonDirectoryPage/lessondirectory.html"
+    }
+
+    $scope.homeworkURL = (assignmentId, userAssignmentId, assignmentLanguage) => {
+        let url = "../"
+        switch (assignmentLanguage) {
+            case 'HTML':
+                url += "HomeWorkPageHTML/Homework.html"
+                break
+            case 'Python':
+                url += 'HomeworkPagePython/Homework.html'
+                break
+        }
+        url += `?assignmentid=${assignmentId}&userassignmentid=${userAssignmentId}`
+        return url
+    }
+
+    $scope.resourceType = (rt) => {
+        switch (rt) {
+            case '1': return 'Text'
+            case '2': return 'Video'
+            case '3': return 'Article'
+            case '4': return 'Link'
+        }
+    }
+
+    $scope.assignmentStatus = (completed, status) => {
+        if (completed) {
+            return "Completed & " + status
+        }
+        else {
+            return "Not Submitted Yet"
+        }
     }
 
     $scope.getLesson = () => {
@@ -64,6 +98,7 @@ app.controller('AppController', ($scope) => {
                 let assignment = {id: doc.id, status: 'Submitted'}
                 Object.assign(assignment, doc.data())
                 $scope.assignments.push(assignment)
+                $scope.getUserAssignment($scope.assignments.length-1, assignment.id, assignment.language)
             })
             $scope.assignments.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
             $scope.$apply()
@@ -82,7 +117,69 @@ app.controller('AppController', ($scope) => {
         })
     }
 
-    $scope.getLesson()
-    $scope.getAssignments()
-    $scope.getResources()
+    $scope.getUserAssignment = (assignmentIndex, assignmentId, language) => {
+        db.collection("users-assignments")
+            .where("user", "==", $scope.userId)
+            .where("assignment", "==", assignmentId)
+            .get()
+            .then((qs) => {
+                let userAssignment;
+                if (qs.empty) {
+                    userAssignment = {
+                        assignment: assignmentId,
+                        user: $scope.userId,
+                        code: '',
+                        completed: false,
+                        language: language,
+                        output: '',
+                        status: 'Not Graded Yet'
+                    }
+                    let id = generateUUID()
+                    db.collection("users-assignments")
+                        .doc(id)
+                        .set(userAssignment)
+                    userAssignment.id = id
+                }
+                else {
+                    let doc = qs.docs[0]
+                    userAssignment = {id: doc.id}
+                    Object.assign(userAssignment, doc.data())
+                }
+                $scope.assignments[assignmentIndex].userAssignment = userAssignment
+                if (userAssignment.completed) {
+                    $scope.submissionStatusCounts[userAssignment.status]++
+                }
+                else {
+                    $scope.submissionStatusCounts['Not Submitted Yet']++
+                }
+                $scope.$apply()
+            })
+    }
+
+    $scope.getLoggedInUser = () => {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                $scope.userId = user.uid
+                db.collection("users")
+                    .where("userId", "==", $scope.userId)
+                    .get()
+                    .then((qs) => {
+                        let doc = qs.docs[0]
+                        let user = {id: doc.id}
+                        Object.assign(user, doc.data())
+                        $scope.user = user
+                    })
+                LOAD_ON_STARTUP()
+            }
+        });
+    }
+
+    // On startup
+    $scope.getLoggedInUser()
+
+    const LOAD_ON_STARTUP = () => {
+        $scope.getLesson()
+        $scope.getAssignments()
+        $scope.getResources()
+    }
 })

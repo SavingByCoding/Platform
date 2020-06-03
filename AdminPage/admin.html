@@ -121,6 +121,13 @@
                                     <textarea class="form-control" ng-model="new.assignment.description" id="assignmentDescription" rows="3"></textarea>
                                 </div>
                                 <div class="form-group">
+                                    <label for="assignmentDescription">Language</label>
+                                    <select class="form-control" ng-model="new.assignment.language" id="assignmentLanguage">
+                                        <option value="Python">Python</option>
+                                        <option value="HTML">HTML</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="assignmentExpectedOutput">Expected Output</label>
                                     <textarea class="form-control" ng-model="new.assignment.expectedOutput" id="assignmentExpectedOutput" rows="3" placeholder="Only fill this out if the assignment is to be done in Python"></textarea>
                                 </div>
@@ -161,7 +168,7 @@
                                         <option value="4">Other Link</option>
                                     </select>
                                 </div>
-                                <div class="form-group" ng-show="new.resource.type === '2' || new.resource.type === '3'">
+                                <div class="form-group" ng-show="new.resource.type === '2' || new.resource.type === '3' || new.resource.type === '4'">
                                     <label for="resourceLink">Link</label>
                                     <input type="text" ng-model="new.resource.link" class="form-control" id="resourceLink">
                                 </div>
@@ -1036,7 +1043,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../redirectToLogin.js"></script>
-
     <script src="admin.js"></script>
+    <script src="../adminAccessOnly.js"></script>
 </body>
 </html>

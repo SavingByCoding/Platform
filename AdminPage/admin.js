@@ -861,7 +861,9 @@ app.controller('AppController', ($scope) => {
     $scope.clearCrudAssignmentModal = () => {
         $scope.new.assignment = {
             name: "",
-            description: ""
+            description: "",
+            expectedOutput: "",
+            language: "",
         }
     }
 
@@ -886,6 +888,7 @@ app.controller('AppController', ($scope) => {
             name: $scope.new.assignment.name,
             description: $scope.new.assignment.description,
             expectedOutput: $scope.new.assignment.expectedOutput,
+            language: $scope.new.assignment.language,
             lesson: $scope.lessons[$scope.selectedLesson].id,
             ordinalNumber: ($scope.courseCreationAssignments.length === 0) ? 1 : $scope.courseCreationAssignments[$scope.courseCreationAssignments.length - 1].ordinalNumber + 1
         }
@@ -902,6 +905,7 @@ app.controller('AppController', ($scope) => {
             name: $scope.new.assignment.name,
             description: $scope.new.assignment.description,
             expectedOutput: $scope.new.assignment.expectedOutput,
+            language: $scope.new.assignment.language,
         }).then(() => {
             for (let i = 0; i < $scope.assignments.length; i++) {
                 if ($scope.assignments.id == $scope.new.assignment.id) {
@@ -1221,6 +1225,7 @@ app.controller('AppController', ($scope) => {
         $scope.usersAssignments = []
         db.collection("users-assignments")
             .where('assignment', '==', $scope.assignments[i].id)
+            .where('completed', '==', true)
             .get().then(function(qs) {
             qs.forEach(function(doc) {
                 let userAssignment = { id: doc.id }

@@ -5,3 +5,40 @@
 .stickyCardContainer {
     top: 20px;
 }
+
+.list-group-item {
+    position: relative;
+    cursor: pointer;
+}
+
+.list-group-item .bi-arrow-right-circle-fill {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: antiquewhite;
+}
+
+.list-group-item {
+    color: white !important;
+}
+
+.resourceIconCell {
+    padding-right: 20px !important;
+    text-align: center;
+}
+
+.resourceIconCell svg {
+    font-size: 48px;
+    display: block;
+}
+
+.resourceIconCell .iconLabel {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+.bi-arrow-right-circle-fill {
+    color: rgba(250, 235, 215, 0.8) !important;
+}

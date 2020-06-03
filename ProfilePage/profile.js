@@ -134,9 +134,6 @@ mainMod.controller('MainContentController', ($scope) => {
                     })
                 LOAD_ON_STARTUP()
             }
-            else {
-                // TODO REDIRECT USER TO SIGN IN PAGE
-            }
         });
     }
 
