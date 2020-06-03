@@ -34,7 +34,7 @@
                         <h5 class="card-title"><b>{{item.name}}</b></h5>
                         <p class="card-text">{{item.description}}</p>
                         <a class="btn btn-primary" style="visibility: hidden;">Enter</a> <!-- Fake button -->
-                        <a class="btn btn-primary enterButton" ng-click="switchView($index)">Enter</a>
+                        <a class="btn btn-primary enterButton" ng-click="switchView($index)" ng-class="{'disabled': item.disabled}">Enter</a>
                     </div>
                 </div>
             </div>

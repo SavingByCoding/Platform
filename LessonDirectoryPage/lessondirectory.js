@@ -27,13 +27,34 @@ app.controller('AppController', ($scope) => {
                     name: doc.data().name,
                     description: doc.data().description,
                     ordinalNumber: doc.data().ordinalNumber,
-                    type: "course"
+                    type: "course",
+                    disabled: false
                 })
+                $scope.verifyRegistration($scope.items.length-1, doc.id)
             }
             $scope.items.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
             $scope.$apply()
             console.log($scope.items)
         })
+    }
+
+    $scope.verifyRegistration = (courseIndex, courseId) => {
+        if ($scope.user.userType === '2') return
+        db.collection("registrations")
+            .where("userId", "==", $scope.userId)
+            .where("courseId", "==", courseId)
+            .get()
+            .then((qs2) => {
+                if (qs2.empty) {
+                    $scope.items[courseIndex].disabled = true
+                }
+                else {
+                    let doc2 = qs2.docs[0]
+                    let registration = {id: doc2.id}
+                    Object.assign(registration, doc2.data())
+                    $scope.registration = registration
+                }
+            })
     }
 
     $scope.getChild = (curr) => {
@@ -70,9 +91,13 @@ app.controller('AppController', ($scope) => {
                         description: doc.data().description,
                         ordinalNumber: doc.data().ordinalNumber,
                         type: $scope.getChild(item.type),
-                        lessonUrl: '../ViewLessonPage/viewlesson.html?lessonid=' + doc.id
+                        lessonUrl: '../ViewLessonPage/viewlesson.html?lessonid=' + doc.id,
+                        disabled: false
                         //...(item.type === 'lesson' && {lessonUrl: '../ViewLessonPage/viewlesson.html?lessonid=' + doc.id})
                     })
+                    if (item.type === "course") {
+                        $scope.verifyRegistration($scope.items.length-1, doc.id)
+                    }
                 }
                 $scope.items.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
                 $scope.$apply()
@@ -81,5 +106,28 @@ app.controller('AppController', ($scope) => {
         }
     }
 
-    $scope.initItems()
+    $scope.getLoggedInUser = () => {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                $scope.userId = user.uid
+                db.collection("users")
+                    .where("userId", "==", $scope.userId)
+                    .get()
+                    .then((qs) => {
+                        let doc = qs.docs[0]
+                        let user = {id: doc.id}
+                        Object.assign(user, doc.data())
+                        $scope.user = user
+                        LOAD_ON_STARTUP()
+                    })
+            }
+        });
+    }
+
+    // On startup
+    $scope.getLoggedInUser()
+
+    const LOAD_ON_STARTUP = () => {
+        $scope.initItems()
+    }
 })
