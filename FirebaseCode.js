@@ -1,6 +1,4 @@
 var userID;
-var signedIn= false;
-
 firebase.initializeApp({
     apiKey: "AIzaSyBOn9KJJihPr0F0zXNcj_tlHn6tGgxIsMI",
     authDomain: "saving-by-coding.firebaseapp.com",
@@ -14,60 +12,46 @@ firebase.initializeApp({
 firebase.analytics();
 var db = firebase.firestore();
 
+ // var user = firebase.auth().currentUser;
+//  console.log(userID);
+//  var signedIn; //Code for sign in sign out
+//
+// firebase.auth().onAuthStateChanged(function(user){
+//     if (user) {
+//         tempid = user.uid;
+//         userID
+//         console.log(userID);
+//         signedIn = true;
+//         ChangeNavBar();
+//         userInit(); //Initializes user if they dont have an account
+//     } else {
+//         // User not logged in or has just logged out.
+//         signedIn = false;
+//         ChangeNavBar();
+//     }
+// });
+//
+// console.log(userID);
+//
+// //Functionality to add
+// // Create a function that returns a boolean if the user is logged in
+// function isUserLoggedIn(){
+//     return signedIn
+// }
+//
+// function getUserID(){
+//     console.log(userID)
+//     return userID;
+// }
 
 
-firebase.auth().onAuthStateChanged(function(user){
-    if (user) {
-       userID= user.uid;
-       signedIn= true;
-       userInit(); //Initializes user if they dont have an account
-    } else {
-        // User not logged in or has just logged out.
-        signedIn= false;
-    }
-});
-
-
-//Functionality to add
-// Create a function that returns a boolean if the user is logged in
-function isUserLoggedIn(){
-    return signedIn
+function SignOut(){
+    firebase.auth().signOut().then(function() {
+        console.log("sign out works")
+    }, function(error) {
+        console.log("sign out didnt work")
+    });
 }
-
-
-
-
-//Functions to add in the nav bar angular file
-//Create a function to display sign out on the nav bar if the user is signed in
-//If the user isn't signed in the button should only display sign in
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function userInit (){

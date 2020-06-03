@@ -24,6 +24,12 @@ const getParameterByName = (name, url = window.location.href) => {
 app.controller('AppController', ($scope) => {
     $scope.directory = ["Course Directory", "", "", ""]
     $scope.lessonId = getParameterByName('lessonid')
+    $scope.assignments = []
+    $scope.resources = []
+
+    $scope.visitCourseDirectory = () => {
+        window.location.href = "../LessonDirectoryPage/lessondirectory.html"
+    }
 
     $scope.getLesson = () => {
         db.collection('lessons').doc($scope.lessonId).get().then((doc) => {
@@ -52,5 +58,31 @@ app.controller('AppController', ($scope) => {
         })
     }
 
+    $scope.getAssignments = () => {
+        db.collection('assignments').where('lesson', '==', $scope.lessonId).get().then((qs) => {
+            qs.forEach((doc) => {
+                let assignment = {id: doc.id, status: 'Submitted'}
+                Object.assign(assignment, doc.data())
+                $scope.assignments.push(assignment)
+            })
+            $scope.assignments.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
+            $scope.$apply()
+        })
+    }
+
+    $scope.getResources = () => {
+        db.collection('resources').where('lesson', '==', $scope.lessonId).get().then((qs) => {
+            qs.forEach((doc) => {
+                let resource = {id: doc.id}
+                Object.assign(resource, doc.data())
+                $scope.resources.push(resource)
+            })
+            $scope.resources.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
+            $scope.$apply()
+        })
+    }
+
     $scope.getLesson()
+    $scope.getAssignments()
+    $scope.getResources()
 })

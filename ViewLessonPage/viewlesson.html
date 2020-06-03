@@ -5,45 +5,69 @@
     <title>View Lesson</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="viewlesson.css" type="text/css">
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
+    <script src="../redirectToLogin.js"></script>
 </head>
 <body ng-app="SBCViewLesson" ng-controller="AppController">
     <br />
     <div class="container">
-        <div class="grid">
+        <div class="grid row">
             <div class="col-sm-12">
-                <table style="width: 100%">
-                    <tr>
-                        <td>
-                            <a href="../LessonDirectoryPage/lessondirectory.html">
-                                <button type="button" class="btn btn-primary" style="position: relative; bottom: 8px; padding: 10px 15px">
-                                    Go Back
-                                </button>
-                            </a>
-                        </td>
-                        <td style="width: auto">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a>Course Directory</a></li>
-                                    <li class="breadcrumb-item"><a>{{course.name}}</a></li>
-                                    <li class="breadcrumb-item"><a>{{unit.name}}</a></li>
-                                    <li class="breadcrumb-item"><a>{{name}}</a></li>
-                                </ol>
-                            </nav>
-                        </td>
-                    </tr>
-                </table>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a>Course Directory</a></li>
+                        <li class="breadcrumb-item"><a>{{course.name}}</a></li>
+                        <li class="breadcrumb-item"><a>{{unit.name}}</a></li>
+                        <li class="breadcrumb-item"><a>{{name}}</a></li>
+                    </ol>
+                </nav>
             </div>
             <div class="col-md-6 col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{name}}</h5>
-                        <p class="card-text">{{description}}</p>
+                <div class="stickyCardContainer sticky-top">
+                    <button class="btn btn-outline-primary" ng-click="visitCourseDirectory()" style="width: 100%;">< Course Directory</button>
+                    <br><br>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{name}}</h5>
+                            <p class="card-text">{{description}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-8">
-
+                <div class="list-group">
+                    <a class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <b>Assignments</b>
+                        </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action" ng-repeat="assignment in assignments">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{assignment.name}}</h5>
+                        </div>
+                        <p class="mb-1">{{assignment.description}}</p>
+                        <small class="text-muted">{{assignment.status}}</small>
+                    </a>
+                </div>
+                <br />
+                <div class="list-group">
+                    <a class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <b>Resources</b>
+                        </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action" ng-repeat="resource in resources">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{resource.name}}</h5>
+                        </div>
+                        <p class="mb-1">{{resource.description}}</p>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
