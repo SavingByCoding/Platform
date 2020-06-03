@@ -197,6 +197,12 @@ html {
     border: transparent;
     box-shadow: #d5c9b8;
 }
+.description{
+    width: 100%;
+    height: 75px;
+    background: antiquewhite;
+    text-align: center;
+}
 .colButton{
     height:120px;
     width: 100%;
