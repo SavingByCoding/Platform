@@ -28,46 +28,56 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
+                <a style="color: #23233b">----</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id = "m2" href="#" ng-model = "menuName2"> {{menuName2}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id = "m3" href="#" ng-model = "menuName3">{{menuName3}}</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" id = "m4" href="#" ng-model = "menuName4">{{menuName4}}</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id = "m5" href="#" ng-model = "menuName5">{{menuName5}}</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                    {{menuName3}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#" ng-model = "menuName5" id="m5">{{menuName5}}</a>
+                    <a class="dropdown-item" href="#" ng-model = "menuName6" id = "m6">{{menuName6}}</a>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id = "m6" href="#" ng-model = "menuName6">{{menuName6}}</a>
+                <a style="color: #23233b">-----------------------------------------------------------------------</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id = "m7" href="#" ng-model = "menuName7">{{menuName7}}</a>
+                <button class = "btn btn-primary registerButton" id="RegisterNow" href= "../RegistrationForm/registration.html" style="background: antiquewhite; color: #23233b; border: transparent">Register Now</button>
+            </li>
+            <li class="nav-item">
+                <a style="color: #23233b">---------</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle mr-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
                     {{dropdownName}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#" id="s1">{{sand1}}</a>
-                    <a class="dropdown-item" href="#" id = "s2">{{sand2}}</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" id="d1">{{dropdown1}}</a>
-                    <a class="dropdown-item" href="#" id = "d2">{{dropdown2}}</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" id="d3">{{dropdown3}}</a>
-                    <a class="dropdown-item" onclick="SignOut()" href="#" id="d4">{{dropdown4}}</a>
-                    <a class="dropdown-item" href="#" id="d5">{{dropdown5}}</a>
+                    <a class="dropdown-item" href="" id="s1">{{sand1}}</a>
+                    <a class="dropdown-item" href="" id = "s2">{{sand2}}</a>
+                    <div class="dropdown-divider" id="divider1"></div>
+                    <a class="dropdown-item" href="" id="d1">{{dropdown1}}</a>
+                    <!--                    <a class="dropdown-item" href="" id = "d2">{{dropdown2}}</a>-->
+                    <div class="dropdown-divider" id="divider2"></div>
+                    <a class="dropdown-item" href="" id="d3">{{dropdown3}}</a>
+                    <a class="dropdown-item" onclick="SignOut()" href="" id="d4">{{dropdown4}}</a>
+                    <a class="dropdown-item" href="" id="d5">{{dropdown5}}</a>
                 </div>
             </li>
         </ul>
     </div>
 </nav>
 <!--/.Navbar -->
+
 
 <br><br><br><br>
 <div class = "container loginContainer">
