@@ -1,18 +1,12 @@
 var language= "HTML";
 
-//Gets the assignmentid from the URL
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const assignmentid = urlParams.get('assignmentid')
-var assignmentID= assignmentid;
+const assignmentid = urlParams.get('assignmentid');
+var assignmentID= assignmentid; //gets assignment id from url
 
-const generateUUID = () => { // V4
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8)
-        return v.toString(16)
-    })
-}
-let UserAssignmentDocument= generateUUID();
+const userassignmentid = urlParams.get('userassignmentid'); //gets user assignment id from url
+let UserAssignmentDocument= userassignmentid;
 
 
 var Assignment_Fields;
@@ -70,9 +64,8 @@ $(document).ready(function () {
 
 function DisplayHomework(){
     $("#HomeworkName").html(Assignment_Name);
-    editor.setValue("<!-- "+ Assignment_Problem + " -->"+
-        `
-<!DOCTYPE html>
+    $("#AssignmentInfo").html(Assignment_Problem);
+    editor.setValue(`<!DOCTYPE html>
 <html>
 <head>
 </head>
