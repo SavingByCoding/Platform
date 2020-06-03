@@ -88,6 +88,23 @@ app.controller('AppController', ($scope) => {
         db.collection('courses').doc($scope.unit.courseId).get().then((doc) => {
             let {name, description, ordinalNumber} = doc.data()
             $scope.course = {name, description, ordinalNumber}
+            if ($scope.user.userType !== '2') {
+                db.collection("registrations")
+                    .where("userId", "==", $scope.userId)
+                    .where("courseId", "==", doc.id)
+                    .get()
+                    .then((qs2) => {
+                        if (qs2.empty) {
+                            window.location.href = "../LessonDirectoryPage/lessondirectory.html"
+                        }
+                        else {
+                            let doc2 = qs2.docs[0]
+                            let registration = {id: doc2.id}
+                            Object.assign(registration, doc2.data())
+                            $scope.registration = registration
+                        }
+                    })
+            }
             $scope.$apply()
         })
     }
@@ -168,8 +185,8 @@ app.controller('AppController', ($scope) => {
                         let user = {id: doc.id}
                         Object.assign(user, doc.data())
                         $scope.user = user
+                        LOAD_ON_STARTUP()
                     })
-                LOAD_ON_STARTUP()
             }
         });
     }
