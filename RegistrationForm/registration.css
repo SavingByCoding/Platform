@@ -387,7 +387,10 @@ html {
     position: relative;
     margin: 1% auto;
     background: white;
-    padding: 5px
+    padding: 5px;
+    border: 10px;
+    border-color: black;
+    border-radius: 25px;
 }
 .input-group{
     top:0px;
@@ -423,12 +426,15 @@ html {
     background: white;
     outline: black;
     padding: 10px 30px;
+    border-radius: 25px;
+
 }
 .nextbtn
 {
     background: white;
     outline: black;
     padding: 10px 30px;
+    border-radius: 25px;
 
 }
 .txt1
