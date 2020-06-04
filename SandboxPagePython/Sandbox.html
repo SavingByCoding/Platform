@@ -8,14 +8,16 @@
     <link rel = "stylesheet" type="text/css" href="../navbarCSS.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase.js "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase.js "></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
     <script src="../FirebaseCode.js"></script>
     <script src="../redirectToLogin.js"></script>
+    <script src="../navigationLinks.js"></script>
+    <script src="Sandbox.js"></script>
 
 </head>
 <httpProtocol>
@@ -76,7 +78,7 @@
                     <a class="dropdown-item" href="" id="d1">{{dropdown1}}</a>
                     <!--                    <a class="dropdown-item" href="" id = "d2">{{dropdown2}}</a>-->
                     <div class="dropdown-divider" id="divider2"></div>
-                    <a class="dropdown-item" href="" id="d3">{{dropdown3}}</a>
+<!--                    <a class="dropdown-item" href="" id="d3">{{dropdown3}}</a>-->
                     <a class="dropdown-item" onclick="SignOut()" href="" id="d4">{{dropdown4}}</a>
                     <a class="dropdown-item" href="" id="d5">{{dropdown5}}</a>
                 </div>
@@ -282,9 +284,5 @@
     </div>
 </footer>
 </body>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
-<script src="../navigationLinks.js"></script>
-<script src="Sandbox.js"></script>
 
 </html>

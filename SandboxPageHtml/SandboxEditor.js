@@ -333,40 +333,27 @@ var project10UUID;
 
 var projectsuuid= [];
 mainMod.controller("HTMLSandbox",function($scope){
-
-    $scope.getLoggedInUser = () => {
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                userID = user.uid;
-                console.log("hello")
-                db.collection("users")
-                    .where("userId", "==", userID)
-                    .get()
-                    .then((qs) => {
-                        let doc = qs.docs[0]
-                        let user = {id: doc.id}
-                        Object.assign(user, doc.data())
-                        userID= user
-                    })
-            }
-        });
-    };
-    $scope.getLoggedInUser();
-
     //Value from the Firebase Code on Auth UserChange
-    $scope.name1 = "Project 1";
-    $scope.name2 = "Project 2";
-    $scope.name3 = "Project 3";
-    $scope.name4 = "Project 4";
-    $scope.name5 = "Project 5";
-    $scope.name6 = "Project 6";
-    $scope.name7 = "Project 7";
-    $scope.name8 = "Project 8";
-    $scope.name9 = "Project 9";
-    $scope.name10 ="Project 10";
-    $scope.UserID = userID;
-    $scope.LoadProjects = function(){ //Loads all project names //Works
-        var UserProjectsDocument = db.collection('user-projects').doc(userID);
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            $scope.UserID = user.uid;
+            console.log($scope.UserID)
+            $scope.name1 = "Project 1";
+            $scope.name2 = "Project 2";
+            $scope.name3 = "Project 3";
+            $scope.name4 = "Project 4";
+            $scope.name5 = "Project 5";
+            $scope.name6 = "Project 6";
+            $scope.name7 = "Project 7";
+            $scope.name8 = "Project 8";
+            $scope.name9 = "Project 9";
+            $scope.name10 ="Project 10";
+            $scope.LoadProjects();
+        }
+    });
+
+    $scope.LoadProjects = function(){ //Loads all project names
+        var UserProjectsDocument = db.collection('user-projects').doc($scope.UserID);
         let getUserProjects = UserProjectsDocument.get()
             .then(doc => {
                 if (!doc.exists) {
@@ -557,7 +544,9 @@ mainMod.controller("HTMLSandbox",function($scope){
                     CurrentProject = doc.data(); //Loads all UUID for all projects
                     $scope.CurrentProjectCode = CurrentProject.code;  //Current Project Code
                     $scope.CurrentProjectLanguage=CurrentProject.language; //Current Project Language
+                    console.log($scope.CurrentProjectLanguage)
                     $scope.CurrentProjectName=CurrentProject.name; //Current Project
+                    //editor.setValue($scope.CurrentProjectCode);
                     CheckLangauge();
 
                 }
@@ -568,12 +557,14 @@ mainMod.controller("HTMLSandbox",function($scope){
         console.log("part 5")
     };
 
+
     function CheckLangauge() {
-        if (($scope.CurrentProjectLanguage != "HTML") || ($scope.CurrentProjectLanguage != "EMPTY") ) { //checks if project is empty or HTML
-            $("#WrongCode").modal();
+        console.log($scope.CurrentProjectLanguage)
+        if (($scope.CurrentProjectLanguage==="HTML") || ($scope.CurrentProjectLanguage === "EMPTY") ) { //checks if project is empty or HTML
+            editor.setValue($scope.CurrentProjectCode); //Changes code when you click a new project
 
         } else {
-            editor.setValue($scope.CurrentProjectCode); //Changes code when you click a new project
+            $("#WrongCode").modal();
         }
     }
 
@@ -581,10 +572,6 @@ mainMod.controller("HTMLSandbox",function($scope){
 
     };
 
-    $(document).ready(function () {
-        $scope.LoadProjects();
-
-    });
 
 
     //need to reset name evertime you load a new project

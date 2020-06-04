@@ -1,17 +1,22 @@
 // Your web app's Firebase configuration
-$(document).ready(function () {
 var provider = new firebase.auth.GoogleAuthProvider();
-GoogleSignIn=()=>{
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-        console.log("works");
-        // This gives you a Google Access Token. You can use it to access the Google API.
+let email;
+let FullName;
+let ProfilePicURL;
+GoogleSignIn=()=> {
+    firebase.auth().signInWithPopup(provider).then(function (result) {
         var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
-        console.log("id from login"+  user.uid);
+        email= user.email;
+        FullName=user.displayName;
+        ProfilePicURL= user.photoURL;
+        console.log(email)
+        console.log(ProfilePicURL)
+        console.log(FullName)
+        userInit(user.uid);
         window.open ('../ProfilePage/profile.html','_self',false);
-        // ...
-    }).catch(function(error) {
+    }).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -21,26 +26,114 @@ GoogleSignIn=()=>{
         var credential = error.credential;
         // ...
     });
-
-
-
 }
 
-RegularLogIn=()=>{
-    let email= document.getElementById('username').value;
-    let password= document.getElementById('password').value;
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-        window.open ('../ProfilePage/profile.html','_self',false);
-        // ...
+function userInit (id){
+    db.collection('users').doc(id).get() //Checks if the Document Exists
+        .then((docSnapshot) => {
+            if (!docSnapshot.exists) {
+                CreateAccountInDB(id); //Creates an account for the user in the DB
+                AllocateSpaceInDB(id); //Allocates Project Space for the User
+            }
+        });
+}
+
+const generateUUID = () => { // V4
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8)
+        return v.toString(16)
+    })
+}
+
+CreateAccountInDB= (id) => {
+    let data = {
+        userId: id,
+        email: email,
+        name: FullName, //Add name from input
+        userType: 1,
+        profilepictureURL: ProfilePicURL, //Change to Date of Birth from input
+        dateJoined: getCurrentDate(),
+        isRegistered: false,
+        isSpaceAllocated: true,
+        isAccountCreated: false
+    };
+    db.collection('users').doc(id).set(data);
+};
+
+
+AllocateSpaceInDB= (id) => {
+    let project1UUID= generateUUID();
+    let project2UUID= generateUUID();
+    let project3UUID= generateUUID();
+    let project4UUID=generateUUID();
+    let project5UUID=generateUUID();
+    let project6UUID=generateUUID();
+    let project7UUID=generateUUID();
+    let project8UUID=generateUUID();
+    let project9UUID=generateUUID();
+    let project10UUID=generateUUID();
+
+    let projectsuuid= [];
+    projectsuuid.push(project1UUID,project2UUID,project3UUID,project4UUID,project5UUID,project6UUID,project7UUID,project8UUID,project9UUID,project10UUID);
+
+    let projects = {
+        Project1: project1UUID,
+        Project2: project2UUID,
+        Project3: project3UUID,
+        Project4: project4UUID,
+        Project5: project5UUID,
+        Project6: project6UUID,
+        Project7: project7UUID,
+        Project8: project8UUID,
+        Project9: project9UUID,
+        Project10: project10UUID
+    };
+    console.log(projectsuuid)
+    db.collection('user-projects').doc(id).set(projects);
+    FormatProjects(projectsuuid);
+
+
+
+};
+
+function FormatProjects (array){
+    let ProjectFormat= {
+        code: "",
+        language:"EMPTY",
+        name: "Empty Project"
+
+    };
+    array.forEach(function (uuid,index) {
+        db.collection('projects').doc(uuid).set(ProjectFormat);
     });
 }
-});
 
+
+
+getCurrentDate=()=>{
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    return mm + '/' + dd + '/' + yyyy;
+}
+
+
+
+// RegularLogIn=()=>{
+//     let email= document.getElementById('username').value;
+//     let password= document.getElementById('password').value;
+//     firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+//         // Handle Errors here.
+//         var errorCode = error.code;
+//         var errorMessage = error.message;
+//         console.log(errorCode);
+//         console.log(errorMessage);
+//         // ...
+//     });
+//     //window.open ('../ProfilePage/profile.html','_self',false);
+// }
 
 SignOut=()=>{
     firebase.auth().signOut().then(function () {

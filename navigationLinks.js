@@ -49,7 +49,7 @@ mainMod.controller("myCont1", function ($scope) {
     $scope.sand2 = "Python Sandbox"
     $scope.sandboxPythonLink = "../SandboxPagePython/Sandbox.html"
     let s2 = document.getElementById("s2")
-    s2.href = "https://www.youtube.com/watch?v=SWYPm24qVd8"
+    s2.href = $scope.sandboxPythonLink;
 
     $scope.dropdown1 = "View Profile"
     $scope.dropdown1Link = "../ProfilePage/profile.html";
@@ -61,17 +61,17 @@ mainMod.controller("myCont1", function ($scope) {
     // let d2 = document.getElementById("d2")
     // d2.href = $scope.dropdown2Link;
 
-    $scope.dropdown3 = "Sign-up"
-    $scope.dropdown3Link = "../SignUpPage/SignUp.html";
-    let d3 = document.getElementById("d3")
-    d3.href = $scope.dropdown3Link;
+    // $scope.dropdown3 = "Sign-up"
+    // $scope.dropdown3Link = "../SignUpPage/SignUp.html";
+    // let d3 = document.getElementById("d3")
+    // d3.href = $scope.dropdown3Link;
 
     $scope.dropdown4 = "Logout"
     $scope.dropdown4Link = "../HomePage/index.html"; //not done
     let d4 = document.getElementById("d4")
     d4.href = $scope.dropdown4Link;
 
-    $scope.dropdown5 = "Login"
+    $scope.dropdown5 = "SignUp/Login"
     $scope.dropdown5Link = "../LoginPage/Login.html";
     let d5 = document.getElementById("d5")
     d5.href = $scope.dropdown5Link
@@ -84,7 +84,6 @@ mainMod.controller("myCont1", function ($scope) {
             $scope.currentid= user.uid;
             $scope.signedIn= true;
             $scope.ChangeNavBar();
-            userInit(); //Initializes user if they dont have an account
         } else {
             // User not logged in or has just logged out.
             $scope.signedIn= false;
@@ -102,8 +101,6 @@ mainMod.controller("myCont1", function ($scope) {
     $scope.ChangeNavBar=()=> {
         console.log(isUserLoggedIn());
         if(isUserLoggedIn()){
-            $("#d3").hide();
-            $("#d3").attr("href", "#"); //Hides the SignUp
             $("#d5").hide();
             $("#d5").attr("href", "#"); // Hides the LogIn
 
