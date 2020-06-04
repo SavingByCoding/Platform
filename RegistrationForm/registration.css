@@ -385,7 +385,7 @@ html {
     width: 380px;
     height:480px;
     position: relative;
-    margin: 6% auto;
+    margin: 1% auto;
     background: white;
     padding: 5px
 }
@@ -431,12 +431,6 @@ html {
     padding: 10px 30px;
 
 }
-btn:hover
-{
-    background-color: #ddd;
-    color:black;
-}
-
 .txt1
 {
     text-align: center;
@@ -444,4 +438,21 @@ btn:hover
     line-height: 1.5;
     data-fontsize:"32";
     data-lineheight:"48px";
+}
+.formcontainer2
+{
+    text-align: center;
+}
+.rform
+{
+    font-family: Karla;
+    margin: 0rem;
+    text-align: center;
+}
+.center
+{
+    text-align: center;
+}
+.inp{
+    margin-left: 15px;
 }
