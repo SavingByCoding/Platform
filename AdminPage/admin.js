@@ -110,6 +110,7 @@ app.controller('AppController', ($scope) => {
     $scope.getUsers = () => {
         $scope.users = []
         db.collection("users").get().then((querySnapshot) => {
+            debugger
             for (var i = 0; i < querySnapshot.docs.length; i++) {
                 var doc = querySnapshot.docs[i]
                 $scope.users.push({
@@ -117,7 +118,6 @@ app.controller('AppController', ($scope) => {
                     userId: doc.data().userId,
                     name: doc.data().name,
                     userType: doc.data().userType,
-                    dateOfBirth: $scope.toDate(doc.data().dateOfBirth),
                     dateJoined: $scope.toDate(doc.data().dateJoined)
                 })
             }
