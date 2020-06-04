@@ -451,7 +451,6 @@ html {
 }
 .rform
 {
-    font-family: Karla;
     margin: 0rem;
     text-align: center;
 }
@@ -461,4 +460,94 @@ html {
 }
 .inp{
     margin-left: 15px;
+}
+.jumboCont{
+    border: 10px solid #23233b;
+    background: url("https://wallpaperset.com/w/full/e/4/1/170026.jpg " );
+
+}
+.age1
+{
+    text-align: left;
+    border-left:0;
+    border-top:0;
+    border-right:0;
+    margin-top: 10px;
+
+    border-bottom:1px solid #999;
+    color: #7a7a7a;
+
+}
+.grade1
+{
+    text-align: left;
+    border-left:0;
+    border-top:0;
+    border-right:0;
+    border-bottom:1px solid #999;
+    margin-top: 15px;
+    color: #7a7a7a;
+}
+.preferences
+{
+    text-align: left;
+    border-left:0;
+    border-top:0;
+    border-right:0;
+    border-bottom:1px solid #999;
+    margin-top: 15px;
+    color: #7a7a7a;
+}
+#courseselect
+{
+    text-align: left;
+    border-left:0;
+    border-top:0;
+    border-right:0;
+    border-bottom:1px solid #999;
+    margin-top: 15px;
+    color: #7a7a7a;
+}
+#age
+{
+    text-align: left;
+    border-left:0;
+    border-top:0;
+    border-right:0;
+    border-bottom:1px solid #999;
+    margin-top: 15px;
+    color: #7a7a7a;
+}
+#grade
+{
+    text-align: left;
+    border-left:0;
+    border-top:0;
+    border-right:0;
+    border-bottom:1px solid #999;
+    margin-top: 15px;
+    color: #7a7a7a;
+}
+#preferences
+{
+    text-align: left;
+    border-left:0;
+    border-top:0;
+    border-right:0;
+    border-bottom:1px solid #999;
+    margin-top: 15px;
+    color: #7a7a7a;
+}
+.coursereg
+{
+    text-align: left;
+    border-left:0;
+    border-top:0;
+    border-right:0;
+    margin-top: 10px;
+    color: #7a7a7a;
+}
+.courseselect1
+{
+    color: #7a7a7a;
 }
