@@ -86,4 +86,9 @@ function DisplayHomework(){
 
 }
 
+GoToPFP= function () {
+    $("#CorrectAnswer").modal('hide');
+    window.open ('../ProfilePage/profile.html','_self',false);
+}
+
 

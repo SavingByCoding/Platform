@@ -1,5 +1,6 @@
 // Your web app's Firebase configuration
 var provider = new firebase.auth.GoogleAuthProvider();
+var id;
 let email;
 let FullName;
 let ProfilePicURL;
@@ -8,14 +9,15 @@ GoogleSignIn=()=> {
         var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
+        id=user.uid
         email= user.email;
         FullName=user.displayName;
         ProfilePicURL= user.photoURL;
-        console.log(email)
-        console.log(ProfilePicURL)
-        console.log(FullName)
-        userInit(user.uid);
-        window.open ('../ProfilePage/profile.html','_self',false);
+        userInit(id,function () {
+            setTimeout(function(){window.location='../ProfilePage/profile.html'}, 1500)
+            // window.open ('../ProfilePage/profile.html','_self',false);
+            // console.log("here")
+        });
     }).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -28,14 +30,16 @@ GoogleSignIn=()=> {
     });
 }
 
-function userInit (id){
+
+function userInit (id,callback1){
     db.collection('users').doc(id).get() //Checks if the Document Exists
         .then((docSnapshot) => {
             if (!docSnapshot.exists) {
-                CreateAccountInDB(id); //Creates an account for the user in the DB
-                AllocateSpaceInDB(id); //Allocates Project Space for the User
+                CreateAccountInDB(id,AllocateSpaceInDB); //Creates an account for the user in the DB
+                //AllocateSpaceInDB(id); //Allocates Project Space for the User
             }
         });
+    callback1();
 }
 
 const generateUUID = () => { // V4
@@ -45,7 +49,7 @@ const generateUUID = () => { // V4
     })
 }
 
-CreateAccountInDB= (id) => {
+CreateAccountInDB= (id,callback2) => {
     let data = {
         userId: id,
         email: email,
@@ -58,6 +62,7 @@ CreateAccountInDB= (id) => {
         isAccountCreated: false
     };
     db.collection('users').doc(id).set(data);
+    callback2(id);
 };
 
 
@@ -92,8 +97,6 @@ AllocateSpaceInDB= (id) => {
     db.collection('user-projects').doc(id).set(projects);
     FormatProjects(projectsuuid);
 
-
-
 };
 
 function FormatProjects (array){
@@ -106,6 +109,7 @@ function FormatProjects (array){
     array.forEach(function (uuid,index) {
         db.collection('projects').doc(uuid).set(ProjectFormat);
     });
+    //window.open ('../ProfilePage/profile.html','_self',false);
 }
 
 
