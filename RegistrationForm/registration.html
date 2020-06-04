@@ -78,8 +78,14 @@
     </div>
 </nav>
 <!--/.Navbar -->
-<div class="rform">
-    <h1> <b> Registration Form</b></h1>
+<div class="jumbotron jumboCont jumbotron-fluid " data-aos="fade-down">
+    <div class="container">
+        <div class = "col-6 jumboWordShape align-content-center ml-auto">
+            <br>
+            <h2 style = "font-size: 40px;"><u>REGISTER NOW</u></h2><br>
+            <br>
+        </div>
+    </div>
 </div>
 
 <div class ="hero">
@@ -109,28 +115,29 @@
                 <input type="text" id="fname" class ="input-field" placeholder="First Name" required>
                 <input type="text" class ="input-field" placeholder="Last Name" required>
                 <input type="text" class ="input-field" placeholder="Student's Email (Optional)">
-                <label for ="age"> Student Age </label>
-                <input id ="age" type="number" min="1" max="100" required><br>
-                <label for ="grade"> Grade </label>
-                <select id="grade" name="Grade">
-                    <option value="Select"> Select </option>
-                    <option value="K"> K </option>
-                    <option value="1"> 1 </option>
-                    <option value="2"> 2 </option>
-                    <option value="3"> 3 </option>
-                    <option value="4"> 4 </option>
-                    <option value="5"> 5 </option>
-                    <option value="6"> 6 </option>
-                    <option value="7"> 7 </option>
-                    <option value="8"> 8 </option>
-                    <option value="9"> 9 </option>
-                    <option value="10"> 10 </option>
-                    <option value="11"> 11</option>
-                    <option value="12"> 12 </option>
-                </select>
-                <br>
-                <br>
-                <br>
+               <div class="age1">
+                   <label for ="age"> Student Age </label>
+                       <input id ="age" type="number" min="1" max="100" required><br>
+               </div>
+                <div class="grade1">
+                    <label for ="grade"> Grade </label>
+                    <select id="grade" name="Grade">
+                        <option value="Select"> Select </option>
+                        <option value="K"> K </option>
+                        <option value="1"> 1 </option>
+                        <option value="2"> 2 </option>
+                        <option value="3"> 3 </option>
+                        <option value="4"> 4 </option>
+                        <option value="5"> 5 </option>
+                        <option value="6"> 6 </option>
+                        <option value="7"> 7 </option>
+                        <option value="8"> 8 </option>
+                        <option value="9"> 9 </option>
+                        <option value="10"> 10 </option>
+                        <option value="11"> 11</option>
+                        <option value="12"> 12 </option>
+                    </select>
+                </div>
                 <br>
                 <br>
 
@@ -212,16 +219,24 @@
 
 
             <div class="formcontainer5" id="formcontainer5">
-                <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated"><span style="color: #000000;">Which course would you like to register for?</span></h3>
-                <label for ="courseselect"> Course Select </label>
-                <select id="courseselect" name="CourseSelect">
-                    <option value="Select"> Select </option>
-                    <option value="662da89a-bdd2-4620-94de-1d5b6d0abf97"> HTML </option>
-                    <option value="PwIbr42Zd7rNoPNTMZ7d"> Python </option>
+                <br>
+                    <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated"><span style="color: #000000;">Which course would you like to register for?</span></h3>
+                    <label class="courseselect1" for ="courseselect"> Course Select </label>
+                    <select id="courseselect" name="CourseSelect">
+                        <option value="Select"> Select </option>
+                        <option value="662da89a-bdd2-4620-94de-1d5b6d0abf97"> HTML </option>
+                        <option value="PwIbr42Zd7rNoPNTMZ7d"> Python </option>
 
                 </select>
-<!--                <label for ="preferences"> Would you like to request an Advanced or Beginner track for the student? </label>-->
-<!--                <input type="text" id="preferences" class ="input-field" placeholder="Preferences">-->
+                <div class="preferences">
+                     <label for ="preferences">Advanced or Beginner track? </label>
+                   <select id="preferences" name="Preferences">
+                       <option value="select"> Select </option>
+                       <option value="beg"> Beginner </option>
+                       <option value="adv"> Advanced </option>
+                       <option value="beg"> No Preference </option>
+                   </select>
+                </div>
                 <br>
                 <br>
                 <br>
@@ -229,6 +244,7 @@
                 <br>
                 <br>
                 <br>
+
                 <div class="center">
                     <div class="btn" id="btn5">
                         <button type="button" class="previousbtn" onclick="previous4()">Previous</button>
@@ -247,6 +263,12 @@
         </form>
     </div>
 </div>
+<br>
+<div class="txt1">
+    <h3>Before registering for a course, make sure that you've completed your demo class!</h3>
+    <h4> Any Questions? Feel free to contact us at savingbycoding@gmail.com and we'll be sure to get back to you promptly!</h4>
+</div>
+<br>
 
 <script>
     var fname=document.getElementById("fname");
