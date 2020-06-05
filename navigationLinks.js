@@ -5,8 +5,6 @@ mainMod.controller("myCont1", function ($scope) {
     $scope.logo = "../SBC-logos_transparent.png";
 
 
-    $scope.websiteTitle = "Codeology";
-
     $scope.menuName1 = "Home";
     $scope.menuName1Link = "../HomePage/index.html";
     let m1 = document.getElementById("m1")

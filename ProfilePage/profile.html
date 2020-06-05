@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel = "stylesheet" type="text/css" href="../navbarCSS.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -16,12 +17,15 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
+    <script src="Tutorial.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
-    <script src="../navigationLinks.js"></script>
-    <script src="profile.js"></script>
+
+
 
 </head>
-<body ng-app = "myApp" style="background: antiquewhite">
+<body ng-app = "myApp" style="background: antiquewhite" id="mainBod">
+
+<div class="overlay" id = "OVRLY"></div>
 
 
 <!--Navbar -->
@@ -84,22 +88,26 @@
     </div>
 </nav>
 <!--/.Navbar -->
-<div ng-controller="MainContentController">
+<div ng-controller="MainContentController" id = "navBar">
     <br>
     <div class = "container">
         <div class = "row justify-content-around">
             <div class = "col-10" style="text-align: center; font-family: Karla" data-aos="zoom-out-up" ng-model = "name">
                 <h2><b>Hey {{user.name}}!</b></h2>
                 <small>Access content fine-tuned for your learning experience on this page! Check out our tutorial if you are confused!</small><br>
+                <button class="btn btn-lg btn-primary" id = "TutorialBtn" onclick="t1()">Need a tutorial?</button>
             </div>
         </div>
     </div>
     <br>
+    <h4 class = "textSpot" id = "addtext"></h4>
+    <br>
     <div class = "container" style="font-family: Karla">
         <div class = "row justify-content-around">
             <div class = "col-4">
-                <div class="card text-white bg-dark mb-3">
+                <div class="card text-white bg-dark mb-3 upEv" id="UpcomingEvents" style="z-index: 1000">
                     <div class="card-body">
+                        <button class="btn  btn-primary" id = "t2" onclick="t2()">To Course Directory ></button><br>
                         <h5 class="card-title"><b>Upcoming Events</b></h5>
                         <hr  style="background: antiquewhite; height: 2px">
                         <div class="eventContainer" ng-repeat="_event in events">
@@ -118,8 +126,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="card text-white bg-dark mb-3">
+                <div class="card text-white bg-dark mb-3" id = "YourGroups">
                     <div class="card-body">
+                        <div class = "row justify-content-around" id = "t7Box">
+                            <button class="btn btn-primary" id = "t7" onclick="t7()">To General Resources ></button>
+                        </div>
                         <h5 class="card-title"><b>Your Groups</b></h5>
                         <hr  style="background: antiquewhite; height: 2px">
                         <div class="eventContainer" ng-repeat="group in groups">
@@ -135,12 +146,23 @@
                 </div>
             </div>
             <div class = "col-8">
+                <div class = "row justify-content-around" id = "t3Box">
+                    <button class="btn  btn-primary" id = "t3" onclick="t3()">To HTML Sandbox ></button>
+                </div>
+                <div class = "row justify-content-around" id = "t4Box">
+                    <button class="btn btn-primary" id = "t4" onclick="t4()">To Python Sandbox ></button>
+                </div>
+                <div class = "row justify-content-around" id = "t5Box">
+                    <button class="btn btn-primary" id = "t5" onclick="t5()">To Announcements ></button>
+                </div>
+
+
                 <div class = "row justify-content-around">
                     <div class="col-12">
                         <div class="grid row">
                             <div class="col-4">
-                                <a class="linkContainer" href="../LessonDirectoryPage/lessondirectory.html">
-                                    <div class="card text-white bg-dark mb-3 linkCard">
+                                <a class="linkContainer" id = "CDahref" href="../LessonDirectoryPage/lessondirectory.html">
+                                    <div class="card text-white bg-dark mb-3 linkCard" id ="CD">
                                         <h6>Course Directory</h6>
                                         <svg class="bi bi-arrow-right-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -152,7 +174,7 @@
                             </div>
                             <div class="col-4">
                                 <a class="linkContainer" href="../SandboxPageHtml/Sandbox.html">
-                                    <div class="card text-white bg-dark mb-3 linkCard">
+                                    <div class="card text-white bg-dark mb-3 linkCard" id = "HTMLSand">
                                         <h6>HTML Sandbox</h6>
                                         <svg class="bi bi-arrow-right-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -164,7 +186,7 @@
                             </div>
                             <div class="col-4">
                                 <a class="linkContainer" href="../SandboxPagePython/Sandbox.html">
-                                    <div class="card text-white bg-dark mb-3 linkCard">
+                                    <div class="card text-white bg-dark mb-3 linkCard" id = "PythonSand">
                                         <h6>Python Sandbox</h6>
                                         <svg class="bi bi-arrow-right-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -177,8 +199,11 @@
                         </div>
                     </div>
                     <div class = "col-12">
-                        <div class="card text-white bg-dark mb-3" >
+                        <div class="card text-white bg-dark mb-3" id = "Announcements" >
                             <div class="card-body">
+                                <div class = "row justify-content-around" id = "t6Box">
+                                    <button class="btn btn-primary" id = "t6" onclick="t6()">To Your Groups ></button>
+                                </div>
                                 <h5 class="card-title" style="margin-bottom: 25px;"><b>Announcements</b></h5>
                                 <p class="card-text" ng-repeat="announcement in announcements">
                                     {{announcement}}
@@ -191,11 +216,14 @@
         </div>
     </div>
 
+
     <div class = "container" style="font-family: Karla">
         <div class = "row justify-content-around">
             <div class = "col-8">
-                <div class="card text-white bg-dark mb-3" style="height: 50Vh" data-aos="zoom-out-up">
-                    <div class="card-header"><i>Access resources that can help you learn more!</i></div>
+                <div class="card text-white bg-dark mb-3" style="height: 50Vh" id="GR">
+                    <div class = "row justify-content-around" id = "t8Box">
+                        <button class="btn btn-primary" id = "t8" onclick="t8()">To Contact Us ></button>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title"><b>General Resources</b></h5>
                         <p class="card-text">Hey1</p>
@@ -203,8 +231,13 @@
                 </div>
             </div>
             <div class = "col-4">
-                <div class="card text-white bg-dark mb-3" style="height: 50VH" data-aos="zoom-out-up">
-                    <div class="card-header"><i>Any problems? Contact us and we'll help you out!</i></div>
+                <div class="card text-white bg-dark mb-3" style="height: 50VH" id = "Contact">
+
+                    <div class="card-header">
+                        <div class = "row justify-content-around" id = "t9Box">
+                            <button class="btn btn-primary" id = "t9" onclick="t9()">Done! ></button>
+                        </div>
+                        <i>Any problems? Contact us and we'll help you out!</i></div>
                     <div class="card-body">
                         <h5 class="card-title"><b>Contact</b></h5>
                         <p class="card-text">
@@ -215,6 +248,8 @@
             </div>
         </div>
     </div>
+
+</div>
 
 <footer id="sticky-footer" class="py-4  FOOTER text-white-50" ng-controller = "MyCont2" style="border-top: 10px solid #23233b">
     <div class="container  text-center">
@@ -237,7 +272,16 @@
     </div>
 </footer>
 
+
+
+
+
+
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
+<script src="../navigationLinks.js"></script>
+<script src="profile.js"></script>
 <script src="../redirectToLogin.js"></script>
 
 <script>
