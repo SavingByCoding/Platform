@@ -88,26 +88,38 @@
     </div>
 </nav>
 <!--/.Navbar -->
+<BR>
 <div ng-controller="MainContentController" id = "navBar">
     <br>
     <div class = "container">
         <div class = "row justify-content-around">
-            <div class = "col-10" style="text-align: center; font-family: Karla" data-aos="zoom-out-up" ng-model = "name">
-                <h2><b>Hey {{user.name}}!</b></h2>
-                <small>Access content fine-tuned for your learning experience on this page! Check out our tutorial if you are confused!</small><br>
-                <button class="btn btn-lg btn-primary" id = "TutorialBtn" onclick="t1()">Need a tutorial?</button>
+            <div class = "col-4" ng-model = "name">
+                <div class="card text-white bg-dark mb-3" style="width: 100%; font-family: Karla">
+                    <div class="card-header"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpJQyPJzRtki3nmi0X00gDx-9inOL2It8-yID8bZzrfyTr_ML3&usqp=CAU" style="border-radius: 50%; width: 60px; height: 60px" class="center"></div>
+                    <div class="card-body">
+                        <h3 class = "card-title"><b>Hey {{user.name}}! </b></h3><h6>Welcome to your Profile Page</h6>
+                    </div>
+                </div>
+            </div>
+            <div class = "col-8">
+                <div class="card text-white bg-dark mb-3" style="width: 100%;font-family: Karla">
+                    <div class="card-header"><h3>Profile Page</h3></div>
+                    <div class="card-body">
+                        <p>Access content fine-tuned for your learning experience on this page! Check out our tutorial if you are confused!</p><br>
+                        <button class="btn-lg buttonStuff" id = "TutorialBtn" onclick="t1()">Need a tutorial?</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <br>
+
     <h4 class = "textSpot" id = "addtext"></h4>
-    <br>
     <div class = "container" style="font-family: Karla">
         <div class = "row justify-content-around">
             <div class = "col-4">
                 <div class="card text-white bg-dark mb-3 upEv" id="UpcomingEvents" style="z-index: 1000">
                     <div class="card-body">
-                        <button class="btn  btn-primary" id = "t2" onclick="t2()">To Course Directory ></button><br>
+                        <button class="buttonStuff" id = "t2" onclick="t2()">To Course Directory ></button><br>
                         <h5 class="card-title"><b>Upcoming Events</b></h5>
                         <hr  style="background: antiquewhite; height: 2px">
                         <div class="eventContainer" ng-repeat="_event in events">
@@ -129,7 +141,7 @@
                 <div class="card text-white bg-dark mb-3" id = "YourGroups">
                     <div class="card-body">
                         <div class = "row justify-content-around" id = "t7Box">
-                            <button class="btn btn-primary" id = "t7" onclick="t7()">To General Resources ></button>
+                            <button class="buttonStuff" id = "t7" onclick="t7()">To General Resources ></button>
                         </div>
                         <h5 class="card-title"><b>Your Groups</b></h5>
                         <hr  style="background: antiquewhite; height: 2px">
@@ -147,13 +159,13 @@
             </div>
             <div class = "col-8">
                 <div class = "row justify-content-around" id = "t3Box">
-                    <button class="btn  btn-primary" id = "t3" onclick="t3()">To HTML Sandbox ></button>
+                    <button class="buttonStuff" id = "t3" onclick="t3()">To HTML Sandbox ></button>
                 </div>
                 <div class = "row justify-content-around" id = "t4Box">
-                    <button class="btn btn-primary" id = "t4" onclick="t4()">To Python Sandbox ></button>
+                    <button class="buttonStuff" id = "t4" onclick="t4()">To Python Sandbox ></button>
                 </div>
                 <div class = "row justify-content-around" id = "t5Box">
-                    <button class="btn btn-primary" id = "t5" onclick="t5()">To Announcements ></button>
+                    <button class="buttonStuff" id = "t5" onclick="t5()">To Announcements ></button>
                 </div>
 
 
@@ -202,9 +214,10 @@
                         <div class="card text-white bg-dark mb-3" id = "Announcements" >
                             <div class="card-body">
                                 <div class = "row justify-content-around" id = "t6Box">
-                                    <button class="btn btn-primary" id = "t6" onclick="t6()">To Your Groups ></button>
+                                    <button class="buttonStuff" id = "t6" onclick="t6()">To Your Groups ></button>
                                 </div>
                                 <h5 class="card-title" style="margin-bottom: 25px;"><b>Announcements</b></h5>
+                                <hr  style="background: antiquewhite; height: 2px">
                                 <p class="card-text" ng-repeat="announcement in announcements">
                                     {{announcement}}
                                 </p>
@@ -222,10 +235,11 @@
             <div class = "col-8">
                 <div class="card text-white bg-dark mb-3" style="height: 50Vh" id="GR">
                     <div class = "row justify-content-around" id = "t8Box">
-                        <button class="btn btn-primary" id = "t8" onclick="t8()">To Contact Us ></button>
+                        <button class="buttonStuff" id = "t8" onclick="t8()">To Contact Us ></button>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"><b>General Resources</b></h5>
+                        <hr  style="background: antiquewhite; height: 2px">
                         <p class="card-text">Hey1</p>
                     </div>
                 </div>
@@ -235,11 +249,12 @@
 
                     <div class="card-header">
                         <div class = "row justify-content-around" id = "t9Box">
-                            <button class="btn btn-primary" id = "t9" onclick="t9()">Done! ></button>
+                            <button class="buttonStuff" id = "t9" onclick="t9()">Done! ></button>
                         </div>
                         <i>Any problems? Contact us and we'll help you out!</i></div>
                     <div class="card-body">
                         <h5 class="card-title"><b>Contact</b></h5>
+                        <hr  style="background: antiquewhite; height: 2px">
                         <p class="card-text">
                             HEY
                         </p>
@@ -250,7 +265,7 @@
     </div>
 
 </div>
-
+<br>
 <footer id="sticky-footer" class="py-4  FOOTER text-white-50" ng-controller = "MyCont2" style="border-top: 10px solid #23233b">
     <div class="container  text-center">
         <div class = "row">

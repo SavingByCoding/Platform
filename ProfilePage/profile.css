@@ -81,7 +81,7 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    height: 185%;
+    height: 215%;
     z-index: 10;
     background-color: rgba(0,0,0,0.5); /*dim the background*/
 }
@@ -173,4 +173,21 @@ a {
     border: #23233b 2px solid;
     font-family: Karla;
     color: #23233b;
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.buttonStuff{
+    background: transparent;
+    font-family: Karla;
+    color: #FFFFFF;
+    border: 3px solid #ffffff;
+    transition: all 0.5s ease;
+    border-radius: 10%;
+}
+.buttonStuff:hover{
+    background: #66696d;
 }
