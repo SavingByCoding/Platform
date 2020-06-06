@@ -386,7 +386,7 @@ html {
     height:480px;
     position: relative;
     margin: 1% auto;
-    background: antiquewhite;
+    background: white;
     padding: 5px;
     border: 10px;
     border-color: black;
@@ -397,8 +397,6 @@ html {
     position: absolute;
     width: 280px;
     transition: .5s;
-    color: #23233b;
-
 }
 .input-field
 {
@@ -411,8 +409,6 @@ html {
     border-bottom:1px solid #999;
     outline: none;
     background: transparent;
-    color: #23233b;
-
 }
 .btn
 {
@@ -424,8 +420,6 @@ html {
     border: 0;
     outline: none;
     border-radius: 30px;
-    color: #23233b;
-
 }
 .previousbtn
 {
@@ -433,8 +427,6 @@ html {
     outline: black;
     padding: 10px 30px;
     border-radius: 25px;
-    color: #23233b;
-
 
 }
 .nextbtn
