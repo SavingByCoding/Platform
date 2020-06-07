@@ -15,11 +15,11 @@
     <script src="registration.js"></script>
     <title>Contact Page</title>
 </head>
-<body class="mainbod" ng-app = "myApp">
+<div class="mainbod" ng-app = "myApp">
 
 
 <!--Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
+<div class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
     <a href = "#"><img id = "logo" ng-src="{{logo}}" style="width: 50px; height: 50px"></a>
     <a class="navbar-brand" href="#" ng-model="websiteTitle" style="font-size: 20px">{{websiteTitle}}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,21 +76,45 @@
             </li>
         </ul>
     </div>
+</div>
 </nav>
 <!--/.Navbar -->
 <div class="jumbotron jumboCont jumbotron-fluid " data-aos="fade-down">
     <div class="container">
-        <div class = "col-6 jumboWordShape align-content-center ml-auto">
             <br>
-            <h2 style = "font-size: 40px;"><u>Confirmation</u></h2><br>
             <br>
-        </div>
     </div>
 </div>
 
-<h> Thank you for Registering for Codeology</h>
+<h1 class="txt1"> You're all Set!</h1>
+    <h2 class="txt1">Thank you for registering with Codeology.</h2>
 
-<footer id="sticky-footer" class="py-4  FOOTER text-white-50">
+    <h3 class="txt1">Check your profile to find instructions for your first class.</h3>
+<br>
+
+    <div class="txt3">
+        <div class="txt2">
+              <!--Date and Time -->
+            <br>
+            <h4> Confirmation number: <!--Confirmation Number --></h4>
+            <br>
+            <h4> <!--Student First name + Student Last name--> is registered for <!-- Course name --></h4>
+            <br>
+            <h4> Amount paid <!--amount paid--></h4>
+            <br>
+            <h4>Class Dates: <!--beg date to end date--> on  <!--Days of Week--> from <!--Beg time to end time--></h4>
+            <br>
+
+        </div>
+        <div class="txt4">
+        <button class="btn"> Proceed to Profile Page </button>
+        </div>
+    </div>
+    <h3 class="txt1">A copy of this confirmation has also been sent to your email. </h3>
+    <br>
+    <h3 class="txt1">Any questions or concerns? Contact us at savingbycoding@gmail.com and we will get back to you promptly. </h3>
+
+    <footer id="sticky-footer" class="py-4  FOOTER text-white-50">
     <div class="container  text-center">
         <div class = "row">
             <div class = "col-4">
@@ -107,6 +131,8 @@
             <div class = "col-4"></div>
         </div>
     </div>
+</div>
+
 </footer>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>

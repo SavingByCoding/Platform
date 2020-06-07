@@ -42,12 +42,12 @@ function userInit (id,callback1){
     callback1();
 }
 
-const generateUUID = () => { // V4
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8)
-        return v.toString(16)
-    })
-}
+// const generateUUID = () => { // V4
+//     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+//         var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8)
+//         return v.toString(16)
+//     })
+// }
 
 CreateAccountInDB= (id,callback2) => {
     let data = {
@@ -113,15 +113,15 @@ function FormatProjects (array){
 }
 
 
-
-getCurrentDate=()=>{
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-
-    return mm + '/' + dd + '/' + yyyy;
-}
+//
+// getCurrentDate=()=>{
+//     var today = new Date();
+//     var dd = String(today.getDate()).padStart(2, '0');
+//     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+//     var yyyy = today.getFullYear();
+//
+//     return mm + '/' + dd + '/' + yyyy;
+// }
 
 
 

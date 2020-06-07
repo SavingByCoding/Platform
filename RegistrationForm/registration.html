@@ -11,8 +11,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
-    <!--<script src="../redirectToLogin.js"></script>-->
-    <script src="registration.js"></script>
+<!--    <script src="../redirectToLogin.js"></script>-->
     <title>Contact Page</title>
 </head>
 <body class="mainbod" ng-app = "myApp">
@@ -90,14 +89,11 @@
 
 <div class ="hero">
     <div class="form-box">
-
-        <form class="input-group" style="font-family: karla"; >
-
-
+        <form id="Page1">
             <div class="formcontainer1" id="formcontainer1">
                 <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated"><span style="color: #000000;">Welcome to Codeology!</span></h3>
                 <p style="text-align: center;"><span style="color: #000000;">Ready to get started? It will only take a few minutes to fill out this form so an educational specialist can reach you.</span></p>
-                <input id= "FirstName" type="text" class ="input-field required" placeholder="(Parent's) First Name" required>
+                <input id= "FirstName" type="text" class ="input-field" placeholder="(Parent's) First Name" required>
                 <input id= "LastName" type="text" class ="input-field" placeholder="(Parent's) Last Name" required>
                 <input id= "Email" type="text" class ="input-field" placeholder="(Parent's) Email" required>
                 <p style="font-size: 12px;">By submitting, you consent to receiving email communication from Codeology for the purposes of providing more information about our services.&nbsp;</p>
@@ -108,8 +104,8 @@
                 </div>
 
             </div>
-
-
+        </form>
+        <form id="Page2">
             <div class="formcontainer2" id="formcontainer2">
                 <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated"><span style="color: #000000;">Student Information</span></h3>
                 <input type="text" id="fname" class ="input-field" placeholder="First Name" required>
@@ -121,7 +117,7 @@
                </div>
                 <div class="grade1">
                     <label for ="grade"> Grade </label>
-                    <select id="grade" name="Grade">
+                    <select id="grade" name="Grade" required>
                         <option value="Select"> Select </option>
                         <option value="K"> K </option>
                         <option value="1"> 1 </option>
@@ -148,8 +144,8 @@
                     </div>
                 </div>
             </div>
-
-
+            </form>
+        <form id="Page3">
             <div class="formcontainer3" id="formcontainer3">
                 <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated">Thank you! How much coding experience does the student have? </h3>
                     <div></div>
@@ -175,8 +171,8 @@
                     </div>
                 </div>
             </div>
-
-
+        </form>
+        <form id="Page4">
             <div class="formcontainer4" id="formcontainer4">
                 <h3 class="txt1"> Do you have access to the following:</h3>
                 <p style="font-size: 12px; text-align: center;">Please note: desktop or laptop computer is required. Chromebooks and tablets are not compatible.</p>
@@ -216,20 +212,17 @@
                     </div>
                 </div>
             </div>
-
-
-            <div class="formcontainer5" id="formcontainer5">
+            </form>
+        <form name="Page5">
+            <div class="formcontainer5" id="formcontainer5" ng-controller = "RegistrationForm">
                 <br>
                     <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated"><span style="color: #000000;">Which course would you like to register for?</span></h3>
                     <label class="courseselect1" for ="courseselect"> Course Select </label>
-                    <select id="courseselect" name="CourseSelect">
-                        <option value="Select"> Select </option>
-                        <option value="662da89a-bdd2-4620-94de-1d5b6d0abf97"> HTML </option>
-                        <option value="PwIbr42Zd7rNoPNTMZ7d"> Python </option>
-
+                    <select id="courseselect" name="CourseSelect" ng-model="courseValue"required>
+                        <option id="SelectedCourse" ng-repeat="course in courseNames" value= "{{course}}" > {{course}}  </option>
                 </select>
                 <div class="preferences">
-                     <label for ="preferences">Advanced or Beginner track? </label>
+                     <label for ="preferences"required >Advanced or Beginner track? </label>
                    <select id="preferences" name="Preferences">
                        <option value="select"> Select </option>
                        <option value="beg"> Beginner </option>
@@ -252,15 +245,17 @@
                     </div>
                 </div>
             </div>
-
-            <div class="formcontainer6" id="formcontainer6">
+            </form>
+        <form name="Page6">
+            <div class="formcontainer6" id="formcontainer6" >
                 <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated"><span style="color: #000000;">Finish & Pay</span></h3>
                 <div class="btn" id="btn6">
                     <button type="button" class="previousbtn" onclick="previous5()">Previous</button>
-                    <button type="button"  class="submit">Submit & Pay</button>
+<!--                    <button type="button"  onclick="submitRegistration()" class="submit">Submit & Pay</button>-->
+                    <button type="button"  onclick="submitRegistration()" class="submit">Submit & Pay</button>
                 </div>
             </div>
-        </form>
+            </form>
     </div>
 </div>
 <br>
@@ -269,74 +264,6 @@
     <h4> Any Questions? Feel free to contact us at savingbycoding@gmail.com and we'll be sure to get back to you promptly!</h4>
 </div>
 <br>
-
-<script>
-    var fname=document.getElementById("fname");
-   var x= document.getElementById("formcontainer1");
-   var y= document.getElementById("formcontainer2");
-   var z= document.getElementById("formcontainer3");
-   var a=document.getElementById("formcontainer4");
-   var b=document.getElementById("formcontainer5");
-    var c=document.getElementById("formcontainer6");
-
-    a.style.display="none";
-   y.style.display="none";
-   z.style.display="none";
-    b.style.display="none";
-    c.style.display="none";
-
-
-    function next1()
-    {
-        y.style.display="block";
-        x.style.display="none";
-    }
-    function previous1()
-    {
-        x.style.display="block";
-        y.style.display="none";
-    }
-    function next2()
-    {
-        y.style.display="none";
-        z.style.display="block";
-    }
-    function previous2()
-    {
-        z.style.display="none";
-        y.style.display="block";
-    }
-    function next3()
-    {
-        z.style.display="none";
-        a.style.display="block";
-    }
-    function previous3()
-    {
-        a.style.display="none";
-        z.style.display="block";
-    }
-    function next4()
-    {
-        a.style.display="none";
-        b.style.display="block";
-    }
-    function previous4()
-    {
-        b.style.display="none";
-        a.style.display="block";
-    }
-    function next5()
-    {
-        b.style.display="none";
-        c.style.display="block";
-    }
-    function previous5()
-    {
-        c.style.display="none";
-        b.style.display="block";
-    }
-</script>
 
 <footer id="sticky-footer" class="py-4  FOOTER text-white-50">
     <div class="container  text-center">
@@ -359,8 +286,7 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
 <script src="../navigationLinks.js"></script>
-
-
+<script src="registration.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

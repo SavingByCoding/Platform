@@ -395,7 +395,7 @@ html {
 .input-group{
     top:0px;
     position: absolute;
-    width: 280px;
+    width: 320px;
     transition: .5s;
 }
 .input-field
@@ -420,6 +420,7 @@ html {
     border: 0;
     outline: none;
     border-radius: 30px;
+    transition-duration: 0.4s;
 }
 .previousbtn
 {
@@ -444,6 +445,7 @@ html {
     line-height: 1.5;
     data-fontsize:"32";
     data-lineheight:"48px";
+    font-family: Karla;
 }
 .formcontainer2
 {
@@ -466,88 +468,38 @@ html {
     background: url("https://wallpaperset.com/w/full/e/4/1/170026.jpg " );
 
 }
-.age1
+.txt2
 {
     text-align: left;
-    border-left:0;
-    border-top:0;
-    border-right:0;
-    margin-top: 10px;
+    line-height: 1.5;
+    data-fontsize:"32";
+    data-lineheight:"48px";
+    font-family: Karla;
+    margin-left: 2%;
+}
+.txt3
+{
+    width: 600px;
+    height:480px;
+    position: relative;
+    margin: 1% auto;
+    background: antiquewhite;
+    padding: 5px;
+    border: 10px;
+    border-color: black;
+    border-radius: 25px;
+}
+.btn:hover
+{
+    box-shadow: 2px 2px 4px 2px #354C8C;
 
-    border-bottom:1px solid #999;
-    color: #7a7a7a;
-
 }
-.grade1
+.txt4
 {
-    text-align: left;
-    border-left:0;
-    border-top:0;
-    border-right:0;
-    border-bottom:1px solid #999;
-    margin-top: 15px;
-    color: #7a7a7a;
-}
-.preferences
-{
-    text-align: left;
-    border-left:0;
-    border-top:0;
-    border-right:0;
-    border-bottom:1px solid #999;
-    margin-top: 15px;
-    color: #7a7a7a;
-}
-#courseselect
-{
-    text-align: left;
-    border-left:0;
-    border-top:0;
-    border-right:0;
-    border-bottom:1px solid #999;
-    margin-top: 15px;
-    color: #7a7a7a;
-}
-#age
-{
-    text-align: left;
-    border-left:0;
-    border-top:0;
-    border-right:0;
-    border-bottom:1px solid #999;
-    margin-top: 15px;
-    color: #7a7a7a;
-}
-#grade
-{
-    text-align: left;
-    border-left:0;
-    border-top:0;
-    border-right:0;
-    border-bottom:1px solid #999;
-    margin-top: 15px;
-    color: #7a7a7a;
-}
-#preferences
-{
-    text-align: left;
-    border-left:0;
-    border-top:0;
-    border-right:0;
-    border-bottom:1px solid #999;
-    margin-top: 15px;
-    color: #7a7a7a;
-}
-.coursereg
-{
-    text-align: left;
-    border-left:0;
-    border-top:0;
-    border-right:0;
-    margin-top: 10px;
-    color: #7a7a7a;
-}
-.courseselect1
-{
-    color: #7a7a7a;
-}
+    text-align: center;
+    --fontSize:24;
+    data-fontsize:"32";
+    font-family: Karla;
+    position: absolute;
+    right:    25px;
+    bottom:   20px;}
