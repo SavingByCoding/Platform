@@ -346,14 +346,23 @@ html {
 }
 .textCards{
     color: #23233b;
+    border-top: #23233b 5px solid;
     font-family: Karla;
     font-size: 20px;
     text-align: center;
+    background: antiquewhite;
+    transition: all 0.5s ease;
+
+}
+.textCards:hover{
+    box-shadow: #23233b 10px 10px 10px;
 }
 .paraCards{
     font-size: 18px;
+
 }
 .imageCards{
+    align-self: center;
     background:#23233b;
     height:5px;
     width: 50px;

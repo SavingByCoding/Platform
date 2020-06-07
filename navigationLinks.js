@@ -1,4 +1,6 @@
-
+function registerNow(){
+    window.open("../RegistrationForm/registration.html")
+}
 var mainMod = angular.module("myApp", []);
 mainMod.controller("myCont1", function ($scope) {
 
