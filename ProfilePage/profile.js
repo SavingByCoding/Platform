@@ -122,7 +122,8 @@ mainMod.controller('MainContentController', ($scope) => {
     $scope.getLoggedInUser = () => {
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                $scope.userId = user.uid
+                $scope.userId = user.uid;
+                $("#ProfilePicture").attr("src", user.photoURL);
                 db.collection("users")
                     .where("userId", "==", $scope.userId)
                     .get()
@@ -131,7 +132,7 @@ mainMod.controller('MainContentController', ($scope) => {
                         let user = {id: doc.id}
                         Object.assign(user, doc.data())
                         $scope.user = user
-                    })
+                    });
                 LOAD_ON_STARTUP()
             }
         });

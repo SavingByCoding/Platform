@@ -136,7 +136,7 @@ mainMod.controller("RegistrationForm", function ($scope) {
             snapshot.docs.forEach(doc=>{
                 // console.log(doc.data().name)
                 $scope.courseNames.push(doc.data().name);
-                setTimeout(function(){$scope.checkPreviousRegistration()}, 50)
+                setTimeout(function(){$scope.checkPreviousRegistration()}, 100)
             })
         });
     };
