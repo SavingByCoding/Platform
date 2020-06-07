@@ -46,6 +46,7 @@ a {
     transition: 0.2s ease all;
     text-transform: uppercase;
     position: relative;
+    z-index: 1;
 }
 
 .linkCard h6 {
@@ -72,4 +73,121 @@ a {
 
 .linkCard:hover .bi-arrow-right-circle {
     opacity: 1;
+}
+
+.overlay{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 215%;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.5); /*dim the background*/
+}
+.upEv{
+    z-index: 1;
+}
+#t2{
+    display: none;
+}
+.textSpot{
+    font-family: Karla;
+    color: #23233b;
+    text-align: center;
+    display: none;
+}
+#t3{
+    display: none;
+    z-index: 10001;
+}
+.display {
+    pointer-events: none;
+    cursor: default;
+}
+
+.nextButton{
+    z-index: 1000;
+}
+#t3Box {
+    display: none;
+}
+#t4{
+    display: none;
+    z-index: 10001;
+}
+#t4Box {
+    display: none;
+}
+
+#t5{
+    display: none;
+    z-index: 10001;
+}
+#t5Box {
+    display: none;
+}
+
+#t6{
+    display: none;
+    z-index: 10001;
+}
+#t6Box {
+    display: none;
+}
+#t7{
+    display: none;
+    z-index: 10001;
+}
+#t7Box {
+    display: none;
+}
+#t8{
+    display: none;
+    z-index: 10001;
+}
+#t8Box {
+    display: none;
+}
+#t9{
+    display: none;
+    z-index: 10001;
+}
+#t9Box {
+    display: none;
+}
+
+.buttonTut{
+    background: #877459;
+    font-family: Karla;
+    color: #23233b;
+    border: 3px solid #23233b;
+    width: 100%;
+    transition: all 1s ease;
+}
+.buttonTut:hover{
+    background: antiquewhite;
+}
+.btn-primary{
+    background: antiquewhite;
+    border: #23233b 2px solid;
+    font-family: Karla;
+    color: #23233b;
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.buttonStuff{
+    background: transparent;
+    font-family: Karla;
+    color: #FFFFFF;
+    border: 3px solid #ffffff;
+    transition: all 0.5s ease;
+    border-radius: 10%;
+}
+.buttonStuff:hover{
+    background: #66696d;
 }
