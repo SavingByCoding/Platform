@@ -10,7 +10,7 @@ var ChildAge;
 var ChildGrade;
 var SpecifiedTrack;
 var CourseId;
-var paid= 149.99;
+var paid= 99.99;
 var RegistrationDate;
 
 var fname=document.getElementById("fname");
