@@ -2,27 +2,16 @@
 //everytime the user clicks next that info gets stored in the variables
 //when the user clicks the final submit the
 
+
 var FirstName;
 var LastName;
 var ParentsEmail;
+var ChildAge;
+var ChildGrade;
+var SpecifiedTrack;
 var CourseId;
-var paid;
+var paid= 149.99;
 var RegistrationDate;
-
-
-//Add a function to drop down all the courses available
-//Add a function to remove already registered courses
-
-
-
-getCurrentDate=()=>{
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-
-    return mm + '/' + dd + '/' + yyyy;
-}
 
 var fname=document.getElementById("fname");
 var x= document.getElementById("formcontainer1");
@@ -39,12 +28,21 @@ b.style.display="none";
 c.style.display="none";
 
 
-function next1()
-{
-    y.style.display="block";
-    x.style.display="none";
-    ParentsEmail= $("#Email").val();
+function next1() {
+    var form = document.getElementById('Page1');
+        for (var i = 0; i < form.elements.length; i++) {
+            if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
+                alert('There are some required fields!');
+                break;
+            } else {
+                y.style.display="block";
+                x.style.display="none";
+                ParentsEmail= $("#Email").val();
+            }
+
+        }
 }
+
 function previous1()
 {
     x.style.display="block";
@@ -52,11 +50,22 @@ function previous1()
 }
 function next2()
 {
-    y.style.display="none";
-    z.style.display="block";
-    FirstName= $("#FirstName").val();
-    LastName= $("#LastName").val();
+    var form = document.getElementById('Page2');
+    for (var i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
+            alert('There are some required fields!');
+            break;
+        } else {
+            y.style.display="none";
+            z.style.display="block";
+            FirstName= $("#FirstName").val();
+            LastName= $("#LastName").val();
+            ChildAge= $("#age").val();
+            ChildGrade= $("#grade").val();
 
+        }
+
+    }
 }
 function previous2()
 {
@@ -85,12 +94,113 @@ function previous4()
 }
 function next5()
 {
-    b.style.display="none";
-    c.style.display="block";
+    var form = document.getElementById('Page2');
+    for (var i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
+            alert('There are some required fields!');
+            break;
+        } else {
+            b.style.display="none";
+            c.style.display="block";
+            setSelectedCourseId();
+            SpecifiedTrack= $("#preferences").val();
+        }
+
+    }
 }
 function previous5()
 {
     c.style.display="none";
     b.style.display="block";
 }
+
+var userID;
+mainMod.controller("RegistrationForm", function ($scope) {
+    $scope.courseNames =[];
+    //Get all the Courses from DB and put into an array //done
+    //Create a function to check if the user is already registered for the course //done
+    //Remove from the array if the user already registered for the course //done
+    //use ng-repeat to iterate through that array and dynamically display the courses
+    //Create a function to get the id of the course that the user selected from DB
+
+    firebase.auth().onAuthStateChanged(function(user){
+        if (user) {
+            userID=user.uid;
+        } else {
+
+        }
+    });
+    //Get all the Courses from DB and put into an array
+    $scope.getCourseName= function () {
+        db.collection('courses').get().then((snapshot)=>{
+            snapshot.docs.forEach(doc=>{
+                // console.log(doc.data().name)
+                $scope.courseNames.push(doc.data().name);
+                setTimeout(function(){$scope.checkPreviousRegistration()}, 50)
+            })
+        });
+    };
+
+    //Create a function to check if the user is already registered for the course
+     $scope.checkPreviousRegistration = function () {
+
+         $scope.courseNames.forEach(function (courseName,index) {
+             var previousRegistrations = db.collection('registrations').where("userId", "==", userID); //Gets all documents in registration for a specific user when they register
+             previousRegistrations.get().then(function (querySnapshot) {
+                 querySnapshot.forEach(function (doc) {  //Itterates through all documents
+                     CurrentCourseId =doc.data().courseId; //Gets course id from current id document
+                     Course= db.collection('courses').doc(CurrentCourseId); //searches the currentcourse
+                    // console.log(CurrentCourseId)
+                     let getDocument = Course.get()
+                         .then(doc => {
+                             if(courseName == doc.data().name){ //sees if the course name in the array is something the user already signed up for
+                                 $scope.courseNames = $scope.courseNames.filter(e => e !== courseName);
+                                 $scope.$apply();
+                             }
+                         })
+                         .catch(err => {
+                         });
+                 });
+             });
+
+         });
+     };
+
+    $scope.getCourseName();
+
+    $scope.courseValue; //the data-model that tells you what the user selected
+     setSelectedCourseId = function (){
+        //When the user clicks next it will take current course
+        //Gets the id of the current course
+        //sets the current id of the course to the variable
+         coursename=  $scope.courseValue;
+        var courseiddocuments = db.collection('courses').where("name", "==", coursename );
+        courseiddocuments.get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    CourseId=doc.id;
+                });
+            });
+     }
+
+    submitRegistration = function(){
+        let data={
+            courseId:CourseId,
+            date: getCurrentDate(),
+            paid: paid,
+            userId: userID,
+            FirstName: FirstName,
+            LastName: LastName,
+            ParentsEmail: ParentsEmail,
+            ChildAge: ChildAge,
+            ChildGrade: ChildGrade,
+            SpecifiedTrack: SpecifiedTrack
+        };
+
+        db.collection("registrations").doc(generateUUID()).set(data);
+    };
+
+
+     
+});
 

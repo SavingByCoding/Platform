@@ -36,7 +36,7 @@ mainMod.controller("myCont1", function ($scope) {
     m6.href = $scope.menuName6Link;
 
 
-    $scope.registerNowLink= "#";
+    $scope.registerNowLink= "../RegistrationForm/registration.html";
     $("#RegisterNow").attr("href",$scope.registerNowLink); //Added a registernow link so you could just put the link here
 
     $scope.dropdownName = "Profile";
