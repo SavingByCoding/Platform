@@ -10,7 +10,7 @@ var ChildAge;
 var ChildGrade;
 var SpecifiedTrack;
 var CourseId;
-var paid= 149.99;
+var paid= 99.99;
 var RegistrationDate;
 
 var fname=document.getElementById("fname");
@@ -117,6 +117,7 @@ function previous5()
 var userID;
 mainMod.controller("RegistrationForm", function ($scope) {
     $scope.courseNames =[];
+    $scope.courses = [];
     //Get all the Courses from DB and put into an array //done
     //Create a function to check if the user is already registered for the course //done
     //Remove from the array if the user already registered for the course //done
@@ -135,6 +136,7 @@ mainMod.controller("RegistrationForm", function ($scope) {
         db.collection('courses').get().then((snapshot)=>{
             snapshot.docs.forEach(doc=>{
                 // console.log(doc.data().name)
+                $scope.courses.push(doc.data());
                 $scope.courseNames.push(doc.data().name);
                 setTimeout(function(){$scope.checkPreviousRegistration()}, 100)
             })
@@ -153,7 +155,7 @@ mainMod.controller("RegistrationForm", function ($scope) {
                     // console.log(CurrentCourseId)
                      let getDocument = Course.get()
                          .then(doc => {
-                             if(courseName == doc.data().name){ //sees if the course name in the array is something the user already signed up for
+                             if(courseName == doc.data().name || $scope.getCourseFromCourseName(courseName).demo){ //sees if the course name in the array is something the user already signed up for OR if course is demo
                                  $scope.courseNames = $scope.courseNames.filter(e => e !== courseName);
                                  $scope.$apply();
                              }
@@ -181,6 +183,12 @@ mainMod.controller("RegistrationForm", function ($scope) {
                     CourseId=doc.id;
                 });
             });
+     }
+
+     $scope.getCourseFromCourseName = (name) => {
+         for (let course of $scope.courses) {
+             if (course.name === name) return course
+         }
      }
 
     submitRegistration = function(){

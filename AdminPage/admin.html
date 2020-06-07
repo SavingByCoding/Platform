@@ -36,6 +36,13 @@
                                     <label for="courseDescription">Description</label>
                                     <textarea class="form-control" ng-model="new.course.description" id="courseDescription" rows="3"></textarea>
                                 </div>
+                                <div class="form-group">
+                                    <label for="courseDemo">Demo Course?</label>
+                                    <select class="form-control" ng-model="new.course.demo" id="courseDemo">
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+                                    </select>
+                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">
