@@ -124,6 +124,15 @@ function Chapter9(){
         document.getElementById("Chapter9").style.animation = "fadeInAnimation1 1s 1";
     }
 }
+function Chapter10(){
+    if(document.getElementById("Chapter10").style.display == "block")
+    {document.getElementById("Chapter10").style.display = "none";
+    }
+    else{
+        document.getElementById("Chapter10").style.display = "block";
+        document.getElementById("Chapter10").style.animation = "fadeInAnimation1 1s 1";
+    }
+}
 function closeAll(){
     document.getElementById("Unit1Chapters").style.display = "none";
     document.getElementById("Unit2Chapters").style.display = "none";
@@ -138,6 +147,7 @@ function closeAll(){
     document.getElementById("Chapter7").style.display = "none";
     document.getElementById("Chapter8").style.display = "none";
     document.getElementById("Chapter9").style.display = "none";
+    document.getElementById("Chapter10").style.display = "none";
 
 
 
