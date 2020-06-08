@@ -87,14 +87,16 @@ app.controller('AppController', ($scope) => {
     $scope.getCourse = () => {
         db.collection('courses').doc($scope.unit.courseId).get().then((doc) => {
             let {name, description, ordinalNumber} = doc.data()
-            $scope.course = {name, description, ordinalNumber}
+            let course = {id: doc.id}
+            Object.assign(course, doc.data())
+            $scope.course = course
             if ($scope.user.userType !== '2') {
                 db.collection("registrations")
                     .where("userId", "==", $scope.userId)
                     .where("courseId", "==", doc.id)
                     .get()
                     .then((qs2) => {
-                        if (qs2.empty) {
+                        if (qs2.empty && !$scope.course.demo) {
                             window.location.href = "../LessonDirectoryPage/lessondirectory.html"
                         }
                         else {
