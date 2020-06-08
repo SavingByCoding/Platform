@@ -11,7 +11,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
-<!--    <script src="../redirectToLogin.js"></script>-->
+    <!--<script src="../redirectToLogin.js"></script>-->
     <title>Contact Page</title>
 </head>
 <body class="mainbod" ng-app = "myApp">
@@ -19,7 +19,7 @@
 
 <!--Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
-    <a href = "#"><img id = "logo" ng-src="{{logo}}" style="width: 50px; height: 50px"></a>
+    <a href = "#"><img id = "logo" ng-src="{{logo}}" style="height: 80px"></a>
     <a class="navbar-brand" href="#" ng-model="websiteTitle" style="font-size: 20px">{{websiteTitle}}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -52,7 +52,7 @@
                 <a style="color: #23233b">-----------------------------------------------------------------------</a>
             </li>
             <li class="nav-item">
-                <button class = "btn btn-primary registerButton" id="RegisterNow" href= "../RegistrationForm/registration.html" style="background: antiquewhite; color: #23233b; border: transparent">Register Now</button>
+                <button class = "btn btn-primary registerButton" id="RegisterNow" onClick = "registerNow()" style="background: antiquewhite; color: #23233b; border: transparent">Register Now</button>
             </li>
             <li class="nav-item">
                 <a style="color: #23233b">---------</a>
@@ -265,19 +265,21 @@
 </div>
 <br>
 
-<footer id="sticky-footer" class="py-4  FOOTER text-white-50">
+<footer id="sticky-footer" class="py-4  FOOTER text-white-50" ng-controller = "MyCont2" style="border-top: 10px solid #23233b">
     <div class="container  text-center">
         <div class = "row">
-            <div class = "col-4">
+            <div class = "col-4" style="font-family:Karla;color: #23233b">
                 <h5>2020 Copyright: Saving By Coding</h5>
                 <p>Make a difference in your life</p>
             </div>
             <div class = "col-4 linksColFooter">
-                <small><a class = "Links" href="#">Home Page</a></small><br>
-                <small><a class = "Links" href="#">About Us</a></small><br>
-                <small><a class = "Links" href="#">How to Access</a></small><br>
-                <small><a class = "Links" href="#">HTML</a></small><br>
-                <small><a class = "Links" href="#">Python</a></small><br>
+                <small><a class = "Links" href="#" id = "f1" mg-model = "footerMenuName1">{{footerMenuName1}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f2" mg-model = "footerMenuName2">{{footerMenuName2}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f3" mg-model = "footerMenuName3">{{footerMenuName3}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f4" mg-model = "footerMenuName4">{{footerMenuName4}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f5" mg-model = "footerMenuName5">{{footerMenuName5}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f6" mg-model = "footerMenuName6">{{footerMenuName6}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f7" mg-model = "footerMenuName7">{{footerMenuName7}}</a></small><br>
             </div>
             <div class = "col-4"></div>
         </div>

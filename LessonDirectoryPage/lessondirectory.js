@@ -27,6 +27,7 @@ app.controller('AppController', ($scope) => {
                     name: doc.data().name,
                     description: doc.data().description,
                     ordinalNumber: doc.data().ordinalNumber,
+                    demo: doc.data().demo,
                     type: "course",
                     disabled: false
                 })
@@ -40,11 +41,14 @@ app.controller('AppController', ($scope) => {
 
     $scope.verifyRegistration = (courseIndex, courseId) => {
         if ($scope.user.userType === '2') return
+        if ($scope.items[courseIndex].demo) return
+        console.log("Checking for registration of courseId = " + courseId)
         db.collection("registrations")
             .where("userId", "==", $scope.userId)
             .where("courseId", "==", courseId)
             .get()
             .then((qs2) => {
+                console.log("is qs2 empty? " + qs2.empty)
                 if (qs2.empty) {
                     $scope.items[courseIndex].disabled = true
                 }
@@ -54,6 +58,7 @@ app.controller('AppController', ($scope) => {
                     Object.assign(registration, doc2.data())
                     $scope.registration = registration
                 }
+                $scope.$apply()
             })
     }
 

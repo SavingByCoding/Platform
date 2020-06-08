@@ -563,7 +563,8 @@ app.controller('AppController', ($scope) => {
                     id: doc.id,
                     name: doc.data().name,
                     description: doc.data().description,
-                    ordinalNumber: doc.data().ordinalNumber
+                    ordinalNumber: doc.data().ordinalNumber,
+                    demo: doc.data().demo ? "true" : "false"
                 })
             }
             $scope.courses.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
@@ -689,7 +690,8 @@ app.controller('AppController', ($scope) => {
     $scope.clearCrudCourseModal = () => {
         $scope.new.course = {
             name: "",
-            description: ""
+            description: "",
+            demo: "",
         }
     }
 
@@ -712,7 +714,8 @@ app.controller('AppController', ($scope) => {
         let courseId = generateUUID()
         let course = {
             name: $scope.new.course.name,
-            description: $scope.new.course.description
+            description: $scope.new.course.description,
+            demo: $scope.new.course.demo === "true"
         }
         db.collection("courses").doc(courseId).set(course).then(() => {
             $scope.new.course = {}
@@ -725,12 +728,14 @@ app.controller('AppController', ($scope) => {
     $scope.editCourse = () => {
         db.collection("courses").doc($scope.new.course.id).update({
             name: $scope.new.course.name,
-            description: $scope.new.course.description
+            description: $scope.new.course.description,
+            demo: $scope.new.course.demo === "true"
         }).then(() => {
             for (let i = 0; i < $scope.courses.length; i++) {
                 if ($scope.courses.id == $scope.new.course.id) {
                     $scope.courses[i].name = $scope.new.course.name
                     $scope.courses[i].description = $scope.new.course.description
+                    $scope.courses[i].demo = $scope.new.course.demo === "true"
                     return
                 }
             }

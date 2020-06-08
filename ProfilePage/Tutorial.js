@@ -239,10 +239,18 @@ function t8() {
     var btn1 = document.getElementById("t9")
     btn1.style.display = "flex"
 
+    //displays other button
+    var btn = document.getElementById("t10Box")
+    btn.style.display = 'flex'
+    var btn1 = document.getElementById("t10")
+    btn1.style.display = "flex"
+
     //Highlights Your Groups
     var PythonSand = document.getElementById("Contact");
     PythonSand.style.display = "flex"
     PythonSand.style.zIndex = 1000;
+
+
 
     //sets text
     var textBox = document.getElementById("addtext");
@@ -259,6 +267,11 @@ function t9() {
     btn.style.display = "none"
     btn1.style.display = "none"
 
+    var btn = document.getElementById("t10")
+    var btn1 = document.getElementById("t10Box")
+    btn.style.display = "none"
+    btn1.style.display = "none"
+
     document.getElementById("Contact").style.zIndex = 0;
 
     var textBox = document.getElementById("addtext");
@@ -266,4 +279,8 @@ function t9() {
 
     var btn2 = document.getElementById("TutorialBtn")
     btn2.style.display = "inline";
+}
+function contact(){
+    window.open("../ContactPage/contact.html")
+    window.close(this)
 }
