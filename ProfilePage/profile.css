@@ -156,6 +156,13 @@ a {
 #t9Box {
     display: none;
 }
+#t10{
+    display: none;
+    z-index: 10001;
+}
+#t10Box {
+    display: none;
+}
 
 .buttonTut{
     background: #877459;

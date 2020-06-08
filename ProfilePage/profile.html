@@ -30,7 +30,7 @@
 
 <!--Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
-    <a href = "#"><img id = "logo" ng-src="{{logo}}" style="width: 50px; height: 50px"></a>
+    <a href = "#"><img id = "logo" ng-src="{{logo}}" style="height: 80px"></a>
     <a class="navbar-brand" href="#" ng-model="websiteTitle" style="font-size: 20px">{{websiteTitle}}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -63,7 +63,7 @@
                 <a style="color: #23233b">-----------------------------------------------------------------------</a>
             </li>
             <li class="nav-item">
-                <button class = "btn btn-primary registerButton" id="RegisterNow" href= "../RegistrationForm/registration.html" onclick="registerNow()" style="background: antiquewhite; color: #23233b; border: transparent">Register Now</button>
+                <button class = "btn btn-primary registerButton" id="RegisterNow" onClick = "registerNow()" onclick="registerNow()" style="background: antiquewhite; color: #23233b; border: transparent">Register Now</button>
             </li>
             <li class="nav-item">
                 <a style="color: #23233b">---------</a>
@@ -240,7 +240,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><b>General Resources</b></h5>
                         <hr  style="background: antiquewhite; height: 2px">
-                        <p class="card-text">Hey1</p>
+                        <p class="card-text">There are resources here</p>
                     </div>
                 </div>
             </div>
@@ -249,15 +249,19 @@
 
                     <div class="card-header">
                         <div class = "row justify-content-around" id = "t9Box">
-                            <button class="buttonStuff" id = "t9" onclick="t9()">Done! ></button>
+                            <button class="buttonStuff" id = "t9" onclick="t9()">I am above 18 and Finish ></button>
+                        </div>
+                        <div class = "row justify-content-around" id = "t10Box">
+                            <button class="buttonStuff" id = "t10" onclick="t9()">I am under 18 and have Parental Consent and Finish ></button>
                         </div>
                         <i>Any problems? Contact us and we'll help you out!</i></div>
                     <div class="card-body">
                         <h5 class="card-title"><b>Contact</b></h5>
                         <hr  style="background: antiquewhite; height: 2px">
                         <p class="card-text">
-                            HEY
-                        </p>
+                            Contact us here:
+                        </p><br>
+                        <button class="btn-lg buttonStuff" onclick="contact()">Contact Us</button>
                     </div>
                 </div>
             </div>
@@ -269,7 +273,7 @@
 <footer id="sticky-footer" class="py-4  FOOTER text-white-50" ng-controller = "MyCont2" style="border-top: 10px solid #23233b">
     <div class="container  text-center">
         <div class = "row">
-            <div class = "col-4" style="color: #23233b">
+            <div class = "col-4" style="font-family:Karla;color: #23233b">
                 <h5>2020 Copyright: Saving By Coding</h5>
                 <p>Make a difference in your life</p>
             </div>
@@ -287,13 +291,7 @@
     </div>
 </footer>
 
-
-
-
-
-
 </body>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
 <script src="../navigationLinks.js"></script>
 <script src="profile.js"></script>

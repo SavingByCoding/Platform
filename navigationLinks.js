@@ -1,10 +1,11 @@
 function registerNow(){
     window.open("../RegistrationForm/registration.html")
+    window.close(this)
 }
 var mainMod = angular.module("myApp", []);
 mainMod.controller("myCont1", function ($scope) {
 
-    $scope.logo = "../SBC-logos_transparent.png";
+    $scope.logo = "../LogoWithWords.png";
 
 
     $scope.menuName1 = "Home";
@@ -167,3 +168,6 @@ mainMod.controller("MyCont2", function ($scope) {
     f7.href = $scope.footerMenuName7Link;
 
 });
+
+
+
