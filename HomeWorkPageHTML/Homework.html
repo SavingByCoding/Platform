@@ -4,6 +4,7 @@
     <title>HomeWork</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel = "stylesheet" type= "text/css" href = "Homework.css">
+    <link rel = "stylesheet" type="text/css" href="../navbarCSS.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -14,7 +15,6 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
-    <script src="HomeworkEditor.js"></script>
     <script src="../redirectToLogin.js"></script>
 <httpProtocol>
     <customHeaders>
@@ -150,11 +150,25 @@
 <br>
 <br>
 
+<!--<div class = "container buttonCont">-->
+<!--    <div class = "row buttonRow justify-content-around">-->
+<!--        <div class="col-12 colButton">-->
+<!--&lt;!&ndash;            <button class="btn btn-primary CheckButton" id = "CompileButton" type="submit" data-toggle="modal" data-target="#CorrectAnswer">Check your code!</button>&ndash;&gt;-->
+<!--            <div><button class="btn btn-primary CheckButton" id = "SaveButton"  > Save Your Code!</button></div>-->
+<!--            <div><button class="btn btn-primary CheckButton" id = "SubmitButton" onclick="SubmitHomework()" data-toggle="modal" data-target="#CompletedHomeWork" type="submit">Submit Your Code</button></div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <div class = "container buttonCont">
-    <div class = "row buttonRow justify-content-around">
-        <div class="col-12 colButton">
-<!--            <button class="btn btn-primary CheckButton" id = "CompileButton" type="submit" data-toggle="modal" data-target="#CorrectAnswer">Check your code!</button>-->
-            <button class="btn btn-primary CheckButton" id = "SubmitButton" onclick="SubmitHomework()" data-toggle="modal" data-target="#CompletedHomeWork" type="submit">Submit Your Code</button>
+    <div class = "row buttonRow justify-content-around no-gutters">
+        <div class="col-6 colButton">
+            <button class="btn btn-primary CheckButton" id = "SaveButton" onclick="SaveCurrentCode()" > Save Your Code!</button>
+        </div>
+        <div class = "col-6">
+            <div class="col-12 colButton">
+                <button class="btn btn-primary CheckButton" id = "SubmitButton" onclick="SubmitHomework()" data-toggle="modal" data-target="#CompletedHomeWork" type="submit">Submit Your Code</button></div>
+            </div>
         </div>
     </div>
 </div>
@@ -174,7 +188,6 @@
 <!--            <a href="#" class="card-link">Contact us for more questions!</a>-->
 <!--        </div>-->
 <!--    </div></div>-->
- Modal
 <div id="CompletedHomeWork" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -223,4 +236,7 @@
     </div>
 </footer>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
+<script src="../navigationLinks.js"></script>
+
 </html>

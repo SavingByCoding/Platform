@@ -1,4 +1,5 @@
 var language= "HTML";
+var userID;
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -14,6 +15,12 @@ var Assignment_Name;
 var Assignment_Problem;
 var Expected_Output;
 var Related_Lesson;
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        userID = user.uid;
+    }
+});
 
 //Setting Up the AceEditor
 var editor = ace.edit("editor");
@@ -74,7 +81,7 @@ function DisplayHomework(){
 </body>
 
 </html>`,1);
-
+    LoadCode();
 
 }
 
@@ -92,4 +99,37 @@ SubmitHomework=()=>{
     db.collection('users-assignments').doc(UserAssignmentDocument).set(data);
 };
 
+//Things to Implement
+//Add the Save the project everytime the user compiles
+function SaveCurrentCode(){
+    let data= {
+        assignment: assignmentID,
+        output: " ",
+        code: editor.getValue().replace("<html>","").replace("</html>","").replace("<body>","").replace("</body>","").replace("<head>","").replace("</head>","").replace("<!DOCTYPE html>",""), //Manipulates the string that submits code
+        completed: false,
+        correct: false,
+        user: userID,
+        language: language
+    };
+    db.collection('users-assignments').doc(UserAssignmentDocument).set(data);
+}
 
+function LoadCode(){
+    var CurrentCodeDocument = db.collection('users-assignments').doc(UserAssignmentDocument);
+    let getUserProjects = CurrentCodeDocument.get()
+        .then(doc => {
+            if (!doc.exists) {
+                console.log('No such document!');
+            } else {
+                console.log('Document data:', doc.data());
+                CurrentAssignment = doc.data(); //Loads all UUID for all projects
+                editor.setValue(CurrentAssignment.code);
+            }
+        })
+        .catch(err => {
+            console.log('Error getting document', err);
+        });
+}
+
+
+//Get the Project from assignemntID when initially loaded in
