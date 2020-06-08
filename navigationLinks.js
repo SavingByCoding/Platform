@@ -13,25 +13,25 @@ mainMod.controller("myCont1", function ($scope) {
     let m1 = document.getElementById("m1")
     m1.href = $scope.menuName1Link;
 
-    $scope.menuName2 = "-About Us-";
+    $scope.menuName2 = "About Us";
     $scope.menuName2Link = "../AboutPage/AboutPage.html";
     let m2 = document.getElementById("m2")
     m2.href = $scope.menuName2Link;
 
-    $scope.menuName3 = "-Course Content-";
+    $scope.menuName3 = "Course Content";
 
 
-    $scope.menuName4 = "-Contact Us-";
+    $scope.menuName4 = "Contact Us";
     $scope.menuName4Link = "../ContactPage/contact.html";
     let m4 = document.getElementById("m4")
     m4.href = $scope.menuName4Link;
 
-    $scope.menuName5 = "-HTML Course Overview-";
+    $scope.menuName5 = "HTML Course Overview";
     $scope.menuName5Link = "../HTMLContentPage/HTMLContentPage.html";
     let m5 = document.getElementById("m5")
     m5.href = $scope.menuName5Link;
 
-    $scope.menuName6 = "-Python Course Overview-";
+    $scope.menuName6 = "Python Course Overview";
     $scope.menuName6Link = "../PythonContentPage/PythonContentPage.html";
     let m6 = document.getElementById("m6")
     m6.href = $scope.menuName6Link;

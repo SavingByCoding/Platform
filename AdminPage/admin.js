@@ -11,7 +11,8 @@ firebase.initializeApp({
 firebase.analytics()
 
 var db = firebase.firestore()
-var app = angular.module('SBCAdmin', [])
+//var app = angular.module('SBCAdmin', [])
+var app = mainMod
 
 const generateUUID = () => { // V4
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {

@@ -11,7 +11,7 @@ firebase.initializeApp({
 firebase.analytics()
 
 var db = firebase.firestore()
-var app = angular.module('SBCLessonDirectory', [])
+var app = mainMod
 
 app.controller('AppController', ($scope) => {
     $scope.directory = ['Course Directory']
