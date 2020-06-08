@@ -9,6 +9,7 @@ var assignmentID= assignmentid; //gets assignment id from url
 const userassignmentid = urlParams.get('userassignmentid'); //gets user assignment id from url
 let UserAssignmentDocument= userassignmentid;
 
+const lessonid = urlParams.get('lessonid');
 
 var Assignment_Fields;
 var Assignment_Name;
@@ -92,11 +93,13 @@ SubmitHomework=()=>{
         output: " ",
         code: editor.getValue().replace("<html>","").replace("</html>","").replace("<body>","").replace("</body>","").replace("<head>","").replace("</head>","").replace("<!DOCTYPE html>",""), //Manipulates the string that submits code
         completed: true,
-        correct: false,
+        status: 'Not Graded Yet',
         user: userID,
         language: language
     };
-    db.collection('users-assignments').doc(UserAssignmentDocument).set(data);
+    db.collection('users-assignments').doc(UserAssignmentDocument).set(data).then(() => {
+        window.open('../ViewLessonPage/viewlesson.html?lessonid=' + lessonid, '_self', false);
+    });
 };
 
 //Things to Implement
@@ -104,10 +107,10 @@ SubmitHomework=()=>{
 function SaveCurrentCode(){
     let data= {
         assignment: assignmentID,
-        output: " ",
+        output: "",
         code: editor.getValue().replace("<html>","").replace("</html>","").replace("<body>","").replace("</body>","").replace("<head>","").replace("</head>","").replace("<!DOCTYPE html>",""), //Manipulates the string that submits code
         completed: false,
-        correct: false,
+        status: 'Not Graded Yet',
         user: userID,
         language: language
     };

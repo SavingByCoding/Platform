@@ -113,7 +113,6 @@ app.controller('AppController', ($scope) => {
     $scope.getUsers = () => {
         $scope.users = []
         db.collection("users").get().then((querySnapshot) => {
-            debugger
             for (var i = 0; i < querySnapshot.docs.length; i++) {
                 var doc = querySnapshot.docs[i]
                 $scope.users.push({
@@ -390,7 +389,6 @@ app.controller('AppController', ($scope) => {
     // Event Membership Modal
 
     $scope.launchChangeEventMembershipModal = (i) => {
-        debugger
         $scope.currentEventMembership = i
         $scope.eventMembership = []
         for (let group of $scope.groups) {

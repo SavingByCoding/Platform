@@ -10,6 +10,8 @@ var assignmentID= assignmentid; //gets assignment id from url
 const userassignmentid = urlParams.get('userassignmentid'); //gets user assignment id from url
 let UserAssignmentDocument= userassignmentid;
 
+const lessonid = urlParams.get('lessonid');
+
 
 var Assignment_Fields;
 var Assignment_Name;
@@ -43,6 +45,7 @@ $(document).ready(function () {
             Output= xhr.responseText;
             Kids_Output=Output;
             insertText(Output);
+            console.log(xhr.responseText)
         }
 
         function insertText(text) {
@@ -81,11 +84,13 @@ SubmitHomework=()=>{
         code: editor.getValue(),
         output: Kids_Output,
         completed: true,
-        correct: false,
+        status: 'Not Graded Yet',
         user: userID,
         language: language
     };
-    db.collection('users-assignments').doc(UserAssignmentDocument).set(data);
+    db.collection('users-assignments').doc(UserAssignmentDocument).set(data).then(() => {
+        window.open('../ViewLessonPage/viewlesson.html?lessonid=' + lessonid, '_self', false);
+    });
 };
 function DisplayHomework(){
     $("#HomeworkName").html(Assignment_Name);
@@ -105,7 +110,7 @@ function SaveCurrentCode(){
         output: Kids_Output,
         code: editor.getValue(),
         completed: false,
-        correct: false,
+        status: 'Not Graded Yet',
         user: userID,
         language: language
     };
@@ -123,6 +128,7 @@ function LoadCode(){
                 CurrentAssignment = doc.data(); //Loads all UUID for all projects
                 editor.setValue(CurrentAssignment.code);
                 document.getElementById("outputScreen").value = CurrentAssignment.output;
+                Kids_Output = CurrentAssignment.output;
             }
         })
         .catch(err => {

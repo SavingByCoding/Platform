@@ -43,7 +43,7 @@ app.controller('AppController', ($scope) => {
                 url += 'HomeworkPagePython/Homework.html'
                 break
         }
-        url += `?assignmentid=${assignmentId}&userassignmentid=${userAssignmentId}`
+        url += `?assignmentid=${assignmentId}&userassignmentid=${userAssignmentId}&lessonid=${$scope.lessonId}`
         return url
     }
 
@@ -162,7 +162,12 @@ app.controller('AppController', ($scope) => {
                     userAssignment = {id: doc.id}
                     Object.assign(userAssignment, doc.data())
                 }
-                $scope.assignments[assignmentIndex].userAssignment = userAssignment
+                const len = $scope.assignments.length
+                for (let i = 0; i < len; i++) {
+                    if ($scope.assignments[i].id === assignmentId) {
+                        $scope.assignments[i].userAssignment = userAssignment
+                    }
+                }
                 if (userAssignment.completed) {
                     $scope.submissionStatusCounts[userAssignment.status]++
                 }

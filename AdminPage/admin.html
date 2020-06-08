@@ -976,14 +976,14 @@
                                     <div class="grid row">
                                         <div class="col-lg-6">
                                             <textarea ng-show="ua.language === 'HTML'" readonly>{{ processHTML(ua.code) }}</textarea>
-                                            <textarea ng-show="ua.language === 'Python'" readonly>{{ ua.code }}</textarea>
+                                            <textarea ng-show="ua.language === 'PYTHON'" readonly>{{ ua.code }}</textarea>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="submissionOutputPane">
                                                 <div class="header">Output</div>
-                                                <div class="content" ng-class="{'pythonOutput': ua.language === 'Python'}">
+                                                <div class="content" ng-class="{'pythonOutput': ua.language === 'PYTHON'}">
                                                     <div ng-show="ua.language === 'HTML'" ng-bind-html="ua.code | trustHtml"></div>
-                                                    <div ng-show="ua.language === 'Python'">{{ua.output}}</div>
+                                                    <div ng-show="ua.language === 'PYTHON'">{{ua.output}}</div>
                                                 </div>
                                             </div>
                                         </div>
