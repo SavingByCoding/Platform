@@ -21,7 +21,7 @@ const generateUUID = () => { // V4
     })
 }
 function GoBack(){
-    window.location.href = "../HomePage/index.html"
+    window.location.href = "index.html"
 }
 app.controller('AppController', ($scope) => {
     $scope.tabs = ["Course Creation", "Group Management", "User Management", "Event Management", "Grading", "Registrations"]
