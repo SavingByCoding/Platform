@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Python Sandbox</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel = "stylesheet" type= "text/css" href = "Sandbox.css">
+    <link rel = "stylesheet" type="text/css" href="../../navbarCSS.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
+    <script src="../../FirebaseCode.js"></script>
+    <script src="../../redirectToLogin.js"></script>
+    <script src="../../navigationLinks.js"></script>
+    <script src="Sandbox.js"></script>
+
+</head>
+<httpProtocol>
+    <customHeaders>
+        <add name="Access-Control-Allow-Origin" value="*" />
+    </customHeaders>
+</httpProtocol>
+<body class = "mainbod" ng-app = "myApp" >
+
+<!--Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
+    <a href = "#"><img id = "logo" ng-src="{{logo}}" style="height: 80px"></a>
+    <a class="navbar-brand" href="#" ng-model="websiteTitle" style="font-size: 20px">{{websiteTitle}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a style="color: #23233b">----</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id = "m2" href="#" ng-model = "menuName2"> {{menuName2}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id = "m4" href="#" ng-model = "menuName4">{{menuName4}}</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                    {{menuName3}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#" ng-model = "menuName5" id="m5">{{menuName5}}</a>
+                    <a class="dropdown-item" href="#" ng-model = "menuName6" id = "m6">{{menuName6}}</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a style="color: #23233b">-----------------------------------------------------------------------</a>
+            </li>
+            <li class="nav-item">
+                <button class = "btn btn-primary registerButton" id="RegisterNow" onClick = "registerNow()" style="background: antiquewhite; color: #23233b; border: transparent">Register Now</button>
+            </li>
+            <li class="nav-item">
+                <a style="color: #23233b">---------</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle mr-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                    {{dropdownName}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="" id="s1">{{sand1}}</a>
+                    <a class="dropdown-item active" href="" id = "s2">{{sand2}}</a>
+                    <div class="dropdown-divider" id="divider1"></div>
+                    <a class="dropdown-item" href="" id="d1">{{dropdown1}}</a>
+                    <!--                    <a class="dropdown-item" href="" id = "d2">{{dropdown2}}</a>-->
+                    <div class="dropdown-divider" id="divider2"></div>
+<!--                    <a class="dropdown-item" href="" id="d3">{{dropdown3}}</a>-->
+                    <a class="dropdown-item" onclick="SignOut()" href="" id="d4">{{dropdown4}}</a>
+                    <a class="dropdown-item" href="" id="d5">{{dropdown5}}</a>
+                    <a class="dropdown-item" href="" id="d6">{{dropdown6}}</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--/.Navbar -->
+
+<!--<br>-->
+<br>
+<div class="container fadeCont">
+    <div class="card helpCard">
+        <div class="card-body headerCard">
+            <h5 class="card-title headerEditor"><u>Python Sandbox Code Editor</u></h5>
+        </div>
+    </div>
+</div>
+<div class = "container fadeCont">
+    <div class = "row justify-content-around">
+        <div class = "col-8"  >
+<!--            <input id="ProjectName" class="form-control codeTitle" type="text" ng-model = "name1" id= "t1" style="display: flex">-->
+<!--            <input class="form-control codeTitle" type="text" ng-model = "name2" id = "t2" style="display: none">-->
+<!--            <input class="form-control codeTitle" type="text" ng-model = "name3" id = "t3" style="display: none">-->
+<!--            <input class="form-control codeTitle" type="text" ng-model = "name4" id = "t4" style="display: none">-->
+<!--            <input class="form-control codeTitle" type="text" ng-model = "name5" id = "t5" style="display: none">-->
+<!--            <input class="form-control codeTitle" type="text" ng-model = "name6" id = "t6" style="display: none">-->
+<!--            <input class="form-control codeTitle" type="text" ng-model = "name7" id = "t7" style="display: none">-->
+<!--            <input class="form-control codeTitle" type="text" ng-model = "name8" id = "t8" style="display: none">-->
+<!--            <input class="form-control codeTitle" type="text" ng-model = "name9" id = "t9" style="display: none">-->
+<!--            <input class="form-control codeTitle" type="text" ng-model = "name10" id = "t10" style="display: none">-->
+        </div>
+    </div>
+</div>
+<br>
+
+<!--<br>-->
+
+<!--<div class = "container">-->
+<!--    <div class = "row">-->
+<!--        <div class="card instructionsCard">-->
+<!--            <div class="card-body instructionsCard">-->
+<!--                <h4>How it Works</h4>-->
+<!--                <p>Use our sandbox editor to test out your own ideas and expand on your knowledge! Running out of ideas? Refer to our Project Ideas at the bottom of this page that you can try and test yourself with! Once you're done, click the red "Run it!" button and watch your code come to life in the output screen on the right!</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<br>-->
+
+<!--<br>-->
+<div id="SubmitProject" class="modal fade" role="dialog"ng-controller="PYTHONSandbox">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content POPUP">
+<!--            <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+            <h4 class="modal-title">Name Your Project</h4>
+            <div class="modal-body">
+                <input class="ProjectName" ng-model="CurrentProjectName" type="text" id = "ProjectName" style="display: flex">
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" onclick="SaveChanges()" class="btn btn-default" data-dismiss="modal" > Done </a></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="WrongCode" class="modal fade" role="dialog"ng-controller="PYTHONSandbox">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content POPUP">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"> Project Loading Error</h4>
+            <div class="modal-body">
+                You tried loading a HTML project into the Python sandbox
+            </div>
+            <div class="modal-footer justify-content-center">
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ><a href="../SandboxPageHtml/Sandbox.html"> HTML Sandbox</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class = "container-fluid maincont "ng-controller="PYTHONSandbox">
+    <div class = "row my-row no-gutters" style="margin: 0">
+        <div class = "col-5 no-gutters" >
+            <div class = "leftside">
+                <div id="editor"> #Put your code in here</div>
+                <div id=" compilescreen">
+                    <script src="ace.js" type="text/javascript" charset="utf-8"></script>
+                    <script>
+                        var editor = ace.edit("editor");
+                        editor.setTheme("ace/theme/dracula");
+                        editor.session.setMode("ace/mode/python");
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class = "col-4 no-gutters">
+            <div class = "rightside">
+                <textarea class= "outputScreen" id = "outputScreen" readonly>--> Code Output</textarea>
+            </div>
+        </div>
+        <div class = "col-3" style="background: #ebefeb;text-align: center; font-family: Karla; border: 4px solid #23233b">
+            <h3 style="text-align: center"><b><u>Projects</u></b></h3>
+            <small>Access previous projects in this directory!</small>
+            <button class = "btn-primary projectLoadButtons active" ng-click="DisplayProjects()"  onclick="chooseActive(1) " id = "Project1" ng-model = "name1">{{name1}}</button>
+            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(2) " id = "Project2" ng-model = "name2"> {{name2}} </button>
+            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(3) " id = "Project3" ng-model = "name3"> {{name3}}</button>
+            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(4) " id = "Project4" ng-model = "name4"> {{name4}}</button>
+            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(5) " id = "Project5" ng-model = "name5"> {{name5}}</button>
+            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(6) " id = "Project6" ng-model = "name6"> {{name6}}</button>
+            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(7) " id = "Project7" ng-model = "name7"> {{name7}}</button>
+            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(8) " id = "Project8" ng-model = "name8"> {{name8}}</button>
+            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(9) " id = "Project9" ng-model = "name9"> {{name9}}</button>
+            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(10) " id = "Project10" ng-model = "name10"> {{name10}}</button>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br>
+
+<div class = "container buttonCont">
+    <div class = "row buttonRow justify-content-around">
+        <div class="col-6 colButton">
+            <button class="btn btn-primary CompileButton" onclick="SaveProject()" data-toggle="modal" data-target="#SubmitProject" id = "SaveButton" type="submit">Save It!</button>
+        </div>
+        <div class="col-6 colButton">
+            <button class="btn btn-primary CompileButton" id = "CompileButton" type="submit">Run It!</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="card mt-3 tab-card">
+        <div class="card-header tab-card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true">Project One</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false">Project Two</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="three-tab" data-toggle="tab" href="#three" role="tab" aria-controls="Three" aria-selected="false">Project Three</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="four-tab" data-toggle="tab" href="#four" role="tab" aria-controls="Four" aria-selected="false">Project Four</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content tabContent" id="myTabContent">
+            <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+                <h5 class="card-title">Project Idea One</h5>
+                <p class="card-text">Create a program that inputs a number and then finds the prime factors of that number. Remember to take advantage of mathematical operations and conditionals. Print out the factors at the end of the program.</p>
+                <a href="#" class="btn btn-primary projectButton">See Full Project</a>
+            </div>
+            <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
+                <h5 class="card-title">Project Idea Two</h5>
+                <p class="card-text">Write a function that represents the count function. This program will take in a string and letter, and print out the number of times the letter appears in the word. Of course, you may not use the count function.</p>
+                <a href="#" class="btn btn-primary projectButton">See Full Project</a>
+            </div>
+            <div class="tab-pane fade p-3" id="three" role="tabpanel" aria-labelledby="three-tab">
+                <h5 class="card-title">Project Idea Three</h5>
+                <p class="card-text">Create a program that takes a certain number of integers and floats. Then calculate the mean, median, and mode of the list. Print the three values out. </p>
+                <a href="#" class="btn btn-primary projectButton">See Full Project</a>
+            </div>
+            <div class="tab-pane fade p-3" id="four" role="tabpanel" aria-labelledby="four-tab">
+                <h5 class="card-title">Project Idea Four</h5>
+                <p class="card-text">Create a rock, paper, scissors game. To do so, you will need to research and implement a random number generator in python. Once you do so, you will be able to create numerous games, being rock, paper, and scissors being one of the most basic ones.</p>
+                <a href="#" class="btn btn-primary projectButton">See Full Project</a>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+<br><br>
+<footer id="sticky-footer" class="py-4  FOOTER text-white-50" ng-controller = "MyCont2" style="border-top: 10px solid #23233b">
+    <div class="container  text-center">
+        <div class = "row">
+            <div class = "col-4" style="font-family:Karla;color: #23233b">
+                <h5>2020 Copyright: Saving By Coding</h5>
+                <p>Make a difference in your life</p>
+            </div>
+            <div class = "col-4 linksColFooter">
+                <small><a class = "Links" href="#" id = "f1" mg-model = "footerMenuName1">{{footerMenuName1}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f2" mg-model = "footerMenuName2">{{footerMenuName2}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f3" mg-model = "footerMenuName3">{{footerMenuName3}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f4" mg-model = "footerMenuName4">{{footerMenuName4}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f5" mg-model = "footerMenuName5">{{footerMenuName5}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f6" mg-model = "footerMenuName6">{{footerMenuName6}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f7" mg-model = "footerMenuName7">{{footerMenuName7}}</a></small><br>
+            </div>
+            <div class = "col-4"></div>
+        </div>
+    </div>
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel = "stylesheet" type="text/css" href="../../navbarCSS.css">
+    <link rel="stylesheet" href="lessondirectory.css" type="text/css">
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+    <script src="../../FirebaseCode.js"></script>
+    <script src="../../redirectToLogin.js"></script>
+    <script src = "../../navigationLinks.js"></script>
+    <title>Lesson Directory</title>
+</head>
+<body ng-app = "myApp" style="background: antiquewhite;">
+    <nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
+        <a href = "#"><img id = "logo" ng-src="{{logo}}" style="height: 80px"></a>
+        <a class="navbar-brand" href="#" ng-model="websiteTitle" style="font-size: 20px">{{websiteTitle}}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a style="color: #23233b">----</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id = "m2" href="#" ng-model = "menuName2"> {{menuName2}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id = "m4" href="#" ng-model = "menuName4">{{menuName4}}</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                        {{menuName3}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" ng-model = "menuName5" id="m5">{{menuName5}}</a>
+                        <a class="dropdown-item" href="#" ng-model = "menuName6" id = "m6">{{menuName6}}</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a style="color: #23233b">-----------------------------------------------------------------------</a>
+                </li>
+                <li class="nav-item">
+                    <button class = "btn btn-primary registerButton" id="RegisterNow" onClick = "registerNow()" onclick="registerNow()" style="background: antiquewhite; color: black !important; border: transparent">Register Now</button>
+                </li>
+                <li class="nav-item">
+                    <a style="color: #23233b">---------</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mr-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                        {{dropdownName}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="" id="s1">{{sand1}}</a>
+                        <a class="dropdown-item" href="" id = "s2">{{sand2}}</a>
+                        <div class="dropdown-divider" id="divider1"></div>
+                        <a class="dropdown-item" href="" id="d1">{{dropdown1}}</a>
+                        <!--                    <a class="dropdown-item" href="" id = "d2">{{dropdown2}}</a>-->
+                        <div class="dropdown-divider" id="divider2"></div>
+                        <!--                    <a class="dropdown-item" href="" id="d3">{{dropdown3}}</a>-->
+                        <a class="dropdown-item" onclick="SignOut()" href="" id="d4">{{dropdown4}}</a>
+                        <a class="dropdown-item" href="" id="d5">{{dropdown5}}</a>
+                        <a class="dropdown-item" href="" id="d6">{{dropdown6}}</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br/>
+    <div ng-controller="AppController">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-white bg-dark mb-3">
+                    <li class="breadcrumb-item" ng-repeat="component in directory" ng-class="{'active': $index == directory.length - 1}">
+                        <a>{{component}}</a>
+                    </li>
+                </ol>
+            </nav>
+            <div class="grid row equal">
+                <div class="col-sm-12 loadingCol" ng-hide="items">
+                    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                </div>
+                <div class="col-sm-4 d-flex pb-3" ng-repeat="item in items">
+                    <div class="card text-white bg-dark mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>{{item.name}}</b></h5>
+                            <p class="card-text">{{item.description}}</p>
+                            <a class="btn btn-primary" style="visibility: hidden;">Enter</a> <!-- Fake button -->
+                            <a class="btn btn-primary enterButton" ng-click="switchView($index)" ng-class="{'disabled': item.disabled}">Enter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+
+    <script src="../../navigationLinks.js"></script>
+    <script src="lessondirectory.js"></script>
+</body>
+</html>

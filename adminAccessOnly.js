@@ -8,7 +8,7 @@ firebase.auth().onAuthStateChanged((user) => {
                 let doc = qs.docs[0]
                 if (doc.data().userType !== '2') {
                     document.body.innerHTML = ''
-                    window.location.href = "../ProfilePage/profile.html"
+                    window.location.href = "public/ProfilePage/profile.html"
                 }
             })
     }

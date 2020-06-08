@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel = "stylesheet" type="text/css" href = "index.css">
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../navbarCSS.css">
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+    <script src="../../FirebaseCode.js"></script>
+    <title>Saving By Coding</title>
+</head>
+<body class = "mainbod" ng-app = "myApp">
+<!--Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
+    <a href = "#"><img id = "logo" ng-src="{{logo}}" style="height: 80px"></a>
+    <a class="navbar-brand" href="#" ng-model="websiteTitle" style="font-size: 20px">{{websiteTitle}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a style="color: #23233b">----</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id = "m2" href="#" ng-model = "menuName2"> {{menuName2}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id = "m4" href="#" ng-model = "menuName4">{{menuName4}}</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                    {{menuName3}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#" ng-model = "menuName5" id="m5">{{menuName5}}</a>
+                    <a class="dropdown-item" href="#" ng-model = "menuName6" id = "m6">{{menuName6}}</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a style="color: #23233b">-----------------------------------------------------------------------</a>
+            </li>
+            <li class="nav-item">
+                <button class = "btn btn-primary registerButton" id="RegisterNow" onClick = "registerNow()" style="background: antiquewhite; color: #23233b; border: transparent">Register Now</button>
+            </li>
+            <li class="nav-item">
+                <a style="color: #23233b">---------</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle mr-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                    {{dropdownName}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="" id="s1">{{sand1}}</a>
+                    <a class="dropdown-item" href="" id = "s2">{{sand2}}</a>
+                    <div class="dropdown-divider" id="divider1"></div>
+                    <a class="dropdown-item" href="" id="d1">{{dropdown1}}</a>
+<!--                    <a class="dropdown-item" href="" id = "d2">{{dropdown2}}</a>-->
+                    <div class="dropdown-divider" id="divider2"></div>
+<!--                    <a class="dropdown-item" href="" id="d3">{{dropdown3}}</a>-->
+                    <a class="dropdown-item" onclick="SignOut()" href="" id="d4">{{dropdown4}}</a>
+                    <a class="dropdown-item" href="" id="d5">{{dropdown5}}</a>
+                    <a class="dropdown-item" href="" id="d6">{{dropdown6}}</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--/.Navbar -->
+
+
+<div class="jumbotron jumboCont jumbotron-fluid ">
+    <div class="container ">
+            <div class = "col-6 jumboWordShape align-content-center ml-auto">
+                <br>
+                <h1 style="font-family: Oswald"><u><b>Codeology</b></u></h1><br>
+                <p>Learn to code from anywhere in the world through unique highly-engaging lessons designed to teach kids of any age the basics of HTML and Python.
+                </p>
+                <p>Interested? See what plan fits you and avail the super-easy services we have to learn the basics of coding!</p>
+                <div class = "container">
+                    <div class = "row">
+                        <div class = "col-12">
+                            <form>
+                            <button class = "btn btn-primary mainLinkButtons" onclick="registerNow()">Register now!</button>
+                            </form>
+                        </div>
+                        <br>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id = "studentsLink"></div>
+<br><br>
+<div class = "container"  data-aos="fade-up">
+    <div class = "row justify-content-around">
+        <div class = "col-8">
+            <h2 style="text-align: center; font-family: Karla; color: #23233b">Mission</h2>
+            <h6 style="text-align: center; font-family: Karla; color: #23233b">Our objectives for every student is to produce solid results and a fundamental knowledge of the coding language. The principles of computer science are stressed repeatedly throughout each course and we make sure to build student's confidence. We accommodate different learning styles and make sure that every student's pace is accounted for.<br><br>In addition to logic and problem-solving skills, we emphasize modern learning techniques that are made easy and understandable for a younger audience with easily accessable tools.<br><br>In addition to the services we provide to our students, Codeology, in close association with Saving By Coding, donates 100% of the profits to a selected charity in India that furthers educational opportunities for underprivileged kids. Saving By Coding is a 501(c)(3) non-profit organization that helps fund education in Indian schools that lack many facilities. </h6>
+        </div>
+    </div>
+    <br><br><br>
+
+
+    <div class = "row justify-content-around">
+        <div class = "col-5 textCards">
+            <br>
+            <img src="HMTLlogo.png" style="height: 90px;">
+            <h3><br><b>HTML</b><br><br><p class = "paraCards">We offer a complete HTML course for beginners and intermediate students. For students hoping to develop basic website-building skills, this is the course for you! We offer support through every step of the learning process and make sure that each student will leave with a proper foundation. By the end of this course, students will be able to make a webpage and customize it as they wish to while also learning the tools to pursue this language even further past this course.<br><br>We offer:<br><br><b>-Regular Live Sessions<br><br>-Our online Sandbox Editor accessible from anywhere<br><br>-Personal Resources (slide presentations and notes)<br><br>-Informative Videos by the Instructors</b><br><br>Number of classes in this course: <b>8 one hour classes</b><br><br>Price: <b>$99.99 ($12.50 per class)</b><br><br> Access a more detailed overview about this course <a href="../HTMLContentPage/HTMLContentPage.html">here</a>.<br><br>In addition to the useful tools and resources we have available for any registered user, Codeology also integrates communication with parents and ensures accountability for work. With quick and easy contact forms, any problems or issues can easily be addressed by anyone from the Codeology team.</p></h3> <form>
+            <button class = "btn btn-primary mainLinkButtons" onclick="registerNow()">Register now!</button>
+        </form></div>
+        <div class = "col-5 textCards">
+            <br>
+            <img src="PythonLogo.png" style="height: 90px;">
+            <h3><b></br>Python</b><br><br><p class = "paraCards">Python is a language of the future used to build powerful applications such as Netflix, Youtube, Spotify, and many more. We offer beginner courses on this language so that any student of any age can pick it up easily and start their journey to building robust applications. This course is fun and easy to learn while giving a basic insight into the principles of coding.<br><br>We offer:<br><br><b>-Regular Live Sessions<br><br>-Our online Sandbox Editor accessible from anywhere<br><br>-Personal Resources (slide presentations and notes)<br><br>-Informative Videos by the Instructors</b><br><br>Number of classes in this course: <b>8 one hour classes</b><br><br>Price: <b>$99.99 ($12.50 per class)</b><br><br> Access a more detailed overview about this course <a href="../HTMLContentPage/HTMLContentPage.html">here</a>.<br><br>In addition to the useful tools and resources we have available for any registered user, Codeology also integrates communication with parents and ensures accountability for work. With quick and easy contact forms, any problems or issues can easily be addressed by anyone from the Codeology team.</p></h3> <form>
+            <button class = "btn btn-primary mainLinkButtons" onclick="registerNow()">Register now!</button>
+        </form><br><br></div><br><br>
+        <!--<div class = "col-3 textCards"><h3><b></br>Sandbox</b><br><br><p class = "paraCards">Our helpful and unique Sandbox Editor allows students to experiment on their own and download their code for personal use. Hands-on learning is a big pillar of learning and the helpful project ideas helps push that concept. This feature allows any student to work in the language they are learning and test out their own bright ideas! </p></p></h3></div>-->
+    </div>
+    <br>
+
+</div>
+<br><br><br>
+<div class = "container">
+    <div class = "row HRROW" id = whyWeWork></div>
+</div>
+<br><br>
+<div class = "container  whyweWorkCont">
+    <div class = "row justify-content-center rounded CatchyTitle">
+        <div class = "col-8">
+            <br>
+            <h1 class = "CatchyTitle"><u><b>What We Offer</b></u></h1>
+            <br>
+        </div>
+    </div>
+</div>
+<br><br>
+
+<div class="row1 justify-content-around" data-aos="fade-up">
+    <div class = "container videoCont" data-aos="fade-up">
+        <div class = "row justify-content-center">
+            <div class = "col-8">
+                <div class="embed-responsive embed-responsive-21by9">
+                    <iframe width="987" height="555" src="https://www.youtube.com/embed/rfscVS0vtbw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+<div class="column1">
+    <img src="https://i.pinimg.com/originals/c9/91/72/c99172c17b83d3c620b997858351b2a5.gif" class = "cardImg" alt="Img1" style="width:100%">
+    <div class="container1"><br>
+        <h4><b>Foster creativity through customized learning experiences</b></h4>
+        <p><br>Every student has a different process to learning and here, at SBC, this principle is one of our most important. By interacting personally with both the parents and the student, the tutor makes sure that the student has a wholesome learning experience unique to their speed and scope of understanding. We have various batches that group the best combination of students together to foster a communicative classroom while also teaching each student to be accountable to their work and break down complex problems into understandable steps.</p>
+    </div>
+</div>
+<div class="column1">
+    <img src="6_1.jpg" class = "cardImg" alt="Img2" style="width:100%">
+    <div class="container1"><br>
+        <h4><b>Guaranteed Instructor to Student Ratio of 6:1</b></h4>
+        <p><br> "Too many chefs spoils the soup"<br><br>The same applies here! Our goal is to give each student the proper attention and support they need to grow their skills. To do this, we guarantee a maximum of 6:1 student to teacher ratio. This ensures proper personalized care for each student and makes sure that the parents of each student can be contacted and updated regularly.<br><br> <br><br> </p>
+    </div>
+</div>
+<div class="column1">
+    <img src="sandbox.jpg" class = "cardImg" alt="Img3" style="width:100%">
+    <div class="container1"><br>
+        <h4><b>Easy to use website with helpful tools</b></h4>
+    <p><br>An artist is lost without their tools, or so it is said. Here at SBC, our platform offers services and tools such as our Sandbox Editor that takes the confusion of installing various programs to code out for the young students so that they can focus on learning the actual principles and language. This ensures a focused learning that is platform independent and can be accessed from anywhere in the world. Tools and services like the ones we offer are the perfect supplements to the growth of any student in this coding classroom!<br><br></p>
+    </div>
+</div>
+</div>
+
+
+
+
+<br><br>
+
+<div class = "container">
+    <div class = "row HRROW"></div>
+</div>
+<br><br>
+<div class = "container" data-aos="fade-up">
+    <div class = "row">
+        <div class = "col-4" ><img src="school.jpg" style="object-fit: cover" class = "indiaPic"><br><small style="font-family: Karla"><b>Shanmugananda Elementary School, India:</b> one school that SBC assisted recently.</small></div>
+        <div class = "col-8 whoWeDoItFor">
+            <h1><b><u>Our Impact</u></b></h1>
+            <h5><i>100% of our profits are donated to charities involved in furthering the educational opportunities available to young underprivileged kids across the world.</i></h5>
+            <p><br>Saving by Coding is Codeology's parent organization. It is a 501(c)(3) non-profit organization that was created to inspire and support the underprivileged youth. Today's world is vastly developing, with innovations constantly on the rise. One major contributor for this constant development of innovations, is the impact of efficient education on todays youth. Many people in today's generation take for granted the education and guidance they receive, however this is not apparent all over the globe. In India, there are major cities and towns with a lack of proper support to provide a meaningful form of education. Saving By Coding directly donates to an Indian charity, Asha for Education.<br><br> Learn more about us <a href="../AboutPage/AboutPage.html">here</a>.</a></p>
+        </div>
+    </div>
+</div>
+<br><br>
+
+<div class = "container">
+    <div class = "row HRROW" id = "teachersPage"></div>
+</div>
+
+<br><br>
+
+
+<br>
+<div class = "container" data-aos="fade-up">
+    <div class = "row justify-content-around">
+        <div class = "col-8 whoWeDoItFor contactHeader">
+            <br>
+            <h1>Interested in teaching?</h1>
+            <br>
+        </div>
+    </div>
+    <br>
+    <div class = "row justify-content-around">
+        <div class = "col-8 whoWeDoItFor">
+            <h5>For those interested in teaching, <a href="../ContactPage/contact.html">contact us</a> and we will respond as soon as we can! We are always looking for prospective teachers and student-teachers to work with.</h5>
+        </div>
+    </div>
+</div>
+<br><br>
+
+<div class = "container">
+    <div class = "row HRROW" ></div>
+</div>
+<br><br>
+
+
+<footer id="sticky-footer" class="py-4  FOOTER text-white-50" ng-controller = "MyCont2" style="border-top: 10px solid #23233b">
+    <div class="container  text-center">
+        <div class = "row">
+            <div class = "col-4" style="font-family:Karla;color: #23233b">
+                <h5>2020 Copyright: Saving By Coding</h5>
+                <p>Make a difference in your life</p>
+            </div>
+            <div class = "col-4 linksColFooter">
+                <small><a class = "Links" href="#" id = "f1" mg-model = "footerMenuName1">{{footerMenuName1}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f2" mg-model = "footerMenuName2">{{footerMenuName2}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f3" mg-model = "footerMenuName3">{{footerMenuName3}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f4" mg-model = "footerMenuName4">{{footerMenuName4}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f5" mg-model = "footerMenuName5">{{footerMenuName5}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f6" mg-model = "footerMenuName6">{{footerMenuName6}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f7" mg-model = "footerMenuName7">{{footerMenuName7}}</a></small><br>
+            </div>
+            <div class = "col-4"></div>
+        </div>
+    </div>
+</footer>
+</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
+<script src="../../navigationLinks.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+</html>
