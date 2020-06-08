@@ -77,6 +77,11 @@ mainMod.controller("myCont1", function ($scope) {
     let d5 = document.getElementById("d5")
     d5.href = $scope.dropdown5Link
 
+    $scope.dropdown6 = "Admin Portal"
+    $scope.dropdown6Link = "../AdminPage/admin.html"
+    let d6 = document.getElementById("d6")
+    d6.href = $scope.dropdown6Link
+
     $scope.signedIn; //Code for sign in sign out
     $scope.currentid;
 
@@ -168,6 +173,10 @@ mainMod.controller("MyCont2", function ($scope) {
     f7.href = $scope.footerMenuName7Link;
 
 });
+function goBack(){
+    window.open("../ProfilePage/profile.html")
+    window.close(this)
+}
 
 
 

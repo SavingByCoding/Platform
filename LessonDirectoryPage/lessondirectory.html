@@ -12,10 +12,22 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
     <script src="../redirectToLogin.js"></script>
+    <script src = "../navigationLinks.js"></script>
     <title>Lesson Directory</title>
 </head>
 <body ng-app="SBCLessonDirectory" ng-controller="AppController" style="background: antiquewhite;">
-    <br />
+    <br/>
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-12">
+                <div class="card text-white bg-dark mb-3" style="font-family: Karla">
+                    <div class="card-body">
+                        <button class ="btn btn-dark" onclick="goBack()">< Back to profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb text-white bg-dark mb-3">
