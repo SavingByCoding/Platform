@@ -27,8 +27,12 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
-$(document).ready(function () {
+function editorChanged(newCode) {
+    console.log(newCode)
+    $('#Submit').prop('disabled', true);
+}
 
+$(document).ready(function () {
     $("#CompileButton").click(function () {
         let Code= editor.getValue();
         Code= encodeURI(Code);
@@ -46,6 +50,7 @@ $(document).ready(function () {
             Kids_Output=Output;
             insertText(Output);
             console.log(xhr.responseText)
+            $("#Submit").removeAttr("disabled");
         }
 
         function insertText(text) {
@@ -53,8 +58,6 @@ $(document).ready(function () {
             OutputConsoleText=text;
             SaveCurrentCode();
         }
-
-
     });
 
     var Assignmentdocument = db.collection('assignments').doc(assignmentID);

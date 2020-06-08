@@ -140,6 +140,9 @@
                             var editor = ace.edit("editor");
                             editor.setTheme("ace/theme/dracula");
                             editor.session.setMode("ace/mode/python");
+                            editor.getSession().on('change', () => {
+                                editorChanged(editor.getSession().getValue());
+                            });
                         </script>
                     </div>
                 </div>
@@ -170,7 +173,7 @@
         </div>
         <div class = "col-6">
             <div class="col-12 colButton">
-                <button class="btn btn-primary CheckButton" id = "Submit" type="submit" onclick="SubmitHomework()"> Submit Code!</button>
+                <button class="btn btn-primary CheckButton" id = "Submit" type="submit" onclick="SubmitHomework()" disabled> Submit Code!</button>
             </div>
         </div>
     </div>

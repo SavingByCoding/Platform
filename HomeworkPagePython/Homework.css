@@ -76,7 +76,12 @@ html {
     margin-right: 0;
     margin-left: 0;
 }
-.CheckButton:hover{
+.CheckButton[disabled] {
+    background: black;
+    color: antiquewhite;
+}
+
+.CheckButton:not([disabled]):hover{
     background: #9a4444;
     transform: scale(1.03);
     color: #e7e6cb
