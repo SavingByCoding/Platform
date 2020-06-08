@@ -100,9 +100,9 @@ app.controller('AppController', ($scope) => {
                         disabled: false
                         //...(item.type === 'lesson' && {lessonUrl: '../ViewLessonPage/viewlesson.html?lessonid=' + doc.id})
                     })
-                    if (item.type === "course") {
-                        $scope.verifyRegistration($scope.items.length-1, doc.id)
-                    }
+                    // if (item.type === "course") {
+                    //     $scope.verifyRegistration($scope.items.length-1, doc.id)
+                    // }
                 }
                 $scope.items.sort((a,b) => (a.ordinalNumber > b.ordinalNumber) ? 1 : ((b.ordinalNumber > a.ordinalNumber) ? -1 : 0))
                 $scope.$apply()
