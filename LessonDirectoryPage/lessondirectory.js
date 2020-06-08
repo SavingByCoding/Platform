@@ -41,23 +41,25 @@ app.controller('AppController', ($scope) => {
 
     $scope.verifyRegistration = (courseIndex, courseId) => {
         if ($scope.user.userType === '2') return
-        const len = $scope.courses.length
-        for (let i = 0; i < len; i++) {
-            if ($scope.items[i].id === courseId) {
-                if ($scope.items[courseIndex].demo) return
-                courseIndex = i
-            }
-        }
         db.collection("registrations")
             .where("userId", "==", $scope.userId)
             .where("courseId", "==", courseId)
             .get()
             .then((qs2) => {
                 console.log("is qs2 empty? " + qs2.empty)
+                console.log($scope.items[courseIndex].name)
+                const len = $scope.items.length
+                for (let i = 0; i < len; i++) {
+                    if ($scope.items[i].id === courseId) {
+                        if ($scope.items[courseIndex].demo) return
+                        courseIndex = i
+                    }
+                }
                 if (qs2.empty) {
                     $scope.items[courseIndex].disabled = true
                 }
                 else {
+                    console.log(qs2.docs[0].data())
                     let doc2 = qs2.docs[0]
                     let registration = {id: doc2.id}
                     Object.assign(registration, doc2.data())
