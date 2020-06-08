@@ -5,7 +5,7 @@ function registerNow(){
 var mainMod = angular.module("myApp", []);
 mainMod.controller("myCont1", function ($scope) {
 
-    $scope.logo = "../LogoWithWords.png.png";
+    $scope.logo = "../LogoWithWords.png";
 
 
     $scope.menuName1 = "Home";

@@ -68,7 +68,7 @@ mainMod.controller("myCont1", function ($scope) {
     // d3.href = $scope.dropdown3Link;
 
     $scope.dropdown4 = "Logout"
-    $scope.dropdown4Link = " index.html"; //not done
+    $scope.dropdown4Link = "index.html"; //not done
     let d4 = document.getElementById("d4")
     d4.href = $scope.dropdown4Link;
 
@@ -156,7 +156,7 @@ mainMod.controller("myCont1", function ($scope) {
 
 mainMod.controller("MyCont2", function ($scope) {
     $scope.footerMenuName1 = "Home";
-    $scope.footerMenuName1Link = " index.html";
+    $scope.footerMenuName1Link = "index.html";
     let f1 = document.getElementById("f1")
     f1.href = $scope.footerMenuName1Link;
 
