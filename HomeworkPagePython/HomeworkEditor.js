@@ -79,14 +79,13 @@ SubmitHomework=()=>{
     let data= {
         assignment: assignmentID,
         code: editor.getValue(),
-        Output: Kids_Output,
+        output: Kids_Output,
         completed: true,
         correct: false,
         user: userID,
         language: language
     };
     db.collection('users-assignments').doc(UserAssignmentDocument).set(data);
-
 };
 function DisplayHomework(){
     $("#HomeworkName").html(Assignment_Name);
@@ -123,6 +122,7 @@ function LoadCode(){
                 console.log('Document data:', doc.data());
                 CurrentAssignment = doc.data(); //Loads all UUID for all projects
                 editor.setValue(CurrentAssignment.code);
+                document.getElementById("outputScreen").value = CurrentAssignment.output;
             }
         })
         .catch(err => {

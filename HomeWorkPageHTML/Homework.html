@@ -85,7 +85,7 @@
 </nav>
 <!--/.Navbar -->
 <!--<br>-->
-
+<br>
 <div class="container">
     <div class="card helpCard">
         <div class="card-body ">
@@ -115,27 +115,31 @@
 
 <!--<br>-->
 <br>
-<div class = "row justify-content-around no-gutters ">
-    <div class = "col-8 description">
-        <h5>Assignment Info</h5>
-        <p id="AssignmentInfo"><p>
+<div  class="container" style="position: relative; bottom: 30px;">
+    <div class = "row justify-content-around no-gutters ">
+        <div class="col-lg-12" style="background: antiquewhite;
+    text-align: center; padding: 20px;">
+            <h5>Assignment Info</h5>
+            <span id="AssignmentInfo"></span>
+        </div>
     </div>
-</div>
-<div class = "container-fluid maincont">
-    <div class = "row my-row no-gutters">
-        <div class = "col no-gutters">
-            <div class = "leftside">
-                <div id="editor"></div>
-                <div id=" compilescreen">
-                    <script src="ace.js" type="text/javascript" charset="utf-8"></script>
-                    <script src="HomeworkEditor.js"></script>
+    <br>
+    <div class = "container-fluid maincont" style="padding: 0 !important;">
+        <div class = "row my-row no-gutters">
+            <div class = "col no-gutters">
+                <div class = "leftside">
+                    <div id="editor"></div>
+                    <div id=" compilescreen">
+                        <script src="ace.js" type="text/javascript" charset="utf-8"></script>
+                        <script src="HomeworkEditor.js"></script>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class = "col no-gutters">
-            <div class = "rightside">
-                <iframe class= "outputScreen" id = "outputScreen" frameBorder="0"></iframe>
-<!--                <textarea class= "outputScreen" id = "outputScreen" readonly>&ndash;&gt; Code Output</textarea>-->
+            <div class = "col no-gutters">
+                <div class = "rightside">
+                    <iframe class= "outputScreen" id = "outputScreen" frameBorder="0"></iframe>
+                    <!--                <textarea class= "outputScreen" id = "outputScreen" readonly>&ndash;&gt; Code Output</textarea>-->
+                </div>
             </div>
         </div>
     </div>
@@ -164,11 +168,11 @@
 <div class = "container buttonCont">
     <div class = "row buttonRow justify-content-around no-gutters">
         <div class="col-6 colButton">
-            <button class="btn btn-primary CheckButton" id = "SaveButton" onclick="SaveCurrentCode()" > Save Your Code!</button>
+            <button class="btn btn-primary CheckButton" id = "SaveButton" onclick="SaveCurrentCode()" > Compile Your Code!</button>
         </div>
         <div class = "col-6">
             <div class="col-12 colButton">
-                <button class="btn btn-primary CheckButton" id = "SubmitButton" onclick="SubmitHomework()" data-toggle="modal" data-target="#CompletedHomeWork" type="submit">Submit Your Code</button></div>
+                <button class="btn btn-primary CheckButton" id = "SubmitButton" onclick="SubmitHomework()" data-toggle="modal" data-target="#CompletedHomeWork" type="submit">Submit Your Code!</button></div>
             </div>
         </div>
     </div>
@@ -199,7 +203,7 @@
                 <p>Congratulations you completed your homework assignment!</p>
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-default" data-dismiss="modal" ><a href="#"> Assignment List</a></button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ><a href="../ProfilePage/profile.html"> Profile Page</a></button>
             </div>
         </div>
     </div>
