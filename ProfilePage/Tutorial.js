@@ -1,3 +1,33 @@
+var userID;
+var isnewUser;
+function LoadTutorialIfNewUser() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            userID = user.uid;
+            var User = db.collection('users').doc(userID);
+            let getDocument = User.get()
+                .then(doc => {
+                    if (!doc.exists) {
+                        console.log('No such document!');
+                    } else {
+                        console.log('Document data:', doc.data());
+                        Userdata = doc.data();
+                        isnewUser=Userdata.isAccountCreated;
+                        if(!isnewUser){ //If user is false run tutorial
+                            t1();
+                        }
+
+
+                    }
+                })
+                .catch(err => {
+                    console.log('Error getting document', err);
+                });
+        }
+    });
+}
+
+
 function t1(){
     //adds overlay
     var overlay = document.getElementById("OVRLY");
@@ -279,8 +309,18 @@ function t9() {
 
     var btn2 = document.getElementById("TutorialBtn")
     btn2.style.display = "inline";
-}
+
+    data={
+        isAccountCreated: true
+    };
+
+    db.collection('users').doc(userID).update(data);
+};
 function contact(){
     window.open("../ContactPage/contact.html")
     window.close(this)
 }
+
+$("#document").ready(function () {
+    LoadTutorialIfNewUser();
+});

@@ -14,7 +14,7 @@ GoogleSignIn=()=> {
         FullName=user.displayName;
         ProfilePicURL= user.photoURL;
         userInit(id,function () {
-            setTimeout(function(){window.location='../ProfilePage/profile.html'}, 1500)
+            setTimeout(function(){window.location='../ProfilePage/profile.html'}, 2000)
             // window.open ('../ProfilePage/profile.html','_self',false);
             // console.log("here")
         });
