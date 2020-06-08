@@ -320,7 +320,7 @@ body {
     border: 1px solid #dedede;
     padding: 10px;
     outline: none !important;
-    font-family: Menlo;
+    font-family: Menlo, "Courier New" !important;
     font-size: 12px;
 }
 
@@ -345,6 +345,14 @@ body {
     overflow-x: scroll;
     overflow-y: scroll;
     white-space: nowrap;
+}
+
+.submissionOutputPane textarea {
+    background: black !important;
+    color: lawngreen !important;
+    border: 0 !important;
+    width: 100% !important;
+    font-family: Menlo, "Courier New";
 }
 
 .pythonOutput {

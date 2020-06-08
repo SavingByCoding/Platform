@@ -983,7 +983,9 @@
                                                 <div class="header">Output</div>
                                                 <div class="content" ng-class="{'pythonOutput': ua.language === 'PYTHON'}">
                                                     <div ng-show="ua.language === 'HTML'" ng-bind-html="ua.code | trustHtml"></div>
-                                                    <div ng-show="ua.language === 'PYTHON'">{{ua.output}}</div>
+                                                    <div ng-show="ua.language === 'PYTHON'">
+                                                        <textarea readonly style="width: 100%;">{{ua.output}}</textarea>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
