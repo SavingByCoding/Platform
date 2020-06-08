@@ -41,8 +41,13 @@ app.controller('AppController', ($scope) => {
 
     $scope.verifyRegistration = (courseIndex, courseId) => {
         if ($scope.user.userType === '2') return
-        if ($scope.items[courseIndex].demo) return
-        console.log("Checking for registration of courseId = " + courseId)
+        const len = $scope.courses.length
+        for (let i = 0; i < len; i++) {
+            if ($scope.items[i].id === courseId) {
+                if ($scope.items[courseIndex].demo) return
+                courseIndex = i
+            }
+        }
         db.collection("registrations")
             .where("userId", "==", $scope.userId)
             .where("courseId", "==", courseId)
