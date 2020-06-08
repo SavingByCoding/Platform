@@ -11,7 +11,7 @@ firebase.initializeApp({
 firebase.analytics()
 
 var db = firebase.firestore()
-var app = angular.module('SBCViewLesson', [])
+var app = angular.module('SBCViewLesson', []);
 
 const getParameterByName = (name, url = window.location.href) => {
     name = name.replace(/[\[\]]/g, '\\$&')
