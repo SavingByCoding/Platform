@@ -19,7 +19,9 @@ const generateUUID = () => { // V4
         return v.toString(16)
     })
 }
-
+function GoBack(){
+    window.location.href = "../HomePage/index.html"
+}
 app.controller('AppController', ($scope) => {
     $scope.tabs = ["Course Creation", "Group Management", "User Management", "Event Management", "Grading", "Registrations"]
     $scope.currentTab = 0

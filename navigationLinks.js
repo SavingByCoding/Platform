@@ -90,12 +90,27 @@ mainMod.controller("myCont1", function ($scope) {
             $scope.currentid= user.uid;
             $scope.signedIn= true;
             $scope.ChangeNavBar();
+
+            db.collection("users")
+                .where("userId", "==", user.uid)
+                .get()
+                .then((qs) => {
+                    let doc = qs.docs[0]
+                    if (doc.data().userType !== '2') {
+                        $("#d6").hide();
+                        $("#d6").attr("href", "#"); // Hides the Admin Page if you arent an ADMIN
+                    }
+                })
         } else {
             // User not logged in or has just logged out.
             $scope.signedIn= false;
             $scope.ChangeNavBar();
+            $("#d6").hide();
+            $("#d6").attr("href", "#"); //Hides ADMIN page if the user is logged out
         }
     });
+
+
 
 
 //Functionality to add

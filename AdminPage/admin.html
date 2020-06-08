@@ -14,6 +14,7 @@
             <li class="nav-item" ng-repeat="tab in tabs">
                 <a class="nav-link" href="#" ng-class="{'active': $index == currentTab}" ng-click="changeTab($index)">{{tab}}</a>
             </li>
+            <button class="nav-link"  onclick="GoBack()" href="../HomePage/index.html" >Return To Website</button>
         </ul>
         <br />
         <div ng-show="currentTab === 0">
