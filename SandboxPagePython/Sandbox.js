@@ -7,7 +7,7 @@ $(document).ready(function () {
         Code= encodeURI(Code);
         Code= Code.replace(/#/g,"~"); //To make sure Comments Work
         let Output="";
-        let Url= "https://cors-anywhere.herokuapp.com/http://18.218.244.255:8080/"+ Code;
+        let Url= "https://cors-anywhere.herokuapp.com/http://18.220.79.42:8080/"+ Code;
 
         var xhr = new XMLHttpRequest();
         xhr.open('GET', Url, true);
