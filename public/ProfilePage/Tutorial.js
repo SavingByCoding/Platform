@@ -64,7 +64,7 @@ function t1(){
 
     //adds text for Tutorial
     var textBox = document.getElementById("addtext");
-    textBox.innerText = "This is where users registered for a course can see important events to remember that are coming up. If you are not in a course, click the 'Register Now' button to check out our courses!";
+    textBox.innerText = "Welcome to the tutorial. Check your spam folder for emails regarding further information!This is where users registered for a course can see important events to remember that are coming up. If you are not in a course, click the 'Register Now' button to check out our courses!";
     textBox.style.display = "flex"
 }
 
