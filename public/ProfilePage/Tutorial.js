@@ -15,6 +15,24 @@ function LoadTutorialIfNewUser() {
                         isnewUser=Userdata.isAccountCreated;
                         if(!isnewUser){ //If user is false run tutorial
                             t1();
+
+                            let name = doc.data().name;
+                            let email = doc.data().email;
+
+                            let url = "https://cors-anywhere.herokuapp.com/http://18.222.29.210:8080/api/email";
+
+                            var xhr = new XMLHttpRequest();
+                            xhr.open("POST", url, true);
+
+                            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                            xhr.onreadystatechange = function() { // Call a function when the state changes.
+                                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                                    // Request finished. Do processing here.
+                                }
+                            }
+
+                            xhr.send(`name=${name}&email=${email}`);
                         }
 
 
@@ -26,7 +44,6 @@ function LoadTutorialIfNewUser() {
         }
     });
 }
-
 
 function t1(){
     //adds overlay
