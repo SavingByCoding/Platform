@@ -1,5 +1,5 @@
 function registerNow(){
-    window.open(" LoginPage/Login.html")
+    window.open("RegistrationForm/registration.html")
     window.close(this)
 }
 var mainMod = angular.module("myApp", []);
@@ -37,8 +37,8 @@ mainMod.controller("myCont1", function ($scope) {
     m6.href = $scope.menuName6Link;
 
 
-    // $scope.registerNowLink= " RegistrationForm/registration.html";
-    // $("#RegisterNow").attr("href",$scope.registerNowLink); //Added a registernow link so you could just put the link here //UNCOMMENT LATER
+    $scope.registerNowLink= "RegistrationForm/registration.html";
+    $("#RegisterNow").attr("href",$scope.registerNowLink); //Added a registernow link so you could just put the link here //UNCOMMENT LATER
 
     $scope.dropdownName = "Profile";
 
@@ -125,8 +125,6 @@ mainMod.controller("myCont1", function ($scope) {
             $("#d5").hide();
             $("#d5").attr("href", "#"); // Hides the LogIn
 
-            $("#RegisterNow").hide();
-            $("#RegisterNow").attr("href","#"); //Hides Register Everywhere Remove later
 
         }
         else{//Hides if the user is not logged in
@@ -165,10 +163,10 @@ mainMod.controller("MyCont2", function ($scope) {
     let f2 = document.getElementById("f2")
     f2.href = $scope.footerMenuName2Link;
 
-    // $scope.footerMenuName3 = "Register Now";
-    // $scope.footerMenuName3Link = "RegistrationForm/registration.html";
-    // let f3 = document.getElementById("f3")
-    // f3.href = $scope.footerMenuName3Link;
+    $scope.footerMenuName3 = "Register Now";
+    $scope.footerMenuName3Link = "RegistrationForm/registration.html";
+    let f3 = document.getElementById("f3")
+    f3.href = $scope.footerMenuName3Link;
 
     $scope.footerMenuName4 = "Contact Us";
     $scope.footerMenuName4Link = " ContactPage/contact.html";
