@@ -18,8 +18,13 @@ mainMod.controller("SubmitAngular", function ($scope) {
         return "Do not reload the page, the form might submit twice!";
     }
 
-
-    $scope.RegistrationDate= getCurrentDate();
+    $scope.getCurrentDate= function(){
+        const date = new Date();
+        const dateTimeFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: '2-digit' })
+        const [{ value: month },,{ value: day },,{ value: year }] = dateTimeFormat .formatToParts(date)
+        return `${day}-${month}-${year }`;
+    };
+    $scope.RegistrationDate= $scope.getCurrentDate();
      $scope.loadDataFromStorage= function() {
         // var allcookies =  unescape(document.cookie);
         // console.log(allcookies)
