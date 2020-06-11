@@ -25,6 +25,7 @@ mainMod.controller("SubmitAngular", function ($scope) {
         return `${day}-${month}-${year }`;
     };
     $scope.RegistrationDate= $scope.getCurrentDate();
+    var RegistrationDate= new Date();
      $scope.loadDataFromStorage= function() {
         // var allcookies =  unescape(document.cookie);
         // console.log(allcookies)
@@ -65,7 +66,7 @@ mainMod.controller("SubmitAngular", function ($scope) {
     $scope.submitRegistration = function () {
         let data = {
             courseId: $scope.CourseId,
-            date: $scope.RegistrationDate,
+            date: RegistrationDate,
             paid: $scope.paid,
             userId: $scope.userID,
             FirstName: $scope.FirstName,
