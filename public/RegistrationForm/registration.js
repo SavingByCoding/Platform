@@ -11,7 +11,8 @@ var ChildGrade;
 var SpecifiedTrack;
 var CourseId;
 var paid= 99.99;
-var RegistrationDate;
+var RegistrationDate= getCurrentDate();
+var ConfirmationNumber= generateUUID();
 
 var fname=document.getElementById("fname");
 var x= document.getElementById("formcontainer1");
@@ -170,12 +171,12 @@ mainMod.controller("RegistrationForm", function ($scope) {
 
     $scope.getCourseName();
 
-    $scope.courseValue; //the data-model that tells you what the user selected
+    $scope.courseValue=""; //the data-model that tells you what the user selected
      setSelectedCourseId = function (){
         //When the user clicks next it will take current course
         //Gets the id of the current course
         //sets the current id of the course to the variable
-         coursename=  $scope.courseValue;
+         coursename =  $scope.courseValue;
         var courseiddocuments = db.collection('courses').where("name", "==", coursename );
         courseiddocuments.get()
             .then(function(querySnapshot) {
@@ -191,23 +192,43 @@ mainMod.controller("RegistrationForm", function ($scope) {
          }
      }
 
-    submitRegistration = function(){
-        let data={
-            courseId:CourseId,
-            date: getCurrentDate(),
-            paid: paid,
-            userId: userID,
-            FirstName: FirstName,
-            LastName: LastName,
-            ParentsEmail: ParentsEmail,
-            ChildAge: ChildAge,
-            ChildGrade: ChildGrade,
-            SpecifiedTrack: SpecifiedTrack
-        };
-
-        db.collection("registrations").doc(generateUUID()).set(data);
+    // submitRegistration = function(){
+    //     let data={
+    //         courseId:CourseId,
+    //         date: RegistrationDate,
+    //         paid: paid,
+    //         userId: userID,
+    //         FirstName: FirstName,
+    //         LastName: LastName,
+    //         ParentsEmail: ParentsEmail,
+    //         ChildAge: ChildAge,
+    //         ChildGrade: ChildGrade,
+    //         SpecifiedTrack: SpecifiedTrack,
+    //         ConfirmationNumber:ConfirmationNumber
+    //     };
+    //
+    //     db.collection("registrations").doc(generateUUID()).set(data);
+    // };
+    $scope.SetLocalStorage = function () {
+         console.log(CourseId)
+        localStorage.setItem("courseId", CourseId);
+        localStorage.setItem("paid", paid);
+        localStorage.setItem("userId", userID);
+        localStorage.setItem("FirstName", FirstName);
+        localStorage.setItem("LastName", LastName);
+        localStorage.setItem("ParentsEmail", ParentsEmail);
+        localStorage.setItem("ChildAge", ChildAge);
+        localStorage.setItem("ChildGrade", ChildGrade);
+        localStorage.setItem("SpecifiedTrack", SpecifiedTrack);
+        localStorage.setItem("ConfirmationNumber", ConfirmationNumber);
+        localStorage.setItem(("CourseName"),$scope.courseValue);
+        console.log($scope.courseValue);
     };
+    $("#PayNow").click(function () {
+       $scope.SetLocalStorage();
+       window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5AH9YDUT9WUSS");
 
+    });
 
      
 });

@@ -13,7 +13,6 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
     <script src="../redirectToLogin.js"></script>
-    <!--<script src="registration.js"></script>-->
     <title>Contact Page</title>
 </head>
 <div class="mainbod" ng-app = "myApp">
@@ -92,24 +91,25 @@
     <h2 class="txt1">Thank you for registering with Codeology.</h2>
 
     <h3 class="txt1">Check your profile to find instructions for your first class.</h3>
+    <h4 class="txt1"> (Please Do Not Refresh This Page) </h4>
 <br>
 
-    <div class="txt3">
+    <div class="txt3" ng-controller = "SubmitAngular" >
         <div class="txt2">
               <!--Date and Time -->
             <br>
-            <h4> Confirmation number: <!--Confirmation Number --></h4>
+            <h4 ng-modal="ConfirmationNumber"> Confirmation number: <p>{{ConfirmationNumber}}</p> </h4>
             <br>
-            <h4> <!--Student First name + Student Last name--> is registered for <!-- Course name --></h4>
+            <h4 ng-modal="FirstName" ng-modal="LastName" ng-modal="CourseName"> {{FirstName}} {{LastName}} is registered for {{CourseName}}</h4>
             <br>
-            <h4> Amount paid <!--amount paid--></h4>
+            <h4 ng-modal="paid"> Amount paid: {{paid}} </h4>
             <br>
-            <h4>Class Dates: <!--beg date to end date--> on  <!--Days of Week--> from <!--Beg time to end time--></h4>
+            <h4 ng-modal="RegistrationDate">Registration Date: {{RegistrationDate}} </h4>
             <br>
 
         </div>
         <div class="txt4">
-        <button class="btn"> Proceed to Profile Page </button>
+        <button class="btn"  id="BUTTON"> Proceed to Profile Page </button>
         </div>
     </div>
     <h3 class="txt1">A copy of this confirmation has also been sent to your email. </h3>
@@ -138,10 +138,10 @@
     </footer>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.js"></script>-->
 <script src="../navigationLinks.js"></script>
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="confirm.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
