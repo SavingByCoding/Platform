@@ -1,3 +1,4 @@
+var RegistrationDate= new Date();
 mainMod.controller("SubmitAngular", function ($scope) {
     // $scope.isPreviousRegistration = function () {
     //     console.log($scope.userID)
@@ -25,7 +26,6 @@ mainMod.controller("SubmitAngular", function ($scope) {
         return `${day}-${month}-${year }`;
     };
     $scope.RegistrationDate= $scope.getCurrentDate();
-    var RegistrationDate= new Date();
      $scope.loadDataFromStorage= function() {
         // var allcookies =  unescape(document.cookie);
         // console.log(allcookies)

@@ -54,7 +54,7 @@ CreateAccountInDB= (id,callback2) => {
         userId: id,
         email: email,
         name: FullName, //Add name from input
-        userType: 1,
+        userType: "1",
         profilepictureURL: ProfilePicURL, //Change to Date of Birth from input
         dateJoined: getCurrentDate(),
         isRegistered: false,
