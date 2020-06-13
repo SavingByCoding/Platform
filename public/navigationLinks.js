@@ -2,6 +2,10 @@ function registerNow(){
     window.open("../RegistrationForm/registration.html")
     window.close(this)
 }
+function signUpNow(){
+    window.open("../LoginPage/Login.html")
+    window.close(this)
+}
 var mainMod = angular.module("myApp", []);
 mainMod.controller("myCont1", function ($scope) {
 
