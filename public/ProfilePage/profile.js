@@ -114,8 +114,8 @@ mainMod.controller('MainContentController', ($scope) => {
     }
 
     $scope.toDate = (timeObj) => {
-        let t = new Date(1970, 0, 1)
-        t.setSeconds(timeObj.seconds)
+        var t = new Date(timeObj.seconds *1000);
+        // t.setSeconds(timeObj.seconds)
         return t
     }
 

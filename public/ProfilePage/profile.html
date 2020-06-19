@@ -125,7 +125,7 @@
                         <hr  style="background: antiquewhite; height: 2px">
                         <div class="eventContainer" ng-repeat="_event in events">
                             <p class="card-text eventName">{{_event.name}}</p>
-                            <p class="card-text eventTime">{{toDate(_event.time) | date:"MMM d, y @ h:mm a"}}</p>
+                            <p class="card-text eventTime">{{toDate(_event.time) | date:'medium'}}</p>
                             <p class="card-text eventDescription">{{_event.description}}</p>
                             <hr  style="background: antiquewhite; height: 2px">
                             <a class="arrowIcon" href="{{_event.link}}" target="_blank">
