@@ -19,6 +19,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
     <script src="../navigationLinks.js"></script>
     <script src="SandboxEditor.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myModal").modal('show');
+        });
+    </script>
 </head>
 <httpProtocol>
     <customHeaders>
@@ -89,6 +94,21 @@
 </nav>
 <!--/.Navbar -->
 
+<!--modal to load projects-->
+<div id="myModal" class="modal fade" style="background: rgba(250,235,215,0.5)" data-backdrop = "static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #23233b">
+                <h4 class="modal-title" style="font-family: Karla;color: antiquewhite">Welcome to the HTML Sandbox Page!</h4>
+            </div>
+            <div class="modal-body" style="background: #23233b">
+                <p style="font-family: Karla; color: antiquewhite">Load your projects before accessing this page!</p>
+                <button class = "btn-primary" ng-click = "DisplayProjects()" data-dismiss="modal" style="font-family: Karla;color: #23233b;background: antiquewhite; border: transparent; border-radius: 5px">Load Projects!</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end-->
 
 <br>
 <div class="container fadeCont">
