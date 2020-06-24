@@ -128,6 +128,8 @@ mainMod.controller("myCont1", function ($scope) {
         if(isUserLoggedIn()){
             $("#d5").hide();
             $("#d5").attr("href", "#"); // Hides the LogIn
+            $("#SignUpForFree").hide();
+            $("#SignUpForFree").attr("href","#");
 
 
         }
