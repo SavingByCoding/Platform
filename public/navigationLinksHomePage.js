@@ -101,7 +101,7 @@ mainMod.controller("myCont1", function ($scope) {
                 .get()
                 .then((qs) => {
                     let doc = qs.docs[0]
-                    if (doc.data().userType !== '2') {
+                    if (doc.data().userType == '1') {
                         $("#d6").hide();
                         $("#d6").attr("href", "#"); // Hides the Admin Page if you arent an ADMIN
                     }
