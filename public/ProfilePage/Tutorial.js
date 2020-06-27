@@ -45,7 +45,34 @@ function LoadTutorialIfNewUser() {
     });
 }
 
+function t(){
+    //adds overlay
+    var overlay = document.getElementById("OVRLY");
+    overlay.style.display = "flex";
+
+    //highlights upcoming events
+    var upEv = document.getElementById("PFPSIDE")
+    upEv.style.zIndex = 1000;
+
+    //hides button that started tutorial
+    var btn = document.getElementById("TutorialBtn");
+    btn.style.display = 'none';
+
+    //adds button to go to next tutorial
+    var btn2 = document.getElementById("t");
+    btn2.style.display = "flex"
+
+    //adds text for Tutorial
+    var textBox = document.getElementById("addtext");
+    textBox.innerText = "Welcome to the tutorial. Check your spam folder for emails regarding further information! Before you do anything else on this website, be sure to edit ur profile and fill out information that can help us contact you and service you better!";
+    textBox.style.display = "flex"
+
+
+}
+
 function t1(){
+
+
     //adds overlay
     var overlay = document.getElementById("OVRLY");
     overlay.style.display = "flex";
@@ -55,12 +82,15 @@ function t1(){
     upEv.style.zIndex = 1000;
 
     //hides button that started tutorial
-    var btn = document.getElementById("TutorialBtn");
+    var btn = document.getElementById("t");
     btn.style.display = 'none';
 
     //adds button to go to next tutorial
     var btn2 = document.getElementById("t2");
     btn2.style.display = "flex"
+
+    var upEv = document.getElementById("PFPSIDE")
+    upEv.style.zIndex = 0;
 
     //adds text for Tutorial
     var textBox = document.getElementById("addtext");
@@ -297,7 +327,8 @@ function t8() {
     PythonSand.style.display = "flex"
     PythonSand.style.zIndex = 1000;
 
-
+    var contactButt = document.getElementById("contactbutt");
+    contactButt.disabled = true;
 
     //sets text
     var textBox = document.getElementById("addtext");
@@ -313,6 +344,9 @@ function t9() {
     var btn1 = document.getElementById("t9Box")
     btn.style.display = "none"
     btn1.style.display = "none"
+
+    var contactButt = document.getElementById("contactbutt");
+    contactButt.disabled = false;
 
     var btn = document.getElementById("t10")
     var btn1 = document.getElementById("t10Box")

@@ -89,28 +89,82 @@
     </div>
 </nav>
 <!--/.Navbar -->
+
+
+<!--edit profile-->
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center; background: antiquewhite; color: #23233b;font-family: Karla">
+                <div class = "container">
+                    <div class = "row justify-content-around">
+                        <div class = "col-6">
+                            <h4 class="modal-title" style="font-family: Karla;color: #23233b;">Edit Profile</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body" style="text-align: center; background: antiquewhite;color: #23233b;font-family: Karla">
+                <h6>Name:
+                    <!--Make the placeholder the previous name-->
+                    <input type="text" id="fname" name="fname" placeholder="Your name" style="background: antiquewhite; border: 1px solid #23233b; border-radius: 5px">
+                </h6>
+                <h6>Email Address:
+                    <!-- change the placeholder to existing email. this field cannot be changed-->
+                    <input type="text" id="email" name="email" placeholder="Your Email" readonly style="background: antiquewhite; border: 1px dashed #23233b; border-radius: 5px">
+                </h6>
+                <h6>Phone Number:
+                    <input type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required style="background: antiquewhite; border: 1px solid #23233b; border-radius: 5px"><br><br>
+                </h6>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" style="background: antiquewhite;color: #23233b;font-family: Karla">Close</button>
+                <br>
+                <br>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" style="background: antiquewhite;color: #23233b;font-family: Karla">Save and Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--done editing pfp-->
+
 <BR>
 <div ng-controller="MainContentController" id = "navBar">
     <br>
     <div class = "container">
         <div class = "row justify-content-around">
             <div class = "col-4" ng-model = "name">
-                <div class="card text-white bg-dark mb-3" style="width: 100%; font-family: Karla;">
+                <div class="card text-white bg-dark mb-3" style="width: 100%; font-family: Karla;" id = "PFPSIDE">
                     <div class="card-header"><img id="ProfilePicture" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpJQyPJzRtki3nmi0X00gDx-9inOL2It8-yID8bZzrfyTr_ML3&usqp=CAU" style="border-radius: 50%; width: 60px; height: 60px" class="center"></div>
                     <div class="card-body">
-                        <h3 class = "card-title"><b>Hey {{user.name}}! </b></h3><h6>Welcome to your profile!</h6>
+                        <h3 class = "card-title"><b>Hey {{user.name}}! </b></h3><h6>Welcome to your profile!</h6><br>
+                        <button class="btn buttonStuff" id = "EditProfile" onclick="" style="color: white; border: 3px solid white" id = "editpfp" data-toggle="modal" data-target="#myModal">Edit Profile</button
+                        <br>
+                        <button class="buttonStuff" id = "t" onclick="t1()">To Upcoming Events ></button>
+                        <br>
                     </div>
                 </div>
             </div>
             <div class = "col-8">
-                <div class="card text-white bg-dark mb-3" style="width: 100%;font-family: Karla">
-                    <div class="card-header"><h3>Profile Page</h3></div>
+                <div class = "row">
+                    <div class = "col-6"><div class="card text-white bg-dark mb-3" style="width: 100%;font-family: Karla">
+                                <div class="card-header"><h3>Profile Page</h3></div>
+                                <div class="card-body">
+                                    <p>Access content fine-tuned for your learning experience on this page! Check out our tutorial if you are confused!</p><br>
+                                    <button class="btn-lg buttonStuff" id = "TutorialBtn" onclick="t()">Need a tutorial?</button>
+                                </div>
+                            </div></div>
+                    <div class = "col-6"><div class="card text-white bg-dark mb-3" style="width: 100%;font-family: Karla;height: 94%">
+                    <div class="card-header"><h3>Registered Courses</h3><small>Courses you register for will show up here!</small></div>
                     <div class="card-body">
-                        <p>Access content fine-tuned for your learning experience on this page! Check out our tutorial if you are confused!</p><br>
-                        <button class="btn-lg buttonStuff" id = "TutorialBtn" onclick="t1()">Need a tutorial?</button>
+                        <p>Your Courses</p><br>
                     </div>
+                </div></div>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -268,7 +322,7 @@
                         <p class="card-text">
                             Any problems? Contact us and we'll help you out!
                         </p><br>
-                        <button class="btn-lg buttonStuff" onclick="contact()">Contact Us</button>
+                        <button class="btn-lg buttonStuff" onclick="contact()" id = "contactbutt">Contact Us</button>
                     </div>
                 </div>
             </div>

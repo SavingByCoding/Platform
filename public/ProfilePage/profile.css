@@ -111,6 +111,7 @@ a {
 }
 #t3Box {
     display: none;
+    z-index: 10001;
 }
 #t4{
     display: none;
@@ -118,6 +119,7 @@ a {
 }
 #t4Box {
     display: none;
+    z-index: 10001;
 }
 
 #t5{
@@ -126,6 +128,7 @@ a {
 }
 #t5Box {
     display: none;
+    z-index: 10001;
 }
 
 #t6{
@@ -134,6 +137,7 @@ a {
 }
 #t6Box {
     display: none;
+    z-index: 10001;
 }
 #t7{
     display: none;
@@ -141,6 +145,7 @@ a {
 }
 #t7Box {
     display: none;
+    z-index: 10001;
 }
 #t8{
     display: none;
@@ -148,6 +153,7 @@ a {
 }
 #t8Box {
     display: none;
+    z-index: 10001;
 }
 #t9{
     display: none;
@@ -155,6 +161,7 @@ a {
 }
 #t9Box {
     display: none;
+    z-index: 10001;
 }
 #t10{
     display: none;
@@ -162,6 +169,7 @@ a {
 }
 #t10Box {
     display: none;
+    z-index: 10001;
 }
 
 .buttonTut{
@@ -197,4 +205,13 @@ a {
 }
 .buttonStuff:hover{
     background: #66696d;
+}
+
+#t{
+    display: none;
+    z-index: 10001;
+}
+#tBox {
+    display: none;
+    z-index: 10001;
 }
