@@ -23,7 +23,30 @@ const generateUUID = () => { // V4
 function GoBack(){
     window.location.href = "index.html"
 }
+
 app.controller('AppController', ($scope) => {
+    $scope.checkIsTeacher= function(){
+        firebase.auth().onAuthStateChanged((user) => {
+            db.collection("users")
+                .where("userId", "==", user.uid)
+                .get()
+                .then((qs) => {
+                    let doc = qs.docs[0];
+                    console.log("hello")
+                    if ((doc.data().userType == '2')) {
+                        $scope.isTeacher= true;
+                        console.log("Teacher "+ $scope.isTeacher)
+                        $scope.$apply();
+                    }
+                })
+        })
+    };
+    setTimeout(function(){
+        $scope.checkIsTeacher();
+    },1000);
+
+    console.log($scope.isTeacher)
+
     $scope.tabs = ["Course Creation", "Group Management", "User Management", "Event Management", "Grading", "Registrations"]
     $scope.currentTab = 0
     $scope.new = {event: {}, user: {}, lesson: {}, unit: {}, lesson: {}, assignment: {}, resource: {}}
@@ -100,6 +123,25 @@ app.controller('AppController', ($scope) => {
             $scope.users[i].userType = (user.userType === '2') ? '1' : '2'
             $scope.$apply()
         })
+    }
+    $scope.toggleUserAdmin = (i) => {
+        //Get current user usertype
+        //if there type is admin they can use the button
+        //if they arent admin a modal pops up saying that they are restricted to that access
+
+        if(!$scope.isTeacher){
+            let user = $scope.users[i]
+            db.collection("users").doc(user.id).update({
+                userType: (user.userType === '2') ? '3' : '2'
+            }).then(() => {
+                $scope.users[i].userType = (user.userType === '2') ? '3' : '2'
+                $scope.$apply()
+
+            })
+        }
+        else{
+            $("#AccessDenied").modal("show");
+        }
     }
 
     $scope.deleteUser = (i) => {
@@ -1250,9 +1292,9 @@ app.controller('AppController', ($scope) => {
             .doc($scope.usersAssignments[i].id)
             .update({ status })
             .then(() => {
-            $scope.usersAssignments[i].status = status
-            $scope.$apply()
-        })
+                $scope.usersAssignments[i].status = status
+                $scope.$apply()
+            })
     }
 
     $scope.getUser = (i, id) => {
@@ -1342,13 +1384,19 @@ app.controller('AppController', ($scope) => {
     for (let i = 0; i < $scope.tabs.length; i++) {
         $scope.loaded.push(false)
     }
+
+    // if(!$scope.isTeacher){ //If you are a teacher you can't access current courses
+    //     $scope.loaded[0] = true;
+    // }
     $scope.loaded[1] = true
     $scope.loaded[2] = true
 
     $scope.loadData = () => {
         if ($scope.currentTab == 0 && !$scope.loaded[0]) {
-            $scope.getCourses()
-            $scope.loaded[0] = true
+            if(!$scope.isTeacher){ //Checks if you are  teacher before giving access to this page this is an admin only page
+                $scope.getCourses()
+                $scope.loaded[0] = true
+            }
         }
         else if ($scope.currentTab == 3 && !$scope.loaded[3]) {
             $scope.getEvents()
@@ -1359,8 +1407,10 @@ app.controller('AppController', ($scope) => {
             $scope.loaded[4] = true
         }
         else if ($scope.currentTab == 5 && !$scope.loaded[5]) {
-            $scope.getRegistrationCourses()
-            $scope.loaded[5] = true
+            if(!$scope.isTeacher){
+                $scope.getRegistrationCourses()
+                $scope.loaded[5] = true
+            }
         }
 
     }
@@ -1373,7 +1423,7 @@ app.controller('AppController', ($scope) => {
     $scope.getUsers()
     $scope.getGroups()
 
-    $scope.loadData()
+    //$scope.loadData()
 
     // Reusable functions
     const formatHTML = (node, level) => {

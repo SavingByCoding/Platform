@@ -6,7 +6,7 @@ firebase.auth().onAuthStateChanged((user) => {
             .get()
             .then((qs) => {
                 let doc = qs.docs[0]
-                if (doc.data().userType !== '2') {
+                if (doc.data().userType == '1'){
                     document.body.innerHTML = ''
                     window.location.href = "../ProfilePage/profile.html"
                 }

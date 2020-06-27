@@ -101,7 +101,7 @@ mainMod.controller("myCont1", function ($scope) {
                 .get()
                 .then((qs) => {
                     let doc = qs.docs[0]
-                    if (doc.data().userType !== '2') {
+                    if (doc.data().userType == '1') {
                         $("#d6").hide();
                         $("#d6").attr("href", "#"); // Hides the Admin Page if you arent an ADMIN
                     }
@@ -129,6 +129,14 @@ mainMod.controller("myCont1", function ($scope) {
         if(isUserLoggedIn()){
             $("#d5").hide();
             $("#d5").attr("href", "#"); // Hides the LogIn
+            $("#SignUpForFree").hide();
+            $("#SignUpForFree").attr("href","#");
+            $("#signupbutton").hide()
+            $("#signupbutton").attr("href","#");
+            $("#HTMLSIGNUP").hide()
+            $("#HTMLSIGNUP").attr("href","#");
+            $("#PYTHONSIGNUP").hide()
+            $("#PYTHONSIGNUP").attr("href","#");
 
 
         }
@@ -145,6 +153,13 @@ mainMod.controller("myCont1", function ($scope) {
             $("#d1").attr("href", "#");
             $("#RegisterNow").hide();
             $("#RegisterNow").attr("href","#");
+            $("#registernowbutton").hide()
+            $("#registernowbutton").attr("href","#");
+            $("#PYTHONREGISTERNOW").hide()
+            $("#PYTHONREGISTERNOW").attr("href","#");
+            $("#HTMLREGISTERNOW").hide()
+            $("#HTMLREGISTERNOW").attr("href","#");
+
 
         }
     };

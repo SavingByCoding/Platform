@@ -100,9 +100,9 @@ mainMod.controller("myCont1", function ($scope) {
                 .get()
                 .then((qs) => {
                     let doc = qs.docs[0]
-                    if (doc.data().userType !== '2') {
+                    if ((doc.data().userType == '1')) {
                         $("#d6").hide();
-                        $("#d6").attr("href", "#"); // Hides the Admin Page if you arent an ADMIN
+                        $("#d6").attr("href", "#"); // Hides the Admin Page if you arent an ADMIN or teacher
                     }
                 })
         } else {
@@ -128,6 +128,8 @@ mainMod.controller("myCont1", function ($scope) {
         if(isUserLoggedIn()){
             $("#d5").hide();
             $("#d5").attr("href", "#"); // Hides the LogIn
+            $("#SignUpForFree").hide();
+            $("#SignUpForFree").attr("href","#");
 
 
         }

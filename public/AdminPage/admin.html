@@ -7,6 +7,19 @@
     <link rel = "stylesheet" type="text/css" href="../navbarCSS.css">
     <link rel="stylesheet" href="admin.css" type="text/css">
     <link rel="icon" href="../LogoWithoutWords.png">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+    <!--    <script src="../redirectToLogin.js"></script>-->
+    <script src="../navigationLinks.js"></script>
+    <script src="admin.js"></script>
+    <script src="../adminAccessOnly.js"></script>
 </head>
 <body ng-app="myApp">
     <nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
@@ -76,7 +89,7 @@
             </li>
         </ul>
         <br />
-        <div ng-show="currentTab === 0">
+        <div ng-show="currentTab === 0" ng-hide="isTeacher">
             <div class="modal fade" id="crudCourseModal" tabindex="-1" role="dialog" aria-labelledby="crudCourseModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -769,11 +782,12 @@
                             <h5 class="card-title">
                                 {{user.name}}
                             </h5>
-                            <span ng-show="user.userType === '2'" class="badge badge-pill badge-light">A</span>
+                            <span ng-show="user.userType === '2'" class="badge badge-pill badge-light">T</span>
+                            <span ng-show="user.userType === '3'" class="badge badge-pill badge-light">A</span>
                             <h6 class="card-subtitle mb-2">Joined: {{user.dateJoined | date: 'M/d/yyyy h:mm a'}}</h6>
                             <a href="#" class="card-link" ng-class="{'whiteText': user.userType === '2'}" data-toggle="modal" data-target="#crudUserModal" ng-click="launchEditUserModal($index)">Edit</a>
-                            <a href="#" class="card-link" ng-class="{'whiteText': user.userType === '2'}" ng-click="toggleUserStudent($index)">Make {{user.userType === '1' ? 'Admin' : 'Student'}}</a>
-                            <a href="#" class="card-link" ng-class="{'whiteText': user.userType === '2'}" ng-click="">Delete</a>
+                            <a href="#" class="card-link" ng-class="{'whiteText': user.userType === '2'}" ng-click="toggleUserStudent($index)">Make {{user.userType === '1' ? 'Teacher' : 'Student'}}</a>
+                            <a href="#" class="card-link" ng-show="user.userType != '1' " ng-class="{'whiteText': user.userType === '2'}" ng-click="toggleUserAdmin($index)">Make {{user.userType === '2' ? 'Admin' : 'Teacher'}}</a>
                         </div>
                     </div>
                 </div>
@@ -1113,19 +1127,16 @@
             </div>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
-
-    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
-<!--    <script src="../redirectToLogin.js"></script>-->
-    <script src="../navigationLinks.js"></script>
-    <script src="admin.js"></script>
-    <script src="../adminAccessOnly.js"></script>
+    <div id="AccessDenied" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content POPUP">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Access Denied</h4>
+                <div class="modal-body">
+                    <p> You don't have the access to change Teacher/Admin attribute</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
