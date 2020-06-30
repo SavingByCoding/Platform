@@ -15,7 +15,7 @@
     <script src="../redirectToLogin.js"></script>
     <title>Contact Page</title>
 </head>
-<div class="mainbod" ng-app = "myApp">
+<body class="mainbod" ng-app = "myApp">
 
 
 <!--Navbar -->
@@ -106,12 +106,14 @@
             <br>
             <h4 ng-modal="RegistrationDate">Registration Date: {{RegistrationDate}} </h4>
             <br>
+            <h2 ng-repeat="class in classes">hi</h2>
 
         </div>
         <div class="txt4">
         <button class="btn"  id="BUTTON"> Proceed to Profile Page </button>
         </div>
     </div>
+
     <h3 class="txt1">A copy of this confirmation has also been sent to your email. </h3>
     <br>
     <h3 class="txt1">Any questions or concerns? Contact us at savingbycoding@gmail.com and we will get back to you promptly. </h3>

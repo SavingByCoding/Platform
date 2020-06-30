@@ -1,4 +1,5 @@
 var RegistrationDate= new Date();
+var toAdd = document.createDocumentFragment();
 mainMod.controller("SubmitAngular", function ($scope) {
     // $scope.isPreviousRegistration = function () {
     //     console.log($scope.userID)
@@ -58,10 +59,12 @@ mainMod.controller("SubmitAngular", function ($scope) {
              $scope.CourseName= localStorage.getItem("CourseName");
              $scope.paid= $scope.paid * 1.07; //Includes tax LOL
              $scope.paid= $scope.paid.toFixed(2)
-
+             $scope.groupOfClasses = [];
 
 
     };
+
+
 
     $scope.submitRegistration = function () {
         let data = {
@@ -96,8 +99,32 @@ mainMod.controller("SubmitAngular", function ($scope) {
     //
     // };
 
+    $scope.classes = []
+    $scope.main = []
+    $scope.showSchedule = function() {
+        db.collection("groups").where("courseID", "==", $scope.CourseId)
+            .get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    // doc.data() is never undefined for query doc snapshots
+                    console.log(doc.data().name);
+                    $scope.classes.push(doc.data().name)
+                    console.log($scope.classes);
+                    console.log($scope.classes.length);
+                });
+            })
+            .catch(function(error) {
+                console.log("Error getting documents: ", error);
+            });
+
+    }
+
+
+
     $scope.loadDataFromStorage();
     $scope.submitRegistration();
+    $scope.showSchedule();
+    console.log($scope.classes);
 
 
     //Check why it doesnt remove demo courses //done
@@ -107,12 +134,8 @@ mainMod.controller("SubmitAngular", function ($scope) {
 
 
 });
-GoToPFP = function(){
-
-};
 
 $("#BUTTON").click(function(){
     window.open("../ProfilePage/profile.html");
 });
-
 
