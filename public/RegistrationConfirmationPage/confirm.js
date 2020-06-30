@@ -1,6 +1,9 @@
 var RegistrationDate= new Date();
 var toAdd = document.createDocumentFragment();
 mainMod.controller("SubmitAngular", function ($scope) {
+
+
+
     // $scope.isPreviousRegistration = function () {
     //     console.log($scope.userID)
     //         var previousRegistrations = db.collection('registrations').where("userId", "==", $scope.userID); //Gets all documents in registration for a specific user when they register
@@ -99,18 +102,19 @@ mainMod.controller("SubmitAngular", function ($scope) {
     //
     // };
 
-    $scope.classes = []
     $scope.main = []
     $scope.showSchedule = function() {
         db.collection("groups").where("courseID", "==", $scope.CourseId)
             .get()
             .then(function(querySnapshot) {
+                $scope.classes=[];
                 querySnapshot.forEach(function(doc) {
                     // doc.data() is never undefined for query doc snapshots
                     console.log(doc.data().name);
                     $scope.classes.push(doc.data().name)
                     console.log($scope.classes);
                     console.log($scope.classes.length);
+                    $scope.$apply();
                 });
             })
             .catch(function(error) {
