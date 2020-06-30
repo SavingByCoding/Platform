@@ -7,6 +7,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel = "stylesheet" type="text/css" href="../navbarCSS.css">
     <link rel="icon" href="../LogoWithoutWords.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
@@ -14,6 +15,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
     <script src="../redirectToLogin.js"></script>
+    <script src="../navigationLinks.js"></script>
     <title>Contact Page</title>
 </head>
 <body class="mainbod" ng-app = "myApp">
@@ -221,7 +223,7 @@
                 <br>
                     <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated"><span style="color: #000000;">Which course would you like to register for?</span></h3>
                     <label class="courseselect1" for ="courseselect"> Course Select </label>
-                    <select id="courseselect" name="CourseSelect" ng-model="courseValue"required>
+                    <select id="courseselect" name="CourseSelect" ng-model="courseValue">
                         <option id="SelectedCourse" ng-repeat="course in courseNames" value= "{{course}}" > {{course}}  </option>
                 </select>
                 <div class="preferences">
@@ -306,9 +308,8 @@
     </div>
 </footer>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
+
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.js"></script>-->
-<script src="../navigationLinks.js"></script>
 <script src="registration.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

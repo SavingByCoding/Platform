@@ -16,7 +16,10 @@ Date.prototype.addDays = (days) => {
     this.setDate(this.getDate() + parseInt(days));
     return this;
 }
-
+var name;
+var emailAddress;
+var phoneNumber;
+var userID;
 mainMod.controller('MainContentController', ($scope) => {
     // Data is static for now,
     $scope.groups = []
@@ -27,6 +30,7 @@ mainMod.controller('MainContentController', ($scope) => {
 
 
     var UserInfo = db.collection('users').doc($scope.userId);
+    userID=$scope.userId;
     let getUserinfo = UserInfo.get()
         .then(doc => {
             if (!doc.exists) {
@@ -147,5 +151,84 @@ mainMod.controller('MainContentController', ($scope) => {
 
     const LOAD_ON_STARTUP = () => {
         $scope.getGroups()
+        $scope.getRegisteredCourses();
     }
+
+    $scope.registeredCourses=[];
+    $scope.getRegisteredCourses= function(){
+        db.collection("registrations").where("userId", "==", userID)
+            .get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    // console.log("hello")
+                    // console.log($scope.registeredCourses);
+                    // doc.data() is never undefined for query doc snapshots
+                    $scope.registeredCourses.push(doc.data().CourseName);
+                    $scope.$apply();
+                });
+                if( $scope.registeredCourses.length !=0){
+                    $("#RegisterNowInCourses").hide();
+                }
+
+            })
+            .catch(function(error) {
+                console.log("Error getting documents: ", error);
+            });
+    }
+
+
+
+    $scope.displayEditProfileInformation= function(){
+        var docRef = db.collection("users").doc($scope.userId);
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                emailAddress= doc.data().email;
+                name= doc.data().name;
+                phoneNumber= doc.data().phoneNumber;
+                $("#email").val(emailAddress);
+                $("#fname").val(name);
+                $("#phone").val(phoneNumber);
+
+
+
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+    }
+    // $scope.updateProfileInformation = function(){
+    //     emailAddress= $("#email").val();
+    //     name= $("#fname").val();
+    //     phoneNumber= $("#phone").val();
+    //
+    //     db.collection("users").doc($scope.userId).update({
+    //         name: name,
+    //         email: emailAddress,
+    //         phoneNumber: phoneNumber
+    //     });
+    //
+    // }
+
+
+
+
+
+
 })
+
+updateProfileInformation = function(){ //This was horribly coded my bad, I was having a bad day I used of used angular but I said fuck it - Jeeva
+    emailAddress= $("#email").val();
+    name= $("#fname").val();
+    phoneNumber= $("#phone").val();
+
+    db.collection("users").doc(userID).set({
+        name: name,
+        email: emailAddress,
+        phoneNumber: phoneNumber
+    },{ merge: true });
+
+}
