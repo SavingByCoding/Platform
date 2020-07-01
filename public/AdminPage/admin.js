@@ -309,6 +309,10 @@ app.controller('AppController', ($scope) => {
         $scope.new.group = {
             name: "",
             description: "",
+            teacher:"",
+            startTime:"",
+            endTime:"",
+            course:"",
             users: []
         }
     }
@@ -333,6 +337,10 @@ app.controller('AppController', ($scope) => {
         let group = {
             name: $scope.new.group.name,
             description: $scope.new.group.description,
+            teacher: $scope.new.group.teacher,
+            startTime: $scope.new.group.startTime,
+            endTime: $scope.new.group.endTime,
+            course: $scope.new.group.course,
             users: []
         }
         db.collection("groups").doc(groupId).set(group).then(() => {
@@ -347,12 +355,20 @@ app.controller('AppController', ($scope) => {
         db.collection("groups").doc($scope.new.group.id).update({
             name: $scope.new.group.name,
             description: $scope.new.group.description,
+            teacher: $scope.new.group.teacher,
+            startTime: $scope.new.group.startTime,
+            endTime: $scope.new.group.endTime,
+            course: $scope.new.group.course,
             users: $scope.new.group.users
         }).then(() => {
             for (let i = 0; i < $scope.groups.length; i++) {
                 if ($scope.groups.id == $scope.new.group.id) {
                     $scope.groups[i].name = $scope.new.group.name
                     $scope.groups[i].description = $scope.new.group.description
+                    $scope.groups[i].teacher= $scope.new.group.teacher
+                    $scope.groups[i].startTime= $scope.new.group.startTime
+                    $scope.groups[i].endTime= $scope.new.group.endTime
+                    $scope.groups[i].course= $scope.new.group.course
                     $scope.groups[i].users = $scope.new.group.users
                     return
                 }
@@ -377,12 +393,29 @@ app.controller('AppController', ($scope) => {
                     id: doc.id,
                     name: doc.data().name,
                     description: doc.data().description,
+                    teacher: doc.data().teacher,
+                    startTime: new Date(doc.data().startTime),
+                    endTime: new Date(doc.data().endTime),
+                    course: doc.data().course,
                     users: doc.data().users
                 })
             }
             $scope.$apply()
         })
     }
+
+    $scope.getCoursesForGroups= function(){
+        $scope.courses=[];
+        db.collection('courses').get().then((snapshot)=>{
+            snapshot.docs.forEach(doc=>{
+                $scope.courses.push(doc);
+                $scope.$apply();
+            })
+        });
+    };
+
+    $scope.getCoursesForGroups();
+
 
     // Group Membership Modal
 

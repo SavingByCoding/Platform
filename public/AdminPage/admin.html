@@ -16,7 +16,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
-    <!--    <script src="../redirectToLogin.js"></script>-->
+        <script src="../redirectToLogin.js"></script>
     <script src="../navigationLinks.js"></script>
     <script src="admin.js"></script>
     <script src="../adminAccessOnly.js"></script>
@@ -646,6 +646,23 @@
                                             <label for="groupDescription">Description</label>
                                             <textarea class="form-control" ng-model="new.group.description" id="groupDescription" rows="3"></textarea>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="teacherName">Teacher Name</label>
+                                            <textarea class="form-control" ng-model="new.group.teacher" id="teacherName" rows="1"></textarea>
+                                        </div>
+                                        <div>
+                                            <label for="eventTime">Start Time</label>
+                                            <input type="time" ng-model="new.group.startTime" class="form-control" id="startTime" placeholder="Select a data and time">
+                                        </div>
+                                        <div>
+                                            <label for="eventTime">End Time</label>
+                                            <input type="time" ng-model="new.group.endTime" class="form-control" id="endTime" placeholder="Select a data and time">
+                                        </div>
+                                        <br>
+                                        <label for="courseselect">Course: </label>
+                                        <select id="courseselect" name="CourseSelect" ng-model="new.group.course">
+                                            <option id="SelectedCourse" ng-repeat="course in courses" value= "{{course.id}}" > {{course.data().name}}  </option>
+                                        </select>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
