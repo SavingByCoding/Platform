@@ -503,3 +503,12 @@ html {
     position: absolute;
     right:    25px;
     bottom:   20px;}
+.schedule{
+    width: 100%;
+    color: antiquewhite;
+    font-family: Karla;
+    transition: all 1s ease;
+}
+.schedule:hover{
+    transform: scale(1.02);
+}

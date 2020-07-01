@@ -62,7 +62,7 @@ mainMod.controller("SubmitAngular", function ($scope) {
              $scope.CourseName= localStorage.getItem("CourseName");
              $scope.paid= $scope.paid * 1.07; //Includes tax LOL
              $scope.paid= $scope.paid.toFixed(2)
-             $scope.groupOfClasses = [];
+
 
 
     };
@@ -111,7 +111,7 @@ mainMod.controller("SubmitAngular", function ($scope) {
                 querySnapshot.forEach(function(doc) {
                     // doc.data() is never undefined for query doc snapshots
                     console.log(doc.data().name);
-                    $scope.classes.push(doc.data().name)
+                    $scope.classes.push(doc)
                     console.log($scope.classes);
                     console.log($scope.classes.length);
                     $scope.$apply();
@@ -123,6 +123,13 @@ mainMod.controller("SubmitAngular", function ($scope) {
 
     }
 
+    $scope.setUsertoClass = (doc1) =>{
+        console.log(doc1.id)
+        var ref1 = db.collection("groups").doc(doc1.id);
+        var ref2 = ref1.update({
+            users: $scope.userID
+        });
+    }
 
 
     $scope.loadDataFromStorage();
