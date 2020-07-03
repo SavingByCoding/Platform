@@ -30,7 +30,7 @@ mainMod.controller("SubmitAngular", function ($scope) {
         return `${day}-${month}-${year }`;
     };
     $scope.RegistrationDate= $scope.getCurrentDate();
-     $scope.loadDataFromStorage= function() {
+    $scope.loadDataFromStorage= function() {
         // var allcookies =  unescape(document.cookie);
         // console.log(allcookies)
         // cookiearray = allcookies.split(';');
@@ -48,20 +48,20 @@ mainMod.controller("SubmitAngular", function ($scope) {
         //     $scope.paid= $scope.paid * 1.07; //Includes tax LOL
         // }
         // ;
-             $scope.CourseId = localStorage.getItem("courseId");
-             console.log($scope.CourseId)
-             $scope.paid = localStorage.getItem("paid");
-             $scope.userID = localStorage.getItem("userId");
-             $scope.FirstName =  localStorage.getItem("FirstName");
-             $scope.LastName = localStorage.getItem("LastName");
-             $scope.ParentsEmail = localStorage.getItem("ParentsEmail");
-             $scope.ChildAge = localStorage.getItem("ChildAge");
-             $scope.ChildGrade = localStorage.getItem("ChildGrade");
-             $scope.SpecifiedTrack = localStorage.getItem("SpecifiedTrack");
-             $scope.ConfirmationNumber = localStorage.getItem("ConfirmationNumber");
-             $scope.CourseName= localStorage.getItem("CourseName");
-             $scope.paid= $scope.paid * 1.07; //Includes tax LOL
-             $scope.paid= $scope.paid.toFixed(2)
+        $scope.CourseId = localStorage.getItem("courseId");
+        console.log($scope.CourseId)
+        $scope.paid = localStorage.getItem("paid");
+        $scope.userID = localStorage.getItem("userId");
+        $scope.FirstName =  localStorage.getItem("FirstName");
+        $scope.LastName = localStorage.getItem("LastName");
+        $scope.ParentsEmail = localStorage.getItem("ParentsEmail");
+        $scope.ChildAge = localStorage.getItem("ChildAge");
+        $scope.ChildGrade = localStorage.getItem("ChildGrade");
+        $scope.SpecifiedTrack = localStorage.getItem("SpecifiedTrack");
+        $scope.ConfirmationNumber = localStorage.getItem("ConfirmationNumber");
+        $scope.CourseName= localStorage.getItem("CourseName");
+        $scope.paid= $scope.paid * 1.07; //Includes tax LOL
+        $scope.paid= $scope.paid.toFixed(2)
 
 
 
@@ -123,15 +123,41 @@ mainMod.controller("SubmitAngular", function ($scope) {
 
     }
 
+    // $scope.setUsertoClass = (doc1) =>{
+    //     console.log(doc1.id)
+    //     var ref1 = db.collection("groups").doc(doc1.id).get().then(function (doc) {
+    //         console.log(doc.users);
+    //         $scope.$apply();
+    //         window.open("../ProfilePage/profile.html");
+    //         window.close(this);
+    //     })
+    //     //
+    // }
+
+    $scope.arrayofusers= [];
     $scope.setUsertoClass = (doc1) =>{
-        console.log(doc1.id)
-        var ref1 = db.collection("groups").doc(doc1.id).get().then(function (doc) {
-            console.log(doc.users);
-            $scope.$apply();
-            window.open("../ProfilePage/profile.html");
-            window.close(this);
-        })
-        //
+
+        var docRef = db.collection("groups").doc(doc1.id);
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                $scope.arrayofusers= doc.data().users;
+                console.log( $scope.arrayofusers);
+            } else {
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+        $scope.updateUser(doc1);
+
+    }
+
+    $scope.updateUser = function (doc1){
+        $scope.arrayofusers.push($scope.userID);
+        var ref1 = db.collection("groups").doc(doc1.id).update({
+            users:$scope.arrayofusers
+        });
+        console.log( $scope.arrayofusers);
     }
 
 
@@ -152,4 +178,3 @@ mainMod.controller("SubmitAngular", function ($scope) {
 function f(){
     window.open("../ProfilePage/profile.html");
 };
-
