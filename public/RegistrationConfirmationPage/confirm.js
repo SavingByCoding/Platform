@@ -141,6 +141,7 @@ mainMod.controller("SubmitAngular", function ($scope) {
         docRef.get().then(function(doc) {
             if (doc.exists) {
                 $scope.arrayofusers= doc.data().users;
+                f();
                 console.log( $scope.arrayofusers);
             } else {
                 console.log("No such document!");
@@ -177,4 +178,5 @@ mainMod.controller("SubmitAngular", function ($scope) {
 
 function f(){
     window.open("../ProfilePage/profile.html");
+    window.close(this);
 };
