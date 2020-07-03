@@ -18,7 +18,7 @@
     <script src="../navigationLinks.js"></script>
     <title>Contact Page</title>
 </head>
-<body class="mainbod" ng-app = "myApp">
+<body class="mainbod" ng-app = "myApp" ng-controller = "RegistrationForm" style="font-family: Karla">
 
 
 <!--Navbar -->
@@ -94,10 +94,10 @@
 
 <div class ="hero">
     <div class="form-box">
-        <form id="Page1">
+        <form id="Page1" >
             <div class="formcontainer1" id="formcontainer1">
                 <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated"><span style="color: #000000;">Welcome to Codeology!</span></h3>
-                <p style="text-align: center;"><span style="color: #000000;">Ready to get started? It will only take a few minutes to fill out this form so an educational specialist can reach you.</span></p>
+                <p style="text-align: center;"><span style="color: #000000;">Ready to get started? It will only take a few minutes to fill out this form so an educational specialist can reach you. <br><br>The process is simple! Register for a course first, then decide on a schedule tailored for your educational experience!</span></p>
                 <input id= "FirstName" type="text" class ="input-field" placeholder="(Parent's) First Name" required>
                 <input id= "LastName" type="text" class ="input-field" placeholder="(Parent's) Last Name" required>
                 <input id= "Email" type="text" class ="input-field" placeholder="(Parent's) Email" required>
@@ -219,7 +219,7 @@
             </div>
             </form>
         <form name="Page5">
-            <div class="formcontainer5" id="formcontainer5" ng-controller = "RegistrationForm">
+            <div class="formcontainer5" id="formcontainer5">
                 <br>
                     <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated"><span style="color: #000000;">Which course would you like to register for?</span></h3>
                     <label class="courseselect1" for ="courseselect"> Course Select </label>
@@ -234,6 +234,7 @@
                        <option value="adv"> Advanced </option>
                        <option value="beg"> No Preference </option>
                    </select>
+
                 </div>
                 <br>
                 <br>
@@ -254,9 +255,11 @@
         <form name="Page6">
             <div class="formcontainer6" id="formcontainer6" >
                 <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated"><span style="color: #000000;">Finish & Pay</span></h3>
-
+                    <div class = "row justify-content-around">
+                        <div class = "col-6">
                     <button id="PayNow"> <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif"></button>
-
+                        </div>
+                    </div>
                     <br>
                     <br>
                     <br>
@@ -281,9 +284,10 @@
     </div>
 </div>
 <br>
+<br><br>
 <div class="txt1">
-    <h3>Before registering for a course, make sure that you've completed your demo class!</h3>
-    <h4> Any Questions? Feel free to contact us at savingbycoding@gmail.com and we'll be sure to get back to you promptly!</h4>
+    <h5>Before registering for a course, make sure that you've completed your demo class!</h5>
+    <h5> Any Questions? Feel free to contact us at savingbycoding@gmail.com and we'll be sure to get back to you promptly!</h5>
 </div>
 <br>
 

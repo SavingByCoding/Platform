@@ -508,7 +508,9 @@ html {
     color: antiquewhite;
     font-family: Karla;
     transition: all 1s ease;
+    border: #464672 solid 3px;
 }
 .schedule:hover{
     transform: scale(1.02);
+    background: #464672;
 }

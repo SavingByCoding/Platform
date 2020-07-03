@@ -18,7 +18,7 @@
     <script src="../navigationLinks.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="confirm.js"></script>
-    <title>Contact Page</title>
+    <title>Registration Page</title>
 </head>
 <body class="mainbod" ng-app = "myApp" ng-controller = "SubmitAngular" >
 
@@ -92,31 +92,29 @@
     </div>
 </div>
 
-<h1 class="txt1"> You're all Set!</h1>
+<h1 class="txt1"> You're all set!</h1>
     <h2 class="txt1">Thank you for registering with Codeology.</h2>
 
     <h3 class="txt1">Check your profile to find instructions for your first class.</h3>
     <h4 class="txt1"> (Please Do Not Refresh This Page) </h4>
 <br>
 
-    <div class="txt3" >
-        <div class="txt2">
-              <!--Date and Time -->
+    <div class="txt3">
+        <div class="txt2" style="text-align: center">
+            <h3>Confirmation</h3>
             <br>
-            <h4 ng-modal="ConfirmationNumber"> Confirmation number: <p>{{ConfirmationNumber}}</p> </h4>
+            <h5 ng-modal="ConfirmationNumber"> Confirmation number: <p>{{ConfirmationNumber}}</p> </h5>
             <br>
-            <h4 ng-modal="FirstName" ng-modal="LastName" ng-modal="CourseName"> {{FirstName}} {{LastName}} is registered for {{CourseName}}</h4>
+            <h5 ng-modal="FirstName" ng-modal="LastName" ng-modal="CourseName"> {{FirstName}} {{LastName}} is registered for {{CourseName}}</h5>
             <br>
-            <h4 ng-modal="paid"> Amount paid: {{paid}} </h4>
+            <h5 ng-modal="paid"> Amount paid: {{paid}} </h5>
             <br>
-            <h4 ng-modal="RegistrationDate">Registration Date: {{RegistrationDate}} </h4>
-            <br>
-
+            <h5 ng-modal="RegistrationDate">Registration Date: {{RegistrationDate}} </h5>
         </div>
         <div class="txt4">
-            <a href="#scheduling">
-                <button class="btn" > Proceed to Scheduling </button>
-            </a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" style="width: 100%; background: #23233b;color: antiquewhite;font-family: Karla">
+                Proceed to Scheduling
+            </button>
         </div>
     </div>
 
@@ -124,28 +122,66 @@
     <br>
     <h3 class="txt1">Any questions or concerns? Contact us at savingbycoding@gmail.com and we will get back to you promptly. </h3>
     <br>
-<br>
-    <h2 id = "scheduling" style="text-align: center; font-family: Karla; color: #23233b;"><b>Scheduling</b></h2>
-<div ng-repeat = "class in classes">
-    <a href ng-click="setUsertoClass(class)">
-        <div class = "row justify-content-around">
-            <div class = "col-6">
-                <div class="card stretched-link schedule" style="background: #23233b">
-                    <div class="card-body">
-                        <h4 class = "card-title"><b>Class Name:</b><br>{{class.data().name}}</h4>
+<div class = "container">
+    <div class = "row justify-content-around">
+        <div class = "col-10">
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalLong" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+    <div class="modal-dialog" role="document" style="width: 150%">
+        <div class="modal-content"  style="background: antiquewhite">
+            <div class="modal-header" style="text-align: center">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="font-family: Karla;text-align: center; color: #23233b;">Scheduling</h5>
+            </div>
+            <div class="modal-body">
+                <h6 style="font-family: Karla;text-align: center; color: #23233b;">See what class suits your availability and preference- then choose! If you cannot find a class to suit your preferences, <a href="../ContactPage/contact.html">Contact Us!</a> </h6><br>
+                <h3 style="color: #23233b; font-family: Karla;text-align: center">Available Classes</h3>
+                <div ng-repeat = "class in classes">
                         <div class = "row justify-content-around">
-                            <div class = "col-6"><p class="card-text"><b>Class Description </b><br>{{class.data().description}}</p></div>
-                            <div class = "col-6"><p class = "card-text">
-                                <b>Days of the Week:</b><br>
-                                {{class.data().day1}} to {{class.data().day2}}
-                            </p></div>
+                            <div class = "col-10">
+                                <a href ng-click="setUsertoClass(class)">
+                                <div class="card stretched-link schedule" style="background: #23233b">
+                                    <div class="card-body">
+                                        <div class = "container">
+                                            <div class = "row justify-content-around">
+                                                <div class = "col-12"><h4 class = "card-title">Class Name:<br><b>{{class.data().name}}</b></h4></div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class = "row justify-content-around">
+                                            <div class = "col-6"><p class="card-text">
+                                                Timing (EST): <br><b>{{class.data().startTime.seconds* 1000 | date:'h:mm:ss'}} to {{class.data().endTime.seconds* 1000 | date:'h:mm:ss'}}
+                                                </b></p></div>
+                                            <div class = "col-6"><p class = "card-text">
+                                                Days of the Week:<br>
+                                                <b>{{class.data().day1}} and {{class.data().day2}}</b>
+                                            </p></div>
+                                        </div>
+                                        <br>
+                                        <h6 style="text-align: center">Class Description:<br><b>{{class.data().description}}</b></h6>
+                                        <br>
+                                        <div class = "row justify-content-around">
+                                            <div class = "col-6">Taught by: <b>{{class.data().teacher}}</b></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                        <br>
+                    </a>
                 </div>
             </div>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" style="width: 90%; background: #23233b;color: antiquewhite;font-family: Karla">
+                    Close (by closing this tab, you have not chosen a class yet)
+                </button>
+            <br>
         </div>
-        <br>
-    </a>
+    </div>
 </div>
 
 

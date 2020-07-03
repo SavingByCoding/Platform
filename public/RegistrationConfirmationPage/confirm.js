@@ -104,7 +104,7 @@ mainMod.controller("SubmitAngular", function ($scope) {
 
     $scope.main = []
     $scope.showSchedule = function() {
-        db.collection("groups").where("courseID", "==", $scope.CourseId)
+        db.collection("groups").where("course", "==", $scope.CourseId)
             .get()
             .then(function(querySnapshot) {
                 $scope.classes=[];
@@ -125,10 +125,13 @@ mainMod.controller("SubmitAngular", function ($scope) {
 
     $scope.setUsertoClass = (doc1) =>{
         console.log(doc1.id)
-        var ref1 = db.collection("groups").doc(doc1.id);
-        var ref2 = ref1.update({
-            users: $scope.userID
-        });
+        var ref1 = db.collection("groups").doc(doc1.id).get().then(function (doc) {
+            console.log(doc.users);
+            $scope.$apply();
+            window.open("../ProfilePage/profile.html");
+            window.close(this);
+        })
+        //
     }
 
 
@@ -146,7 +149,7 @@ mainMod.controller("SubmitAngular", function ($scope) {
 
 });
 
-$("#BUTTON").click(function(){
+function f(){
     window.open("../ProfilePage/profile.html");
-});
+};
 

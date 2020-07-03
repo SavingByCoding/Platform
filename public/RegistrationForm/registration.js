@@ -140,6 +140,7 @@ mainMod.controller("RegistrationForm", function ($scope) {
                 $scope.courses.push(doc.data());
                 $scope.courseNames.push(doc.data().name);
                 setTimeout(function(){$scope.checkPreviousRegistration()}, 100)
+                $scope.apply();
             })
         });
     };
@@ -169,7 +170,9 @@ mainMod.controller("RegistrationForm", function ($scope) {
          });
      };
 
+
     $scope.getCourseName();
+
 
     $scope.courseValue=""; //the data-model that tells you what the user selected
      setSelectedCourseId = function (){
@@ -186,11 +189,13 @@ mainMod.controller("RegistrationForm", function ($scope) {
             });
      }
 
+
      $scope.getCourseFromCourseName = (name) => {
          for (let course of $scope.courses) {
              if (course.name === name) return course
          }
      }
+
 
     // submitRegistration = function(){
     //     let data={
