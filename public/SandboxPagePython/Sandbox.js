@@ -343,33 +343,43 @@ ShowProjectName= function(){
                     switch (index+1){
                         case 1:
                             $scope.name1 = UserProjects.name;
+                            $scope.lang1 = UserProjects.language;
                             break;
                         case 2:
                             $scope.name2 = UserProjects.name;
+                            $scope.lang2 = UserProjects.language;
                             break;
                         case 3:
                             $scope.name3 = UserProjects.name;
+                            $scope.lang3 = UserProjects.language;
                             break;
                         case 4:
                             $scope.name4 = UserProjects.name;
+                            $scope.lang4 = UserProjects.language;
                             break;
                         case 5:
                             $scope.name5 = UserProjects.name;
+                            $scope.lang5 = UserProjects.language;
                             break;
                         case 6:
                             $scope.name6 = UserProjects.name;
+                            $scope.lang6 = UserProjects.language;
                             break;
                         case 7:
                             $scope.name7 = UserProjects.name;
+                            $scope.lang7 = UserProjects.language;
                             break;
                         case 8:
                             $scope.name8 = UserProjects.name;
+                            $scope.lang8 = UserProjects.language;
                             break;
                         case 9:
                             $scope.name9 = UserProjects.name;
+                            $scope.lang9 = UserProjects.language;
                             break;
                         case 10:
                             $scope.name10 = UserProjects.name;
+                            $scope.lang10 = UserProjects.language;
                             break;
                     }
 
