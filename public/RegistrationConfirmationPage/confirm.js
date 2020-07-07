@@ -110,11 +110,13 @@ mainMod.controller("SubmitAngular", function ($scope) {
                 $scope.classes=[];
                 querySnapshot.forEach(function(doc) {
                     // doc.data() is never undefined for query doc snapshots
-                    console.log(doc.data().name);
-                    $scope.classes.push(doc)
-                    console.log($scope.classes);
-                    console.log($scope.classes.length);
-                    $scope.$apply();
+                    if(doc.data().users.length < 6) {
+                        console.log(doc.data().name);
+                        $scope.classes.push(doc)
+                        console.log($scope.classes);
+                        console.log($scope.classes.length);
+                        $scope.$apply();
+                    }
                 });
             })
             .catch(function(error) {
