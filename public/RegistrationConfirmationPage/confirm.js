@@ -136,28 +136,40 @@ mainMod.controller("SubmitAngular", function ($scope) {
 
     $scope.arrayofusers= [];
     $scope.setUsertoClass = (doc1) =>{
+       $scope.getGroupOfUsers(doc1);
+    };
 
+    $scope.getGroupOfUsers= function(doc1){
         var docRef = db.collection("groups").doc(doc1.id);
         docRef.get().then(function(doc) {
             if (doc.exists) {
-                $scope.arrayofusers= doc.data().users;
-                console.log( $scope.arrayofusers);
-            } else {
-                console.log("No such document!");
+                $scope.arrayofusers = doc.data().users;
+                console.log("array from DB: "+ doc.data().users)
+                $scope.updateUser(doc1);
             }
         }).catch(function(error) {
             console.log("Error getting document:", error);
         });
-        $scope.updateUser(doc1);
 
     }
 
+$scope.checkIfUserAlreadyExists= function(){
+        for(let i=0; i<$scope.arrayofusers.length;i++){
+            if($scope.userID === $scope.arrayofusers[i]){
+                return true; //User Already Exists
+            }
+        }
+}
+
+
     $scope.updateUser = function (doc1){
-        $scope.arrayofusers.push($scope.userID);
-        var ref1 = db.collection("groups").doc(doc1.id).update({
-            users:$scope.arrayofusers
-        });
-        console.log( $scope.arrayofusers);
+        if(!$scope.checkIfUserAlreadyExists()){
+            $scope.arrayofusers.push($scope.userID);
+            var ref1 = db.collection("groups").doc(doc1.id).update({
+                users:$scope.arrayofusers
+            });
+            console.log( $scope.arrayofusers);
+        }
     }
 
 

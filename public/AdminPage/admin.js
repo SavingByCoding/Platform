@@ -313,6 +313,7 @@ app.controller('AppController', ($scope) => {
             startTime:"",
             endTime:"",
             course:"",
+            selectedDates:[],
             users: []
         }
     }
@@ -320,19 +321,38 @@ app.controller('AppController', ($scope) => {
     $scope.launchEditGroupModal = (i) => {
         $scope.crudStates.group = 'Edit'
         $scope.new.group = $scope.groups[i]
+        $scope.displayClassDays();
     }
 
     $scope.launchCreateGroupModal = () => {
         $scope.crudStates.group = 'Create'
-        $scope.new.group = {}
+        $scope.new.group = {
+            name: "",
+            description: "",
+            teacher:"",
+            startTime:"",
+            endTime:"",
+            course:"",
+            selectedDates:[],
+            users: []
+        }
     }
 
     $scope.crudGroup = () => {
-        if ($scope.crudStates.group == "Create") $scope.createGroup()
-        else if ($scope.crudStates.group == "Edit") $scope.editGroup()
+        if ($scope.crudStates.group == "Create") {
+            $scope.createGroup();
+
+        }
+        else if ($scope.crudStates.group == "Edit"){
+            $scope.editGroup();
+
+
+
+        }
     }
 
     $scope.createGroup = () => {
+        $scope.getSelectedDates();
         let groupId = generateUUID()
         let group = {
             name: $scope.new.group.name,
@@ -341,6 +361,7 @@ app.controller('AppController', ($scope) => {
             startTime: $scope.new.group.startTime,
             endTime: $scope.new.group.endTime,
             course: $scope.new.group.course,
+            selectedDates:$scope.new.group.selectedDates,
             users: []
         }
         db.collection("groups").doc(groupId).set(group).then(() => {
@@ -352,6 +373,8 @@ app.controller('AppController', ($scope) => {
     }
 
     $scope.editGroup = () => {
+        $scope.new.group.selectedDates= [];
+        $scope.getSelectedDates();
         db.collection("groups").doc($scope.new.group.id).update({
             name: $scope.new.group.name,
             description: $scope.new.group.description,
@@ -359,6 +382,7 @@ app.controller('AppController', ($scope) => {
             startTime: $scope.new.group.startTime,
             endTime: $scope.new.group.endTime,
             course: $scope.new.group.course,
+            selectedDates:$scope.new.group.selectedDates,
             users: $scope.new.group.users
         }).then(() => {
             for (let i = 0; i < $scope.groups.length; i++) {
@@ -369,12 +393,31 @@ app.controller('AppController', ($scope) => {
                     $scope.groups[i].startTime= $scope.new.group.startTime
                     $scope.groups[i].endTime= $scope.new.group.endTime
                     $scope.groups[i].course= $scope.new.group.course
+                    $scope.groups[i].selectedDates= $scope.new.group.selectedDates
                     $scope.groups[i].users = $scope.new.group.users
                     return
                 }
             }
         })
     }
+    $scope.getSelectedDates= function (){
+        console.log($scope.new.group.selectedDates)
+        if($("#Monday").is(':checked'))
+            $scope.new.group.selectedDates.push("Monday");
+        if($("#Tuesday").is(':checked'))
+            $scope.new.group.selectedDates.push("Tuesday");
+        if($("#Wednesday").is(':checked'))
+            $scope.new.group.selectedDates.push("Wednesday");
+        if($("#Thursday").is(':checked'))
+            $scope.new.group.selectedDates.push("Thursday");
+        if($("#Friday").is(':checked'))
+            $scope.new.group.selectedDates.push("Friday");
+        if($("#Saturday").is(':checked'))
+            $scope.new.group.selectedDates.push("Saturday");
+        if($("#Sunday").is(':checked'))
+            $scope.new.group.selectedDates.push("Sunday");
+    }
+
 
     $scope.deleteGroup = (i) => {
         let group = $scope.groups[i]
@@ -397,13 +440,42 @@ app.controller('AppController', ($scope) => {
                     startTime: new Date(doc.data().startTime),
                     endTime: new Date(doc.data().endTime),
                     course: doc.data().course,
+                    selectedDates: doc.data().selectedDates,
                     users: doc.data().users
                 })
             }
             $scope.$apply()
         })
     }
+    $scope.displayClassDays= function (){
+        for(let i=0;i<$scope.new.group.selectedDates.length;i++){
+            switch ($scope.new.group.selectedDates[i]) {
+                case "Monday":
+                    $('#Monday').attr('checked', true);
+                    break;
+                case "Tuesday":
+                    $('#Tuesday').attr('checked', true);
+                    break;
+                case "Wednesday":
+                    $('#Wednesday').attr('checked', true);
+                    break;
+                case "Thursday":
+                    $('#Thursday').attr('checked', true);
+                    break;
+                case "Friday":
+                    $('#Friday').attr('checked', true);
+                    break;
+                case "Saturday":
+                    $('#Saturday').attr('checked', true);
+                    break;
+                case "Sunday":
+                    $('#Sunday').attr('checked', true);
+                    break;
 
+            }
+        }
+
+    }
     $scope.getCoursesForGroups= function(){
         $scope.courses=[];
         db.collection('courses').get().then((snapshot)=>{
