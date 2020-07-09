@@ -25,6 +25,12 @@ function GoBack(){
 }
 
 app.controller('AppController', ($scope) => {
+    $scope.toDate = (timeObj) => {
+        let t = new Date(1970, 0, 1)
+        t.setSeconds(timeObj.seconds)
+        return t
+    }
+
     $scope.checkIsTeacher= function(){
         firebase.auth().onAuthStateChanged((user) => {
             db.collection("users")
@@ -312,6 +318,7 @@ app.controller('AppController', ($scope) => {
             teacher:"",
             startTime:"",
             endTime:"",
+            startDate:"",
             course:"",
             selectedDates:[],
             users: []
@@ -332,6 +339,7 @@ app.controller('AppController', ($scope) => {
             teacher:"",
             startTime:"",
             endTime:"",
+            startDate:"",
             course:"",
             selectedDates:[],
             users: []
@@ -360,6 +368,7 @@ app.controller('AppController', ($scope) => {
             teacher: $scope.new.group.teacher,
             startTime: $scope.new.group.startTime,
             endTime: $scope.new.group.endTime,
+            startDate: $scope.new.group.startDate,
             course: $scope.new.group.course,
             selectedDates:$scope.new.group.selectedDates,
             users: []
@@ -381,6 +390,7 @@ app.controller('AppController', ($scope) => {
             teacher: $scope.new.group.teacher,
             startTime: $scope.new.group.startTime,
             endTime: $scope.new.group.endTime,
+            startDate: $scope.new.group.startDate,
             course: $scope.new.group.course,
             selectedDates:$scope.new.group.selectedDates,
             users: $scope.new.group.users
@@ -392,6 +402,7 @@ app.controller('AppController', ($scope) => {
                     $scope.groups[i].teacher= $scope.new.group.teacher
                     $scope.groups[i].startTime= $scope.new.group.startTime
                     $scope.groups[i].endTime= $scope.new.group.endTime
+                    $scope.new.groups[i].startDate= $scope.new.group.startDate;
                     $scope.groups[i].course= $scope.new.group.course
                     $scope.groups[i].selectedDates= $scope.new.group.selectedDates
                     $scope.groups[i].users = $scope.new.group.users
@@ -437,8 +448,9 @@ app.controller('AppController', ($scope) => {
                     name: doc.data().name,
                     description: doc.data().description,
                     teacher: doc.data().teacher,
-                    startTime: new Date(doc.data().startTime),
-                    endTime: new Date(doc.data().endTime),
+                    startTime:doc.data().startTime.toDate(),
+                    endTime: doc.data().endTime.toDate(),
+                    startDate: doc.data().startDate.toDate(),
                     course: doc.data().course,
                     selectedDates: doc.data().selectedDates,
                     users: doc.data().users
@@ -1478,11 +1490,6 @@ app.controller('AppController', ($scope) => {
         $scope.registrations[i].compact = !$scope.registrations[i].compact
     }
 
-    $scope.toDate = (timeObj) => {
-        let t = new Date(1970, 0, 1)
-        t.setSeconds(timeObj.seconds)
-        return t
-    }
 
     // Initialization Functions & View Management
     $scope.loaded = []
