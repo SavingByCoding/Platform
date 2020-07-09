@@ -110,11 +110,7 @@ mainMod.controller("SubmitAngular", function ($scope) {
             .then(function(querySnapshot) {
                 $scope.classes=[];
                 querySnapshot.forEach(function(doc) {
-                    // doc.data() is never undefined for query doc snapshots
-                   // console.log(doc.data().startDate.toDate())
-                   //  console.log(new Date())
                     if((doc.data().users.length < 6 && (doc.data().startDate.toDate() > new Date()))  ) {
-                        //&& (doc.data().startDate > new Date())
                         $scope.classes.push(doc)
                         $scope.$apply();
                     }
