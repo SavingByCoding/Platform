@@ -29,6 +29,7 @@ mainMod.controller("SubmitAngular", function ($scope) {
         const [{ value: month },,{ value: day },,{ value: year }] = dateTimeFormat .formatToParts(date)
         return `${day}-${month}-${year }`;
     };
+
     $scope.RegistrationDate= $scope.getCurrentDate();
     $scope.loadDataFromStorage= function() {
         // var allcookies =  unescape(document.cookie);
@@ -110,11 +111,11 @@ mainMod.controller("SubmitAngular", function ($scope) {
                 $scope.classes=[];
                 querySnapshot.forEach(function(doc) {
                     // doc.data() is never undefined for query doc snapshots
-                    if(doc.data().users.length < 6) {
-                        console.log(doc.data().name);
+                   // console.log(doc.data().startDate.toDate())
+                   //  console.log(new Date())
+                    if((doc.data().users.length < 6 && (doc.data().startDate.toDate() > new Date()))  ) {
+                        //&& (doc.data().startDate > new Date())
                         $scope.classes.push(doc)
-                        console.log($scope.classes);
-                        console.log($scope.classes.length);
                         $scope.$apply();
                     }
                 });
