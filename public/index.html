@@ -7,15 +7,21 @@
     <link rel="icon" href="../LogoWithoutWords.png">
     <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="navbarCSS.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase.js "></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="FirebaseCode.js"></script>
+
     <title>Saving By Coding</title>
 </head>
 <body class = "mainbod" ng-app = "myApp">
+
 <!--Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
     <a href = "#"><img id = "logo" ng-src={{logo}} style="height: 80px"></a>
@@ -47,17 +53,16 @@
                     <a class="dropdown-item" href="#" ng-model = "menuName6" id = "m6">{{menuName6}}</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a style="color: #23233b">-----------------------------------------------------------------------</a>
-            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <button class = "btn btn-primary registerButton" id="RegisterNow" onClick = "registerNow()" style="background: antiquewhite; color: #23233b; border: transparent">Register Now</button>
             </li>
             <li class="nav-item">
-                <button class = "btn btn-primary registerButton" id="SignUpForFree" onClick = "signUpNow()" style="background: antiquewhite; color: #23233b; border: transparent">Sign Up for Free</button>
+                <button class = "btn btn-primary registerButton" id="SignUpForFree" onClick = "signUpNow()" style="background: antiquewhite; color: #23233b; border: transparent">Sign Up for a Free Trial</button>
             </li>
             <li class="nav-item">
-                <a style="color: #23233b">---------</a>
+                <a style="color: #23233b">------------</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle mr-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
@@ -68,13 +73,16 @@
                     <a class="dropdown-item" href="" id = "s2">{{sand2}}</a>
                     <div class="dropdown-divider" id="divider1"></div>
                     <a class="dropdown-item" href="" id="d1">{{dropdown1}}</a>
-<!--                    <a class="dropdown-item" href="" id = "d2">{{dropdown2}}</a>-->
+                    <!--                    <a class="dropdown-item" href="" id = "d2">{{dropdown2}}</a>-->
                     <div class="dropdown-divider" id="divider2"></div>
-<!--                    <a class="dropdown-item" href="" id="d3">{{dropdown3}}</a>-->
+                    <!--                    <a class="dropdown-item" href="" id="d3">{{dropdown3}}</a>-->
                     <a class="dropdown-item" onclick="SignOut()" href="" id="d4">{{dropdown4}}</a>
                     <a class="dropdown-item" href="" id="d5">{{dropdown5}}</a>
                     <a class="dropdown-item" href="" id="d6">{{dropdown6}}</a>
                 </div>
+            </li>
+            <li class="nav-item">
+                <a style="color: #23233b">------------</a>
             </li>
         </ul>
     </div>
@@ -82,32 +90,87 @@
 <!--/.Navbar -->
 
 
+
 <div class="jumbotron jumboCont jumbotron-fluid ">
     <div class="container ">
-            <div class = "col-6 jumboWordShape align-content-center ml-auto">
-                <br>
-                <h1 style="font-family: Karla"><u><b>Codeology</b></u></h1><br>
-                <p>Learn to code from anywhere in the world through unique highly-engaging lessons designed to teach kids of any age the basics of HTML and Python.
-                </p>
-                <p>Interested? See what plan fits you and avail the super-easy services we have to learn the basics of coding!</p>
-                <div class = "container">
-                    <div class = "row">
-                        <div class = "col-12">
-                            <form>
-                            <button id= "signupbutton" class = "btn btn-primary mainLinkButtons" onclick="signUpNow()">Sign Up for Free!</button>
-                            </form>
-                            <form>
-                                <button id= "registernowbutton" class = "btn btn-primary mainLinkButtons" onclick="registerNow()">Register Now!</button>
-                            </form>
-                        </div>
-                        <br>
+        <div class = "col-6 jumboWordShape align-content-center ml-auto">
+            <br>
+            <h1 style="font-family: Karla"><u><b>Codeology</b></u></h1><br>
+            <p>Learn to code from anywhere in the world through unique highly-engaging lessons designed to teach kids of any age the basics of HTML and Python.
+            </p>
+            <p>Interested? See what plan fits you and avail the super-easy services we have to learn the basics of coding!</p>
+            <div class = "container">
+                <div class = "row">
+                    <div class = "col-12">
+                        <form>
+                            <button id= "signupbutton" class = "btn btn-primary mainLinkButtons" onclick="signUpNow()">Sign Up for a Free Trial!</button>
+                        </form>
+                        <form>
+                            <button id= "registernowbutton" class = "btn btn-primary mainLinkButtons" onclick="registerNow()">Register Now!</button>
+                        </form>
                     </div>
+                    <br>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <div id = "studentsLink"></div>
+<br>
+<div class="container">
+    <div class = "row justify-content-around">
+        <div class = "col-8">
+            <h1 style = "text-align: center; font-family: Karla; color: #23233b">How We Work:</h1>
+        </div>
+    </div>
+</div>
 <br><br>
+
+<div class = "row justify-content-around" data-aos="fade-up">
+    <div class = "col-4" >
+        <div class = "single-content" >
+            <img style="background: antiquewhite" src = "catalog.png" class = "stepImg">
+            <div class = "text-content" style="font-family: Karla; color: antiquewhite">
+                <h2><b>Step 1</b></h2>
+                <h4>Browse our catalog of courses and see our detailed overviews! If you are interested in a course, proceed to the next step:
+                    <br>
+                    <br>
+                    <a href = "HTMLContentPage/HTMLContentPage.html">HTML Course Overview</a><br>
+                    <a href = "PythonContentPage/PythonContentPage.html">Python Course Overview</a>
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class = "col-4">
+        <div class = "single-content">
+            <img src = "signUp.png" alt = "" class = "stepImg">
+            <div class = "text-content" style="font-family: Karla; color: antiquewhite">
+                <h2><b>Step 2:</b></h2>
+                <h4>Sign up for a free trial and see if you enjoy our personalized learning!<br><br> Our platform is purely online but our teaching style and features will make the experience feel like a real classroom:
+                    <br><br>
+                    <a href = "LoginPage/Login.html">Sign up!</a>
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class = "col-4">
+        <div class = "single-content">
+            <img src = "registerNow.png" alt = "" class = "stepImg">
+            <div class = "text-content">
+                <h2><b>Step 3:</b></h2>
+                <h4>Enjoyed your free trial classes? Register for a course to obtain the full experience that is Codeology! <br><br> Registering is available only after you sign up so make sure you have signed up for your free trial first!
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br><br>
+<div class = "container">
+    <div class = "row HRROW" id = whyWeWork></div>
+</div>
+
+<br><br><br>
 <div class = "container"  data-aos="fade-up">
     <div class = "row justify-content-around">
         <div class = "col-8">
@@ -116,8 +179,10 @@
         </div>
     </div>
     <br><br><br>
-
-
+    <div class = "container">
+        <div class = "row HRROW" id = whyWeWork></div>
+    </div>
+    <br><br><br>
     <div class = "row justify-content-around">
         <div class = "col-5 textCards">
             <br>
@@ -129,7 +194,7 @@
         <div class = "col-5 textCards">
             <br>
             <img src="PythonLogo.png" style="height: 90px;">
-            <h3><b></br>Python</b><br><br><p class = "paraCards">Python is a language of the future used to build powerful applications such as Netflix, Youtube, Spotify, and many more. We offer beginner courses on this language so that any student of any age can pick it up easily and start their journey to building robust applications. This course is fun and easy to learn while giving a basic insight into the principles of coding.<br><br>We offer:<br><br><b>-Regular Live Sessions<br><br>-Our online Sandbox Editor accessible from anywhere<br><br>-Personal Resources (slide presentations and notes)<br><br>-Informative Videos by the Instructors</b><br><br>Number of classes in this course: <b>8 one hour classes</b><br><br>Price: <b>$49.99 ($6.25 per class)</b><br><br> Access a more detailed overview about this course <a href="HTMLContentPage/HTMLContentPage.html">here</a>.<br><br>In addition to the useful tools and resources we have available for any registered user, Codeology also integrates communication with parents and ensures accountability for work. With quick and easy contact forms, any problems or issues can easily be addressed by anyone from the Codeology team.</p></h3> <form>
+            <h3><b></br>Python</b><br><br><p class = "paraCards">Python is a language of the future used to build powerful applications such as Netflix, Youtube, Spotify, and many more. We offer beginner courses on this language so that any student of any age can pick it up easily and start their journey to building robust applications. This course is fun and easy to learn while giving a basic insight into the principles of coding.<br><br>We offer:<br><br><b>-Regular Live Sessions<br><br>-Our online Sandbox Editor accessible from anywhere<br><br>-Personal Resources (slide presentations and notes)<br><br>-Informative Videos by the Instructors</b><br><br>Number of classes in this course: <b>8 one hour classes</b><br><br>Price: <b>$49.99 ($6.25 per class)</b><br><br> Access a more detailed overview about this course <a href="HTMLContentPage/HTMLContentPage.html">here</a>.<br><br>In addition to the useful tools and resources we have available for any registered user, Codeology also integrates communication with parents and ensures accountability for work. With quick and easy contact forms, any problems or issues can easily be addressed by anyone from the Codeology team.</p></h3> <form><br>
             <button class = "btn btn-primary mainLinkButtons" id="PYTHONSIGNUP" onclick="signUpNow()">Sign Up for Free!</button>
             <button class = "btn btn-primary mainLinkButtons" id="PYTHONREGISTERNOW" onclick="registerNow()">Register Now!</button>
         </form><br><br></div><br><br>
@@ -159,34 +224,36 @@
         <div class = "row justify-content-center">
             <div class = "col-8">
                 <div class="embed-responsive embed-responsive-21by9">
-                    <iframe width="987" height="555" src="https://www.youtube.com/embed/jD4HI1-aEJk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="987" height="700" src="https://www.youtube.com/embed/jD4HI1-aEJk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
     </div>
     <br><br>
-<div class="column1">
-    <img src="https://i.pinimg.com/originals/c9/91/72/c99172c17b83d3c620b997858351b2a5.gif" class = "cardImg" alt="Img1" style="width:100%">
-    <div class="container1"><br>
-        <h4><b>Foster creativity through customized learning experiences</b></h4>
-        <p><br>Every student has a different process to learning and here, at SBC, this principle is one of our most important. By interacting personally with both the parents and the student, the tutor makes sure that the student has a wholesome learning experience unique to their speed and scope of understanding. We have various batches that group the best combination of students together to foster a communicative classroom while also teaching each student to be accountable to their work and break down complex problems into understandable steps.</p>
+    <div class="column1">
+        <img src="https://i.pinimg.com/originals/c9/91/72/c99172c17b83d3c620b997858351b2a5.gif" class = "cardImg" alt="Img1" style="width:100%; height:450px">
+        <div class="container1"><br>
+            <h4><b>Foster creativity through customized learning experiences</b></h4>
+            <p><br>Every student has a different process to learning and here, at SBC, this principle is one of our most important. By interacting personally with both the parents and the student, the tutor makes sure that the student has a wholesome learning experience unique to their speed and scope of understanding. We have various batches that group the best combination of students together to foster a communicative classroom while also teaching each student to be accountable to their work and break down complex problems into understandable steps.</p>
+        </div>
+    </div>
+    <div class="column1">
+        <img src="6_1.jpg" class = "cardImg" alt="Img2" style="width:100%; height: 450px">
+        <div class="container1"><br>
+            <h4><b>Guaranteed Instructor to Student Ratio of 6:1</b></h4>
+            <p><br> "Too many chefs spoils the soup"<br><br>The same applies here! Our goal is to give each student the proper attention and support they need to grow their skills. To do this, we guarantee a maximum of 6:1 student to teacher ratio. This ensures proper personalized care for each student and makes sure that the parents of each student can be contacted and updated regularly.<br><br> <br></p>
+        </div>
+    </div>
+    <div class="column1">
+        <img src="sandbox.jpg" class = "cardImg" alt="Img3" style="width:100%;height: 450px">
+        <div class="container1"><br>
+            <h4><b>Easy to use website with helpful tools</b></h4>
+            <p><br>An artist is lost without their tools, or so it is said. Here at SBC, our platform offers services and tools such as our Sandbox Editor that takes the confusion of installing various programs to code out for the young students so that they can focus on learning the actual principles and language. This ensures a focused learning that is platform independent and can be accessed from anywhere in the world. Tools and services like the ones we offer are the perfect supplements to the growth of any student in this coding classroom!<br><br></p>
+        </div>
     </div>
 </div>
-<div class="column1">
-    <img src="6_1.jpg" class = "cardImg" alt="Img2" style="width:100%">
-    <div class="container1"><br>
-        <h4><b>Guaranteed Instructor to Student Ratio of 6:1</b></h4>
-        <p><br> "Too many chefs spoils the soup"<br><br>The same applies here! Our goal is to give each student the proper attention and support they need to grow their skills. To do this, we guarantee a maximum of 6:1 student to teacher ratio. This ensures proper personalized care for each student and makes sure that the parents of each student can be contacted and updated regularly.<br><br> <br><br> </p>
-    </div>
-</div>
-<div class="column1">
-    <img src="sandbox.jpg" class = "cardImg" alt="Img3" style="width:100%">
-    <div class="container1"><br>
-        <h4><b>Easy to use website with helpful tools</b></h4>
-    <p><br>An artist is lost without their tools, or so it is said. Here at SBC, our platform offers services and tools such as our Sandbox Editor that takes the confusion of installing various programs to code out for the young students so that they can focus on learning the actual principles and language. This ensures a focused learning that is platform independent and can be accessed from anywhere in the world. Tools and services like the ones we offer are the perfect supplements to the growth of any student in this coding classroom!<br><br></p>
-    </div>
-</div>
-</div>
+
+
 
 
 
@@ -264,10 +331,10 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
 <script src="navigationLinksHomePage.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
 <script>AOS.init();</script>
+
 </html>
