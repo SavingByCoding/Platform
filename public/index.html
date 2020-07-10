@@ -18,6 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="FirebaseCode.js"></script>
 
+
     <title>Saving By Coding</title>
 </head>
 <body class = "mainbod" ng-app = "myApp">
@@ -91,6 +92,37 @@
 
 
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="background: rgba(35,35,59,0.3)" >
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 800px">
+        <div class="modal-content" style="background: #23233b; border: 5px antiquewhite solid">
+            <div class="modal-header" style="text-align: center">
+                <h1 style="color: antiquewhite;font-family: Oswald;text-align: center">Welcome to Codeology</h1>
+
+            </div>
+            <br>
+            <div class="modal-body" style="text-align: center;font-family: Karla;color: antiquewhite">
+                <h4 style="background: #464678; border-radius: 15px;"><br>First time user? Watch the video below to learn what Codeology is about!<br><br> Check out our <a href = "#howWeWork">step by step process</a> to get involved in our academic opportunities!<br><br></h4>
+                <br>
+                <div class="embed-responsive embed-responsive-21by9" style="border-radius: 15px; background: #464678">
+                    <iframe width="987" height="700" src="https://www.youtube.com/embed/jD4HI1-aEJk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <br>
+            <div class = "row justify-content-around">
+                <div class = "col-8" style="background: #464678; border-radius: 15px;">
+                    <h5 style="font-family: Karla; color: antiquewhite;text-align: center"><br><i>As schools shut down and it becomes harder to pursue academic interests, Codeology provides a variety of live lessons, pre-recorded videos, assistive code editors, resources, assignments, and personal projects to keep any registered user interested and always looking for more to learn. </i><br><br></h5>
+                </div>
+            </div>
+
+            <br>
+            <div class = "row justify-content-around">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background: antiquewhite; font-family: Karla;color: #23233b; width: 30%">Close</button>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+
 <div class="jumbotron jumboCont jumbotron-fluid ">
     <div class="container ">
         <div class = "col-6 jumboWordShape align-content-center ml-auto">
@@ -120,7 +152,7 @@
 <div class="container">
     <div class = "row justify-content-around">
         <div class = "col-8">
-            <h1 style = "text-align: center; font-family: Karla; color: #23233b">How We Work:</h1>
+            <h1 style = "text-align: center; font-family: Karla; color: #23233b" id = "howWeWork">The Process:</h1>
         </div>
     </div>
 </div>
@@ -146,7 +178,7 @@
             <img src = "signUp.png" alt = "" class = "stepImg">
             <div class = "text-content" style="font-family: Karla; color: antiquewhite">
                 <h2><b>Step 2:</b></h2>
-                <h4>Sign up for a free trial and see if you enjoy our personalized learning!<br><br> Our platform is purely online but our teaching style and features will make the experience feel like a real classroom:
+                <h4>Sign up for a free trial by signing up with your Google email address and see if you enjoy our personalized learning through demo classes!<br><br> Our platform is purely online but our teaching style and features will make the experience feel like a real classroom:
                     <br><br>
                     <a href = "LoginPage/Login.html">Sign up!</a>
                 </h4>
@@ -158,7 +190,7 @@
             <img src = "registerNow.png" alt = "" class = "stepImg">
             <div class = "text-content">
                 <h2><b>Step 3:</b></h2>
-                <h4>Enjoyed your free trial classes? Register for a course to obtain the full experience that is Codeology! <br><br> Registering is available only after you sign up so make sure you have signed up for your free trial first!
+                <h4>Enjoyed your free trial classes? Register for a course to obtain the full experience that is Codeology! <br><br> Registering is available only after you sign up so make sure you have signed up for your free trial first! See <a href="#courseCards">plans</a> for current courses and <a href="ContactPage/contact.html"> contact us</a> for future courses in Java, JavaScript, and many more!
                 </h4>
             </div>
         </div>
@@ -183,7 +215,7 @@
         <div class = "row HRROW" id = whyWeWork></div>
     </div>
     <br><br><br>
-    <div class = "row justify-content-around">
+    <div class = "row justify-content-around" id = "courseCards">
         <div class = "col-5 textCards">
             <br>
             <img src="HMTLlogo.png" style="height: 90px;">
@@ -212,7 +244,7 @@
     <div class = "row justify-content-center rounded CatchyTitle">
         <div class = "col-8">
             <br>
-            <h1 class = "CatchyTitle"><u><b>What We Offer</b></u></h1>
+            <h1 class = "CatchyTitle"><u><b>Who We Are</b></u></h1>
             <br>
         </div>
     </div>
@@ -228,6 +260,12 @@
                 </div>
             </div>
         </div>
+    </div>
+    <br><br>
+    <h3 style="text-align: center;font-family: Karla">For more about the team, visit the <a href="AboutPage/AboutPage.html">About Page</a>!</h3>
+    <br><br>
+    <div class = "container">
+        <div class = "row HRROW"></div>
     </div>
     <br><br>
     <div class="column1">
@@ -301,10 +339,6 @@
 </div>
 <br><br>
 
-<div class = "container">
-    <div class = "row HRROW" ></div>
-</div>
-<br><br>
 
 
 <footer id="sticky-footer" class="py-4  FOOTER text-white-50" ng-controller = "MyCont2" style="border-top: 10px solid #23233b">

@@ -1,3 +1,4 @@
+var userBool;
 function registerNow(){
     window.open("RegistrationForm/registration.html")
     window.close(this)
@@ -95,8 +96,9 @@ mainMod.controller("myCont1", function ($scope) {
             $scope.currentid= user.uid;
             $scope.signedIn= true;
             $scope.ChangeNavBar();
+            userBool = $scope.signedIn;
 
-            db.collection("users")
+                db.collection("users")
                 .where("userId", "==", user.uid)
                 .get()
                 .then((qs) => {
@@ -109,6 +111,10 @@ mainMod.controller("myCont1", function ($scope) {
         } else {
             // User not logged in or has just logged out.
             $scope.signedIn= false;
+            userBool = $scope.signedIn;
+            $(window).on('load', function () {
+                $('#myModal').modal('show');
+            });
             $scope.ChangeNavBar();
             $("#d6").hide();
             $("#d6").attr("href", "#"); //Hides ADMIN page if the user is logged out
@@ -123,6 +129,7 @@ mainMod.controller("myCont1", function ($scope) {
     function isUserLoggedIn(){
         return $scope.signedIn
     }
+
 
     $scope.ChangeNavBar=()=> {
         console.log(isUserLoggedIn());
@@ -214,6 +221,8 @@ function goBack(){
     window.open(" ProfilePage/profile.html")
     window.close(this)
 }
-
+function returnBool(){
+    return userBool;
+}
 
 

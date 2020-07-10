@@ -460,3 +460,6 @@ html {
 .stepImg{
     border-top: 15px #23233b solid;
 }
+.modal-lg{
+    max-width: 80% !important;
+}
