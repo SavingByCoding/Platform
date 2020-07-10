@@ -58,13 +58,12 @@ mainMod.controller("SubmitAngular", function ($scope) {
         $scope.ParentsEmail = localStorage.getItem("ParentsEmail");
         $scope.ChildAge = localStorage.getItem("ChildAge");
         $scope.ChildGrade = localStorage.getItem("ChildGrade");
-        $scope.SpecifiedTrack = localStorage.getItem("SpecifiedTrack");
         $scope.ConfirmationNumber = localStorage.getItem("ConfirmationNumber");
         $scope.CourseName= localStorage.getItem("CourseName");
         $scope.paid= $scope.paid * 1.07; //Includes tax LOL
         $scope.paid= $scope.paid.toFixed(2)
-
-
+        $scope.phoneNum = localStorage.getItem("PhoneNum");
+        console.log($scope.phoneNum);
 
     };
 
@@ -81,9 +80,9 @@ mainMod.controller("SubmitAngular", function ($scope) {
             ParentsEmail:$scope. ParentsEmail,
             ChildAge: $scope.ChildAge,
             ChildGrade: $scope.ChildGrade,
-            SpecifiedTrack: $scope.SpecifiedTrack,
             ConfirmationNumber: $scope.ConfirmationNumber,
-            CourseName: $scope.CourseName
+            CourseName: $scope.CourseName,
+            PhoneNum: $scope.phoneNum
         };
         console.log(data)
         db.collection("registrations").doc(generateUUID()).set(data);
@@ -109,9 +108,11 @@ mainMod.controller("SubmitAngular", function ($scope) {
             .get()
             .then(function(querySnapshot) {
                 $scope.classes=[];
+                $scope.days = [];
                 querySnapshot.forEach(function(doc) {
                     if((doc.data().users.length < 6 && (doc.data().startDate.toDate() > new Date()))  ) {
                         $scope.classes.push(doc)
+                        $scope.days.push(doc.data().selectedDates);
                         $scope.$apply();
                     }
                 });
@@ -135,7 +136,7 @@ mainMod.controller("SubmitAngular", function ($scope) {
 
     $scope.arrayofusers= [];
     $scope.setUsertoClass = (doc1) =>{
-       $scope.getGroupOfUsers(doc1);
+        $scope.getGroupOfUsers(doc1);
     };
 
     $scope.getGroupOfUsers= function(doc1){
@@ -152,13 +153,13 @@ mainMod.controller("SubmitAngular", function ($scope) {
 
     }
 
-$scope.checkIfUserAlreadyExists= function(){
+    $scope.checkIfUserAlreadyExists= function(){
         for(let i=0; i<$scope.arrayofusers.length;i++){
             if($scope.userID === $scope.arrayofusers[i]){
                 return true; //User Already Exists
             }
         }
-}
+    }
 
 
     $scope.updateUser = function (doc1){
@@ -172,10 +173,12 @@ $scope.checkIfUserAlreadyExists= function(){
     }
 
 
+
     $scope.loadDataFromStorage();
     $scope.submitRegistration();
     $scope.showSchedule();
     console.log($scope.classes);
+    console.log($scope.days);
 
 
     //Check why it doesnt remove demo courses //done

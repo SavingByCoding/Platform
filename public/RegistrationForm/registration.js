@@ -8,11 +8,11 @@ var LastName;
 var ParentsEmail;
 var ChildAge;
 var ChildGrade;
-var SpecifiedTrack;
 var CourseId;
 var paid= 49.99;
 var RegistrationDate= getCurrentDate();
 var ConfirmationNumber= generateUUID();
+var phoneNum;
 
 var fname=document.getElementById("fname");
 var x= document.getElementById("formcontainer1");
@@ -39,6 +39,7 @@ function next1() {
                 y.style.display="block";
                 x.style.display="none";
                 ParentsEmail= $("#Email").val();
+                phoneNum = $("#Phone").val();
             }
 
         }
@@ -104,7 +105,6 @@ function next5()
             b.style.display="none";
             c.style.display="block";
             setSelectedCourseId();
-            SpecifiedTrack= $("#preferences").val();
         }
 
     }
@@ -224,9 +224,9 @@ mainMod.controller("RegistrationForm", function ($scope) {
         localStorage.setItem("ParentsEmail", ParentsEmail);
         localStorage.setItem("ChildAge", ChildAge);
         localStorage.setItem("ChildGrade", ChildGrade);
-        localStorage.setItem("SpecifiedTrack", SpecifiedTrack);
         localStorage.setItem("ConfirmationNumber", ConfirmationNumber);
         localStorage.setItem(("CourseName"),$scope.courseValue);
+        localStorage.setItem(("PhoneNum"),phoneNum);
         console.log($scope.courseValue);
     };
     $("#PayNow").click(function () {

@@ -24,8 +24,8 @@
 
 
 <!--Navbar -->
-<div class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
-    <a href = "#"><img id = "logo" ng-src="{{logo}}" style="height: 80px"></a>
+<nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
+    <a href = "#"><img id = "logo" ng-src={{logo}} style="height: 80px"></a>
     <a class="navbar-brand" href="#" ng-model="websiteTitle" style="font-size: 20px">{{websiteTitle}}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -37,7 +37,7 @@
                 <a style="color: #23233b">----</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
+                <a class="nav-link active" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id = "m2" href="#" ng-model = "menuName2"> {{menuName2}}</a>
@@ -54,14 +54,16 @@
                     <a class="dropdown-item" href="#" ng-model = "menuName6" id = "m6">{{menuName6}}</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a style="color: #23233b">-----------------------------------------------------------------------</a>
-            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <button class = "btn btn-primary registerButton" id="RegisterNow" onClick = "registerNow()" style="background: antiquewhite; color: #23233b; border: transparent">Register Now</button>
             </li>
             <li class="nav-item">
-                <a style="color: #23233b">---------</a>
+                <button class = "btn btn-primary registerButton" id="SignUpForFree" onClick = "signUpNow()" style="background: antiquewhite; color: #23233b; border: transparent">Sign Up for a Free Trial</button>
+            </li>
+            <li class="nav-item">
+                <a style="color: #23233b">------------</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle mr-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
@@ -80,11 +82,13 @@
                     <a class="dropdown-item" href="" id="d6">{{dropdown6}}</a>
                 </div>
             </li>
+            <li class="nav-item">
+                <a style="color: #23233b">------------</a>
+            </li>
         </ul>
     </div>
-</div>
 </nav>
-<!--/.Navbar -->
+<!--/.Navbar --><!--/.Navbar -->
 <div class="jumbotron jumboCont jumbotron-fluid " data-aos="fade-down">
     <div class="container">
         <br>
@@ -147,19 +151,23 @@
                                 <div class="card stretched-link schedule" style="background: #23233b">
                                     <div class="card-body">
                                         <div class = "container">
-                                            <div class = "row justify-content-around">
+                                            <div class = "row justify-content-around" style="background: #48486d; border-radius: 15px;">
                                                 <div class = "col-12"><h4 class = "card-title">Class Name:<br><b>{{class.data().name}}</b></h4></div>
                                             </div>
                                         </div>
                                         <br>
+
+                                        <div class = "row justify-content-around" style="border-radius: 15px; background: #48486d;">
+                                            <div ng-repeat = "day in class.data().selectedDates">
+                                                <small style="font-family: Karla">{{day}}</small>
+                                            </div>
+                                        </div>
+                                        <br>
+
                                         <div class = "row justify-content-around">
-                                            <div class = "col-6"><p class="card-text">
+                                            <div class = "col-12"><p class="card-text" style="text-align: center">
                                                 Timing (EST): <br><b>{{class.data().startTime.seconds* 1000 | date:'h:mm:ss'}} to {{class.data().endTime.seconds* 1000 | date:'h:mm:ss'}}
                                             </b></p></div>
-                                            <div class = "col-6"><p class = "card-text">
-                                                Days of the Week:<br>
-                                                <b>{{class.data().day1}} and {{class.data().day2}}</b>
-                                            </p></div>
                                         </div>
                                         <br>
                                         <h6 style="text-align: center">Class Description:<br><b>{{class.data().description}}</b></h6>

@@ -101,6 +101,8 @@
                 <input id= "FirstName" type="text" class ="input-field" placeholder="(Parent's) First Name" required>
                 <input id= "LastName" type="text" class ="input-field" placeholder="(Parent's) Last Name" required>
                 <input id= "Email" type="text" class ="input-field" placeholder="(Parent's) Email" required>
+                <input id = "Phone" type="tel" class = "input-field" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Parent Phone Number" required>
+                <br><br>
                 <p style="font-size: 12px;">By submitting, you consent to receiving email communication from Codeology for the purposes of providing more information about our services.&nbsp;</p>
                 <div class="center">
                     <div class="btn" id="btn1">
@@ -226,16 +228,7 @@
                     <select id="courseselect" name="CourseSelect" ng-model="courseValue">
                         <option id="SelectedCourse" ng-repeat="course in courseNames" value= "{{course}}" > {{course}}  </option>
                 </select>
-                <div class="preferences">
-                     <label for ="preferences"required >Advanced or Beginner track? </label>
-                   <select id="preferences" name="Preferences">
-                       <option value="select">Select </option>
-                       <option value="beg"> Beginner </option>
-                       <option value="adv"> Advanced </option>
-                       <option value="beg"> No Preference </option>
-                   </select>
 
-                </div>
                 <br>
                 <br>
                 <br>
@@ -284,7 +277,7 @@
     </div>
 </div>
 <br>
-<br><br>
+<br><br><br><br><br>
 <div class="txt1">
     <h5>Before registering for a course, make sure that you've completed your demo class!</h5>
     <h5> Any Questions? Feel free to contact us at savingbycoding@gmail.com and we'll be sure to get back to you promptly!</h5>
