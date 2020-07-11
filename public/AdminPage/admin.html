@@ -675,6 +675,13 @@
                                             <option id="SelectedCourse" ng-repeat="course in courses" value= "{{course.id}}" > {{course.data().name}}  </option>
                                         </select>
                                         <br>
+                                        <br>
+                                        <label for="CourseOpen">Is Course Open? </label>
+                                        <select id="CourseOpen" name="CourseOpen" ng-model="new.group.isOpen">
+                                            <option id="isOpenTrue" ng-value=true >yes</option>
+                                            <option id="isOpenFalse" ng-value=false >no</option>
+                                        </select>
+                                        <br>
                                         <h4>Class Days</h4>
                                         <input type="checkbox" id="Monday" name="Monday" value="Monday">
                                         <label for="Monday"> Monday </label><br>
