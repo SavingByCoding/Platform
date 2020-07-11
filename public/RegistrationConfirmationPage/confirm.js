@@ -110,7 +110,7 @@ mainMod.controller("SubmitAngular", function ($scope) {
                 $scope.classes=[];
                 $scope.days = [];
                 querySnapshot.forEach(function(doc) {
-                    if((doc.data().users.length < 6 && (doc.data().startDate.toDate() > new Date()))  ) {
+                    if((doc.data().isOpen && (doc.data().startDate.toDate() > new Date()))  ) {
                         $scope.classes.push(doc)
                         $scope.days.push(doc.data().selectedDates);
                         $scope.$apply();
