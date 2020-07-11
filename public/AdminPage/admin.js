@@ -320,6 +320,7 @@ app.controller('AppController', ($scope) => {
             endTime:"",
             startDate:"",
             course:"",
+            isOpen:false,
             selectedDates:[],
             users: []
         }
@@ -341,9 +342,11 @@ app.controller('AppController', ($scope) => {
             endTime:"",
             startDate:"",
             course:"",
+            isOpen:false,
             selectedDates:[],
             users: []
         }
+        // $scope.displayClassDays();
     }
 
     $scope.crudGroup = () => {
@@ -370,6 +373,7 @@ app.controller('AppController', ($scope) => {
             endTime: $scope.new.group.endTime,
             startDate: $scope.new.group.startDate,
             course: $scope.new.group.course,
+            isOpen: $scope.new.group.isOpen,
             selectedDates:$scope.new.group.selectedDates,
             users: []
         }
@@ -392,6 +396,7 @@ app.controller('AppController', ($scope) => {
             endTime: $scope.new.group.endTime,
             startDate: $scope.new.group.startDate,
             course: $scope.new.group.course,
+            isOpen: $scope.new.group.isOpen,
             selectedDates:$scope.new.group.selectedDates,
             users: $scope.new.group.users
         }).then(() => {
@@ -402,8 +407,9 @@ app.controller('AppController', ($scope) => {
                     $scope.groups[i].teacher= $scope.new.group.teacher
                     $scope.groups[i].startTime= $scope.new.group.startTime
                     $scope.groups[i].endTime= $scope.new.group.endTime
-                    $scope.new.groups[i].startDate= $scope.new.group.startDate;
+                    $scope.groups[i].startDate= $scope.new.group.startDate;
                     $scope.groups[i].course= $scope.new.group.course
+                    $scope.groups[i].isOpen= $scope.new.group.isOpen
                     $scope.groups[i].selectedDates= $scope.new.group.selectedDates
                     $scope.groups[i].users = $scope.new.group.users
                     return
@@ -452,6 +458,7 @@ app.controller('AppController', ($scope) => {
                     endTime: doc.data().endTime.toDate(),
                     startDate: doc.data().startDate.toDate(),
                     course: doc.data().course,
+                    isOpen: doc.data().isOpen,
                     selectedDates: doc.data().selectedDates,
                     users: doc.data().users
                 })
