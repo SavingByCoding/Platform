@@ -41,8 +41,14 @@ function download(filename, text) {
 var editor = ace.edit("editor");
 
 CreateEditor =  () => {
+    ace.require("ace/ext/language_tools");
     editor.setTheme("ace/theme/dracula");
     editor.getSession().setMode("ace/mode/html");
+    editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: false
+    });
     editor.setValue(`<!DOCTYPE html>
 <html>
 <head>
