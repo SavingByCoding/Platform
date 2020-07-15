@@ -23,7 +23,6 @@ $(document).ready(function () {
             document.getElementById("outputScreen").value= text;
         }
 
-
     });
 
 });

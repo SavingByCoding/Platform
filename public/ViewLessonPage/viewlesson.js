@@ -90,7 +90,7 @@ app.controller('AppController', ($scope) => {
             let course = {id: doc.id}
             Object.assign(course, doc.data())
             $scope.course = course
-            if ($scope.user.userType !== '2') {
+            if ($scope.user.userType == '1') { //checks if you are a registered student before course stats
                 db.collection("registrations")
                     .where("userId", "==", $scope.userId)
                     .where("courseId", "==", doc.id)
