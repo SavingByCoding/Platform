@@ -559,3 +559,14 @@ html {
 {
     color: #7a7a7a;
 }
+.schedule{
+    width: 100%;
+    color: antiquewhite;
+    font-family: Karla;
+    transition: all 1s ease;
+    border: #464672 solid 3px;
+}
+.schedule:hover{
+    transform: scale(1.02);
+    background: #464672;
+}

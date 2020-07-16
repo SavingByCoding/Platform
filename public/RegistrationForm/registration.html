@@ -18,8 +18,7 @@
     <script src="../navigationLinks.js"></script>
     <title>Contact Page</title>
 </head>
-<body class="mainbod" ng-app = "myApp" ng-controller = "RegistrationForm" style="font-family: Karla">
-
+<body class="mainbod" ng-app = "myApp" id = "mainBod" ng-controller = "RegistrationForm" style="font-family: Karla">
 
 <!--Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
@@ -233,7 +232,6 @@
                     <select id="courseselect" name="CourseSelect" ng-model="courseValue">
                         <option id="SelectedCourse" ng-repeat="course in courseNames" value= "{{course}}" > {{course}}  </option>
                 </select>
-
                 <br>
                 <br>
                 <br>
@@ -245,19 +243,82 @@
                 <div class="center">
                     <div class="btn" id="btn5">
                         <button type="button" class="previousbtn" onclick="previous4()">Previous</button>
-                        <button type="button"  class="nextbtn"onclick="next5()">Next</button>
+                        <button type="button"  class="nextbtn" onclick="next5()">Next</button>
                     </div>
                 </div>
             </div>
             </form>
-        <form name="Page6">
-            <div class="formcontainer6" id="formcontainer6" >
-                <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated"><span style="color: #000000;">Finish & Pay</span></h3>
-                    <div class = "row justify-content-around">
-                        <div class = "col-6">
-                    <button id="PayNow"> <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif"></button>
+
+        <div class="modal fade" id="x" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+            <div class="modal-dialog" role="document" style="width: 150%">
+                <div class="modal-content"  style="background: antiquewhite">
+                    <div class="modal-header" style="text-align: center">
+                        <h5 class="modal-title" id="exampleModalLongTitle" style="font-family: Karla;text-align: center; color: #23233b;">Scheduling</h5>
+                    </div>
+                    <div class="modal-body">
+                        <h6 style="font-family: Karla;text-align: center; color: #23233b;">See what class suits your availability and preference- then choose! If you cannot find a class to suit your preferences, <a href="../ContactPage/contact.html">Contact Us!</a> </h6><br>
+                        <h3 style="color: #23233b; font-family: Karla;text-align: center">Available Classes</h3>
+                        <div ng-repeat = "class in classes">
+                            <div class = "row justify-content-around">
+                                <div class = "col-10">
+                                    <a href ng-click="setUsertoClass(class)">
+                                        <div class="card stretched-link schedule" style="background: #23233b">
+                                            <div class="card-body">
+                                                <div class = "container">
+                                                    <div class = "row justify-content-around" style="background: #48486d; border-radius: 15px;">
+                                                        <div class = "col-12"><h4 class = "card-title">Class Name:<br><b>{{class.data().name}}</b></h4></div>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class = "row justify-content-around" style="border-radius: 15px; background: #48486d;">
+                                                    <div ng-repeat = "day in class.data().selectedDates">
+                                                        <small style="font-family: Karla">{{day}}</small>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class = "row justify-content-around">
+                                                    <div class = "col-12"><p class="card-text" style="text-align: center">
+                                                        Timing (EST): <br><b>{{class.data().startTime.seconds* 1000 | date:'h:mm:ss'}} to {{class.data().endTime.seconds* 1000 | date:'h:mm:ss'}}
+                                                    </b></p></div>
+                                                </div>
+                                                <br>
+                                                <h6 style="text-align: center">Class Description:<br><b>{{class.data().description}}</b></h6>
+                                                <br>
+                                                <div class = "row justify-content-around">
+                                                    <div class = "col-6">Taught by: <b>{{class.data().teacher}}</b></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <br>
+                            </a>
                         </div>
                     </div>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" style="width: 90%; background: #23233b;color: antiquewhite;font-family: Karla">
+                        Close (by closing this tab, you have not chosen a class yet)
+                    </button>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <form name="Page6">
+            <div class="formcontainer6" id="formcontainer6" >
+                <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated"><span style="color: #000000;">Schedule, Pay, & Finish</span></h3>
+                <div class = "container">
+                    <h5 style="font-family: Karla; color: #23233b;">Choose your class dates and timings based on available classes!</h5><br>
+                    <div class = "row justify-content-around">
+                        <div class = "col-8" style="text-align: center">
+                            <button onclick="forClasses()" style="width: 100%; background: #23233b; color: antiquewhite; font-family: Karla;font-size: 20px;border-radius: 15px">Choose Schedule</button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                    <h6 style="font-family: Karla; color: #23233b;text-align: center">If there are no available classes, don't worry! <a href="../ContactPage/contact.html">Contact us</a> and we can sort it out for you. </h6>
                     <br>
                     <br>
                     <br>
@@ -265,11 +326,7 @@
                     <br>
                     <br>
                     <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+
                     <div class="center">
                         <div class="btn" id="btn7">
                             <button type="button" class="previousbtn" onclick="previous5()">Previous</button>

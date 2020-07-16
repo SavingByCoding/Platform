@@ -102,12 +102,18 @@ function next5()
             alert('There are some required fields!');
             break;
         } else {
+            setSelectedCourseId();
             b.style.display="none";
             c.style.display="block";
-            setSelectedCourseId();
         }
 
     }
+}
+function forClasses(){
+    jQuery(function($) {
+        $('#x').modal('show');
+        angular.element($('#mainBod')).scope().showSchedule();
+    });
 }
 function previous5()
 {
@@ -151,7 +157,7 @@ mainMod.controller("RegistrationForm", function ($scope) {
          $scope.courseNames.forEach(function (courseName,index) {
              var previousRegistrations = db.collection('registrations').where("userId", "==", userID); //Gets all documents in registration for a specific user when they register
              previousRegistrations.get().then(function (querySnapshot) {
-                 querySnapshot.forEach(function (doc) {  //Itterates through all documents
+                 querySnapshot.forEach(function (doc) {  //Iterates through all documents
                      CurrentCourseId =doc.data().courseId; //Gets course id from current id document
                      Course= db.collection('courses').doc(CurrentCourseId); //searches the currentcourse
                     // console.log(CurrentCourseId)
@@ -235,6 +241,81 @@ mainMod.controller("RegistrationForm", function ($scope) {
 
     });
 
-     
+    $scope.main = []
+    $scope.showSchedule = function() {
+        db.collection("groups").where("course", "==", CourseId)
+            .get()
+            .then(function(querySnapshot) {
+                $scope.classes=[];
+                $scope.days = [];
+                querySnapshot.forEach(function(doc) {
+                    if((doc.data().isOpen && (doc.data().startDate.toDate() > new Date()))  ) {
+                        $scope.classes.push(doc)
+                        console.log($scope.classes)
+                        $scope.days.push(doc.data().selectedDates);
+                        $scope.$apply();
+                    }
+                });
+            })
+            .catch(function(error) {
+                console.log("Error getting documents: ", error);
+            });
+
+    }
+
+    // $scope.setUsertoClass = (doc1) =>{
+    //     console.log(doc1.id)
+    //     var ref1 = db.collection("groups").doc(doc1.id).get().then(function (doc) {
+    //         console.log(doc.users);
+    //         $scope.$apply();
+    //         window.open("../ProfilePage/profile.html");
+    //         window.close(this);
+    //     })
+    //     //
+    // }
+
+    $scope.arrayofusers= [];
+    $scope.setUsertoClass = (doc1) =>{
+        $scope.getGroupOfUsers(doc1);
+
+    };
+
+    $scope.getGroupOfUsers= function(doc1){
+        var docRef = db.collection("groups").doc(doc1.id);
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                $scope.arrayofusers = doc.data().users;
+                console.log("array from DB: "+ doc.data().users)
+                $scope.updateUser(doc1);
+                window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5AH9YDUT9WUSS");
+                window.close(this);
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+            window.alert("Oops! The website has run into an unforeseen problem. No worries! Click the link on this page to Contact Us and we can fix this issue.")
+        });
+
+    }
+
+    $scope.checkIfUserAlreadyExists= function(){
+        for(let i=0; i<$scope.arrayofusers.length;i++){
+            if($scope.userID === $scope.arrayofusers[i]){
+                return true; //User Already Exists
+            }
+        }
+    }
+
+
+    $scope.updateUser = function (doc1){
+        if(!$scope.checkIfUserAlreadyExists()){
+            $scope.arrayofusers.push($scope.userID);
+            console.log($scope.arrayofusers);
+            var ref1 = db.collection("groups").doc(doc1.id).update({
+                users:$scope.arrayofusers
+            });
+            console.log( $scope.arrayofusers);
+        }
+    }
+
 });
 
