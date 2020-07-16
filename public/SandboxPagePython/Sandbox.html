@@ -201,10 +201,18 @@
                 <div id="editor"> #Put your code in here</div>
                 <div id=" compilescreen">
                     <script src="ace.js" type="text/javascript" charset="utf-8"></script>
+                    <script src="ext-language_tools.js"></script>
                     <script>
+                        ace.require("ace/ext/language_tools");
                         var editor = ace.edit("editor");
                         editor.setTheme("ace/theme/dracula");
                         editor.session.setMode("ace/mode/python");
+                        editor.setShowPrintMargin(false);
+                        editor.setOptions({
+                            enableBasicAutocompletion: true,
+                            enableSnippets: true,
+                            enableLiveAutocompletion: false
+                        });
                     </script>
                 </div>
             </div>

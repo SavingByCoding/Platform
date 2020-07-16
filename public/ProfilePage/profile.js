@@ -70,7 +70,8 @@ mainMod.controller('MainContentController', ($scope) => {
         let iterationsLoaded = 0
 
         let now = new Date()
-        let threeWeeksLater = new Date()
+        now.setTime(new Date().getTime() - 3600000) // displays notification for an hour
+        let threeWeeksLater = new Date();
         threeWeeksLater.setTime(new Date().getTime() + 1814400000)
 
         for (let i = 0; i < lastI; i++) {

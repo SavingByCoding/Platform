@@ -40,7 +40,8 @@ app.controller('AppController', ($scope) => {
     }
 
     $scope.verifyRegistration = (courseIndex, courseId) => {
-        if (($scope.user.userType === '2') || ($scope.user.userType === '3') ) return
+        console.log($scope.user.userType)
+        if (($scope.user.userType === '2') || ($scope.user.userType === '3') ) return;
         db.collection("registrations")
             .where("userId", "==", $scope.userId)
             .where("courseId", "==", courseId)
