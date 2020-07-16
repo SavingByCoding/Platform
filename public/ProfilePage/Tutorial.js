@@ -1,6 +1,54 @@
 var userID;
 var isnewUser;
+var unregisteredGroupID;
 function LoadTutorialIfNewUser() {
+    arrayofusers=[]; //users in unregisteredgroup
+
+    //Get unregistered groupID from DB
+    //Pull current array of those users
+    //Update that array with the new user
+getUnregisteredGroupID= function(){
+    db.collection("groups").where("name", "==", "Unregistered Users").get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                unregisteredGroupID= doc.id;
+            });
+        })
+        .catch(function(error) {
+        });
+}
+
+    getUnregisteredGroupID();
+
+    getGroupOfUsers= function(doc1){
+        var docRef = db.collection("groups").doc(doc1);
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                arrayofusers = doc.data().users;
+                updateUser(doc1);
+            }
+        }).catch(function(error) {
+        });
+
+    };
+
+checkIfUserAlreadyExists= function(){
+        for(let i=0; i<arrayofusers.length;i++){
+            if(userID === arrayofusers[i]){
+                return true; //User Already Exists
+            }
+        }
+    };
+
+    updateUser = function (doc1){
+        if(!checkIfUserAlreadyExists()){
+            arrayofusers.push(userID);
+            var ref1 = db.collection("groups").doc(doc1).update({
+                users:arrayofusers
+            });
+        }
+    };
+
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             userID = user.uid;
@@ -72,6 +120,7 @@ function t(){
 
 function t1(){
 
+    // setTimeout(function(){getGroupOfUsers(unregisteredGroupID);}, 600)
 
     //adds overlay
     var overlay = document.getElementById("OVRLY");
@@ -366,6 +415,7 @@ function t9() {
     };
 
     db.collection('users').doc(userID).update(data);
+    getGroupOfUsers(unregisteredGroupID);
 };
 function contact(){
     window.open("../ContactPage/contact.html")
