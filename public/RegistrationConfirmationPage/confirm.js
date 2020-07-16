@@ -1,7 +1,15 @@
 var RegistrationDate= new Date();
 var toAdd = document.createDocumentFragment();
-mainMod.controller("SubmitAngular", function ($scope) {
+var userID;
 
+mainMod.controller("SubmitAngular", function ($scope) {
+    firebase.auth().onAuthStateChanged(function(user){
+        if (user) {
+            userID=user.uid;
+        } else {
+
+        }
+    });
 
 
     // $scope.isPreviousRegistration = function () {
@@ -50,7 +58,6 @@ mainMod.controller("SubmitAngular", function ($scope) {
         // }
         // ;
         $scope.CourseId = localStorage.getItem("courseId");
-        console.log($scope.CourseId)
         $scope.paid = localStorage.getItem("paid");
         $scope.userID = localStorage.getItem("userId");
         $scope.FirstName =  localStorage.getItem("FirstName");
@@ -63,7 +70,8 @@ mainMod.controller("SubmitAngular", function ($scope) {
         $scope.paid= $scope.paid * 1.07; //Includes tax LOL
         $scope.paid= $scope.paid.toFixed(2)
         $scope.phoneNum = localStorage.getItem("PhoneNum");
-        console.log($scope.phoneNum);
+        $scope.registeredGroupID= localStorage.getItem("registeredGroupID");
+        console.log($scope.registeredGroupID)
 
     };
 
@@ -86,105 +94,48 @@ mainMod.controller("SubmitAngular", function ($scope) {
         };
         console.log(data)
         db.collection("registrations").doc(generateUUID()).set(data);
-
     };
-    //  $scope.DisplayData= function () {
-    //     var docRef = db.collection("courses").doc($scope.CourseId);
-    //     docRef.get().then(function (doc) {
-    //         if (doc.exists) {
-    //             Course = doc.data();
-    //             $scope.CourseName = Course.name;
-    //         }
-    //     }).catch(function (error) {
-    //         console.log("Error getting document:", error);
-    //     });
-    //
-    //
-    // };
-
-    $scope.main = []
-    $scope.showSchedule = function() {
-        db.collection("groups").where("course", "==", $scope.CourseId)
-            .get()
-            .then(function(querySnapshot) {
-                $scope.classes=[];
-                $scope.days = [];
-                querySnapshot.forEach(function(doc) {
-                    if((doc.data().isOpen && (doc.data().startDate.toDate() > new Date()))  ) {
-                        $scope.classes.push(doc)
-                        $scope.days.push(doc.data().selectedDates);
-                        $scope.$apply();
-                    }
-                });
-            })
-            .catch(function(error) {
-                console.log("Error getting documents: ", error);
-            });
-
-    }
-
-    // $scope.setUsertoClass = (doc1) =>{
-    //     console.log(doc1.id)
-    //     var ref1 = db.collection("groups").doc(doc1.id).get().then(function (doc) {
-    //         console.log(doc.users);
-    //         $scope.$apply();
-    //         window.open("../ProfilePage/profile.html");
-    //         window.close(this);
-    //     })
-    //     //
-    // }
 
     $scope.arrayofusers= [];
-    $scope.setUsertoClass = (doc1) =>{
-        $scope.getGroupOfUsers(doc1);
-    };
-
     $scope.getGroupOfUsers= function(doc1){
-        var docRef = db.collection("groups").doc(doc1.id);
+        var docRef = db.collection("groups").doc(doc1);
         docRef.get().then(function(doc) {
             if (doc.exists) {
                 $scope.arrayofusers = doc.data().users;
                 console.log("array from DB: "+ doc.data().users)
                 $scope.updateUser(doc1);
+
             }
         }).catch(function(error) {
             console.log("Error getting document:", error);
+            // window.alert("Oops! The website has run into an unforeseen problem. No worries! Click the link on this page to Contact Us and we can fix this issue.")
         });
 
     }
 
     $scope.checkIfUserAlreadyExists= function(){
         for(let i=0; i<$scope.arrayofusers.length;i++){
-            if($scope.userID === $scope.arrayofusers[i]){
+            if(userID === $scope.arrayofusers[i]){
                 return true; //User Already Exists
             }
         }
     }
 
-
     $scope.updateUser = function (doc1){
         if(!$scope.checkIfUserAlreadyExists()){
-            $scope.arrayofusers.push($scope.userID);
-            var ref1 = db.collection("groups").doc(doc1.id).update({
+            $scope.arrayofusers.push(userID);
+            console.log($scope.arrayofusers);
+            var ref1 = db.collection("groups").doc(doc1).update({
                 users:$scope.arrayofusers
             });
-            console.log( $scope.arrayofusers);
         }
-    }
+    };
 
 
 
     $scope.loadDataFromStorage();
     $scope.submitRegistration();
-    $scope.showSchedule();
-    console.log($scope.classes);
-    console.log($scope.days);
-
-
-    //Check why it doesnt remove demo courses //done
-    //Check if it removes courses already registered //Works
-    //Check if the user already registered for the course if they did dont submit data
-    //Clear Data //Dont need to do
+    $scope.getGroupOfUsers($scope.registeredGroupID);
 
 
 });

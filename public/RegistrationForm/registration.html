@@ -258,7 +258,7 @@
                     <div class="modal-body">
                         <h6 style="font-family: Karla;text-align: center; color: #23233b;">See what class suits your availability and preference- then choose! If you cannot find a class to suit your preferences, <a href="../ContactPage/contact.html">Contact Us!</a> </h6><br>
                         <h3 style="color: #23233b; font-family: Karla;text-align: center">Available Classes</h3>
-                        <div ng-repeat = "class in classes">
+                        <div  ng-repeat = "class in classes">
                             <div class = "row justify-content-around">
                                 <div class = "col-10">
                                     <a href ng-click="setUsertoClass(class)">
@@ -298,6 +298,7 @@
                             </a>
                         </div>
                     </div>
+<!--                    <button type="button"  class="btn btn-primary" onclick="OpenPaypal()" >Submit & Pay</button>-->
                     <button type="button" class="btn btn-primary" data-dismiss="modal" style="width: 90%; background: #23233b;color: antiquewhite;font-family: Karla">
                         Close (by closing this tab, you have not chosen a class yet)
                     </button>

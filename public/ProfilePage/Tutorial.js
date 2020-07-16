@@ -46,7 +46,9 @@ checkIfUserAlreadyExists= function(){
             var ref1 = db.collection("groups").doc(doc1).update({
                 users:arrayofusers
             });
+            location.reload();
         }
+        location.reload();
     };
 
     firebase.auth().onAuthStateChanged(function(user) {

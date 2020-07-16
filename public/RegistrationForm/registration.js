@@ -13,6 +13,7 @@ var paid= 49.99;
 var RegistrationDate= getCurrentDate();
 var ConfirmationNumber= generateUUID();
 var phoneNum;
+var registeredGroupID;
 
 var fname=document.getElementById("fname");
 var x= document.getElementById("formcontainer1");
@@ -28,6 +29,10 @@ z.style.display="none";
 b.style.display="none";
 c.style.display="none";
 
+OpenPaypal = function(){
+    window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5AH9YDUT9WUSS");
+    window.close(this);
+}
 
 function next1() {
     var form = document.getElementById('Page1');
@@ -202,24 +207,6 @@ mainMod.controller("RegistrationForm", function ($scope) {
          }
      }
 
-
-    // submitRegistration = function(){
-    //     let data={
-    //         courseId:CourseId,
-    //         date: RegistrationDate,
-    //         paid: paid,
-    //         userId: userID,
-    //         FirstName: FirstName,
-    //         LastName: LastName,
-    //         ParentsEmail: ParentsEmail,
-    //         ChildAge: ChildAge,
-    //         ChildGrade: ChildGrade,
-    //         SpecifiedTrack: SpecifiedTrack,
-    //         ConfirmationNumber:ConfirmationNumber
-    //     };
-    //
-    //     db.collection("registrations").doc(generateUUID()).set(data);
-    // };
     $scope.SetLocalStorage = function () {
          console.log(CourseId)
         localStorage.setItem("courseId", CourseId);
@@ -233,23 +220,21 @@ mainMod.controller("RegistrationForm", function ($scope) {
         localStorage.setItem("ConfirmationNumber", ConfirmationNumber);
         localStorage.setItem(("CourseName"),$scope.courseValue);
         localStorage.setItem(("PhoneNum"),phoneNum);
-        console.log($scope.courseValue);
-    };
-    $("#PayNow").click(function () {
-       $scope.SetLocalStorage();
-       window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5AH9YDUT9WUSS");
+        localStorage.setItem("registeredGroupID",registeredGroupID);
 
-    });
+        OpenPaypal(); //Will open Payment processing
+
+    };
 
     $scope.main = []
-    $scope.showSchedule = function() {
+    $scope.showSchedule = function() { //works
         db.collection("groups").where("course", "==", CourseId)
             .get()
             .then(function(querySnapshot) {
                 $scope.classes=[];
                 $scope.days = [];
                 querySnapshot.forEach(function(doc) {
-                    if((doc.data().isOpen && (doc.data().startDate.toDate() > new Date()))  ) {
+                    if((doc.data().isOpen & (doc.data().startDate.toDate() > new Date()))  ) {
                         $scope.classes.push(doc)
                         console.log($scope.classes)
                         $scope.days.push(doc.data().selectedDates);
@@ -263,59 +248,13 @@ mainMod.controller("RegistrationForm", function ($scope) {
 
     }
 
-    // $scope.setUsertoClass = (doc1) =>{
-    //     console.log(doc1.id)
-    //     var ref1 = db.collection("groups").doc(doc1.id).get().then(function (doc) {
-    //         console.log(doc.users);
-    //         $scope.$apply();
-    //         window.open("../ProfilePage/profile.html");
-    //         window.close(this);
-    //     })
-    //     //
-    // }
 
     $scope.arrayofusers= [];
     $scope.setUsertoClass = (doc1) =>{
-        $scope.getGroupOfUsers(doc1);
-
+        registeredGroupID= doc1.id; //sets the class the user selected to local storage
+        $scope.SetLocalStorage();
     };
 
-    $scope.getGroupOfUsers= function(doc1){
-        var docRef = db.collection("groups").doc(doc1.id);
-        docRef.get().then(function(doc) {
-            if (doc.exists) {
-                $scope.arrayofusers = doc.data().users;
-                console.log("array from DB: "+ doc.data().users)
-                $scope.updateUser(doc1);
-                window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5AH9YDUT9WUSS");
-                window.close(this);
-            }
-        }).catch(function(error) {
-            console.log("Error getting document:", error);
-            window.alert("Oops! The website has run into an unforeseen problem. No worries! Click the link on this page to Contact Us and we can fix this issue.")
-        });
-
-    }
-
-    $scope.checkIfUserAlreadyExists= function(){
-        for(let i=0; i<$scope.arrayofusers.length;i++){
-            if($scope.userID === $scope.arrayofusers[i]){
-                return true; //User Already Exists
-            }
-        }
-    }
-
-
-    $scope.updateUser = function (doc1){
-        if(!$scope.checkIfUserAlreadyExists()){
-            $scope.arrayofusers.push($scope.userID);
-            console.log($scope.arrayofusers);
-            var ref1 = db.collection("groups").doc(doc1.id).update({
-                users:$scope.arrayofusers
-            });
-            console.log( $scope.arrayofusers);
-        }
-    }
 
 });
 
