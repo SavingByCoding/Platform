@@ -570,3 +570,16 @@ html {
     transform: scale(1.02);
     background: #464672;
 }
+.courseSelectButton{
+    background: #23233b;
+    color: antiquewhite;
+    font-family: Karla;
+    transition: all 1s ease;
+    border: solid transparent;
+    border-radius: 15px;
+    font-size: 16px;
+}
+.courseSelectButton:hover{
+    background: #454572;
+    transform: scale(1.04);
+}

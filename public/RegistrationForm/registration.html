@@ -18,7 +18,7 @@
     <script src="../navigationLinks.js"></script>
     <title>Registration page</title>
 </head>
-<body class="mainbod" ng-app = "myApp" id = "mainBod" ng-controller = "RegistrationForm" style="font-family: Karla">
+<body class="mainbod" ng-app = "myApp" id = "mainBod" ng-controller = "RegistrationForm" style="font-family: Karla" >
 
 <!--Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
@@ -178,7 +178,7 @@
                 <div class="center">
                     <div class="btn" id="btn3">
                         <button type="button" class="previousbtn" onclick="previous2()">Previous</button>
-                        <button type="button"  class="nextbtn"onclick="next3()">Next</button>
+                        <button type="button"  class="nextbtn" ng-click="getCourseName(3)">Next</button>
                     </div>
                 </div>
             </div>
@@ -219,21 +219,31 @@
                 <div class="center">
                     <div class="btn" id="btn4">
                         <button type="button" class="previousbtn" onclick="previous3()">Previous</button>
-                        <button type="button"  class="nextbtn"onclick="next4()">Next</button>
+                        <button type="button"  class="nextbtn" ng-click="getCourseName(4)">Next</button>
                     </div>
                 </div>
             </div>
             </form>
-        <form name="Page5">
+        <form name="Page5" >
             <div class="formcontainer5" id="formcontainer5">
                 <br>
                     <h3 style="text-align: center; --fontSize:32; line-height: 1.5;" data-fontsize="32" data-lineheight="48px" class="fusion-responsive-typography-calculated"><span style="color: #000000;">Which course would you like to register for?</span></h3>
-                    <label class="courseselect1" for ="courseselect"> Course Select </label>
-                    <select id="courseselect" name="CourseSelect" ng-model="courseValue">
-                        <option id="SelectedCourse" ng-repeat="course in courseNames" value= "{{course}}" > {{course}}  </option>
-                </select>
-                <br>
-                <br>
+                    <!--<button ng-click="getCourseName(1)">Load classes</button>-->
+                <div class = "row justify-content-around">
+                    <div class = "col-8" style="text-align: center">
+                        <select id="courseselect" name="CourseSelect" ng-model="courseValue" ng-options = "course as (course) for course in courseNames" class="show-tick" style="width: 100%; text-align: center;font-family: Karla;background: #faf7f4;color: #23233b;font-size: 18px; height: 40px;border-radius: 15px;">
+                            <option id="SelectedCourse" value= "{{course}}" ></option>
+                        </select>
+                    </div>
+                </div>
+                <br><br>
+                <div class = "row justify-content-around" >
+                    <div class = "col-8" style="text-align: center;color: antiquewhite; border-radius: 15px; background: #4b4b7d">
+                        <h4><b><u>Course Selected:</u></b></h4>
+                        <h6 ng-bind = "courseValue">{{courseValue}}</h6>
+                    </div>
+                </div>
+
                 <br>
                 <br>
                 <br>
@@ -286,7 +296,7 @@
                                                 <br>
                                                 <h6 style="text-align: center">Class Description:<br><b>{{class.data().description}}</b></h6>
                                                 <br>
-                                                <div class = "row justify-content-around">
+                                                <div class = "row justify-content-around" style="text-align: center">
                                                     <div class = "col-6">Taught by: <b>{{class.data().teacher}}</b></div>
                                                 </div>
                                             </div>

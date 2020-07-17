@@ -143,17 +143,29 @@ mainMod.controller("RegistrationForm", function ($scope) {
 
         }
     });
+    let counter = 0;
     //Get all the Courses from DB and put into an array
-    $scope.getCourseName= function () {
-        db.collection('courses').get().then((snapshot)=>{
-            snapshot.docs.forEach(doc=>{
-                // console.log(doc.data().name)
-                $scope.courses.push(doc.data());
-                $scope.courseNames.push(doc.data().name);
-                setTimeout(function(){$scope.checkPreviousRegistration()}, 100)
-                $scope.apply();
-            })
-        });
+    $scope.getCourseName= function (num) {
+        if (num === 4)
+            next4();
+        if(num ===3)
+            next3();
+        counter++;
+        console.log(counter);
+        if(counter <=1) {
+            db.collection('courses').get().then((snapshot) => {
+                snapshot.docs.forEach(doc => {
+                    // console.log(doc.data().name)
+                    if (!(doc.data().demo)){
+                    $scope.courses.push(doc.data());
+                    $scope.courseNames.push(doc.data().name);
+                    setTimeout(function () {
+                        $scope.checkPreviousRegistration()
+                    }, 100)
+                }
+                })
+            });
+        }
     };
 
     //Create a function to check if the user is already registered for the course
@@ -182,20 +194,19 @@ mainMod.controller("RegistrationForm", function ($scope) {
      };
 
 
-    $scope.getCourseName();
-
 
     $scope.courseValue=""; //the data-model that tells you what the user selected
      setSelectedCourseId = function (){
         //When the user clicks next it will take current course
         //Gets the id of the current course
         //sets the current id of the course to the variable
-         coursename =  $scope.courseValue;
+         var coursename =  $scope.courseValue;
         var courseiddocuments = db.collection('courses').where("name", "==", coursename );
         courseiddocuments.get()
             .then(function(querySnapshot) {
                 querySnapshot.forEach(function (doc) {
                     CourseId=doc.id;
+                    console.log(CourseId);
                 });
             });
      }
