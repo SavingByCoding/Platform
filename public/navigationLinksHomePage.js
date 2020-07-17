@@ -1,6 +1,5 @@
 var userBool;
 let emails = [];
-
 function registerNow(){
     window.open("RegistrationForm/registration.html")
     window.close(this)
@@ -226,62 +225,63 @@ function goBack(){
 function returnBool(){
     return userBool;
 }
-
+let currentEmail;
+let firstName;
+let lastName;
 //function to submit info to email-list
 function submitEmail(){
     //gets all the values
     let email = document.getElementById("email").value;
-    let firstName = document.getElementById("fname").value;
-    let lastName = document.getElementById("lname").value;
+    currentEmail=email.toLowerCase();
+    firstName = document.getElementById("fname").value;
+    lastName = document.getElementById("lname").value;
 
     //makes sure that fields are valid
     if(!(email.includes(" ")) && !(firstName === "") && !(lastName === "") && email.includes("@") && email.includes(".")) {
-        if (checkEmail(email)) {
-        console.log(checkEmail(email))
-            let data = {
-                userEmail: email,
-                userFirstName: firstName,
-                userLastName: lastName
-            }
-            //sends email list data to new doc created on email-list collection
-            db.collection("email-list").doc(generateUUID()).set(data);
-
-            //changes visuals for the form submitted
-            document.getElementById("emailListBtn").disabled = true;
-            document.getElementById("emailListBtn").innerText = "Submitted!";
-            document.getElementById("emailListBtn").style.background = "#2dcb4d";
-            document.getElementById("email").readOnly = true;
-            document.getElementById("fname").readOnly = true;
-            document.getElementById("lname").readOnly = true;
-            document.getElementById("subscribe").style.display = "none";
+        isEmailReused();
         }
-        else {
-            document.getElementById("emailInvalid").style.display = "block";
-        }
-    }
     //if fields are not valid then red text "invalid" appears
     else {
         document.getElementById("subscribe").style.display = "block";
     }
 
 }
-function checkEmail(email){
-    let counter = 0;
-    db.collection("email-list").where("userEmail", "==", email)
+function isEmailReused() {
+    db.collection("email-list").where("userEmail", "==",currentEmail)
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
-                if(doc.data().userEmail === email){
-                    counter++;
+                if(doc.exists){
+                    console.log("doc exits")
+                    document.getElementById("emailInvalid").style.display = "block";
                 }
             });
+            if(querySnapshot.empty){
+                let data = {
+                    userEmail: currentEmail, //just to avoid comparisons where its the same email but typed differently
+                    userFirstName: firstName,
+                    userLastName: lastName
+                }
+                //sends email list data to new doc created on email-list collection
+                db.collection("email-list").doc(generateUUID()).set(data).then(function() {
+                    console.log("Document successfully written!");
+                })
+                    .catch(function(error) {
+                        console.error("Error writing document: ", error);
+                    });;
+
+                //changes visuals for the form submitted
+                document.getElementById("emailListBtn").disabled = true;
+                document.getElementById("emailListBtn").innerText = "Submitted!";
+                document.getElementById("emailListBtn").style.background = "#2dcb4d";
+                document.getElementById("email").readOnly = true;
+                document.getElementById("fname").readOnly = true;
+                document.getElementById("lname").readOnly = true;
+                document.getElementById("subscribe").style.display = "none";
+            }
         })
         .catch(function(error) {
-            console.log("Error getting documents: ", error);
         });
-if(counter > 0){
-    return false;
 }
-else return true;
-}
+
 
