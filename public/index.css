@@ -463,3 +463,7 @@ html {
 .modal-lg{
     max-width: 80% !important;
 }
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}

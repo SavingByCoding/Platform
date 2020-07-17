@@ -1,10 +1,12 @@
 var userBool;
+let emails = [];
+
 function registerNow(){
     window.open("RegistrationForm/registration.html")
     window.close(this)
 }
 function signUpNow(){
-    window.open("LoginPage/Login.html")
+    window.open("LoginPage/signUp.html")
     window.close(this)
 }
 
@@ -210,8 +212,8 @@ mainMod.controller("MyCont2", function ($scope) {
     let f6 = document.getElementById("f6")
     f6.href = $scope.footerMenuName6Link;
 
-    $scope.footerMenuName7 = "Volunteer";
-    $scope.footerMenuName7Link = " ContactPage/contact.html";
+    $scope.footerMenuName7 = "Instagram";
+    $scope.footerMenuName7Link = "https://www.instagram.com/codeology.sbc/";
     let f7 = document.getElementById("f7")
     f7.href = $scope.footerMenuName7Link;
 
@@ -225,4 +227,61 @@ function returnBool(){
     return userBool;
 }
 
+//function to submit info to email-list
+function submitEmail(){
+    //gets all the values
+    let email = document.getElementById("email").value;
+    let firstName = document.getElementById("fname").value;
+    let lastName = document.getElementById("lname").value;
+
+    //makes sure that fields are valid
+    if(!(email.includes(" ")) && !(firstName === "") && !(lastName === "") && email.includes("@") && email.includes(".")) {
+        if (checkEmail(email)) {
+        console.log(checkEmail(email))
+            let data = {
+                userEmail: email,
+                userFirstName: firstName,
+                userLastName: lastName
+            }
+            //sends email list data to new doc created on email-list collection
+            db.collection("email-list").doc(generateUUID()).set(data);
+
+            //changes visuals for the form submitted
+            document.getElementById("emailListBtn").disabled = true;
+            document.getElementById("emailListBtn").innerText = "Submitted!";
+            document.getElementById("emailListBtn").style.background = "#2dcb4d";
+            document.getElementById("email").readOnly = true;
+            document.getElementById("fname").readOnly = true;
+            document.getElementById("lname").readOnly = true;
+            document.getElementById("subscribe").style.display = "none";
+        }
+        else {
+            document.getElementById("emailInvalid").style.display = "block";
+        }
+    }
+    //if fields are not valid then red text "invalid" appears
+    else {
+        document.getElementById("subscribe").style.display = "block";
+    }
+
+}
+function checkEmail(email){
+    let counter = 0;
+    db.collection("email-list").where("userEmail", "==", email)
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                if(doc.data().userEmail === email){
+                    counter++;
+                }
+            });
+        })
+        .catch(function(error) {
+            console.log("Error getting documents: ", error);
+        });
+if(counter > 0){
+    return false;
+}
+else return true;
+}
 

@@ -54,6 +54,9 @@
                     <a class="dropdown-item" href="#" ng-model = "menuName6" id = "m6">{{menuName6}}</a>
                 </div>
             </li>
+            <li class="nav-item">
+                <button style="background: antiquewhite;color: #23233b; border: solid transparent; border-radius: 15px;margin-left: 30px;margin-top: 5px" data-toggle="modal" data-target="#myModal">Codeology at a Glance</button>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
@@ -92,7 +95,7 @@
 
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="background: rgba(35,35,59,0.3)" >
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="background: rgba(35,35,59,0.3)" data-keyboard="false" data-backdrop="static" ng-controller = "emailModal">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 800px">
         <div class="modal-content" style="background: #23233b; border: 5px antiquewhite solid">
             <div class="modal-header" style="text-align: center">
@@ -101,7 +104,35 @@
             </div>
             <br>
             <div class="modal-body" style="text-align: center;font-family: Karla;color: antiquewhite">
-                <h4 style="background: #464678; border-radius: 15px;"><br>First time user? Watch the video below to learn what Codeology is about!<br><br> Check out our <a href = "#howWeWork">step by step process</a> to get involved in our academic opportunities!<br><br><b><u>Sign up for a free trial today. We offer demo classes that can help you get a taste of what we have to offer.</u></b><br><br></h4>
+                <h4 style="background: antiquewhite; border-radius: 15px; color: #23233b"><br><br><b><u>Sign up for a free trial today. We offer demo classes that can help you get a taste of what we have to offer.</u></b><br><br><small><b>Step 1:</b><a href = "LoginPage/signUp.html"> Sign up</a> for a free account with Codeology and explore our website and catalog of courses!<br><b>Step 2:</b> Join one of our weekly demo classes to learn more about our website and our way of teaching directly from a Codeology instructor.<br><b>Step 3:</b> If you enjoyed your demo class, register for a course, and begin learning!</small><br><br><br></h4>
+                <br>
+                <div class = "row justify-content-around">
+                    <div class = "col-8" style="background: antiquewhite; border-radius: 15px; font-family: Karla">
+                        <br>
+                        <h5 style="color: #23233b" >Subscribe to our Email List and receive offers and informationn about the platform and our services!</h5>
+                        <br>
+                        <div id = "subscribe" style="display: none">
+                            <h6 style="color: red; font-family: Karla">Make sure all fields were entered correctly!</h6>
+                        </div>
+                        <div id = "emailInvalid" style="display: none">
+                            <h6 style="color: red; font-family: Karla">Good news! You have already entered your email into our email list!</h6>
+                        </div>
+                        <input autocomplete="false" type="text" id="email" name="email" placeholder="Enter your Email here" style="font-family: Karla;text-align: center; color: #23233b; background: #f1ecec;width: 100%;border: solid #48486d 3px; font-size: 22px; border-radius: 15px 15px 0px 0px"></input>
+                        <div class = "row justify-content-around no-gutters">
+                            <div class = "col-6">
+                                <input autocomplete="false" type="text" id="fname" name="fname" placeholder="First Name here" style="font-family: Karla;text-align: center; color: #23233b; background: #f1ecec;width: 100%;border: solid #48486d 3px;font-size: 22px; border-radius: 0px 0px 0px 15px"></input>
+                            </div>
+                            <div class = "col-6">
+                                <input autocomplete="false" type="text" id="lname" name="lname" placeholder="Last Name here" style="font-family: Karla;text-align: center; color: #23233b; background: #f1ecec;width: 100%;border: solid #48486d 3px;font-size: 22px; border-radius: 0px 0px 15px 0px"></input>
+                            </div>
+                        </div>
+                        <br>
+                        <button style="background: #23233b; color: antiquewhite; width:100%; border-radius: 15px;font-size: 25px; border: solid transparent;" onclick="submitEmail()" id = "emailListBtn">Submit</button>
+                        <br><br>
+                    </div>
+                </div>
+
+                <br>
                 <br>
                 <div class="embed-responsive embed-responsive-21by9" style="border-radius: 15px; background: #464678">
                     <iframe width="987" height="700" src="https://www.youtube.com/embed/jD4HI1-aEJk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -157,14 +188,25 @@
     </div>
 </div>
 <br><br>
+<div class = "row justify-content-around">
+    <div class = "col-4" style="text-align: center">
+        <h1 style="text-align: center; font-family: Karla; color: #23233b">Step 1</h1>
+    </div>
+    <div class = "col-4" style="text-align: center">
+        <h1 style="text-align: center; font-family: Karla; color: #23233b">Step 2</h1>
+    </div>
+    <div class = "col-4" style="text-align: center">
+        <h1 style="text-align: center; font-family: Karla; color: #23233b">Step 3</h1>
+    </div>
+</div>
+
 
 <div class = "row justify-content-around" data-aos="fade-up">
     <div class = "col-4" >
         <div class = "single-content" >
             <img style="background: antiquewhite" src = "catalog.png" class = "stepImg">
             <div class = "text-content" style="font-family: Karla; color: antiquewhite">
-                <h3><b>Step 1</b></h3>
-                <h5>Browse our catalog of courses and see our detailed overviews! If you are interested in a course, proceed to the next step:
+                <h5>Sign up for a free account with Codeology and explore our website and catalog of courses! Check out our course overviews to see an in-depth description of what you would learn in class.
                     <br>
                     <br>
                     <a href = "HTMLContentPage/HTMLContentPage.html">HTML Course Overview</a><br>
@@ -177,8 +219,7 @@
         <div class = "single-content">
             <img src = "signUp.png" alt = "" class = "stepImg">
             <div class = "text-content" style="font-family: Karla; color: antiquewhite">
-                <h3><b>Step 2:</b></h3>
-                <h5>Sign up for a free trial by signing up with your Google email address and see if you enjoy our personalized learning through demo classes!<br><br> Our platform is purely online but our teaching style and features will make the experience feel like a real classroom:
+                <h5>Join one of our weekly demo classes to learn more about our website and our way of teaching directly from a Codeology instructor. Demo classes emulate real lessons so it is a great way to see if your Codeology is a fit for your child.
                     <br><br>
                     <a href = "LoginPage/Login.html">Sign up!</a>
                 </h5>
@@ -189,8 +230,7 @@
         <div class = "single-content">
             <img src = "registerNow.png" alt = "" class = "stepImg">
             <div class = "text-content">
-                <h3><b>Step 3:</b></h3>
-                <h5>Enjoyed your free trial classes? Register for a course to obtain the full experience that is Codeology! <br><br> Registering is available only after you sign up so make sure you have signed up for your free trial first! See <a href="#courseCards">plans</a> for current courses and <a href="ContactPage/contact.html"> contact us</a> for future courses in Java, JavaScript, and many more!
+                <h5>If you enjoyed your demo class, register for a course, and begin learning! Codeology uses a combination of online resources and live classes. Upon registration, you'll immediately gain access to all the online resources for your course!
                 </h5>
             </div>
         </div>

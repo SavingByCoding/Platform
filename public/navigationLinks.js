@@ -3,7 +3,7 @@ function registerNow(){
     window.close(this)
 }
 function signUpNow(){
-    window.open("../LoginPage/Login.html")
+    window.open("../LoginPage/signUp.html")
     window.close(this)
 }
 var mainMod = angular.module("myApp", []);
@@ -76,7 +76,7 @@ mainMod.controller("myCont1", function ($scope) {
     let d4 = document.getElementById("d4")
     d4.href = $scope.dropdown4Link;
 
-    $scope.dropdown5 = "SignUp/Login"
+    $scope.dropdown5 = "Login"
     $scope.dropdown5Link = "../LoginPage/Login.html";
     let d5 = document.getElementById("d5")
     d5.href = $scope.dropdown5Link

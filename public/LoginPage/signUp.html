@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel = "stylesheet" href = "Login.css">
+    <link rel = "stylesheet" href = "signUp.css">
     <link rel = "stylesheet" href = "GoogleButton.css">
     <link rel = "stylesheet" type="text/css" href="../navbarCSS.css">
     <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
@@ -89,7 +89,6 @@
 
 
 <div class = "container loginContainer" data-aos="fade-up">
-
     <div class = "row loginFormRow justify-content-around " data-aos="fade-up">
         <div class = "col loginButtonCol">
 
@@ -175,10 +174,45 @@
                         }
                     </style>
                     <div class="login-form loginFORM" style="font-family: Karla">
-                        <h2 class="text-center memberLog" >Log in</h2>
+                        <h2 class="text-center memberLog" >Sign up</h2>
+                        <img src="../LogoWithWords.png" style="height: 90%">
+                        <h5>Codeology: A Step by Step Process</h5>
+                        <br>
 
+
+
+                            <div class="card tab-card" style="width: 100%">
+                                <div class="card-header tab-card-header">
+                                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true">Step One</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false">Step Two</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="three-tab" data-toggle="tab" href="#three" role="tab" aria-controls="Three" aria-selected="false">Step Three</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content tabContent" id="myTabContent">
+                                    <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+                                        <p class="card-text">Sign up for a free account with Codeology and explore our website and catalog of courses! Check out our course overviews to see an in-depth description of what you would learn in class.</p>
+                                    </div>
+                                    <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
+                                        <p class="card-text">Join one of our weekly demo classes to learn more about our website and our way of teaching directly from a Codeology instructor. Demo classes emulate real lessons so it is a great way to see if your Codeology is a fit for your child.</p>
+                                    </div>
+                                    <div class="tab-pane fade p-3" id="three" role="tabpanel" aria-labelledby="three-tab">
+                                        <p class="card-text">If you enjoyed your demo class, register for a course, and begin learning! Codeology uses a combination of online resources and live classes. Upon registration, you'll immediately gain access to all the online resources for your course!</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+<br>
                         <!--<div class="avatar mainAvatar">-->
-                            <img src="../LogoWithWords.png" style="height: 90%" >
+
                         <!--</div>-->
                         <!--                            <div class="form-group">-->
                         <!--                                <input type="text" class="form-control input-lg" id="username" name="username" placeholder="Email Address" required="required">-->
@@ -188,11 +222,11 @@
                         <!--                            </div>-->
                         <div class="form-group">
                             <!--                                <button type="submit" onclick="RegularLogIn()" class="btn btn-primary btn-lg btn-block login-btn" >Sign in</button>-->
-<!--                            <button onclick= "GoogleSignIn()" class="loginBtn loginBtn&#45;&#45;google">-->
-<!--                                SignUp/Login with Google-->
-<!--                            </button>-->
-                            <button onclick="GoogleSignIn()" class="loginBtn loginBtn--google">
-                                Login with Google
+                            <!--                            <button onclick= "GoogleSignIn()" class="loginBtn loginBtn&#45;&#45;google">-->
+                            <!--                                SignUp/Login with Google-->
+                            <!--                            </button>-->
+                            <button onclick="GoogleSignIn()"  class="loginBtn loginBtn--google">
+                                SignUp with Google
                             </button>
                         </div>
                         <p class="hint-text">Any Questions? <a href="../ContactPage/contact.html">Ask Us!</a></p>
@@ -202,7 +236,7 @@
         </div>
     </div>
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <footer id="sticky-footer" class="py-4  FOOTER text-white-50" ng-controller = "MyCont2" style="border-top: 10px solid #23233b">
     <div class="container  text-center">
         <div class = "row">
