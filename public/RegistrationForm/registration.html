@@ -271,17 +271,18 @@
                         <div  ng-repeat = "class in classes">
                             <div class = "row justify-content-around">
                                 <div class = "col-10">
-                                    <a href ng-click="setUsertoClass(class)">
-                                        <div class="card stretched-link schedule" style="background: #23233b">
-                                            <div class="card-body">
+                                        <div class="card stretched-link schedule" ng-click="setUsertoClass(class)">
+                                            <div class="card-body" style="background: #23233b">
                                                 <div class = "container">
                                                     <div class = "row justify-content-around" style="background: #48486d; border-radius: 15px;">
                                                         <div class = "col-12"><h4 class = "card-title">Class Name:<br><b>{{class.data().name}}</b></h4></div>
                                                     </div>
                                                 </div>
                                                 <br>
-
+                                                <h6>On the days:</h6>
+                                                <br>
                                                 <div class = "row justify-content-around" style="border-radius: 15px; background: #48486d;">
+
                                                     <div ng-repeat = "day in class.data().selectedDates">
                                                         <small style="font-family: Karla">{{day}}</small>
                                                     </div>
@@ -301,7 +302,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
                                 </div>
                             </div>
                             <br>
