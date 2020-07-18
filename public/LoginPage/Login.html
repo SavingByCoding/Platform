@@ -15,7 +15,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
     <script src="LoginFirebase.js"></script>
-    <title>Saving By Coding</title>
+    <title>Login Page</title>
 </head>
 <body class = "loginbody" ng-app = "myApp">
 <!--Navbar -->
@@ -32,7 +32,7 @@
                 <a style="color: #23233b">----</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
+                <a class="nav-link" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id = "m2" href="#" ng-model = "menuName2"> {{menuName2}}</a>
@@ -217,9 +217,18 @@
                 <small><a class = "Links" href="#" id = "f4" mg-model = "footerMenuName4">{{footerMenuName4}}</a></small><br>
                 <small><a class = "Links" href="#" id = "f5" mg-model = "footerMenuName5">{{footerMenuName5}}</a></small><br>
                 <small><a class = "Links" href="#" id = "f6" mg-model = "footerMenuName6">{{footerMenuName6}}</a></small><br>
-                <small><a class = "Links" href="#" id = "f7" mg-model = "footerMenuName7">{{footerMenuName7}}</a></small><br>
             </div>
-            <div class = "col-4"></div>
+            <div class = "col-4">
+                <div style="background: #dce1e8;border-radius: 15px">
+                    <img id = "instalogo" src="../instalogo.png" style="height: 60px;">
+                    <label style="font-family: Karla; color: #23233b;font-size: 20px" for = "instalogo"><a href="https://www.instagram.com/codeology.sbc/">&nbsp;Find Us on Instagram!</a></label>
+                </div>
+                <br>
+                <div style="background: #dce1e8;border-radius: 15px">
+                    <img id = "facebooklogo" src="../facebooklogo.png" style="height: 60px;">
+                    <label style="font-family: Karla; color: #23233b;font-size: 20px" for = "facebooklogo">  <a href="https://www.facebook.com/codeology.sbc/">Add Us on Facebook!</a></label>
+                </div>
+            </div>
         </div>
     </div>
 </footer>

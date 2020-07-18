@@ -252,7 +252,7 @@ function isEmailReused() {
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
                 if(doc.exists){
-                    console.log("doc exits")
+                    console.log("doc exists")
                     document.getElementById("emailInvalid").style.display = "block";
                 }
             });

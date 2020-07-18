@@ -467,3 +467,7 @@ html {
     margin-right: 0;
     margin-left: 0;
 }
+.signUp:hover{
+    background: #f6eeee;
+    transform: scale(1.04);
+}

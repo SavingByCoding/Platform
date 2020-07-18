@@ -19,7 +19,7 @@
     <script src="FirebaseCode.js"></script>
 
 
-    <title>Saving By Coding</title>
+    <title>Codeology: Home Page</title>
 </head>
 <body class = "mainbod" ng-app = "myApp">
 
@@ -55,7 +55,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <button style="background: antiquewhite;color: #23233b; border: solid transparent; border-radius: 15px;margin-left: 30px;margin-top: 5px" data-toggle="modal" data-target="#myModal">Codeology at a Glance</button>
+                <button id= "signUp" style="background: antiquewhite;color: #23233b; border: solid transparent; border-radius: 15px;margin-left: 30px;margin-top: 5px; transition: all 1s ease" data-toggle="modal" data-target="#myModal">Codeology at a Glance</button>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -323,7 +323,7 @@
 
 
 
-<footer id="sticky-footer" class="py-4  FOOTER text-white-50" ng-controller = "MyCont2" style="border-top: 10px solid #23233b">
+<footer id="sticky-footer" class="py-4  FOOTER text-white-50" style="border-top: 10px solid #23233b">
     <div class="container  text-center">
         <div class = "row">
             <div class = "col-4" style="font-family:Karla;color: #23233b">
@@ -331,15 +331,25 @@
                 <p>Make a difference in your life</p>
             </div>
             <div class = "col-4 linksColFooter">
-                <small><a class = "Links" href="#" id = "f1" mg-model = "footerMenuName1">{{footerMenuName1}}</a></small><br>
-                <small><a class = "Links" href="#" id = "f2" mg-model = "footerMenuName2">{{footerMenuName2}}</a></small><br>
-                <small><a class = "Links" href="#" id = "f3" mg-model = "footerMenuName3">{{footerMenuName3}}</a></small><br>
-                <small><a class = "Links" href="#" id = "f4" mg-model = "footerMenuName4">{{footerMenuName4}}</a></small><br>
-                <small><a class = "Links" href="#" id = "f5" mg-model = "footerMenuName5">{{footerMenuName5}}</a></small><br>
-                <small><a class = "Links" href="#" id = "f6" mg-model = "footerMenuName6">{{footerMenuName6}}</a></small><br>
-                <small><a class = "Links" href="#" id = "f7" mg-model = "footerMenuName7">{{footerMenuName7}}</a></small><br>
+                <small><a class = "Links" href="index.html" id = "f1" ng-model = "footerMenuName1">Home</a></small><br>
+                <small><a class = "Links" href="AboutPage/AboutPage.html" id = "f2" ng-model = "footerMenuName2">About Us</a></small><br>
+                <small><a class = "Links" href="RegistrationForm/registration.html" id = "f3" ng-model = "footerMenuName3">Register Now</a></small><br>
+                <small><a class = "Links" href="ContactPage/contact.html" id = "f4" ng-model = "footerMenuName4">Contact Us</a></small><br>
+                <small><a class = "Links" href="HTMLContentPage/HTMLContentPage.html" id = "f5" ng-model = "footerMenuName5">HTML Content Page</a></small><br>
+                <small><a class = "Links" href="PythonContentPage/PythonContentPage.html" id = "f6" ng-model = "footerMenuName6">Python Content Page</a></small><br>
+                <small><a class = "Links" href="https://www.instagram.com/codeology.sbc/" id = "f7" ng-model = "footerMenuName7">Find us on Instagram!</a></small><br>
             </div>
-            <div class = "col-4"></div>
+            <div class = "col-4">
+                <div style="background: #dce1e8;border-radius: 15px">
+                    <img id = "instalogo" src="instalogo.png" style="height: 60px;">
+                    <label style="font-family: Karla; color: #23233b;font-size: 20px" for = "instalogo"><a href="https://www.instagram.com/codeology.sbc/">&nbsp;Find Us on Instagram!</a></label>
+                </div>
+                    <br>
+                <div style="background: #dce1e8;border-radius: 15px">
+                <img id = "facebooklogo" src="facebooklogo.png" style="height: 60px;">
+                <label style="font-family: Karla; color: #23233b;font-size: 20px" for = "facebooklogo">  <a href="https://www.facebook.com/codeology.sbc/">Add Us on Facebook!</a></label>
+                </div>
+            </div>
         </div>
     </div>
 </footer>

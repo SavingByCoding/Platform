@@ -189,10 +189,7 @@ mainMod.controller("MyCont2", function ($scope) {
     let f6 = document.getElementById("f6")
     f6.href = $scope.footerMenuName6Link;
 
-    $scope.footerMenuName7 = "Volunteer";
-    $scope.footerMenuName7Link = "../ContactPage/contact.html";
-    let f7 = document.getElementById("f7")
-    f7.href = $scope.footerMenuName7Link;
+
 
 });
 
