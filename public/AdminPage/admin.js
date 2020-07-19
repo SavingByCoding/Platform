@@ -444,7 +444,7 @@ app.controller('AppController', ($scope) => {
                 let newArr = [];
                 // console.log(doc.data().name) <-- this code will spam the console with thousands of lines of code, use for troubleshooting only LOL
 
-                //makes a new "groups" array for each doc that contains the original array minus the group that just got deleted if it existed in that group
+                //makes an array for each doc that contains the original array minus the group that just got deleted
                 for (x in doc.data().groups){
                     if(!(doc.data().groups[x] === group.id)){
                            newArr.push(doc.data().groups[x]);
