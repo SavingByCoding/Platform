@@ -12,10 +12,30 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164071846-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-164071846-1');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PRWFR3P');</script>
+    <!-- End Google Tag Manager -->
     <script src="../FirebaseCode.js"></script>
 </head>
 <body class="mainbod" ng-app = "myApp">
 
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PRWFR3P"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!--Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
@@ -31,13 +51,13 @@
                 <a style="color: #23233b">----</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
+                <a class="nav-link " id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id = "m2" href="#" ng-model = "menuName2"> {{menuName2}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id = "m4" href="#" ng-model = "menuName4">{{menuName4}}</a>
+                <a class="nav-link active" id = "m4" href="#" ng-model = "menuName4">{{menuName4}}</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">

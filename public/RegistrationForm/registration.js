@@ -14,7 +14,7 @@ var RegistrationDate= getCurrentDate();
 var ConfirmationNumber= generateUUID();
 var phoneNum;
 var registeredGroupID;
-
+var StudentEmail;
 var fname=document.getElementById("fname");
 var x= document.getElementById("formcontainer1");
 var y= document.getElementById("formcontainer2");
@@ -36,18 +36,24 @@ OpenPaypal = function(){
 
 function next1() {
     var form = document.getElementById('Page1');
+    let counter = 0;
         for (var i = 0; i < form.elements.length; i++) {
             if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
-                alert('There are some required fields!');
-                break;
-            } else {
+
+            }
+            else
+                counter++;
+        }
+        if(counter === form.elements.length){
                 y.style.display="block";
                 x.style.display="none";
                 ParentsEmail= $("#Email").val();
                 phoneNum = $("#Phone").val();
-            }
-
         }
+        else if(!(counter === form.elements.length)){
+            alert('There are some required fields!');
+        }
+
 }
 
 function previous1()
@@ -58,20 +64,25 @@ function previous1()
 function next2()
 {
     var form = document.getElementById('Page2');
+    let counter1 = 0;
     for (var i = 0; i < form.elements.length; i++) {
         if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
-            alert('There are some required fields!');
-            break;
+
         } else {
-            y.style.display="none";
-            z.style.display="block";
-            FirstName= $("#FirstName").val();
-            LastName= $("#LastName").val();
-            ChildAge= $("#age").val();
-            ChildGrade= $("#grade").val();
-
+            counter1++;
         }
-
+    }
+    if (counter1 === form.elements.length) {
+        y.style.display = "none";
+        z.style.display = "block";
+        FirstName = $("#FirstName").val();
+        LastName = $("#LastName").val();
+        StudentEmail = $("studentEmail").val();
+        ChildAge = $("#age").val();
+        ChildGrade = $("#grade").val();
+    }
+    else if(!(counter1 === form.elements.length)){
+        alert('There are some required fields!');
     }
 }
 function previous2()
@@ -231,6 +242,7 @@ mainMod.controller("RegistrationForm", function ($scope) {
         localStorage.setItem("ConfirmationNumber", ConfirmationNumber);
         localStorage.setItem(("CourseName"),$scope.courseValue);
         localStorage.setItem(("PhoneNum"),phoneNum);
+        localStorage.setItem(("StudentEmail"), StudentEmail);
         localStorage.setItem("registeredGroupID",registeredGroupID);
 
         OpenPaypal(); //Will open Payment processing

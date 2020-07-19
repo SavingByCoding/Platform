@@ -438,6 +438,36 @@ app.controller('AppController', ($scope) => {
 
     $scope.deleteGroup = (i) => {
         let group = $scope.groups[i]
+
+        db.collection('events').get().then((snapshot) => {
+            snapshot.docs.forEach(doc => {
+                let newArr = [];
+                // console.log(doc.data().name) <-- this code will spam the console with thousands of lines of code, use for troubleshooting only LOL
+
+                //makes an array for each doc that contains the original array minus the group that just got deleted
+                for (x in doc.data().groups){
+                    if(!(doc.data().groups[x] === group.id)){
+                           newArr.push(doc.data().groups[x]);
+                    }
+                }
+
+                //prepares the new data to be set by passing the same value to all the fields except "groups" array
+                //the groups array is set to the newly made array (above) that does not include the deleted group
+                let data = {
+                    archived : doc.data().archived,
+                    description: doc.data().description,
+                    groups: newArr,
+                    link: doc.data().link,
+                    name: doc.data().name,
+                    time: doc.data().time
+                }
+
+                //doc is set to essentially itself with only the groups array differing if a group was deleted
+                db.collection("events").doc(doc.id).set(data);
+            })
+        });
+
+
         db.collection("groups").doc(group.id).delete().then(() => {
             $scope.groups.splice(i, 1)
             $scope.$apply()

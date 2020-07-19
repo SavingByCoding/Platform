@@ -61,9 +61,11 @@ mainMod.controller('MainContentController', ($scope) => {
             })
             .then(() => {
                 $scope.$apply()
+
                 $scope.getEvents()
             })
     }
+
 
     $scope.getEvents = () => {
         const lastI = Math.ceil($scope.groups.length / 10)
@@ -72,7 +74,7 @@ mainMod.controller('MainContentController', ($scope) => {
         let now = new Date()
         now.setTime(new Date().getTime() - 3600000) // displays notification for an hour
         let threeWeeksLater = new Date();
-        threeWeeksLater.setTime(new Date().getTime() + 1814400000)
+        threeWeeksLater.setTime(new Date().getTime() + 1209600000) //displays only for two weeks
 
         for (let i = 0; i < lastI; i++) {
             let groupSubset = $scope.groups.slice(

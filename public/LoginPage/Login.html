@@ -15,9 +15,29 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
     <script src="../FirebaseCode.js"></script>
     <script src="LoginFirebase.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164071846-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-164071846-1');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PRWFR3P');</script>
+    <!-- End Google Tag Manager -->
     <title>Login Page</title>
 </head>
 <body class = "loginbody" ng-app = "myApp">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PRWFR3P"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <!--Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
     <a href = "#"><img id = "logo" ng-src={{logo}} style="height: 80px"></a>
