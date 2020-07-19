@@ -74,7 +74,7 @@ mainMod.controller('MainContentController', ($scope) => {
         let now = new Date()
         now.setTime(new Date().getTime() - 3600000) // displays notification for an hour
         let threeWeeksLater = new Date();
-        threeWeeksLater.setTime(new Date().getTime() + 1209600000)
+        threeWeeksLater.setTime(new Date().getTime() + 1209600000) //displays only for two weeks
 
         for (let i = 0; i < lastI; i++) {
             let groupSubset = $scope.groups.slice(

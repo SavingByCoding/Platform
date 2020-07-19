@@ -71,6 +71,7 @@ mainMod.controller("SubmitAngular", function ($scope) {
         $scope.paid= $scope.paid.toFixed(2)
         $scope.phoneNum = localStorage.getItem("PhoneNum");
         $scope.registeredGroupID= localStorage.getItem("registeredGroupID");
+        $scope.studentEmail = localStorage.getItem("StudentEmail");
         console.log($scope.registeredGroupID)
 
     };
