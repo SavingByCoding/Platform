@@ -92,8 +92,9 @@ mainMod.controller("SubmitAngular", function ($scope) {
             CourseName: $scope.CourseName,
             PhoneNum: $scope.phoneNum
         };
-        console.log(data)
-        db.collection("registrations").doc(generateUUID()).set(data);
+        if(!($scope.CourseId==="")){
+            db.collection("registrations").doc(generateUUID()).set(data);
+        }
     };
 
     $scope.arrayofusers= [];
@@ -130,12 +131,28 @@ mainMod.controller("SubmitAngular", function ($scope) {
             });
         }
     };
+    $scope.clearRegistrationDetailsInLocalStorage= function (){
+        localStorage.setItem("courseId", "");
+        localStorage.setItem("paid", "");
+        localStorage.setItem("userId", "");
+        localStorage.setItem("FirstName", "");
+        localStorage.setItem("LastName", "");
+        localStorage.setItem("ParentsEmail", "");
+        localStorage.setItem("ChildAge", "");
+        localStorage.setItem("ChildGrade", "");
+        localStorage.setItem("ConfirmationNumber", "");
+        localStorage.setItem(("CourseName"),"");
+        localStorage.setItem(("PhoneNum"),"");
+        localStorage.setItem("registeredGroupID","");
+    };
+
 
 
 
     $scope.loadDataFromStorage();
     $scope.submitRegistration();
     $scope.getGroupOfUsers($scope.registeredGroupID);
+    $scope.clearRegistrationDetailsInLocalStorage();
 
 
 });
