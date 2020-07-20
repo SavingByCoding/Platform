@@ -86,7 +86,7 @@ mainMod.controller("SubmitAngular", function ($scope) {
             userId: $scope.userID,
             FirstName: $scope.FirstName,
             LastName: $scope.LastName,
-            ParentsEmail:$scope. ParentsEmail,
+            ParentsEmail:$scope.ParentsEmail,
             ChildAge: $scope.ChildAge,
             ChildGrade: $scope.ChildGrade,
             ConfirmationNumber: $scope.ConfirmationNumber,
@@ -147,14 +147,34 @@ mainMod.controller("SubmitAngular", function ($scope) {
         localStorage.setItem("registeredGroupID","");
     };
 
+$scope.sendConfirmationEmail= function(){
+    let name = $scope.FirstName;
+    let email = $scope.ParentsEmail;
+    let courseName= $scope.CourseName;
+    let confirmationNumber =  $scope.ConfirmationNumber;
 
+    let url = "https://cors-anywhere.herokuapp.com/http://18.222.29.210:8080/api/registrationConfirmation";
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function() { // Call a function when the state changes.
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            // Request finished. Do processing here.
+        }
+    }
+
+    xhr.send(`name=${name}&email=${email}&courseName=${courseName}&confirmationNumber=${confirmationNumber}`);
+}
 
 
     $scope.loadDataFromStorage();
     $scope.submitRegistration();
     $scope.getGroupOfUsers($scope.registeredGroupID);
     $scope.clearRegistrationDetailsInLocalStorage();
-
+    $scope.sendConfirmationEmail();
 
 });
 

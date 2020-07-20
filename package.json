@@ -2,9 +2,14 @@
   "name": "Platform",
   "version": "1.0.0",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "csv-parser": "^2.3.3",
     "csv-writer": "^1.6.0",
-    "fast-csv": "^4.3.1"
+    "express": "^4.17.1",
+    "fast-csv": "^4.3.1",
+    "firebase-functions": "^3.8.0",
+    "handlebars": "^4.7.6",
+    "nodemailer": "^6.4.10"
   },
   "devDependencies": {
     "firebase-admin": "^9.0.0"

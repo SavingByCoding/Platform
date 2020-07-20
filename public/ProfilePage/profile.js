@@ -216,10 +216,13 @@ mainMod.controller('MainContentController', ($scope) => {
     //
     // }
 
-
-
-
-
+    db.collection('mail').add({
+        to: 'Jeevanantham.sundaram.murugan@gmail.com',
+        message: {
+            subject: 'Hello from Firebase!',
+            html: 'This is an <code>HTML</code> email body.',
+        },
+    }).then(() => console.log('Queued email for delivery!'));
 
 })
 
