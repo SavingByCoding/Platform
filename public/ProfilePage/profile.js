@@ -216,14 +216,6 @@ mainMod.controller('MainContentController', ($scope) => {
     //
     // }
 
-    db.collection('mail').add({
-        to: 'Jeevanantham.sundaram.murugan@gmail.com',
-        message: {
-            subject: 'Hello from Firebase!',
-            html: 'This is an <code>HTML</code> email body.',
-        },
-    }).then(() => console.log('Queued email for delivery!'));
-
 })
 
 updateProfileInformation = function(){ //This was horribly coded my bad, I was having a bad day I used of used angular but I said fuck it - Jeeva
