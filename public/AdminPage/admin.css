@@ -386,3 +386,65 @@ body {
 #registrationsList .list-group-item {
     position: relative;
 }
+.teacherBtn{
+    color:antiquewhite;
+    font-family: Karla;
+    background: transparent;
+    border: 3px solid antiquewhite;
+    border-radius: 15px;
+    transition: all 1s ease;
+}
+
+.dropbtn {
+    background-color: antiquewhite;
+    color: #23233b;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: all 1s ease;
+    border-radius: 15px;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #a58d8d;
+}
+
+#myInput {
+    box-sizing: border-box;
+    background-image: url('../LogoWithoutWords.png');
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+#myInput:focus {outline: 3px solid #ddd;}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}

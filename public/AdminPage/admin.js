@@ -1,3 +1,4 @@
+
 firebase.initializeApp({
     apiKey: "AIzaSyBOn9KJJihPr0F0zXNcj_tlHn6tGgxIsMI",
     authDomain: "saving-by-coding.firebaseapp.com",
@@ -30,7 +31,6 @@ app.controller('AppController', ($scope) => {
         t.setSeconds(timeObj.seconds)
         return t
     }
-
     $scope.checkIsTeacher= function(){
         firebase.auth().onAuthStateChanged((user) => {
             db.collection("users")
@@ -239,6 +239,7 @@ app.controller('AppController', ($scope) => {
     }
 
     $scope.editEvent = () => {
+
         db.collection("events").doc($scope.new.event.id).update({
             name: $scope.new.event.name,
             link: $scope.new.event.link,
@@ -312,10 +313,21 @@ app.controller('AppController', ($scope) => {
 
     // Group Functions
     $scope.clearCrudGroupModal = () => {
+        db.collection("users").where("userType", "==", "2")
+            .get()
+            .then(function(querySnapshot) {
+                $scope.teachers=[];
+                querySnapshot.forEach(function(doc) {
+                    console.log("hey")
+                    $scope.teachers.push(doc);
+                    console.log(doc.data().name + " " + doc.data().userType);
+                });
+            })
+
         $scope.new.group = {
             name: "",
             description: "",
-            teacher:"",
+            teacher:$scope.teachers[0],
             startTime:"",
             endTime:"",
             startDate:"",
@@ -351,6 +363,7 @@ app.controller('AppController', ($scope) => {
 
     $scope.crudGroup = () => {
         if ($scope.crudStates.group == "Create") {
+
             $scope.createGroup();
 
         }
@@ -361,8 +374,16 @@ app.controller('AppController', ($scope) => {
 
         }
     }
+    $scope.searchParameters = "";
+    $scope.submitTeacher = (doc) =>{
+            //gets teacher doc as parameter
+        $scope.new.group.teacher = doc.data().name;
+    }
+
+
 
     $scope.createGroup = () => {
+
         $scope.getSelectedDates();
         let groupId = generateUUID()
         let group = {
@@ -535,7 +556,20 @@ app.controller('AppController', ($scope) => {
         });
     };
 
+    $scope.getTeachersForGroups = () =>{
+        $scope.teachers = [];
+        db.collection("users").get().then((snapshot) =>{
+           snapshot.docs.forEach(doc=>{
+              if(doc.data().userType === "2"){
+                  $scope.teachers.push(doc);
+                  $scope.apply();
+              }
+           });
+        });
+    }
     $scope.getCoursesForGroups();
+    $scope.getTeachersForGroups();
+
 
 
     // Group Membership Modal
@@ -1596,6 +1630,7 @@ app.controller('AppController', ($scope) => {
         div.innerHTML = str.trim();
         return formatHTML(div, 0).innerHTML;
     }
+
 })
 
 app.filter('trustHtml', function($sce) {
@@ -1603,3 +1638,41 @@ app.filter('trustHtml', function($sce) {
         return $sce.trustAsHtml(html)
     }
 })
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+        txtValue = a[i].textContent || a[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+        } else {
+            a[i].style.display = "none";
+        }
+    }
+}
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("button");
+    for (i = 0; i < a.length; i++) {
+        txtValue = a[i].textContent || a[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+        } else {
+            a[i].style.display = "none";
+        }
+    }
+}
