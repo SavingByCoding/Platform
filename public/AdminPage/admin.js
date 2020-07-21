@@ -1483,7 +1483,7 @@ app.controller('AppController', ($scope) => {
             .then(() => {
                 $scope.usersAssignments[i].status = status
                 $scope.$apply()
-                $scope.emailUserGradedAssignment($scope.usersAssignments[i].user,$scope.assignments[$scope.currentAssignmentIndex].name,$scope.usersAssignments[i].language)//Send Param allows for you to figure out
+                $scope.emailUserGradedAssignment($scope.usersAssignments[i].user,$scope.assignments[$scope.currentAssignmentIndex].name,$scope.usersAssignments[i].language)//Second Param allows for you to figure out the assignment name
             })
     }
     $scope.emailUserGradedAssignment= function (userID,assignmentName,language){ //Finish getting the assingment name and sending that informaotion ovwer
@@ -1492,7 +1492,6 @@ app.controller('AppController', ($scope) => {
             //Email user
             let email= doc.data().email;
             let name = doc.data().FirstName;
-             //let shivan and krish know about these fields
 
             let url = "https://cors-anywhere.herokuapp.com/http://18.222.29.210:8080/api/gradedAssignments";
 

@@ -43,7 +43,7 @@ router.get('/', (req, res) => {
 
 //Registration Confirmation
 router.post('/registrationConfirmation', (req, res, next) => {
-    readHTMLFile(__dirname + '/email.html', (err, html) => { //Replace with the registration confirmation
+    readHTMLFile(__dirname + '/RegistrationConfirmationEmail.html', (err, html) => { //Replace with the registration confirmation
         let template = handlebars.compile(html)
         let replacements = {
             name: req.body.name,
@@ -72,7 +72,7 @@ router.post('/registrationConfirmation', (req, res, next) => {
 
 //gradedAssignments
 router.post('/gradedAssignments', (req, res, next) => {
-    readHTMLFile(__dirname + '/email.html', (err, html) => { //Replace with the Graded confirmation
+    readHTMLFile(__dirname + '/homeworkConfirmation.html', (err, html) => { //Replace with the Graded confirmation
         let template = handlebars.compile(html)
         let replacements = {
             name: req.body.name,
