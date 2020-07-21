@@ -318,7 +318,6 @@ app.controller('AppController', ($scope) => {
             .then(function(querySnapshot) {
                 $scope.teachers=[];
                 querySnapshot.forEach(function(doc) {
-                    console.log("hey")
                     $scope.teachers.push(doc);
                     console.log(doc.data().name + " " + doc.data().userType);
                 });
