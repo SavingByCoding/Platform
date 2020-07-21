@@ -327,7 +327,7 @@ app.controller('AppController', ($scope) => {
         $scope.new.group = {
             name: "",
             description: "",
-            teacher:$scope.teachers[0],
+            teacher: "",
             startTime:"",
             endTime:"",
             startDate:"",
@@ -562,8 +562,9 @@ app.controller('AppController', ($scope) => {
            snapshot.docs.forEach(doc=>{
               if(doc.data().userType === "2"){
                   $scope.teachers.push(doc);
-                  $scope.apply();
+                  $scope.$apply();
               }
+
            });
         });
     }
