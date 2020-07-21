@@ -26,6 +26,8 @@ function GoBack(){
 }
 
 app.controller('AppController', ($scope) => {
+    $scope.currentAdminUserID;
+    $scope.isAdmin;
     $scope.toDate = (timeObj) => {
         let t = new Date(1970, 0, 1)
         t.setSeconds(timeObj.seconds)
@@ -33,6 +35,7 @@ app.controller('AppController', ($scope) => {
     }
     $scope.checkIsTeacher= function(){
         firebase.auth().onAuthStateChanged((user) => {
+            $scope.currentAdminUserID=user.uid;
             db.collection("users")
                 .where("userId", "==", user.uid)
                 .get()
@@ -41,17 +44,18 @@ app.controller('AppController', ($scope) => {
                     console.log("hello")
                     if ((doc.data().userType == '2')) {
                         $scope.isTeacher= true;
-                        console.log("Teacher "+ $scope.isTeacher)
                         $scope.$apply();
+                        $scope.getGroups()
+                    }
+                    if (doc.data().userType == '3'){
+                        $scope.isAdmin=true;
+                        $scope.$apply();
+                        $scope.getGroups()
                     }
                 })
         })
     };
-    setTimeout(function(){
-        $scope.checkIsTeacher();
-    },1000);
-
-    console.log($scope.isTeacher)
+    $scope.checkIsTeacher();
 
     $scope.tabs = ["Course Creation", "Group Management", "User Management", "Event Management", "Grading", "Registrations"]
     $scope.currentTab = 0
@@ -200,14 +204,26 @@ app.controller('AppController', ($scope) => {
             name: "",
             link: "",
             description: "",
-            time: ""
+            time: "",
+            teacherName:"",
+            teacherID:""
         }
     }
+
+    $scope.submitTeacherEvents = (doc) =>{
+        //gets teacher doc as parameter
+        $scope.new.event.teacherName = doc.data().name;
+        $scope.new.event.teacherID = doc.data().userId;
+    }
+//HEREEEEEEEEEEE
+
+
 
     $scope.launchEditEventModal = (i) => {
         $scope.crudStates.event = 'Edit'
         $scope.new.event = $scope.events[i]
-        $scope.new.event.time = new Date($scope.new.event.time)
+        $scope.new.event.time = new Date($scope.new.event.time);
+        //come back too
     }
 
     $scope.launchCreateEventModal = () => {
@@ -228,6 +244,8 @@ app.controller('AppController', ($scope) => {
             link: $scope.new.event.link,
             description: $scope.new.event.description,
             time: $scope.new.event.time,
+            teacherName:$scope.new.event.teacherName,
+            teacherID:$scope.new.event.teacherID,
             groups: []
         }
         db.collection("events").doc(eventId).set(event).then(() => {
@@ -245,6 +263,8 @@ app.controller('AppController', ($scope) => {
             link: $scope.new.event.link,
             description: $scope.new.event.description,
             time: $scope.new.event.time,
+            teacherName:$scope.new.event.teacherName,
+            teacherID:$scope.new.event.teacherID,
             groups: $scope.new.event.groups
         }).then(() => {
             for (let i = 0; i < $scope.events.length; i++) {
@@ -253,6 +273,8 @@ app.controller('AppController', ($scope) => {
                     $scope.events[i].link = $scope.new.event.link
                     $scope.events[i].description = $scope.new.event.description
                     $scope.events[i].time = $scope.new.event.time
+                    $scope.events[i].teacherName=$scope.new.event.teacherName;
+                    $scope.events[i].teacherID=$scope.new.event.teacherID;
                     $scope.events[i].groups = $scope.new.event.groups
                     return
                 }
@@ -283,15 +305,19 @@ app.controller('AppController', ($scope) => {
         db.collection("events").get().then((querySnapshot) => {
             for (var i = 0; i < querySnapshot.docs.length; i++) {
                 var doc = querySnapshot.docs[i]
-                $scope.events.push({
-                    id: doc.id,
-                    name: doc.data().name,
-                    link: doc.data().link,
-                    description: doc.data().description,
-                    time: doc.data().time.toDate(),
-                    groups: doc.data().groups,
-                    archived: doc.data().archived
-                })
+                if(($scope.currentAdminUserID===doc.data().teacherID)|($scope.isAdmin)){
+                    $scope.events.push({
+                        id: doc.id,
+                        name: doc.data().name,
+                        link: doc.data().link,
+                        description: doc.data().description,
+                        time: doc.data().time.toDate(),
+                        teacherName: doc.data().teacherName,
+                        teacherID:doc.data().teacherID,
+                        groups: doc.data().groups,
+                        archived: doc.data().archived
+                    })
+                }
             }
 
             const compare = (a, b) => {
@@ -326,7 +352,8 @@ app.controller('AppController', ($scope) => {
         $scope.new.group = {
             name: "",
             description: "",
-            teacher: "",
+            teacherName: "", //THis is the teachers name
+            teacherID:"",
             startTime:"",
             endTime:"",
             startDate:"",
@@ -348,7 +375,8 @@ app.controller('AppController', ($scope) => {
         $scope.new.group = {
             name: "",
             description: "",
-            teacher:"",
+            teacherName:"",
+            teacherID:"",
             startTime:"",
             endTime:"",
             startDate:"",
@@ -374,9 +402,10 @@ app.controller('AppController', ($scope) => {
         }
     }
     $scope.searchParameters = "";
-    $scope.submitTeacher = (doc) =>{
+    $scope.submitTeacherGroups = (doc) =>{
             //gets teacher doc as parameter
-        $scope.new.group.teacher = doc.data().name;
+        $scope.new.group.teacherName = doc.data().name;
+        $scope.new.group.teacherID = doc.data().userId;
     }
 
 
@@ -388,7 +417,8 @@ app.controller('AppController', ($scope) => {
         let group = {
             name: $scope.new.group.name,
             description: $scope.new.group.description,
-            teacher: $scope.new.group.teacher,
+            teacherName: $scope.new.group.teacherName, //teacher name
+            teacherID:$scope.new.group.teacherID,
             startTime: $scope.new.group.startTime,
             endTime: $scope.new.group.endTime,
             startDate: $scope.new.group.startDate,
@@ -411,7 +441,8 @@ app.controller('AppController', ($scope) => {
         db.collection("groups").doc($scope.new.group.id).update({
             name: $scope.new.group.name,
             description: $scope.new.group.description,
-            teacher: $scope.new.group.teacher,
+            teacherName: $scope.new.group.teacherName,
+            teacherID: $scope.new.group.teacherID,
             startTime: $scope.new.group.startTime,
             endTime: $scope.new.group.endTime,
             startDate: $scope.new.group.startDate,
@@ -424,7 +455,8 @@ app.controller('AppController', ($scope) => {
                 if ($scope.groups.id == $scope.new.group.id) {
                     $scope.groups[i].name = $scope.new.group.name
                     $scope.groups[i].description = $scope.new.group.description
-                    $scope.groups[i].teacher= $scope.new.group.teacher
+                    $scope.groups[i].teacherName= $scope.new.group.teacherName
+                    $scope.groups[i].teacherID=$scope.new.group.teacherID
                     $scope.groups[i].startTime= $scope.new.group.startTime
                     $scope.groups[i].endTime= $scope.new.group.endTime
                     $scope.groups[i].startDate= $scope.new.group.startDate;
@@ -494,24 +526,28 @@ app.controller('AppController', ($scope) => {
         })
     }
 
-    $scope.getGroups = () => {
+    $scope.getGroups = () => { //Add a function that only gets groups that the user is in
         $scope.groups = []
         db.collection("groups").get().then((querySnapshot) => {
             for (var i = 0; i < querySnapshot.docs.length; i++) {
                 var doc = querySnapshot.docs[i]
-                $scope.groups.push({
-                    id: doc.id,
-                    name: doc.data().name,
-                    description: doc.data().description,
-                    teacher: doc.data().teacher,
-                    startTime:doc.data().startTime.toDate(),
-                    endTime: doc.data().endTime.toDate(),
-                    startDate: doc.data().startDate.toDate(),
-                    course: doc.data().course,
-                    isOpen: doc.data().isOpen,
-                    selectedDates: doc.data().selectedDates,
-                    users: doc.data().users
-                })
+                console.log($scope.isAdmin)
+                if(($scope.currentAdminUserID===doc.data().teacherID)| ($scope.isAdmin)) {
+                    $scope.groups.push({
+                        id: doc.id,
+                        name: doc.data().name,
+                        description: doc.data().description,
+                        teacherName: doc.data().teacherName,
+                        teacherID:doc.data().teacherID,
+                        startTime: doc.data().startTime.toDate(),
+                        endTime: doc.data().endTime.toDate(),
+                        startDate: doc.data().startDate.toDate(),
+                        course: doc.data().course,
+                        isOpen: doc.data().isOpen,
+                        selectedDates: doc.data().selectedDates,
+                        users: doc.data().users
+                    })
+                }
             }
             $scope.$apply()
         })
@@ -567,6 +603,7 @@ app.controller('AppController', ($scope) => {
            });
         });
     }
+
     $scope.getCoursesForGroups();
     $scope.getTeachersForGroups();
 
@@ -1638,7 +1675,7 @@ app.controller('AppController', ($scope) => {
     }
 
     $scope.getUsers()
-    $scope.getGroups()
+    // $scope.getGroups()//This will be loaded after is teacher and is admin is defined
 
     //$scope.loadData()
 
@@ -1672,8 +1709,11 @@ app.filter('trustHtml', function($sce) {
         return $sce.trustAsHtml(html)
     }
 })
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
+function toggleDropDownInEvents() {
+    document.getElementById("TeacherDropdownInEvents").classList.toggle("show");
+}
+function toggleDropDownInGroups() {
+    document.getElementById("TeacherDropdownInGroups").classList.toggle("show");
 }
 
 function filterFunction() {
@@ -1691,22 +1731,4 @@ function filterFunction() {
         }
     }
 }
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
 
-function filterFunction() {
-    var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    div = document.getElementById("myDropdown");
-    a = div.getElementsByTagName("button");
-    for (i = 0; i < a.length; i++) {
-        txtValue = a[i].textContent || a[i].innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            a[i].style.display = "";
-        } else {
-            a[i].style.display = "none";
-        }
-    }
-}

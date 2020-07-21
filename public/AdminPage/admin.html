@@ -683,12 +683,12 @@
                                         </div>
                                         <div class="form-group">
                                             <div class = "teachersBox">
-                                                <h4 style="color: antiquewhite; font-family: Karla">Teacher chosen: <u>{{new.group.teacher}}</u></h4>
+                                                <h4 style="color: antiquewhite; font-family: Karla">Teacher chosen: <u>{{new.group.teacherName}}</u></h4>
                                                 <div class="dropdown">
-                                                    <button onclick="myFunction()" class="dropbtn" style="width: 100%">Choose teacher</button>
-                                                    <div id="myDropdown" class="dropdown-content">
+                                                    <button onclick="toggleDropDownInGroups()" class="dropbtn" style="width: 100%">Choose teacher</button>
+                                                    <div id="TeacherDropdownInGroups" class="dropdown-content">
                                                         <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                                                        <button style="width: 100%; text-align: center; background: antiquewhite;color: #23233b" ng-click = "submitTeacher(teacher)" ng-repeat = "teacher in teachers">{{teacher.data().name}}</button>
+                                                        <button style="width: 100%; text-align: center; background: antiquewhite;color: #23233b" ng-click = "submitTeacherGroups(teacher)" ng-repeat = "teacher in teachers">{{teacher.data().name}}</button>
                                                     </div>
                                                 </div>
 
@@ -964,6 +964,21 @@
                                             <label for="eventTime">Date & Time</label>
                                             <input type="datetime-local" ng-model="new.event.time" class="form-control" id="eventTime" placeholder="Select a data and time">
                                         </div>
+                                        <div class="form-group">
+                                            <div class = "teachersBox">
+                                                <h4 style="color: antiquewhite; font-family: Karla">Teacher chosen: <u>{{new.event.teacherName}}</u></h4>
+                                                <div class="dropdown">
+                                                    <button onclick="toggleDropDownInEvents()" class="dropbtn" style="width: 100%">Choose teacher</button>
+                                                    <div id="TeacherDropdownInEvents" class="dropdown-content">
+                                                        <input type="text" placeholder="Search.." id="TeacherInput" onkeyup="filterFunction()">
+                                                        <button style="width: 100%; text-align: center; background: antiquewhite;color: #23233b" ng-click = "submitTeacherEvents(teacher)" ng-repeat = "teacher in teachers">{{teacher.data().name}}</button>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <
 
                                     </form>
                                 </div>
