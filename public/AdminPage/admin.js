@@ -1482,8 +1482,43 @@ app.controller('AppController', ($scope) => {
             .then(() => {
                 $scope.usersAssignments[i].status = status
                 $scope.$apply()
+                $scope.emailUserGradedAssignment($scope.usersAssignments[i].user,$scope.assignments[$scope.currentAssignmentIndex].name,$scope.usersAssignments[i].language)//Send Param allows for you to figure out
             })
     }
+    $scope.emailUserGradedAssignment= function (userID,assignmentName,language){ //Finish getting the assingment name and sending that informaotion ovwer
+        var docRef = db.collection("users").doc(userID);
+        docRef.get().then(function(doc) {
+            //Email user
+            let email= doc.data().email;
+            let name = doc.data().FirstName;
+             //let shivan and krish know about these fields
+
+            let url = "https://cors-anywhere.herokuapp.com/http://18.222.29.210:8080/api/gradedAssignments";
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
+
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function() { // Call a function when the state changes.
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    // Request finished. Do processing here.
+                }
+            }
+
+            xhr.send(`name=${name}&email=${email}&assignmentName=${assignmentName}&language=${language}`);
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+
+        //get userEmail
+        //Email User
+
+
+
+    }
+
+
 
     $scope.getUser = (i, id) => {
         console.log(i + " " + id)

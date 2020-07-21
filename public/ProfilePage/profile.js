@@ -216,11 +216,6 @@ mainMod.controller('MainContentController', ($scope) => {
     //
     // }
 
-
-
-
-
-
 })
 
 updateProfileInformation = function(){ //This was horribly coded my bad, I was having a bad day I used of used angular but I said fuck it - Jeeva
