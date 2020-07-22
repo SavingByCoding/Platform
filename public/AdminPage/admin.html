@@ -63,7 +63,7 @@
                 <a style="color: #23233b">----</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
+                <a class="nav-link " id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id = "m2" href="#" ng-model = "menuName2"> {{menuName2}}</a>
@@ -105,7 +105,7 @@
                     <!--                    <a class="dropdown-item" href="" id="d3">{{dropdown3}}</a>-->
                     <a class="dropdown-item" onclick="SignOut()" href="" id="d4">{{dropdown4}}</a>
                     <a class="dropdown-item" href="" id="d5">{{dropdown5}}</a>
-                    <a class="dropdown-item" href="" id="d6">{{dropdown6}}</a>
+                    <a class="dropdown-item active" href="" id="d6">{{dropdown6}}</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -666,7 +666,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="crudGroupModalTitle">{{crudStates.group}} Group: {{new.group.name}}</h5>
+                                    <h5 class="modal-title" id="crudGroupModalTitle">{{crudStates.group}} Group: {{new.group.name}}</h5><br><br>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -688,7 +688,7 @@
                                                     <button onclick="toggleDropDownInGroups()" class="dropbtn" style="width: 100%">Choose teacher</button>
                                                     <div id="TeacherDropdownInGroups" class="dropdown-content">
                                                         <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                                                        <button style="width: 100%; text-align: center; background: antiquewhite;color: #23233b" ng-click = "submitTeacherGroups(teacher)" ng-repeat = "teacher in teachers">{{teacher.data().name}}</button>
+                                                        <button class = "individualTeacherBtn" ng-click = "submitTeacherGroups(teacher)" ng-repeat = "teacher in teachers">{{teacher.data().name}}</button>
                                                     </div>
                                                 </div>
 
@@ -970,15 +970,15 @@
                                                 <div class="dropdown">
                                                     <button onclick="toggleDropDownInEvents()" class="dropbtn" style="width: 100%">Choose teacher</button>
                                                     <div id="TeacherDropdownInEvents" class="dropdown-content">
-                                                        <input type="text" placeholder="Search.." id="TeacherInput" onkeyup="filterFunction()">
-                                                        <button style="width: 100%; text-align: center; background: antiquewhite;color: #23233b" ng-click = "submitTeacherEvents(teacher)" ng-repeat = "teacher in teachers">{{teacher.data().name}}</button>
+                                                        <input style="width: 100%; font-family: Karla" type="text" placeholder="Search.." id="TeacherInput" onkeyup="filterFunction2()">
+                                                        <button class = "individualTeacherBtn" style="width: 100%; text-align: center; background: antiquewhite;color: #23233b" ng-click = "submitTeacherEvents(teacher)" ng-repeat = "teacher in teachers">{{teacher.data().name}}</button>
                                                     </div>
                                                 </div>
 
 
                                             </div>
                                         </div>
-                                        <
+
 
                                     </form>
                                 </div>
@@ -1043,6 +1043,7 @@
                 <div class="col-sm-6 col-lg-4 d-flex pb-3" ng-repeat="assignment in assignments" ng-hide="!assignment.name.toLowerCase().includes(assignmentsQuery.toLowerCase()) && !assignment.description.toLowerCase().includes(assignmentsQuery.toLowerCase()) && assignmentsQuery">
                     <div class="card assignmentCard text-white bg-dark mb-3">
                         <div class="card-body">
+                            <p style="background: rgba(255,255,255,0.5); border-radius: 15px; text-align: center"><b>{{assignment.language}}</b></p>
                             <h5 class="card-title">{{assignment.name}}</h5>
                             <p class="card-text">{{assignment.description}}</p>
                             <div style="visibility: hidden;">

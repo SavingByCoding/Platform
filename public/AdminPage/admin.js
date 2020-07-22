@@ -1,4 +1,4 @@
-
+let teacherChosen;
 firebase.initializeApp({
     apiKey: "AIzaSyBOn9KJJihPr0F0zXNcj_tlHn6tGgxIsMI",
     authDomain: "saving-by-coding.firebaseapp.com",
@@ -230,10 +230,24 @@ app.controller('AppController', ($scope) => {
         $scope.crudStates.event = 'Create'
         $scope.new.event = {}
     }
-
+    $scope.checkAllFieldsEvents = () =>{
+        if($scope.new.event.name === "" || $scope.new.event.link === "" ||$scope.new.event.description === "" || !$scope.new.event.time || !$scope.new.event.teacherName === "" || !$scope.new.event.teacherID) {
+            return true;
+        }
+        else return false;
+    }
     $scope.crudEvent = () => {
-        if ($scope.crudStates.event == "Create") $scope.createEvent()
-        else if ($scope.crudStates.event == "Edit") $scope.editEvent()
+        if ($scope.crudStates.event == "Create"){
+            if($scope.checkAllFieldsEvents()){
+                alert("Make sure all fields are filled out. Events can only be made when all fields are filled out.")
+            }
+            else
+                $scope.createEvent();
+        }
+
+        else if ($scope.crudStates.event == "Edit")
+                $scope.editEvent()
+
     }
 
     $scope.createEvent = () => {
@@ -390,14 +404,16 @@ app.controller('AppController', ($scope) => {
 
     $scope.crudGroup = () => {
         if ($scope.crudStates.group == "Create") {
-
-            $scope.createGroup();
-
+            $scope.getSelectedDates();
+            if($scope.checkAllFieldsGroup())
+                alert("All fields must be filled out before a group can be made. You are missing one or more fields!")
+                else{
+                $scope.createGroup();
+                }
         }
+
         else if ($scope.crudStates.group == "Edit"){
-            $scope.editGroup();
-
-
+                $scope.editGroup();
 
         }
     }
@@ -406,8 +422,13 @@ app.controller('AppController', ($scope) => {
             //gets teacher doc as parameter
         $scope.new.group.teacherName = doc.data().name;
         $scope.new.group.teacherID = doc.data().userId;
+        teacherChosen = true;
     }
-
+$scope.checkAllFieldsGroup = () =>{
+        if($scope.new.group.name === "" || $scope.new.group.description === "" || $scope.new.group.teacherName === "" || $scope.new.group.teacherID === "" || !$scope.new.group.startTime || !$scope.new.group.endTime|| !$scope.new.group.startDate|| $scope.new.group.course === ""||$scope.new.group.selectedDates.length <1)
+            return true;
+    else return false;
+}
 
 
     $scope.createGroup = () => {
@@ -1149,9 +1170,17 @@ app.controller('AppController', ($scope) => {
         $scope.crudStates.assignment = 'Create'
         $scope.new.assignment = {}
     }
+    $scope.checkAllFieldsAssignments = () => {
+        if($scope.new.assignment.name === "" || $scope.new.assignment.description === "" || $scope.new.assignment.language === ""){
+            return true;
+        }
+        else return false;
+
+    }
 
     $scope.crudAssignment = () => {
-        if ($scope.crudStates.assignment == "Create") $scope.createAssignment()
+        if ($scope.crudStates.assignment == "Create")$scope.createAssignment()
+
         else if ($scope.crudStates.assignment == "Edit") $scope.editAssignment()
     }
 
@@ -1720,8 +1749,26 @@ function filterFunction() {
     var input, filter, ul, li, a, i;
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
-    div = document.getElementById("myDropdown");
-    a = div.getElementsByTagName("a");
+    let dropdwn = document.getElementById("TeacherDropdownInGroups");
+    a = dropdwn.getElementsByTagName("BUTTON");
+
+    for (i = 0; i < a.length; i++) {
+        txtValue = a[i].textContent || a[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+        } else {
+            a[i].style.display = "none";
+        }
+    }
+}
+
+function filterFunction2() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("TeacherInput");
+    filter = input.value.toUpperCase();
+    let dropdwn = document.getElementById("TeacherDropdownInEvents");
+    a = dropdwn.getElementsByTagName("BUTTON");
+
     for (i = 0; i < a.length; i++) {
         txtValue = a[i].textContent || a[i].innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {

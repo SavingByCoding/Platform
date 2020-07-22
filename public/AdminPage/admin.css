@@ -448,3 +448,15 @@ body {
 .dropdown a:hover {background-color: #ddd;}
 
 .show {display: block;}
+
+.individualTeacherBtn{
+    width: 100%;
+    text-align: center;
+    background: antiquewhite;
+    color: #23233b;
+    border: transparent;
+    transition: all 1s ease;
+}
+.individualTeacherBtn:hover{
+    background: green;
+}
