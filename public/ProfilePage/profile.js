@@ -230,3 +230,4 @@ updateProfileInformation = function(){ //This was horribly coded my bad, I was h
     },{ merge: true });
 
 }
+

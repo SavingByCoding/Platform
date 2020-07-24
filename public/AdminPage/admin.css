@@ -452,11 +452,20 @@ body {
 .individualTeacherBtn{
     width: 100%;
     text-align: center;
-    background: antiquewhite;
+    background: #faebd7;
     color: #23233b;
     border: transparent;
     transition: all 1s ease;
 }
 .individualTeacherBtn:hover{
     background: green;
+}
+.assignmentsBtn{
+    display: block;
+}
+.filter{
+    transition: all 1s ease;
+}
+.filter:hover{
+    transform: scale(1.04);
 }

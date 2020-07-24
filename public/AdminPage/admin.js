@@ -1,3 +1,6 @@
+
+
+
 let teacherChosen;
 firebase.initializeApp({
     apiKey: "AIzaSyBOn9KJJihPr0F0zXNcj_tlHn6tGgxIsMI",
@@ -1505,6 +1508,8 @@ $scope.checkAllFieldsGroup = () =>{
     $scope.currentGradingView = 1
     $scope.currentAssignmentIndex = 0
     $scope.assignments = []
+    $scope.assignmentsHTML = [];
+    $scope.assignmentsPython = [];
     $scope.usersAssignments = []
 
     $scope.getAssignments = () => {
@@ -1513,10 +1518,48 @@ $scope.checkAllFieldsGroup = () =>{
                 let assignment = { id: doc.id }
                 Object.assign(assignment, doc.data())
                 $scope.assignments.push(assignment)
+                if(doc.data().language === "HTML"){
+                    $scope.assignmentsHTML.push(doc.data());
+                }
+                if(doc.data().language === "Python"){
+                    $scope.assignmentsPython.push(doc.data());
+                }
             })
         }).then(function() {
             $scope.$apply()
         })
+    }
+    $scope.filterAssignments = "";
+    $scope.HTMLChosen = false;
+    $scope.PythonChosen = false;
+
+    $scope.updateFilter = (option) =>{
+        if(option === 1){
+            $scope.HTMLChosen = !$scope.HTMLChosen
+            if($scope.HTMLChosen){
+                $scope.filterAssignments = "HTML"
+                document.getElementById("HTMLFilter").style.background = "#5151a5";
+                document.getElementById("PythonFilter").style.background = "#23233b"
+            }
+            else{
+                $scope.filterAssignments = "";
+                document.getElementById("HTMLFilter").style.background = "#23233b";
+                document.getElementById("PythonFilter").style.background = "#23233b"
+            }
+        }
+        if(option === 2){
+            $scope.PythonChosen = !$scope.PythonChosen
+            if($scope.PythonChosen){
+                $scope.filterAssignments = "Python"
+                document.getElementById("PythonFilter").style.background = "#5151a5"
+                document.getElementById("HTMLFilter").style.background = "#23233b"
+            }
+            else{
+                $scope.filterAssignments = "";
+                document.getElementById("PythonFilter").style.background = "#23233b"
+                document.getElementById("HTMLFilter").style.background = "#23233b"
+            }
+        }
     }
 
     let getUserRequests = 0
@@ -1779,3 +1822,6 @@ function filterFunction2() {
     }
 }
 
+function showHTMLAssignments(){
+    document.getElementsByClassName("assignmentCard").style.display = "none";
+}

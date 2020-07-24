@@ -43,8 +43,11 @@
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-PRWFR3P');</script>
     <!-- End Google Tag Manager -->
+
+
 </head>
 <body ng-app="myApp">
+<div class="se-pre-con"></div>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PRWFR3P"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -1040,12 +1043,39 @@
                     </div>
                     <br>
                 </div>
-                <div class="col-sm-6 col-lg-4 d-flex pb-3" ng-repeat="assignment in assignments" ng-hide="!assignment.name.toLowerCase().includes(assignmentsQuery.toLowerCase()) && !assignment.description.toLowerCase().includes(assignmentsQuery.toLowerCase()) && assignmentsQuery">
-                    <div class="card assignmentCard text-white bg-dark mb-3">
+
+                <div class ="container">
+                    <br>
+                    <div class = "row justify-content-around">
+                        <div class = "col-6">
+                            <div id = "HTMLFilter" class="card filter text-white" ng-click="updateFilter(1)" style="background: #23233b">
+                                <h5 class="card-title" style="text-align: center;font-family: Karla;"><br>HTML Assignments</h5>
+                                <div class="card-body" style="font-family: Karla;text-align: center">
+                                    View all HTML assignments in your groups.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class = "col-6">
+                            <div id = "PythonFilter" class="card filter text-white" ng-click="updateFilter(2)" style="background: #23233b">
+                                <h5 class="card-title" style="text-align: center;font-family: Karla"><br>Python Assignments</h5>
+                                <div class="card-body" style="font-family: Karla;text-align: center">
+                                    View all Python assignments in your groups.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                </div>
+
+
+
+                <div class="col-sm-6 col-lg-4 d-flex pb-3" ng-repeat="assignment1 in assignments| filter:{language: filterAssignments}" ng-hide="!assignment1.name.toLowerCase().includes(assignmentsQuery.toLowerCase()) && !assignment1.description.toLowerCase().includes(assignmentsQuery.toLowerCase()) && assignmentsQuery" >
+                    <div class="card text-white bg-dark mb-3" style="display: inline-block">
                         <div class="card-body">
-                            <p style="background: rgba(255,255,255,0.5); border-radius: 15px; text-align: center"><b>{{assignment.language}}</b></p>
-                            <h5 class="card-title">{{assignment.name}}</h5>
-                            <p class="card-text">{{assignment.description}}</p>
+                            <p style="background: rgba(255,255,255,0.5); border-radius: 15px; text-align: center"><b>{{assignment1.language}}</b></p>
+                            <h5 class="card-title">{{assignment1.name}}</h5>
+                            <p class="card-text">{{assignment1.description}}</p>
                             <div style="visibility: hidden;">
                                 <a class="card-link">Filler</a>
                             </div>
@@ -1056,6 +1086,7 @@
                     </div>
                     <div class="hidden-md hidden-lg hidden-xl"><br/></div>
                 </div>
+
             </div>
             <div id="submissionGradingView" class="grid row" ng-show="currentGradingView == 2">
                 <div class="col-sm-3">
