@@ -49,11 +49,12 @@ app.controller('AppController', ($scope) => {
                         $scope.isTeacher= true;
                         $scope.$apply();
                         $scope.getGroups()
+                        $scope.fillArrayOfStudentsTeacherTeaches();
                     }
                     if (doc.data().userType == '3'){
                         $scope.isAdmin=true;
+                        $scope.getGroups();
                         $scope.$apply();
-                        $scope.getGroups()
                     }
                 })
         })
@@ -1562,26 +1563,82 @@ $scope.checkAllFieldsGroup = () =>{
         }
     }
 
-    let getUserRequests = 0
+    $scope.arrayOfGroupsTeacherTeaches= []; //The IDS
+    $scope.fillArrayOfGroupsTeacherTeaches= function() {
+        db.collection("groups").where('teacherID', '==', $scope.currentAdminUserID)
+            .get().then(function (qs) {
+            qs.forEach(function (doc) {
+                $scope.arrayOfGroupsTeacherTeaches.push(doc.id);
+            })
+        }).then(function () {
+            $scope.$apply()
+        })
+    }
 
+
+    $scope.fillArrayOfStudentsTeacherTeaches = function(){
+        $scope.arrayOfStudentsTeacherTeaches = []; //The IDs
+        db.collection("groups").where('teacherID', '==', $scope.currentAdminUserID)
+            .get().then(function (qs) {
+            qs.forEach(function (doc) {
+                let arrayOfStudents = doc.data().users;
+                for(let i =0; i<arrayOfStudents.length;i++){
+                    $scope.arrayOfStudentsTeacherTeaches.push(arrayOfStudents[i]);
+                }
+            })
+            $scope.arrayOfStudentsTeacherTeaches=$scope.arrayOfStudentsTeacherTeaches.filter((value,index)=>$scope.arrayOfStudentsTeacherTeaches.indexOf(value) == index)
+        }).then(function () {
+            $scope.$apply()
+        })
+    }
+
+
+    let getUserRequests = 0
+    //get the groups that the teacher teaches as a serperate function
+    //get the users that the teacher teachers as a seperate function
+    //only show the assignments of students the teacher teachers
+    //get the student uuid and only push those students assingments onto the screen
     $scope.loadSubmissions = (i) => {
         $scope.currentGradingView = 2
         $scope.currentAssignmentIndex = i
         $scope.usersAssignments = []
-        db.collection("users-assignments")
-            .where('assignment', '==', $scope.assignments[i].id)
-            .where('completed', '==', true)
-            .get().then(function(qs) {
-            qs.forEach(function(doc) {
-                let userAssignment = { id: doc.id }
-                Object.assign(userAssignment, doc.data())
-                $scope.usersAssignments.push(userAssignment)
-                $scope.getUser($scope.usersAssignments.length - 1, doc.data().user)
-                getUserRequests++
-            })
-        }).then(function() {
-            $scope.$apply()
-        })
+        if($scope.isTeacher){ //Loads all teacher specific assignments
+            for(let z=0; z<$scope.arrayOfStudentsTeacherTeaches.length;z++){
+                db.collection("users-assignments")
+                    .where('assignment', '==', $scope.assignments[i].id)
+                    .where('completed', '==', true)
+                    .where('user','==',$scope.arrayOfStudentsTeacherTeaches[z]) //Only loads the assignments that are from the classes the teacher teaches
+                    .get().then(function(qs){
+                    qs.forEach(function(doc) {
+                        let userAssignment = { id: doc.id }
+                        Object.assign(userAssignment, doc.data())
+                        $scope.usersAssignments.push(userAssignment)
+                        $scope.getUser($scope.usersAssignments.length - 1, doc.data().user)
+                        getUserRequests++
+                        $scope.$apply()
+                    })
+                }).then(function() {
+                    $scope.$apply()
+                })
+            }
+        }
+        else if($scope.isAdmin){ //Loads all assignments
+                db.collection("users-assignments")
+                    .where('assignment', '==', $scope.assignments[i].id)
+                    .where('completed', '==', true)
+                    .get().then(function(qs) {
+                    qs.forEach(function(doc) {
+                        let userAssignment = { id: doc.id }
+                        Object.assign(userAssignment, doc.data())
+                        $scope.usersAssignments.push(userAssignment)
+                        $scope.getUser($scope.usersAssignments.length - 1, doc.data().user)
+                        getUserRequests++
+                    })
+                }).then(function() {
+                    $scope.$apply()
+                })
+
+        }
     }
 
     $scope.changeSubmissionStatus = (i, status) => {
