@@ -1,6 +1,3 @@
-
-
-
 let teacherChosen;
 firebase.initializeApp({
     apiKey: "AIzaSyBOn9KJJihPr0F0zXNcj_tlHn6tGgxIsMI",
