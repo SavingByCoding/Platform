@@ -285,3 +285,37 @@ function isEmailReused() {
 }
 
 
+mainMod.controller("demoClassLoader", function($scope){
+    let earliestDate = new Date(2070, 11, 24, 10, 33, 30, 0);
+    let earliestDemo;
+
+    $scope.getDemo = () => {
+        db.collection("events").where("name", "==", "Codeology Demo Class")
+            .get()
+            .then(function(querySnapshot){
+                $scope.arrayOfClasses = [];
+                querySnapshot.forEach(function (doc) {
+                    if(doc.data().archived === false) {
+                        //console.log(doc.data())
+                        $scope.arrayOfClasses.push(doc);
+                    }
+                })
+                for(let a = 0; a < $scope.arrayOfClasses.length; a++){
+                    if($scope.arrayOfClasses[a].data().time.toDate() < earliestDate){
+                        earliestDate = $scope.arrayOfClasses[a].data().time.toDate()
+                        earliestDemo = $scope.arrayOfClasses[a];
+                    }
+                }
+                $scope.name = earliestDemo.data().name
+                $scope.time = earliestDate
+                $scope.description = earliestDemo.data().description;
+                $scope.link = earliestDemo.data().link;
+                $scope.$apply();
+            })
+    }
+
+    $scope.getDemo();
+
+
+
+})

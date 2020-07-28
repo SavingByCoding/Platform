@@ -484,3 +484,10 @@ html {
 {
 
 }
+#overview{
+    transition: all 1s ease;
+}
+#overview:hover{
+    background: #5f5f8d;
+    transform: scale(1.04);
+}
