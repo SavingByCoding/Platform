@@ -289,23 +289,29 @@ mainMod.controller("demoClassLoader", function($scope){
     let earliestDate = new Date(2070, 11, 24, 10, 33, 30, 0);
     let earliestDemo;
 
+    //sets the data of the nearest demo class to scope variables used on index.html
     $scope.getDemo = () => {
         db.collection("events").where("name", "==", "Codeology Demo Class")
             .get()
             .then(function(querySnapshot){
                 $scope.arrayOfClasses = [];
                 querySnapshot.forEach(function (doc) {
+                    //makes sure event is not in the past
                     if(doc.data().archived === false) {
                         //console.log(doc.data())
+                        //all demo classes pushed into array below
                         $scope.arrayOfClasses.push(doc);
                     }
                 })
                 for(let a = 0; a < $scope.arrayOfClasses.length; a++){
                     if($scope.arrayOfClasses[a].data().time.toDate() < earliestDate){
+                        //finds earliest date by linearly going through all demo classes
                         earliestDate = $scope.arrayOfClasses[a].data().time.toDate()
+                        //gets earliest demo class
                         earliestDemo = $scope.arrayOfClasses[a];
                     }
                 }
+                //sets all values of earliest demo class to scope variables that can be used on index.html
                 $scope.name = earliestDemo.data().name
                 $scope.time = earliestDate
                 $scope.description = earliestDemo.data().description;
