@@ -257,6 +257,7 @@
 .jumboWordShape{
     transition: all 1s ease;
     border: solid 0px #23233b;
+    border-radius: 15px;
     background: rgba(250,235,215,0.9);
     padding-left: 20px;
     padding-right: 20px;
