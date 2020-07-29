@@ -491,3 +491,13 @@ html {
     background: #5f5f8d;
     transform: scale(1.04);
 }
+#nameSec{
+    background: #bebed2;
+    color: #23233b;
+    transition: all 1s ease;
+}
+#nameSec:hover{
+    transform: scale(1.03);
+    color: #5a5958;
+    background: #9090a5;
+}

@@ -79,7 +79,7 @@ mainMod.controller("myCont1", function ($scope) {
     let d4 = document.getElementById("d4")
     d4.href = $scope.dropdown4Link;
 
-    $scope.dropdown5 = "SignUp/Login"
+    $scope.dropdown5 = "Login"
     $scope.dropdown5Link = " LoginPage/Login.html";
     let d5 = document.getElementById("d5")
     d5.href = $scope.dropdown5Link
@@ -260,7 +260,8 @@ function isEmailReused() {
                 let data = {
                     userEmail: currentEmail, //just to avoid comparisons where its the same email but typed differently
                     userFirstName: firstName,
-                    userLastName: lastName
+                    userLastName: lastName,
+                    time: new Date()
                 }
                 //sends email list data to new doc created on email-list collection
                 db.collection("email-list").doc(generateUUID()).set(data).then(function() {

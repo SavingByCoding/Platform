@@ -204,18 +204,19 @@
 <div class = "container" data-aos="flip-right" ng-controller = "demoClassLoader">
     <div class = "row justify-content-around">
         <div class = "col-10">
-            <div class="card" style="width:100%;border: #23233b solid 5px; border-radius: 50px 0px 50px 0px">
+            <div class="card" style="width:100%; border-radius: 80px 0px 80px 0px">
                 <div class="card-body">
-                    <h1 class="card-title" style="font-family: Karla; color: antiquewhite;text-align: center;background: #23233b;border-radius: 15px" ng-model = "time;"><br> <b>Our Next Free Demo Class is On:</b><br> <u>{{time.toLocaleDateString() + " at " +time.toLocaleTimeString()}}</u><br><br></h1><br>
+                    <h1 class="card-title" style="font-family: Karla; color: #23233b;text-align: center;border-radius: 15px" ng-model = "time"><br><b>Our Next Free Demo Class is on:</b><br></h1>
+                    <h1 style="text-align: center;background:#bebed2;border-radius: 50px "><br><u>{{time.toLocaleDateString() + " at " +time.toLocaleTimeString()}} EST<br><br></u></h1><br>
                     <h3 class="card-text" style="text-align: center;font-family: Karla;color: #23233b">By attending one of our free classes, students can gain an understanding of the platform, its features, and a basic overview on the content that will be covered!</h3>
-                    <br>
-                    <div style="background: #23233b;border-radius: 15px"><br>
-                    <h3 style="text-align: center;color: antiquewhite;font-family: Karla;"><b><a ng-model = "link" ng-href = "{{link}}" class="card-link" ng-model = "name">{{name}}</a></b>
-                        <h5 ng-model = "description" style="text-align: center;font-family: Karla;color: antiquewhite"> &nbsp; {{description}} &nbsp; </h5>
-                    </h3><br>
+
+                    <div style="border-radius: 50px"><br>
+                        <a ng-model = "link" ng-href = "{{link}}" class="card-link" ng-model = "name">
+                            <h3 id = "nameSec" style="text-align: center;font-family: Karla; border-radius: 50px"><b><br>Attend: {{name}}<br><br></b></h3><br></a>
+                        <h5 ng-model = "description" style="text-align: center;font-family: Karla;color: #23233b">&nbsp; {{description}} &nbsp;</h5>
                     </div><br>
                     <div class = " row justify-content-around">
-                    <button id = "overview" style="width: 50%;background: #23233b;color: antiquewhite;font-family: Karla;font-size: 25px;border-radius: 15px" data-toggle="modal" data-target="#myModal">Getting Started<br></button></div>
+                    <button id = "overview" style="width: 50%;border: transparent;background: #23233b;color: antiquewhite;font-family: Karla;font-size: 25px;border-radius: 15px" data-toggle="modal" data-target="#myModal">Getting Started<br></button></div><br>
                 </div>
             </div>
 
