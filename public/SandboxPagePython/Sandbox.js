@@ -4,19 +4,19 @@ $(document).ready(function () {
 
     $("#CompileButton").click(function () {
         let Code= editor.getValue();
-        Code= encodeURI(Code);
-        Code= Code.replace(/#/g,"~"); //To make sure Comments Work
+          Code= encodeURI(Code);
+          Code= Code.replace(/#/g,"~"); //To make sure Comments Work
         let Output="";
-        let Url= "https://cors-anywhere.herokuapp.com/http://18.220.79.42:8080/"+ Code;
-
+        let url = "http://18.220.79.42:8080/api/PythonCompiler/"+Code;
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', Url, true);
+        xhr.open("GET", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send();
         xhr.onreadystatechange = processRequest;
-
         function processRequest(e) {
             Output= xhr.responseText;
             insertText(Output);
+
         }
 
         function insertText(text) {
