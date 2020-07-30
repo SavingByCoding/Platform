@@ -257,6 +257,7 @@
 .jumboWordShape{
     transition: all 1s ease;
     border: solid 0px #23233b;
+    border-radius: 15px;
     background: rgba(250,235,215,0.9);
     padding-left: 20px;
     padding-right: 20px;
@@ -483,4 +484,21 @@ html {
 @media screen and (max-width:767px)
 {
 
+}
+#overview{
+    transition: all 1s ease;
+}
+#overview:hover{
+    background: #5f5f8d;
+    transform: scale(1.04);
+}
+#nameSec{
+    background: #bebed2;
+    color: #23233b;
+    transition: all 1s ease;
+}
+#nameSec:hover{
+    transform: scale(1.03);
+    color: #5a5958;
+    background: #9090a5;
 }

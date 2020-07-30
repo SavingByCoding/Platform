@@ -114,7 +114,7 @@
 
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="background: rgba(35,35,59,0.3)" data-keyboard="false" data-backdrop="static" ng-controller = "emailModal">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="background: rgba(35,35,59,0.3)" data-keyboard="false" data-backdrop="static" >
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 800px">
         <div class="modal-content" style="background: #23233b; border: 5px antiquewhite solid">
             <div class="modal-header" style="text-align: center">
@@ -167,15 +167,14 @@
             <br>
             <div class = "row justify-content-around">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background: antiquewhite; font-family: Karla;color: #23233b; width: 30%">Close</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background: antiquewhite; font-family: Karla;color: #23233b; width: 30%">Close</button>
             </div>
             <br>
         </div>
     </div>
 </div>
 
-<div class="jumbotron jumboCont jumbotron-fluid ">
-    <div class="container ">
+<div class="jumbotron jumboCont jumbotron-fluid " style="border-radius: 15px">
+    <div class="container">
         <div class = "col-6 jumboWordShape align-content-center ml-auto">
             <br>
             <img id = "logoTop"src = "Codeology%20Black%20Logo%20Transparent%20Without%20Words.png" style="height: 100px">
@@ -202,20 +201,27 @@
 </div>
 
 
-<div class = "container" data-aos="fade-up">
-    <br><br>
+<div class = "container" data-aos="flip-right" ng-controller = "demoClassLoader">
     <div class = "row justify-content-around">
+        <div class = "col-10">
+            <div class="card" style="width:100%; border-radius: 80px 0px 80px 0px">
+                <div class="card-body">
+                    <h1 class="card-title" style="font-family: Karla; color: #23233b;text-align: center;border-radius: 15px" ng-model = "time"><br><b>Our Next Free Demo Class is on:</b><br></h1>
+                    <h1 style="text-align: center;background:#bebed2;border-radius: 50px "><br><u>{{time.toLocaleDateString() + " at " +time.toLocaleTimeString()}} EST<br><br></u></h1><br>
+                    <h3 class="card-text" style="text-align: center;font-family: Karla;color: #23233b">By attending one of our free classes, students can gain an understanding of the platform, its features, and a basic overview on the content that will be covered!</h3>
 
-        <div class = "col-8 whoWeDoItFor contactHeader">
-            <div class = "row HRROW" id = whyWeWork></div>
-            <br>
-            <h2 style="text-align: center; font-family: Karla; color: #23233b">Join us at our next Demo Class  on<br><br> <b>{{date}}</b> <br> <br> Click the <a href="{{link}}">Link</a> to join and learn more about Codeology directly from an instructor!</h2>
-            <br>
+                    <div style="border-radius: 50px"><br>
+                        <a ng-model = "link" ng-href = "{{link}}" class="card-link" ng-model = "name">
+                            <h3 id = "nameSec" style="text-align: center;font-family: Karla; border-radius: 50px"><b><br>Attend: {{name}}<br><br></b></h3><br></a>
+                        <h5 ng-model = "description" style="text-align: center;font-family: Karla;color: #23233b">&nbsp; {{description}} &nbsp;</h5>
+                    </div><br>
+                    <div class = " row justify-content-around">
+                    <button id = "overview" style="width: 50%;border: transparent;background: #23233b;color: antiquewhite;font-family: Karla;font-size: 25px;border-radius: 15px" data-toggle="modal" data-target="#myModal">Getting Started<br></button></div><br>
+                </div>
+            </div>
+
         </div>
     </div>
-    <br><br><br>
-    <div class = "row HRROW" id = whyWeWork></div>
-
 </div>
 
 <div id = "studentsLink"></div>
@@ -224,7 +230,7 @@
 <div class="container">
     <div class = "row justify-content-around">
         <div class = "col-8">
-            <h1 style = "text-align: center; font-family: Karla; color: #23233b" id = "howWeWork">The Process:</h1>
+            <h1 style = "text-align: center; font-family: Karla; color: #23233b;font-size: 45px" id = "howWeWork"><b>The Process:</b></h1>
         </div>
     </div>
 </div>
@@ -377,7 +383,9 @@
 
 
 
-<footer id="sticky-footer" class="py-4  FOOTER text-white-50" style="border-top: 10px solid #23233b">
+</div>
+
+<footer id="sticky-footer" class="py-4  FOOTER text-white-50" style="border-top: 10px solid #23233b;width: 100%">
     <div class="container  text-center">
         <div class = "row">
             <div class = "col-4" style="font-family:Karla;color: #23233b">
@@ -398,16 +406,15 @@
                     <img id = "instalogo" src="instalogo.png" style="height: 60px;">
                     <label style="font-family: Karla; color: #23233b;font-size: 20px" for = "instalogo"><a href="https://www.instagram.com/codeology.sbc/">&nbsp;Find Us on Instagram!</a></label>
                 </div>
-                    <br>
+                <br>
                 <div style="background: #dce1e8;border-radius: 15px">
-                <img id = "facebooklogo" src="facebooklogo.png" style="height: 60px;">
-                <label style="font-family: Karla; color: #23233b;font-size: 20px" for = "facebooklogo">  <a href="https://www.facebook.com/codeology.sbc/">Add Us on Facebook!</a></label>
+                    <img id = "facebooklogo" src="facebooklogo.png" style="height: 60px;">
+                    <label style="font-family: Karla; color: #23233b;font-size: 20px" for = "facebooklogo">  <a href="https://www.facebook.com/codeology.sbc/">Add Us on Facebook!</a></label>
                 </div>
             </div>
         </div>
     </div>
 </footer>
-</div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
 <script src="navigationLinksHomePage.js"></script>
