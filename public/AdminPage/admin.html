@@ -938,6 +938,9 @@
                             <td style="width: auto;">
                                 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#crudEventModal" ng-click="launchCreateEventModal()">Create Event</button>
                             </td>
+                            <td style="width: auto">
+                                <button type="button" class="btn btn-dark" ng-show = "isAdmin" ng-click="archivePastClasses()">Archive Past Events</button>
+                            </td>
                         </tr>
                     </table>
                     <div class="modal fade" id="crudEventModal" tabindex="-1" role="dialog" aria-labelledby="crudEventModalLabel" aria-hidden="true">
@@ -966,6 +969,13 @@
                                         <div class="form-group">
                                             <label for="eventTime">Date & Time</label>
                                             <input type="datetime-local" ng-model="new.event.time" class="form-control" id="eventTime" placeholder="Select a data and time">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="demoClass">Is Demo Class</label>
+                                            <select name="demoChooser" id="demoClass" ng-model = "new.event.isDemoClass">
+                                                <option ng-value= true>Yes</option>
+                                                <option ng-value= false>No</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <div class = "teachersBox">
