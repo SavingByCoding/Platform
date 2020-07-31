@@ -207,6 +207,7 @@ app.controller('AppController', ($scope) => {
             description: "",
             time: "",
             teacherName:"",
+            isDemo: "",
             teacherID:""
         }
     }
@@ -252,6 +253,13 @@ app.controller('AppController', ($scope) => {
     }
 
     $scope.createEvent = () => {
+        $scope.new.event.isDemoClass = document.getElementById("demoClass").value;
+        if($scope.new.event.isDemoClass === "boolean:true"){
+            $scope.new.event.isDemoClass = true;
+        }
+        else
+            $scope.new.event.isDemoClass = false;
+
         let eventId = generateUUID()
         let event = {
             archived: false,
@@ -261,6 +269,7 @@ app.controller('AppController', ($scope) => {
             time: $scope.new.event.time,
             teacherName:$scope.new.event.teacherName,
             teacherID:$scope.new.event.teacherID,
+            isDemo: $scope.new.event.isDemoClass,
             groups: []
         }
         db.collection("events").doc(eventId).set(event).then(() => {
@@ -272,6 +281,11 @@ app.controller('AppController', ($scope) => {
     }
 
     $scope.editEvent = () => {
+        if($scope.new.event.isDemoClass === "boolean:true"){
+            $scope.new.event.isDemoClass = true;
+        }
+        else
+            $scope.new.event.isDemoClass = false;
 
         db.collection("events").doc($scope.new.event.id).update({
             name: $scope.new.event.name,
@@ -280,6 +294,7 @@ app.controller('AppController', ($scope) => {
             time: $scope.new.event.time,
             teacherName:$scope.new.event.teacherName,
             teacherID:$scope.new.event.teacherID,
+            isDemo: $scope.new.event.isDemoClass,
             groups: $scope.new.event.groups
         }).then(() => {
             for (let i = 0; i < $scope.events.length; i++) {
@@ -289,6 +304,7 @@ app.controller('AppController', ($scope) => {
                     $scope.events[i].description = $scope.new.event.description
                     $scope.events[i].time = $scope.new.event.time
                     $scope.events[i].teacherName=$scope.new.event.teacherName;
+                    $scope.events[i].isDemo = $scope.new.event.isDemoClass;
                     $scope.events[i].teacherID=$scope.new.event.teacherID;
                     $scope.events[i].groups = $scope.new.event.groups
                     return

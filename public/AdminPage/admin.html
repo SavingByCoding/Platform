@@ -968,6 +968,13 @@
                                             <input type="datetime-local" ng-model="new.event.time" class="form-control" id="eventTime" placeholder="Select a data and time">
                                         </div>
                                         <div class="form-group">
+                                            <label for="demoClass">Is Demo Class</label>
+                                            <select name="demoChooser" id="demoClass" ng-model = "new.event.isDemoClass">
+                                                <option ng-value= true>Yes</option>
+                                                <option ng-value= false>No</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
                                             <div class = "teachersBox">
                                                 <h4 style="color: antiquewhite; font-family: Karla">Teacher chosen: <u>{{new.event.teacherName}}</u></h4>
                                                 <div class="dropdown">
