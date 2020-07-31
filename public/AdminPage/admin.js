@@ -313,6 +313,23 @@ app.controller('AppController', ($scope) => {
         })
     }
 
+    $scope.archivePastClasses = () =>{
+        db.collection("events").where("archived", "==", false)
+            .get()
+            .then(function(querySnapshot){
+                querySnapshot.forEach(function(doc){
+                    if(doc.data().time.toDate() < new Date()){
+                        db.collection("events").doc(doc.id).update({
+                            archived: true
+                        })
+                        window.location.reload(true);
+                    }
+                    $scope.$apply()
+                })
+            })
+        window.alert("Page will reload to display changes.")
+    }
+
     $scope.toggleEventArchived = (i) => {
         let event = $scope.events[i]
         db.collection("events").doc(event.id).update({
@@ -726,7 +743,7 @@ $scope.checkAllFieldsGroup = () =>{
                 groupIds.push(group.groupId)
             }
         }
-        db.collection("events").doc($scope.events[$scope.currentEventMembership].id).update({
+        db.collection("t").doc($scope.events[$scope.currentEventMembership].id).update({
             groups: groupIds
         }).then(() => {
             $scope.events[$scope.currentEventMembership].groups = groupIds
