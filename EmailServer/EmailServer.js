@@ -5,6 +5,13 @@ let nodemailer = require('nodemailer')
 let handlebars = require('handlebars')
 let fs = require('fs')
 
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://codeology.org"); // update to match the domain you will make the request from //Change this when running any python testing code
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 let USERNAME = 'savingbycoding@gmail.com'
 let EMAIL = 'savingbycoding@gmail.com'
 let PASSWORD = 'Outofbounds123'

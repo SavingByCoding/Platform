@@ -7,7 +7,7 @@ $(document).ready(function () {
           Code= encodeURI(Code);
           Code= Code.replace(/#/g,"~"); //To make sure Comments Work
         let Output="";
-        let url = "http://18.220.79.42:8080/api/PythonCompiler/"+Code;
+        let url = "https://18.220.79.42:8080/api/PythonCompiler/"+Code;
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

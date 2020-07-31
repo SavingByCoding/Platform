@@ -1655,7 +1655,8 @@ $scope.checkAllFieldsGroup = () =>{
             let email= doc.data().email;
             let name = doc.data().FirstName;
 
-            let url = "https://cors-anywhere.herokuapp.com/http://18.222.29.210:8080/api/gradedAssignments";
+            // let url = "https://cors-anywhere.herokuapp.com/http://18.222.29.210:8080/api/gradedAssignments";
+            let url = "https://18.222.29.210:8080/api/gradedAssignments";
 
             var xhr = new XMLHttpRequest();
             xhr.open("POST", url, true);
@@ -1773,10 +1774,9 @@ $scope.checkAllFieldsGroup = () =>{
 
     $scope.loadData = () => {
         if ($scope.currentTab == 0 && !$scope.loaded[0]) {
-            if(!$scope.isTeacher){ //Checks if you are  teacher before giving access to this page this is an admin only page
                 $scope.getCourses()
                 $scope.loaded[0] = true
-            }
+
         }
         else if ($scope.currentTab == 3 && !$scope.loaded[3]) {
             $scope.getEvents()
@@ -1787,10 +1787,9 @@ $scope.checkAllFieldsGroup = () =>{
             $scope.loaded[4] = true
         }
         else if ($scope.currentTab == 5 && !$scope.loaded[5]) {
-            if(!$scope.isTeacher){
                 $scope.getRegistrationCourses()
                 $scope.loaded[5] = true
-            }
+
         }
 
     }

@@ -127,7 +127,7 @@
             </li>
         </ul>
         <br />
-        <div ng-show="currentTab === 0" ng-hide="isTeacher">
+        <div ng-show="(currentTab === 0)&&(isAdmin)">
             <div class="modal fade" id="crudCourseModal" tabindex="-1" role="dialog" aria-labelledby="crudCourseModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -798,7 +798,7 @@
                 </div>
             </div>
         </div>
-        <div ng-show="currentTab === 2">
+        <div ng-show="(currentTab === 2)&&(isAdmin)">
             <div class="grid row">
                 <div class="col-sm-12">
                     <table style="width: 100%;">
@@ -1156,7 +1156,7 @@
                 </div>
             </div>
         </div>
-        <div ng-show="currentTab === 5">
+        <div ng-show="(currentTab === 5)&&(isAdmin)">
             <div class="grid row" id="coursesList" ng-show="currentRegistrationCourse === null">
                 <div class="col-sm-6 col-lg-4 d-flex pb-3" ng-repeat="course in registrationCourses">
                     <div class="card assignmentCard text-white bg-dark mb-3">

@@ -69,7 +69,8 @@ checkIfUserAlreadyExists= function(){
                             let name = doc.data().name;
                             let email = doc.data().email;
 
-                            let url = "https://cors-anywhere.herokuapp.com/http://18.222.29.210:8080/api/email";
+                            // let url = "https://cors-anywhere.herokuapp.com/http://18.222.29.210:8080/api/email";
+                            let url = "https://18.222.29.210:8080/api/email";
 
                             var xhr = new XMLHttpRequest();
                             xhr.open("POST", url, true);
