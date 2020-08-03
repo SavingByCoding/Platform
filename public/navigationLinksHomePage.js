@@ -292,7 +292,7 @@ mainMod.controller("demoClassLoader", function($scope){
 
     //sets the data of the nearest demo class to scope variables used on index.html
     $scope.getDemo = () => {
-        db.collection("events").where("isDemo", "==", "yes")
+        db.collection("events").where("isDemo", "==", true)
             .get()
             .then(function(querySnapshot){
                 $scope.arrayOfClasses = [];

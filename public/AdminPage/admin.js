@@ -207,7 +207,7 @@ app.controller('AppController', ($scope) => {
             description: "",
             time: "",
             teacherName:"",
-            isDemo: "",
+            isDemo:false,
             teacherID:""
         }
     }
@@ -230,7 +230,8 @@ app.controller('AppController', ($scope) => {
 
     $scope.launchCreateEventModal = () => {
         $scope.crudStates.event = 'Create'
-        $scope.new.event = {}
+        $scope.new.event = {
+        }
     }
     $scope.checkAllFieldsEvents = () =>{
         if($scope.new.event.name === "" || $scope.new.event.link === "" ||$scope.new.event.description === "" || !$scope.new.event.time || !$scope.new.event.teacherName === "" || !$scope.new.event.teacherID) {
@@ -253,12 +254,12 @@ app.controller('AppController', ($scope) => {
     }
 
     $scope.createEvent = () => {
-        $scope.new.event.isDemoClass = document.getElementById("demoClass").value;
-        if($scope.new.event.isDemoClass === "boolean:true"){
-            $scope.new.event.isDemoClass = true;
-        }
-        else
-            $scope.new.event.isDemoClass = false;
+        // $scope.new.event.isDemoClass = document.getElementById("demoClass").value;
+        // if($scope.new.event.isDemoClass === "boolean:true"){
+        //     $scope.new.event.isDemoClass = true;
+        // }
+        // else
+        //     $scope.new.event.isDemoClass = false;
 
         let eventId = generateUUID()
         let event = {
@@ -269,7 +270,7 @@ app.controller('AppController', ($scope) => {
             time: $scope.new.event.time,
             teacherName:$scope.new.event.teacherName,
             teacherID:$scope.new.event.teacherID,
-            isDemo: $scope.new.event.isDemoClass,
+            isDemo: $scope.new.event.isDemo,
             groups: []
         }
         db.collection("events").doc(eventId).set(event).then(() => {
@@ -281,11 +282,11 @@ app.controller('AppController', ($scope) => {
     }
 
     $scope.editEvent = () => {
-        if($scope.new.event.isDemoClass === "boolean:true"){
-            $scope.new.event.isDemoClass = true;
-        }
-        else
-            $scope.new.event.isDemoClass = false;
+        // if($scope.new.event.isDemoClass === "boolean:true"){
+        //     $scope.new.event.isDemoClass = true;
+        // }
+        // else
+        //     $scope.new.event.isDemoClass = false;
 
         db.collection("events").doc($scope.new.event.id).update({
             name: $scope.new.event.name,
@@ -294,7 +295,7 @@ app.controller('AppController', ($scope) => {
             time: $scope.new.event.time,
             teacherName:$scope.new.event.teacherName,
             teacherID:$scope.new.event.teacherID,
-            isDemo: $scope.new.event.isDemoClass,
+            isDemo: $scope.new.event.isDemo,
             groups: $scope.new.event.groups
         }).then(() => {
             for (let i = 0; i < $scope.events.length; i++) {
@@ -304,7 +305,7 @@ app.controller('AppController', ($scope) => {
                     $scope.events[i].description = $scope.new.event.description
                     $scope.events[i].time = $scope.new.event.time
                     $scope.events[i].teacherName=$scope.new.event.teacherName;
-                    $scope.events[i].isDemo = $scope.new.event.isDemoClass;
+                    $scope.events[i].isDemo = $scope.new.event.isDemo;
                     $scope.events[i].teacherID=$scope.new.event.teacherID;
                     $scope.events[i].groups = $scope.new.event.groups
                     return
@@ -322,12 +323,13 @@ app.controller('AppController', ($scope) => {
                         db.collection("events").doc(doc.id).update({
                             archived: true
                         })
-                        window.location.reload(true);
+                        $scope.$apply();
                     }
-                    $scope.$apply()
+
                 })
             })
-        window.alert("Page will reload to display changes.")
+        $scope.getEvents();
+        $scope.$apply();
     }
 
     $scope.toggleEventArchived = (i) => {
@@ -363,7 +365,8 @@ app.controller('AppController', ($scope) => {
                         teacherName: doc.data().teacherName,
                         teacherID:doc.data().teacherID,
                         groups: doc.data().groups,
-                        archived: doc.data().archived
+                        archived: doc.data().archived,
+                        isDemo: doc.data().isDemo
                     })
                 }
             }
@@ -1701,7 +1704,6 @@ $scope.checkAllFieldsGroup = () =>{
                     // Request finished. Do processing here.
                 }
             }
-
             xhr.send(`name=${name}&email=${email}&assignmentName=${assignmentName}&language=${language}`);
         }).catch(function(error) {
             console.log("Error getting document:", error);
