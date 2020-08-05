@@ -159,7 +159,7 @@ mainMod.controller('MainContentController', ($scope) => {
 
     $scope.registeredCourses=[];
     $scope.getRegisteredCourses= function(){
-        db.collection("registrations").where("userId", "==", userID)
+        db.collection("registrations").where("userId", "==", userID).where("isExpired","==",false)
             .get()
             .then(function(querySnapshot) {
                 querySnapshot.forEach(function(doc) {
