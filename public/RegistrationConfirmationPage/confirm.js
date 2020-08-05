@@ -91,7 +91,8 @@ mainMod.controller("SubmitAngular", function ($scope) {
             ChildGrade: $scope.ChildGrade,
             ConfirmationNumber: $scope.ConfirmationNumber,
             CourseName: $scope.CourseName,
-            PhoneNum: $scope.phoneNum
+            PhoneNum: $scope.phoneNum,
+            isExpired: false
         };
         if(!($scope.CourseId==="")){
             db.collection("registrations").doc(generateUUID()).set(data);
@@ -154,7 +155,7 @@ $scope.sendConfirmationEmail= function(){
     let confirmationNumber =  $scope.ConfirmationNumber;
 
     // let url = "https://cors-anywhere.herokuapp.com/http://18.222.29.210:8080/api/registrationConfirmation";
-    let url = "https://18.222.29.210:8080/api/registrationConfirmation";
+    let url = "https://cors-anywhere.herokuapp.com/http://18.222.29.210:8080/api/registrationConfirmation";
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);

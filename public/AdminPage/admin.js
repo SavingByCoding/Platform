@@ -584,12 +584,44 @@ $scope.checkAllFieldsGroup = () =>{
         })
     }
 
+    $scope.archiveGroup= function(i){
+        let group = $scope.groups[i];
+        db.collection("groups").doc(group.id).update({
+            isArchived: true
+        }).then(function () {
+            $scope.groups[i].isArchived == true;
+            $scope.archiveRegistration(group);
+        })
+    };
+
+    $scope.archiveRegistration= function(group){ //takes in group
+        let students = group.users;//their uuid
+        console.log(students)
+        students.forEach(function (student) {
+            console.log(student);
+            db.collection("registrations").where("userId", "==", student).where("courseId","==",group.course)
+                .get()
+                .then(function(querySnapshot) {
+                    querySnapshot.forEach(function(doc) {
+                        db.collection("registrations").doc(doc.id).update({
+                            isExpired: true
+                        });
+                        //Puts the registration as Expired
+
+                    });
+                })
+                .catch(function(error) {
+                    console.log("Error getting documents: ", error);
+                });
+        });
+    }
+
+
     $scope.getGroups = () => { //Add a function that only gets groups that the user is in
         $scope.groups = []
         db.collection("groups").get().then((querySnapshot) => {
             for (var i = 0; i < querySnapshot.docs.length; i++) {
                 var doc = querySnapshot.docs[i]
-                console.log($scope.isAdmin)
                 if(($scope.currentAdminUserID===doc.data().teacherID)| ($scope.isAdmin)) {
                     $scope.groups.push({
                         id: doc.id,
@@ -603,6 +635,7 @@ $scope.checkAllFieldsGroup = () =>{
                         course: doc.data().course,
                         isOpen: doc.data().isOpen,
                         selectedDates: doc.data().selectedDates,
+                        isArchived: doc.data().isArchived,
                         users: doc.data().users
                     })
                 }
@@ -1692,7 +1725,7 @@ $scope.checkAllFieldsGroup = () =>{
             let name = doc.data().FirstName;
 
             // let url = "https://cors-anywhere.herokuapp.com/http://18.222.29.210:8080/api/gradedAssignments";
-            let url = "https://18.222.29.210:8080/api/gradedAssignments";
+            let url = "https://cors-anywhere.herokuapp.com/http://18.222.29.210:8080/api/gradedAssignments";
 
             var xhr = new XMLHttpRequest();
             xhr.open("POST", url, true);
