@@ -44,7 +44,7 @@ CreateAccountInDB= (id) => {
         email: email,
         name: FullName,
         userType: "1",
-        profilepictureURL: ProfilePicURL, 
+        profilepictureURL: ProfilePicURL,
         dateJoined: getCurrentDate(),
         isAccountCreated: false
     };
