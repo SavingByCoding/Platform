@@ -122,6 +122,7 @@
                 <div class="col-sm-4 d-flex pb-3" ng-repeat="item in items">
                     <div class="card text-white bg-dark mb-3">
                         <div class="card-body">
+                            <small style="text-align: right">{{item.isArchived}}</small>
                             <h5 class="card-title"><b>{{item.name}}</b></h5>
                             <p class="card-text">{{item.description}}</p>
                             <a class="btn btn-primary" style="visibility: hidden;">Enter</a> <!-- Fake button -->

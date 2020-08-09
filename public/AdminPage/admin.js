@@ -329,7 +329,6 @@ app.controller('AppController', ($scope) => {
                 })
             })
         $scope.getEvents();
-        $scope.$apply();
     }
 
     $scope.toggleEventArchived = (i) => {
@@ -469,7 +468,6 @@ $scope.checkAllFieldsGroup = () =>{
 
 
     $scope.createGroup = () => {
-
         $scope.getSelectedDates();
         let groupId = generateUUID()
         let group = {
@@ -483,7 +481,8 @@ $scope.checkAllFieldsGroup = () =>{
             course: $scope.new.group.course,
             isOpen: $scope.new.group.isOpen,
             selectedDates:$scope.new.group.selectedDates,
-            users: []
+            users: [],
+            isArchived: false
         }
         db.collection("groups").doc(groupId).set(group).then(() => {
             $scope.new.group = {}
@@ -583,31 +582,52 @@ $scope.checkAllFieldsGroup = () =>{
             $scope.$apply()
         })
     }
-
     $scope.archiveGroup= function(i){
         let group = $scope.groups[i];
-        db.collection("groups").doc(group.id).update({
-            isArchived: true
-        }).then(function () {
-            $scope.groups[i].isArchived == true;
-            $scope.archiveRegistration(group);
-        })
-    };
+        var archiveState = $scope.groups[i].isArchived;
 
-    $scope.archiveRegistration= function(group){ //takes in group
+        console.log(archiveState);
+        let setArchiveState = !archiveState
+        $scope.groups[i].isArchived === setArchiveState;
+        if(!archiveState){
+           $scope.showArchiveState = "Unarchive";
+        }
+        else $scope.showArchiveState = "Archive";
+
+
+        db.collection("groups").doc(group.id).update({
+            isArchived: setArchiveState
+        }).then(function () {
+            $scope.archiveRegistration(group,setArchiveState);
+            archiveState = $scope.groups[i].isArchived;
+            location.reload();
+        })
+
+    };
+    $scope.groupsQuery= "";
+    $scope.archiveRegistration= function(group, newState){ //takes in group
         let students = group.users;//their uuid
         console.log(students)
+        console.log(newState)
         students.forEach(function (student) {
             console.log(student);
             db.collection("registrations").where("userId", "==", student).where("courseId","==",group.course)
                 .get()
                 .then(function(querySnapshot) {
-                    querySnapshot.forEach(function(doc) {
-                        db.collection("registrations").doc(doc.id).update({
-                            isExpired: true
-                        });
-                        //Puts the registration as Expired
 
+                    if(querySnapshot.empty){
+                        console.log("No registration found")
+                    }
+                    else
+                        console.log("Registrations found")
+
+                    querySnapshot.forEach(function(doc) {
+                        console.log("Found")
+                        db.collection("registrations").doc(doc.id).update({
+                            isExpired: newState
+                        });
+
+                        //Puts the registration as Expired
                     });
                 })
                 .catch(function(error) {
@@ -615,7 +635,21 @@ $scope.checkAllFieldsGroup = () =>{
                 });
         });
     }
-
+    $scope.archiveQueryTitle = "Showing All Classes"
+    $scope.changeGroupsQuery = (num) => {
+            if(num === 1){
+                $scope.archiveQuery = false;
+                $scope.archiveQueryTitle = "Showing Archived Classes"
+            }
+            else if(num === 2){
+                $scope.archiveQuery = true;
+                $scope.archiveQueryTitle = "Showing Unarchived Classes"
+            }
+            else if(num === 3){
+                $scope.archiveQuery = "";
+                $scope.archiveQueryTitle = "Showing All Classes"
+            }
+    }
 
     $scope.getGroups = () => { //Add a function that only gets groups that the user is in
         $scope.groups = []
@@ -623,6 +657,12 @@ $scope.checkAllFieldsGroup = () =>{
             for (var i = 0; i < querySnapshot.docs.length; i++) {
                 var doc = querySnapshot.docs[i]
                 if(($scope.currentAdminUserID===doc.data().teacherID)| ($scope.isAdmin)) {
+
+                    if(doc.data().isArchived){
+                        $scope.showArchiveState = "Unarchive"
+                    }
+                    else $scope.showArchiveState = "Archive"
+
                     $scope.groups.push({
                         id: doc.id,
                         name: doc.data().name,
@@ -636,11 +676,12 @@ $scope.checkAllFieldsGroup = () =>{
                         isOpen: doc.data().isOpen,
                         selectedDates: doc.data().selectedDates,
                         isArchived: doc.data().isArchived,
+                        archiveStateName: $scope.showArchiveState,
                         users: doc.data().users
                     })
                 }
             }
-            $scope.$apply()
+            $scope.$apply();
         })
     }
     $scope.displayClassDays= function (){
@@ -698,7 +739,7 @@ $scope.checkAllFieldsGroup = () =>{
     $scope.getCoursesForGroups();
     $scope.getTeachersForGroups();
 
-
+    $scope.assignmentsQuery = "";
 
     // Group Membership Modal
 
@@ -1578,6 +1619,7 @@ $scope.checkAllFieldsGroup = () =>{
     $scope.assignmentsHTML = [];
     $scope.assignmentsPython = [];
     $scope.usersAssignments = []
+    $scope.assignmentsQuery = "";
 
     $scope.getAssignments = () => {
         db.collection("assignments").get().then(function(qs) {
@@ -1596,38 +1638,7 @@ $scope.checkAllFieldsGroup = () =>{
             $scope.$apply()
         })
     }
-    $scope.filterAssignments = "";
-    $scope.HTMLChosen = false;
-    $scope.PythonChosen = false;
 
-    $scope.updateFilter = (option) =>{
-        if(option === 1){
-            $scope.HTMLChosen = !$scope.HTMLChosen
-            if($scope.HTMLChosen){
-                $scope.filterAssignments = "HTML"
-                document.getElementById("HTMLFilter").style.background = "#5151a5";
-                document.getElementById("PythonFilter").style.background = "#23233b"
-            }
-            else{
-                $scope.filterAssignments = "";
-                document.getElementById("HTMLFilter").style.background = "#23233b";
-                document.getElementById("PythonFilter").style.background = "#23233b"
-            }
-        }
-        if(option === 2){
-            $scope.PythonChosen = !$scope.PythonChosen
-            if($scope.PythonChosen){
-                $scope.filterAssignments = "Python"
-                document.getElementById("PythonFilter").style.background = "#5151a5"
-                document.getElementById("HTMLFilter").style.background = "#23233b"
-            }
-            else{
-                $scope.filterAssignments = "";
-                document.getElementById("PythonFilter").style.background = "#23233b"
-                document.getElementById("HTMLFilter").style.background = "#23233b"
-            }
-        }
-    }
 
     $scope.arrayOfGroupsTeacherTeaches= []; //The IDS
     $scope.fillArrayOfGroupsTeacherTeaches= function() {
