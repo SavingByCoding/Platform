@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel = "stylesheet" type="text/css" href = "HTMLContentPage.css">
     <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
@@ -39,70 +41,72 @@
 <!-- End Google Tag Manager (noscript) -->
 
 <!--Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark navBar" ng-controller = "myCont1" style="background: #23233b">
-    <a href = "#"><img id = "logo" ng-src={{logo}} style="height: 80px"></a>
-    <a class="navbar-brand" href="#" ng-model="websiteTitle" style="font-size: 20px">{{websiteTitle}}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<header class="page-header navbar navbar-expand-lg navbar-dark navBar" id="page-header" id="page-header" ng-controller = "myCont1" style="background:#8f92b4; display:grid;">
+    <button  class="ghost navbar-toggler first-button main-menu-toggle" id="hamburg" type="button" data-toggle="collapse" data-target="#navbarSupportedContent20" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a style="color: #23233b">----</a>
-            </li>
-            <li class="nav-item">
+    <a href = "/Platform/public/index.html" class="logo1">
+        <img id = "logo1" ng-src={{logo}} style="height: 100px"></a>
+    <nav class="main-nav" id="main-nav1">
+        <!--    <button type="button" class="ghost main-menu-toggle" aria-haspopup="true" aria-label="Show Menu">  </button>-->
+
+        <ul class="main-menu navbar-collapse"  id="navbarSupportedContent20">
+            <li class="top-level-entry-container">
                 <a class="nav-link active" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="top-level-entry-container nav-item active">
                 <a class="nav-link" id = "m2" href="#" ng-model = "menuName2"> {{menuName2}}</a>
             </li>
-            <li class="nav-item">
+            <li class="top-level-entry-container nav-item">
                 <a class="nav-link" id = "m4" href="#" ng-model = "menuName4">{{menuName4}}</a>
+
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+            <li style="position:relative">
+                <a class="nav-link dropdown-toggle nav-item" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
                     {{menuName3}}
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu nav-item" style="position:absolute; left:0; top:100%; width:auto; font-size:17px;"  aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#" ng-model = "menuName5" id="m5">{{menuName5}}</a>
                     <a class="dropdown-item" href="#" ng-model = "menuName6" id = "m6">{{menuName6}}</a>
                 </div>
             </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <button class = "btn btn-primary registerButton" id="RegisterNow" onClick = "registerNow()" style="background: antiquewhite; color: #23233b; border: transparent">Register Now</button>
-            </li>
-            <li class="nav-item">
-                <button class = "btn btn-primary registerButton" id="SignUpForFree" onClick = "signUpNow()" style="background: antiquewhite; color: #23233b; border: transparent">Sign Up for a Free Trial</button>
-            </li>
-            <li class="nav-item">
-                <a style="color: #23233b">------------</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle mr-auto" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
-                    {{dropdownName}}
+            <li style="position:relative">
+                <a class="nav-link dropdown-toggle nav-item" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                    {{sandbox}}
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu nav-item dropdown-menu-items right" style="position:absolute;  font-size:17px; left:0; top:100%;" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="" id="s1">{{sand1}}</a>
                     <a class="dropdown-item" href="" id = "s2">{{sand2}}</a>
-                    <div class="dropdown-divider" id="divider1"></div>
-                    <a class="dropdown-item" href="" id="d1">{{dropdown1}}</a>
-                    <!--                    <a class="dropdown-item" href="" id = "d2">{{dropdown2}}</a>-->
-                    <div class="dropdown-divider" id="divider2"></div>
-                    <!--                    <a class="dropdown-item" href="" id="d3">{{dropdown3}}</a>-->
-                    <a class="dropdown-item" onclick="SignOut()" href="" id="d4">{{dropdown4}}</a>
-                    <a class="dropdown-item" href="" id="d5">{{dropdown5}}</a>
-                    <a class="dropdown-item" href="" id="d6">{{dropdown6}}</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a style="color: #23233b">------------</a>
+            <li  class="top-level-entry-container nav-item active" >
+                <button class = "btn btn-primary registerButton" id="HiddenRegister" onClick = "registerNow()" style="background: transparent; font-size:20px; padding:4px;  color: #23233b; border: transparent"><b>Register Now</b></button>
+            </li>
+            <li  class="top-level-entry-container nav-item active">
+                <button class = "btn btn-primary" id="HiddenSignUp" onClick = "signUpNow()" style="background: transparent; font-size:20px; padding:4px; color: #23233b; border: transparent"><b>Sign Up</b></button>
+            </li>
+        </ul>
+    </nav>
+    <button class = "btn btn-primary header-search" id="SignUpForFree" onClick = "signUpNow()" style=" font-size:20px; margin-top:0px; background: antiquewhite; color: #23233b; border: transparent;" >Sign Up</button>
+    <button class = "btn btn-primary  header-search" id="RegisterNow" onClick = "registerNow()" style=" font-size:20px; margin-top:0px; background: antiquewhite; color: #23233b; border: transparent ">Register Now</button>
+    <button class = "btn btn-primary  auth-container"  id="loginButton" onClick= "loginNow()" style="background: antiquewhite;  font-size:20px; margin-top:0px; color: #23233b; border: transparent">  Login </button>
+    <div class="auth-container dropdown-container" id="profilepic1" >
+        <button class="dropdown-menu-label dropdown-toggle" data-toggle="dropdown" id="user-avatar-menu" type="button" aria-haspopup="true" style="background:transparent; cursor:pointer; border:none">
+            <img id="ProfilePicture" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpJQyPJzRtki3nmi0X00gDx-9inOL2It8-yID8bZzrfyTr_ML3&usqp=CAU" style="border-radius: 50%; width: 60px; height: 60px" class="center ">
+        </button>
+        <ul class="dropdown-menu-items right" id="dropdown" aria-expanded="false" role="menu" style=" left:auto;right:0;margin-right:-10px;">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="font-size:17px;">
+
+                <a class="dropdown-item" style="font-size:17px;"href="" id="d1">{{dropdown1}}</a>
+                <div class="dropdown-divider" style="font-size:17px;"id="divider1"></div>
+                <a class="dropdown-item"style="font-size:17px;" onclick="SignOut()" href="" id="d4">{{dropdown4}}</a>
+                <a class="dropdown-item" style="font-size:17px;" href="" id="d6">{{dropdown6}}</a>
+            </div>
             </li>
         </ul>
     </div>
-</nav>
+</header>
 <!--/.Navbar -->
 
 
