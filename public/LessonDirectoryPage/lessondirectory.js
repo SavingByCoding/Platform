@@ -17,10 +17,13 @@ app.controller('AppController', ($scope) => {
     $scope.directory = ['Course Directory']
     $scope.items = []
     $scope.currItem = {}
+    let archiveState;
 
     $scope.initItems = () => {
+
         db.collection("courses").get().then((querySnapshot) => {
             for (var i = 0; i < querySnapshot.docs.length; i++) {
+
                 var doc = querySnapshot.docs[i]
                 $scope.items.push({
                     id: doc.id,

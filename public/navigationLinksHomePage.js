@@ -1,5 +1,8 @@
 var userBool;
 let emails = [];
+
+
+
 function registerNow(){
     window.open("RegistrationForm/registration.html")
     window.close(this)
@@ -13,7 +16,7 @@ function loginNow(){
     window.close(this)
 }
 const monthNames = ["Jan", "Feb", "March", "Apr", "May", "June",
-    "July", "August", "Sept", "Oct", "Nov", "Dec"
+    "July", "Aug", "Sept", "Oct", "Nov", "Dec"
 ];
 var mainMod = angular.module("myApp", []);
 
@@ -62,14 +65,14 @@ mainMod.controller("demoClassLoader", function($scope){
 })
 $(window).on('load resize scroll', function() {
     $('.bg-static').each(function() {
-
+        var totalHeight = $(document).height();
         var windowTop = $(window).scrollTop();
         var elementTop = $(this).offset().top;
-        if(windowTop <2700) {
-            var leftPosition = windowTop - (elementTop / 1.03);
+        if(windowTop < totalHeight*0.4) {
+            var leftPosition = windowTop - (elementTop / 1);
             $(this)
                 .find('.bg-move')
-                .css({left: leftPosition / 2});
+                .css({left: leftPosition});
         }
     });
 });
@@ -183,9 +186,12 @@ mainMod.controller("myCont1", function ($scope) {
             // User not logged in or has just logged out.
             $scope.signedIn= false;
             userBool = $scope.signedIn;
-            $(window).on('load', function () {
-                $('#myModal').modal('show');
-            });
+            if( !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ) {
+                $(window).on('load', function () {
+                    $('#myModal').modal('show');
+                });
+            }
+
             $scope.ChangeNavBar();
             $("#d6").hide();
             $("#d6").attr("href", "#"); //Hides ADMIN page if the user is logged out
@@ -201,7 +207,9 @@ mainMod.controller("myCont1", function ($scope) {
         return $scope.signedIn
     }
 
-
+    if(isUserLoggedIn()){
+        document.getElementById("SignUpForFree").style.display = 'none'
+    }else document.getElementById("RegisterNow").style.display = 'none'
     $scope.ChangeNavBar=()=> {
         console.log(isUserLoggedIn());
         if(isUserLoggedIn()){
@@ -358,3 +366,65 @@ function isEmailReused() {
         .catch(function(error) {
         });
 }
+
+let currentEmail1;
+let firstName1;
+let lastName1;
+//function to submit info to email-list
+function submitEmail1(){
+    //gets all the values
+    let email1 = document.getElementById("email1").value;
+    currentEmail1= email1.toLowerCase();
+    firstName1 = document.getElementById("fname1").value;
+    lastName1 = document.getElementById("lname1").value;
+
+    //makes sure that fields are valid
+    if(!(email1.includes(" ")) && !(firstName1 === "") && !(lastName1 === "") && email1.includes("@") && email1.includes(".")) {
+        isEmailReused1();
+    }
+    //if fields are not valid then red text "invalid" appears
+    else {
+        document.getElementById("subscribe1").style.display = "block";
+    }
+
+}
+function isEmailReused1() {
+    db.collection("email-list").where("userEmail", "==",currentEmail1)
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                if(doc.exists){
+                    console.log("doc exists")
+                    document.getElementById("emailInvalid1").style.display = "block";
+                }
+            });
+            if(querySnapshot.empty){
+                let data = {
+                    userEmail: currentEmail1, //just to avoid comparisons where its the same email but typed differently
+                    userFirstName: firstName1,
+                    userLastName: lastName1,
+                    time: new Date()
+                }
+                //sends email list data to new doc created on email-list collection
+                db.collection("email-list").doc(generateUUID()).set(data).then(function() {
+                    console.log("Document successfully written!");
+                })
+                    .catch(function(error) {
+                        console.error("Error writing document: ", error);
+                    });;
+
+                //changes visuals for the form submitted
+                document.getElementById("emailListBtn1").disabled = true;
+                document.getElementById("emailListBtn1").innerText = "Submitted!";
+                document.getElementById("emailListBtn1").style.background = "#2dcb4d";
+                document.getElementById("email1").readOnly = true;
+                document.getElementById("fname1").readOnly = true;
+                document.getElementById("lname1").readOnly = true;
+                document.getElementById("subscribe1").style.display = "none";
+            }
+        })
+        .catch(function(error) {
+        });
+}
+
+

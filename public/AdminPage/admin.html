@@ -667,6 +667,28 @@
                             </td>
                         </tr>
                     </table>
+                    <br>
+                    <div class = "container">
+                        <div class = "row justify-content-around">
+                            <div class = "col-4">
+                                <button style="width: 100%; background: #23233b; color: antiquewhite;font-family: Karla; border-radius: 15px; border: solid transparent" ng-click="changeGroupsQuery(1)">
+                                    Show Archived
+                                </button>
+                            </div>
+                            <div class = "col-4">
+                                <button style="width: 100%; background: #23233b; color: antiquewhite;font-family: Karla; border-radius: 15px; border: solid transparent" ng-click="changeGroupsQuery(2)">
+                                    Show Unarchived
+                                </button>
+                            </div>
+                            <div class = "col-4">
+                                <button style= "width: 100%; background: #23233b; color: antiquewhite;font-family: Karla; border-radius: 15px; border: solid transparent" ng-click="changeGroupsQuery(3)">
+                                    Show All
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <h2 ng-model = "archiveQueryTitle" style="text-align: center">Groups: <u>{{archiveQueryTitle}}</u></h2>
                     <div class="modal fade" id="crudGroupModal" tabindex="-1" role="dialog" aria-labelledby="crudGroupModalLabel" aria-hidden="true" data-backdrop="static">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -780,18 +802,24 @@
                     </div>
                     <br/>
                 </div>
-                <div class="col-sm-6 col-lg-4 d-flex pb-3" ng-repeat="group in groups" ng-hide="!group.name.toLowerCase().includes(groupsQuery.toLowerCase()) && !group.description.toLowerCase().includes(groupsQuery.toLowerCase()) && groupsQuery">
+                <div class="col-sm-6 col-lg-4 d-flex pb-3" ng-repeat="group in groups" ng-show = "group.name.toLowerCase().includes(groupsQuery.toLowerCase()) || group.description.toLowerCase().includes(groupsQuery.toLowerCase())" ng-hide = "!group.isArchived === archiveQuery">
                     <div class="card groupCard text-white bg-dark mb-3">
                         <div class="card-body">
                             <h5 class="card-title">{{group.name}}</h5>
                             <h6 class="card-subtitle mb-2">{{group.users.length}} Users</h6>
-                            <p class="card-text">{{group.description}}</p>
+                            <p class = "card-text" style="font-family: Karla;text-align: center">
+                                <div style="background: #bebed2;border-radius: 15px;text-align: center;color: #23233b">
+                                <span ng-repeat = "day in group.selectedDates">{{" " + day + " "}}</span>
+                        </div>
+                            </p>
+                            <p class="card-text" style="font-family: Karla;">{{group.description}}</p><br><br>
                             <div style="visibility: hidden;">
                                 <a class="card-link">Filler</a>
                             </div>
-                            <div class="groupActions">
+                            <div class="groupActions" style="text-align: right">
                                 <a href="#" class="card-link" data-toggle="modal" data-target="#crudGroupModal" ng-click="launchEditGroupModal($index)">Edit</a>
-                                <a href="#" class="card-link" data-toggle="modal" data-target="#changeGroupMembershipModal" ng-click="launchChangeGroupMembershipModal($index)">Change Membership</a>
+                                <a href="#" class="card-link" data-toggle="modal" data-target="#changeGroupMembershipModal" ng-click="launchChangeGroupMembershipModal($index)">Change Membership</a><br>
+                                <a href="#" class="card-link" ng-click="archiveGroup($index)">{{group.archiveStateName}}</a>
                                 <a href="#" class="card-link" ng-click="deleteGroup($index)">Delete</a>
                             </div>
                         </div>
@@ -1056,33 +1084,9 @@
                     <br>
                 </div>
 
-                <div class ="container">
-                    <br>
-                    <div class = "row justify-content-around">
-                        <div class = "col-6">
-                            <div id = "HTMLFilter" class="card filter text-white" ng-click="updateFilter(1)" style="background: #23233b">
-                                <h5 class="card-title" style="text-align: center;font-family: Karla;"><br>HTML Assignments</h5>
-                                <div class="card-body" style="font-family: Karla;text-align: center">
-                                    View all HTML assignments in your groups.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class = "col-6">
-                            <div id = "PythonFilter" class="card filter text-white" ng-click="updateFilter(2)" style="background: #23233b">
-                                <h5 class="card-title" style="text-align: center;font-family: Karla"><br>Python Assignments</h5>
-                                <div class="card-body" style="font-family: Karla;text-align: center">
-                                    View all Python assignments in your groups.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br><br>
-                </div>
 
 
-
-                <div class="col-sm-6 col-lg-4 d-flex pb-3" ng-repeat="assignment1 in assignments| filter:{language: filterAssignments}" ng-hide="!assignment1.name.toLowerCase().includes(assignmentsQuery.toLowerCase()) && !assignment1.description.toLowerCase().includes(assignmentsQuery.toLowerCase()) && assignmentsQuery" >
+                <div class="col-sm-6 col-lg-4 d-flex pb-3" ng-repeat="assignment1 in assignments" ng-show = "assignment1.language.toLowerCase().includes(assignmentsQuery.toLowerCase()) || assignment1.description.toLowerCase().includes(assignmentsQuery.toLowerCase()) || assignment1.name.toLowerCase().includes(assignmentsQuery.toLowerCase())" >
                     <div class="card text-white bg-dark mb-3" style="display: inline-block">
                         <div class="card-body">
                             <p style="background: rgba(255,255,255,0.5); border-radius: 15px; text-align: center"><b>{{assignment1.language}}</b></p>
