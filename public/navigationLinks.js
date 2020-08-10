@@ -6,10 +6,6 @@ function signUpNow(){
     window.open("../LoginPage/signUp.html")
     window.close(this)
 }
-function loginNow(){
-    window.open("LoginPage/login.html")
-    window.close(this)
-}
 var mainMod = angular.module("myApp", []);
 mainMod.controller("myCont1", function ($scope) {
 
@@ -64,7 +60,6 @@ mainMod.controller("myCont1", function ($scope) {
     $scope.dropdown1Link = "../ProfilePage/profile.html";
     let d1 = document.getElementById("d1")
     d1.href = $scope.dropdown1Link;
-    $scope.sandbox = "Compilers";
 
     // $scope.dropdown2 = "Assignments"
     // $scope.dropdown2Link = "https://www.youtube.com/watch?v=SWYPm24qVd8";
@@ -81,10 +76,10 @@ mainMod.controller("myCont1", function ($scope) {
     let d4 = document.getElementById("d4")
     d4.href = $scope.dropdown4Link;
 
-    // $scope.dropdown5 = "Login"
-    // $scope.dropdown5Link = "../LoginPage/Login.html";
-    // let d5 = document.getElementById("d5")
-    // d5.href = $scope.dropdown5Link
+    $scope.dropdown5 = "Login"
+    $scope.dropdown5Link = "../LoginPage/Login.html";
+    let d5 = document.getElementById("d5")
+    d5.href = $scope.dropdown5Link
 
     $scope.dropdown6 = "Admin Portal"
     $scope.dropdown6Link = "../AdminPage/admin.html"
@@ -99,7 +94,6 @@ mainMod.controller("myCont1", function ($scope) {
             $scope.currentid= user.uid;
             $scope.signedIn= true;
             $scope.ChangeNavBar();
-            $("#ProfilePicture").attr("src", user.photoURL);
 
             db.collection("users")
                 .where("userId", "==", user.uid)
@@ -132,44 +126,27 @@ mainMod.controller("myCont1", function ($scope) {
     $scope.ChangeNavBar=()=> {
         console.log(isUserLoggedIn());
         if(isUserLoggedIn()){
-
             $("#d5").hide();
             $("#d5").attr("href", "#"); // Hides the LogIn
             $("#SignUpForFree").hide();
             $("#SignUpForFree").attr("href","#");
-            $("#signupbutton").hide()
-            $("#signupbutton").attr("href","#");
-            $("#HTMLSIGNUP").hide()
-            $("#HTMLSIGNUP").attr("href","#");
-            $("#PYTHONSIGNUP").hide()
-            $("#PYTHONSIGNUP").attr("href","#");
-            $("#loginButton").hide();
-            $("#loginButton").attr("href","#");
-            $("#HiddenSignUp").hide();
-            $("#HiddenSignUp").attr("href","#");
+
+
         }
         else{//Hides if the user is not logged in
             $('#divider1').hide(); //Hides Dividers on the Screen
             $('#divider2').hide();
             $("#d4").hide();
             $("#d4").attr("href", "#"); //Hides the Logout
+            $("#s1").hide();
+            $("#s1").attr("href", "#"); // Hides the Sandbox
+            $("#s2").hide();
+            $("#s2").attr("href", "#"); // Hides the Sandbox
             $("#d1").hide();
             $("#d1").attr("href", "#");
             $("#RegisterNow").hide();
             $("#RegisterNow").attr("href","#");
-            $("#registernowbutton").hide()
-            $("#registernowbutton").attr("href","#");
-            $("#PYTHONREGISTERNOW").hide()
-            $("#PYTHONREGISTERNOW").attr("href","#");
-            $("#HTMLREGISTERNOW").hide()
-            $("#HTMLREGISTERNOW").attr("href","#");
-            $("#ProfilePicture").hide();
-            $("#ProfilePicture").attr("href","#");
-            $("#user-avatar-menu").hide();
-            $("#user-avatar-menu").attr("href","#");
-            $("#HiddenRegister").hide();
-            $("#HiddenRegister").attr("href","#");
-            $("#profilepic1").hide();
+
         }
     };
 

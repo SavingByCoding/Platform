@@ -11,6 +11,7 @@ function signUpNow(){
     window.open("LoginPage/signUp.html")
     window.close(this)
 }
+
 function loginNow(){
     window.open("LoginPage/login.html")
     window.close(this)
@@ -65,14 +66,14 @@ mainMod.controller("demoClassLoader", function($scope){
 })
 $(window).on('load resize scroll', function() {
     $('.bg-static').each(function() {
-        var totalHeight = $(document).height();
+
         var windowTop = $(window).scrollTop();
         var elementTop = $(this).offset().top;
-        if(windowTop < totalHeight*0.4) {
-            var leftPosition = windowTop - (elementTop / 1);
+        if(windowTop <2700) {
+            var leftPosition = windowTop - (elementTop / 1.03);
             $(this)
                 .find('.bg-move')
-                .css({left: leftPosition});
+                .css({left: leftPosition / 2});
         }
     });
 });
@@ -207,9 +208,7 @@ mainMod.controller("myCont1", function ($scope) {
         return $scope.signedIn
     }
 
-    if(isUserLoggedIn()){
-        document.getElementById("SignUpForFree").style.display = 'none'
-    }else document.getElementById("RegisterNow").style.display = 'none'
+
     $scope.ChangeNavBar=()=> {
         console.log(isUserLoggedIn());
         if(isUserLoggedIn()){
