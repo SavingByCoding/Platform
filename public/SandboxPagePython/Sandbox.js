@@ -84,7 +84,7 @@ $scope.createProject = function(){
     $scope.projects.push(newdata);
 
     db.collection("Projects").doc(generateUUID()).set(newdata).then(function () {
-        location.reload()
+        z
     })
 
     //length of projects array - 1
@@ -173,9 +173,7 @@ $scope.showSelectedBtn = (i) => {
 }
 
 });
-window.onbeforeunload = function(){ //Reminds a user to save before leaving
-    return 'Make sure to save your code';
-};
+
 //TODO add a function to save before you switch projects- Dope features
 //TODO notice how you could load a html code file into python sandbox
 
