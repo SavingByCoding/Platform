@@ -142,8 +142,8 @@
 <br>
 <div class="container fadeCont">
     <div class="card helpCard">
-        <div class="card-body headerCard">
-            <h5 class="card-title headerEditor"><u>Python Sandbox Code Editor</u></h5>
+        <div class="card-body headerCard"><br>
+            <h2 class="card-title headerEditor"><b>Python Sandbox Code Editor</b></h2><br>
         </div>
     </div>
 </div>
@@ -243,9 +243,13 @@
                 <textarea class= "outputScreen" id = "outputScreen" readonly>--> Code Output</textarea>
             </div>
         </div>
-        <div class = "col-3" style="background: #ebefeb;text-align: center; font-family: Karla; border: 4px solid #23233b">
-            <h3 style="text-align: center"><b><u>Projects</u></b></h3>
-            <small>Access previous projects in this directory!</small>
+        <div class = "col-3" id = "projects" style="background: #23233b;text-align: center; font-family: Karla; " ng-controller="PYTHONSandbox">
+            <br><h3 style="text-align: center;color: antiquewhite"><b><u>Projects</u></b></h3>
+            <small style="color: antiquewhite">Access previous projects in this directory!</small><br><br>
+
+            <label for = "createBtn" style="color:antiquewhite;">Create Project</label>
+            <button id = "createBtn" class="btn btn-danger btn-circle btn-circle-lg m-1" data-toggle="modal" data-target="#createProjModal" >+</button><br><br>
+            <div style="border-bottom: 3px solid antiquewhite"></div>
 <!--            <button class = "btn-primary projectLoadButtons active" ng-click="DisplayProjects()"  onclick="chooseActive(1) " id = "Project1" ng-model = "name1">{{name1}}<br>({{lang1}})</button>-->
 <!--            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(2) " id = "Project2" ng-model = "name2"> {{name2}}<br>({{lang2}})</button>-->
 <!--            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(3) " id = "Project3" ng-model = "name3"> {{name3}}<br>({{lang3}})</button>-->
@@ -256,18 +260,78 @@
 <!--            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(8) " id = "Project8" ng-model = "name8"> {{name8}}<br>({{lang8}})</button>-->
 <!--            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(9) " id = "Project9" ng-model = "name9"> {{name9}}<br>({{lang9}})</button>-->
 <!--            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(10) " id = "Project10" ng-model = "name10"> {{name10}}<br>({{lang10}})</button>-->
-            <button class="btn-primary projectLoadButtons" ng-click="displayProject($index)" ng-repeat="project in projects">{{project.name}}</button>
+            <div class="card" id = "project{{$index}}"  ng-click="displayProject($index)" ng-repeat="project in projects" style="border-bottom: 3px solid antiquewhite ">
+                <div class="card-body">
+                    <div class= "row justify-content-around">
+                        <div class = "col-5">
+                            <div class = "row justify-content-around">
+                            <h4 style="background: #ececf3;border-radius: 15px">&nbsp;&nbsp;{{project.name}}&nbsp;&nbsp;</h4>
+                            </div><br>
+                            <div class = "row justify-content-around" id = "date{{$index}}" style="background: #ececf3;border-radius: 15px">
+                                Created: {{project.date.toDate().getMonth()}}/{{project.date.toDate().getDate()}} at {{project.date.toDate().getHours()}}:{{project.date.toDate().getMinutes()}}
+                            </div>
+                        </div>
+                        <div class = "col-5"><br>
+                            <div class = "row justify-content-around">
+                                <img class = "trash" src="../trashcan.png" id = "trashBtn{{$index}}" ng-click="deleteConfirm($index)">
+                            </div>
+                            <br>
+                            <div class = "row justify-content-around">
+                                <button class="btn btn-primary saveBTN" id = "saveBtn{{$index}}" ng-click="saveProject($index)">Save Project</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 <br><br><br><br><br><br><br><br><br>
 
+
+<div class="modal fade" id="deleteModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content" style="background: #bebed2">
+            <div class="modal-body" style="font-family: Karla">
+                <h1>Confirm Delete?</h1>
+                <h3 style="color: #E32c2c">Once deleted, the project can never be recovered again!</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" style="background: #E32c2c;font-family: Karla" data-dismiss="modal" id = "delete">Delete</button>
+                <button type="button" class="btn btn-default" style="font-family: Karla" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="createProjModal" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true" ng-controller = "PYTHONSandbox">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background: #bebed2; font-family: Karla;color: #23233b">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Create New Project</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6>Projects once named cannot be renamed!</h6>
+                <br>
+                <label for = "ProjName" style="font-size: 25px">Name: </label>
+                <input id = "ProjName" style="font-size: 25px" type = "text" placeholder="Enter Project Name" ng-model="new.project.name">
+                <br><br>
+                <button type="button" class="btn " data-dismiss="modal" ng-click="createProject()" style="font-size: 20px" >Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class = "container buttonCont">
     <div class = "row buttonRow justify-content-around">
-        <div class="col-6 colButton">
-            <button class="btn btn-primary CompileButton" data-toggle="modal" data-target="#SubmitProject" id = "SaveButton" type="submit">Save It!</button>
-        </div>
-        <div class="col-6 colButton">
+        <div class="col-12 colButton">
             <button class="btn btn-primary CompileButton" id = "CompileButton" type="submit">Run It!</button>
         </div>
     </div>
