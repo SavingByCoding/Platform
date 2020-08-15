@@ -26,6 +26,7 @@ function GoBack(){
 }
 
 app.controller('AppController', ($scope) => {
+    $scope.teacherID;
     $scope.currentAdminUserID;
     $scope.isAdmin;
     $scope.toDate = (timeObj) => {
@@ -44,6 +45,7 @@ app.controller('AppController', ($scope) => {
                     console.log("hello")
                     if ((doc.data().userType == '2')) {
                         $scope.isTeacher= true;
+                        $scope.teacherID = doc.id;
                         $scope.$apply();
                         $scope.getGroups()
                         $scope.fillArrayOfStudentsTeacherTeaches();
@@ -788,15 +790,19 @@ $scope.checkAllFieldsGroup = () =>{
     // Event Membership Modal
 
     $scope.launchChangeEventMembershipModal = (i) => {
+
         $scope.currentEventMembership = i
         $scope.eventMembership = []
+
         for (let group of $scope.groups) {
-            $scope.eventMembership.push({
-                groupId: group.id,
-                name: group.name,
-                inEvent: false,
-                selected: false
-            })
+            if(group.teacherID === $scope.teacherID || $scope.isAdmin) {
+                $scope.eventMembership.push({
+                    groupId: group.id,
+                    name: group.name,
+                    inEvent: false,
+                    selected: false
+                })
+            }
         }
         let groupsInEvent = $scope.events[i].groups
         for (let j = 0; j < $scope.eventMembership.length; j++) {
@@ -820,7 +826,7 @@ $scope.checkAllFieldsGroup = () =>{
                 groupIds.push(group.groupId)
             }
         }
-        db.collection("t").doc($scope.events[$scope.currentEventMembership].id).update({
+        db.collection("events").doc($scope.events[$scope.currentEventMembership].id).update({
             groups: groupIds
         }).then(() => {
             $scope.events[$scope.currentEventMembership].groups = groupIds
