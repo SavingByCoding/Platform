@@ -39,7 +39,7 @@ $(document).ready(function () {
         Code= Code.replace(/#/g,"~"); //To make sure Comments Work
         
         let Output="";
-        let url = "https://cors-anywhere.herokuapp.com/http://18.220.79.42:8080/api/PythonCompiler/"+Code;
+        let url = "https://cors-anywhere.herokuapp.com/http://18.222.29.210:8000/api/PythonCompiler/"+Code;
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

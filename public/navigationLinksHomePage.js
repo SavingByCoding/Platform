@@ -215,10 +215,12 @@ mainMod.controller("myCont1", function ($scope) {
 
             $("#d5").hide();
             $("#d5").attr("href", "#"); // Hides the LogIn
-            $("#SignUpForFree").hide();
-            $("#SignUpForFree").attr("href","#");
+            $("#SignUpForFreeButton").hide();
+            $("#SignUpForFreeButton").attr("href","#");
             $("#signupbutton").hide()
             $("#signupbutton").attr("href","#");
+            $("#SignUpForFreeFreeTrial").hide();
+            $("#SignUpForFreeFreeTrial").attr("href","#");
             $("#HTMLSIGNUP").hide()
             $("#HTMLSIGNUP").attr("href","#");
             $("#PYTHONSIGNUP").hide()
@@ -235,8 +237,10 @@ mainMod.controller("myCont1", function ($scope) {
             $("#d4").attr("href", "#"); //Hides the Logout
             $("#d1").hide();
             $("#d1").attr("href", "#");
-            $("#RegisterNow").hide();
-            $("#RegisterNow").attr("href","#");
+            $("#RegisterNowButton").hide();
+            $("#RegisterNowButton").attr("href","#");
+            $("#RegisterNowFreeTrial").hide();
+            $("#RegisterNowFreeTrial").attr("href","#");
             $("#registernowbutton").hide()
             $("#registernowbutton").attr("href","#");
             $("#PYTHONREGISTERNOW").hide()

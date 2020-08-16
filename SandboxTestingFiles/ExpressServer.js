@@ -7,12 +7,6 @@ let output="";
 compiler.init(options);
 const app= express();
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", " http://localhost:63342"); // update to match the domain you will make the request from //Change this when running any python testing code
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-
 app.get("/api/PythonCompiler/:Code",function (request,response) {
 
 let Code= request.params.Code;
@@ -32,4 +26,6 @@ compiler.compilePython( envData , Code, function(data){
         response.send(output);
     });
 })
-app.listen(8080);
+app.listen(8000);
+
+//Make Server Open on port 8000

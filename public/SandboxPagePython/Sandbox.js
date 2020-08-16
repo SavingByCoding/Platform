@@ -1,6 +1,19 @@
 var SandboxLanguage = "PYTHON";
 var userID;
 
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
 $(document).ready(function () {
 
     $("#CompileButton").click(function () {
@@ -8,7 +21,7 @@ $(document).ready(function () {
           Code= encodeURI(Code);
           Code= Code.replace(/#/g,"~"); //To make sure Comments Work
         let Output="";
-        let url = "https://cors-anywhere.herokuapp.com/http://18.220.79.42:8080/api/PythonCompiler/"+Code;
+        let url = "https://cors-anywhere.herokuapp.com/http://18.222.29.210:8000/api/PythonCompiler/"+Code;
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -76,7 +89,7 @@ $scope.createProject = function(){
     //Get data required for new project
     let newdata={
         code:"",
-        language: "PYTHON",
+        language: SandboxLanguage,
         name: $scope.new.project.name,
         userID: uID,
         date: new Date()
@@ -84,7 +97,7 @@ $scope.createProject = function(){
     $scope.projects.push(newdata);
 
     db.collection("Projects").doc(generateUUID()).set(newdata).then(function () {
-        z
+        location.reload();
     })
 
     //length of projects array - 1
@@ -139,6 +152,12 @@ $scope.deleteProject = (i) => {
 
 
 }
+    $scope.downloadCode= function(i){
+        project=$scope.projects[i];;
+        text = project.code;
+        filename = project.name +".py";
+        download(filename, text);
+    }
 
 $scope.onLoad= function (){
     $scope.loadProjects();

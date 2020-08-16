@@ -39,7 +39,6 @@ function download(filename, text) {
 }
 
 var editor = ace.edit("editor");
-
 CreateEditor =  () => {
     ace.require("ace/ext/language_tools");
     editor.setTheme("ace/theme/dracula");
@@ -76,15 +75,6 @@ $(document).ready(function () {
     }
 
     update();
-});
-$("#DownloadCodeButton").click(function () {
-    var text = editor.getValue();
-    var filename = $("#ProjectName").val();
-    var filename= filename+".html";
-    console.log(filename);
-
-    download(filename, text);
-
 });
 
 
@@ -326,271 +316,155 @@ function chooseActive(num1){
 
 }
 
-var project1UUID;
-var project2UUID;
-var project3UUID;
-var project4UUID;
-var project5UUID;
-var project6UUID;
-var project7UUID;
-var project8UUID;
-var project9UUID;
-var project10UUID;
-
-var projectsuuid= [];
 mainMod.controller("HTMLSandbox",function($scope){
-    //Value from the Firebase Code on Auth UserChange
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            $scope.UserID = user.uid;
-            console.log($scope.UserID)
-            $scope.name1 = "Project 1";
-            $scope.name2 = "Project 2";
-            $scope.name3 = "Project 3";
-            $scope.name4 = "Project 4";
-            $scope.name5 = "Project 5";
-            $scope.name6 = "Project 6";
-            $scope.name7 = "Project 7";
-            $scope.name8 = "Project 8";
-            $scope.name9 = "Project 9";
-            $scope.name10 ="Project 10";
-            $scope.LoadProjects();
-        }
-    });
+    $scope.projects=[];
 
-    $scope.LoadProjects = function(){ //Loads all project names
-        var UserProjectsDocument = db.collection('user-projects').doc($scope.UserID);
-        let getUserProjects = UserProjectsDocument.get()
-            .then(doc => {
-                if (!doc.exists) {
-                    console.log('No such document!');
-                } else {
-                    console.log('Document data:', doc.data());
-                    UserProjects =doc.data(); //Loads all UUID for all projects
-                    project1UUID= UserProjects.Project1;
-                    project2UUID= UserProjects.Project2;
-                    project3UUID= UserProjects.Project3;
-                    project4UUID= UserProjects.Project4;
-                    project5UUID= UserProjects.Project5;
-                    project6UUID= UserProjects.Project6;
-                    project7UUID= UserProjects.Project7;
-                    project8UUID= UserProjects.Project8;
-                    project9UUID= UserProjects.Project9;
-                    project10UUID= UserProjects.Project10;
-                    projectsuuid.push(project1UUID,project2UUID,project3UUID,project4UUID,project5UUID,project6UUID,project7UUID,project8UUID,project9UUID,project10UUID);
-                    ShowProjectName();
-                }
-            })
-            .catch(err => {
-                console.log('Error getting document', err);
-            });
+    if(localStorage.getItem("project") === null){
+        localStorage.setItem("project" , "0");
+        $scope.currentProjectIndex = localStorage.getItem("project")
+    }
+    else{
+        $scope.currentProjectIndex = localStorage.getItem("project").toString();
+    }
+    let uID;
 
-    };
+    $scope.loadProjects= function(){
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                userID=user.uid;
+                uID = userID
+                db.collection("Projects").where("language","==",SandboxLanguage).where("userID","==",userID)
+                    .get()
+                    .then(function(querySnapshot) {
+                        querySnapshot.forEach(function(doc) {
+                            let project= {
+                                code: doc.data().code,
+                                language: doc.data().language,
+                                name: doc.data().name,
+                                userID: doc.data().userID,
+                                date: doc.data().date,
+                                id: doc.id
+                            }
 
-    ShowProjectName= function(){
-        projectsuuid.forEach(function (uuid,index) {
-            var Projects = db.collection('projects').doc(uuid);
-            let getDocument = Projects.get()
-                .then(doc => {
-                    if (!doc.exists) {
-                        console.log('No such document!');
-                    } else {
-                        console.log('Document data:', doc.data());
-                        UserProjects = doc.data();
-                        switch (index+1){
-                            case 1:
-                                $scope.name1 = UserProjects.name;
-                                $scope.lang1 = UserProjects.language;
-                                break;
-                            case 2:
-                                $scope.name2 = UserProjects.name;
-                                $scope.lang2 = UserProjects.language;
-                                break;
-                            case 3:
-                                $scope.name3 = UserProjects.name;
-                                $scope.lang3 = UserProjects.language;
-                                break;
-                            case 4:
-                                $scope.name4 = UserProjects.name;
-                                $scope.lang4 = UserProjects.language;
-                                break;
-                            case 5:
-                                $scope.name5 = UserProjects.name;
-                                $scope.lang5 = UserProjects.language;
-                                break;
-                            case 6:
-                                $scope.name6 = UserProjects.name;
-                                $scope.lang6 = UserProjects.language;
-                                break;
-                            case 7:
-                                $scope.name7 = UserProjects.name;
-                                $scope.lang7 = UserProjects.language;
-                                break;
-                            case 8:
-                                $scope.name8 = UserProjects.name;
-                                $scope.lang8 = UserProjects.language;
-                                break;
-                            case 9:
-                                $scope.name9 = UserProjects.name;
-                                $scope.lang9 = UserProjects.language;
-                                break;
-                            case 10:
-                                $scope.name10 = UserProjects.name;
-                                $scope.lang10 = UserProjects.language;
-                                break;
-                        }
-
-                    }
-                })
-                .catch(err => {
-                    console.log('Error getting document', err);
-                });
-
-
+                            $scope.projects.push(project) //add the id
+                            $scope.$apply();
+                        });
+                        $scope.displayProject($scope.currentProjectIndex);//Displays the current Project
+                    })
+                    .catch(function(error) {
+                    });
+                console.log($scope.projects)
+            }
         });
-    };
-
-
-    $scope.CreateProject= function(){
-        //Create a document under user-projects
-        //Generate a UUID For the project name
-    };
-    SaveProject = function(){
-        $("#ProjectName").val($scope.CurrentProjectName);
-    };
-    SaveChanges = function(){
-        //Click save
-        //Opens modal
-        //Loads the current name of the project
-        //You could chnage the name or just hit done
-        $scope.CurrentProjectName= $("#ProjectName").val();
-        let data= {
-            code: editor.getValue(),   //change this for implementing autosave
-            language: SandboxLanguage,          //Sets the current language of the sandbox
-            name: $scope.CurrentProjectName
-        };
-        db.collection('projects').doc($scope.CurrentProjectUUID).set(data);
-        $scope.updateProjectName();
-        $scope.$apply();
     }
-    $scope.updateProjectName = function (){
-        console.log("project number"+ $scope.projectnumber)
-        switch ($scope.projectnumber) {
-            case "Project1":
-                $scope.name1= $scope.CurrentProjectName;
-                break;
-            case "Project2":
-                $scope.name2= $scope.CurrentProjectName;
-                break;
-            case "Project3":
-                $scope.name3= $scope.CurrentProjectName;
-                break;
-            case "Project4":
-                $scope.name4= $scope.CurrentProjectName;
-                break;
-            case "Project5":
-                $scope.name5= $scope.CurrentProjectName;
-                break;
-            case "Project6":
-                $scope.name6= $scope.CurrentProjectName;
-                break;
-            case "Project7":
-                $scope.name7= $scope.CurrentProjectName;
-                break;
-            case "Project8":
-                $scope.name8= $scope.CurrentProjectName;
-                break;
-            case "Project9":
-                $scope.name9= $scope.CurrentProjectName;
-                break;
-            case "Project10":
-                $scope.name10= $scope.CurrentProjectName;
-                break;
+    $scope.createProject = function(){
+
+        //Get data required for new project
+        let newdata={
+            code:"",
+            language: SandboxLanguage,
+            name: $scope.new.project.name,
+            userID: uID,
+            date: new Date()
         }
+        $scope.projects.push(newdata);
+
+        db.collection("Projects").doc(generateUUID()).set(newdata).then(function () {
+            location.reload();
+        })
+
+        //length of projects array - 1
     }
 
-    $scope.DisplayProjects = function (){ //Done
-//Click the on the tab -> Gets button id i.e Project1
-        //Queries to get Project 1 uuid
-        //Uses UUID to get code and all other attributes for specific project and loads it in
-        console.log("part 1")
-        $scope.CurrentProjectUUID;
-        $scope.projectnumber = event.target.id; //gets which project it is
-        switch ($scope.projectnumber) {
-            case "Project1":
-                $scope.CurrentProjectUUID=project1UUID;
-                break;
-            case "Project2":
-                $scope.CurrentProjectUUID=project2UUID;
-                break;
-            case "Project3":
-                $scope.CurrentProjectUUID=project3UUID;
-                break;
-            case "Project4":
-                $scope.CurrentProjectUUID=project4UUID;
-                break;
-            case "Project5":
-                $scope.CurrentProjectUUID=project5UUID;
-                break;
-            case "Project6":
-                $scope.CurrentProjectUUID=project6UUID;
-                break;
-            case "Project7":
-                $scope.CurrentProjectUUID=project7UUID;
-                console.log("part 2")
-                break;
-            case "Project8":
-                $scope.CurrentProjectUUID=project8UUID;
-                break;
-            case "Project9":
-                $scope.CurrentProjectUUID=project9UUID;
-                break;
-            case "Project10":
-                $scope.CurrentProjectUUID=project10UUID;
-                break;
+    $scope.saveProject= function(i){
+        $scope.currentProjectCode= editor.getValue();
+        let project = $scope.projects[i];
+        project.date = $scope.projects[i].date;
+        project.name= $scope.projects[i].name;
+        project.code= $scope.currentProjectCode;
+        let data={
+            code: project.code,
+            language: project.language,
+            name: project.name,
+            userID: project.userID,
+            date: project.date
         }
-        console.log("part 3")
-        var CurrentProjectDocument = db.collection('projects').doc($scope.CurrentProjectUUID);
-        let getUserProjects = CurrentProjectDocument.get()
-            .then(doc => {
-                if (!doc.exists) {
-                    console.log('No such document!');
-                } else {
-                    console.log('Document data:', doc.data());
-                    CurrentProject = doc.data(); //Loads all UUID for all projects
-                    $scope.CurrentProjectCode = CurrentProject.code;  //Current Project Code
-                    $scope.CurrentProjectLanguage=CurrentProject.language; //Current Project Language
-                    console.log($scope.CurrentProjectLanguage)
-                    $scope.CurrentProjectName=CurrentProject.name; //Current Project
-                    //editor.setValue($scope.CurrentProjectCode);
-                    CheckLangauge();
+        db.collection("Projects").doc(project.id).update(data).then(function () {
+            $scope.$apply();
+            location.reload();
+        });
 
-                }
-            })
-            .catch(err => {
-                console.log('Error getting document', err);
-            });
-        console.log("part 5")
     };
 
+    $scope.displayProject= function(i){
+        //$scope.showProjectName(i);
+        $scope.currentProjectIndex=i;
+        localStorage.setItem("project",i.toString());
+        $scope.currentProjectCode=$scope.projects[$scope.currentProjectIndex].code;
+        $scope.currentProjectName=$scope.projects[$scope.currentProjectIndex].name;
+        editor.setValue($scope.currentProjectCode);
+        $scope.showSelectedBtn(i)
 
-    function CheckLangauge() {
-        console.log($scope.CurrentProjectLanguage)
-        if (($scope.CurrentProjectLanguage==="HTML") || ($scope.CurrentProjectLanguage === "EMPTY") ) { //checks if project is empty or HTML
-            editor.setValue($scope.CurrentProjectCode); //Changes code when you click a new project
+        //$scope.$apply();
+        //You click on the project
+        //Puts code in the code editor
 
-        } else {
-            $("#WrongCode").modal();
-        }
+    };
+
+    $scope.deleteProject = (i) => {
+        let project = $scope.projects[i];
+
+        db.collection("Projects").doc(project.id).delete().then(function() {
+            console.log("Document successfully deleted!");
+            $scope.projects.splice(i,1);
+            location.reload()
+        }).catch(function(error) {
+            console.error("Error removing document: ", error);
+        });
+
+
+
     }
 
-    $scope.DeleteProjects = function () {
+    $scope.onLoad= function (){
+        $scope.loadProjects();
+    }
+    $scope.onLoad();
 
-    };
+    $scope.deleteConfirm = (i) =>{
+        $("#deleteModal").modal();
+        $("#delete").click(function(){
+            $scope.deleteProject(i);
+        });
+    }
+    $scope.showSelectedBtn = (i) => {
+        for (var x = 0; x < $scope.projects.length; x++) {
+            var tempID = "project" + x;
+            var tempIDBtn = "saveBtn" + x;
+            var tempIDTrash = "trashBtn" + x;
+            var tempIDDate = "date" + x;
 
+            document.getElementById(tempIDBtn).style.display = "none";
+            document.getElementById(tempIDTrash).style.display = "none";
+            document.getElementById(tempID).style.background = "#23233b"
+        }
 
+        var show = "project" + i;
+        document.getElementById(show).style.background = "#dbdbdb";
+        var btnID = "saveBtn" + i;
+        document.getElementById(btnID).style.display = "block";
+        var trashID = "trashBtn" + i;
+        document.getElementById(trashID).style.display = "block";
 
-    //need to reset name evertime you load a new project
+    }
+
+    $scope.downloadCode= function(i){
+        project=$scope.projects[i];;
+        text = project.code;
+        filename = project.name +".html";
+        download(filename, text);
+    }
+
 });
 
 

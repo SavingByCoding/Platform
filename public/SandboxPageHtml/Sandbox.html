@@ -3,7 +3,6 @@
 <head>
     <title>HTML Sandbox</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel = "stylesheet" type= "text/css" href = "Sandbox.css">
     <link rel = "stylesheet" type="text/css" href="../navbarCSS.css">
@@ -20,7 +19,6 @@
     <script src="../redirectToLogin.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
     <script src="../navigationLinks.js"></script>
-    <script src="SandboxEditor.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164071846-1"></script>
     <script>
@@ -122,75 +120,34 @@
 </header>
 <!--/.Navbar -->
 
-<!--modal to load projects-->
-<div id="myModal" class="modal fade" style="background: rgba(250,235,215,0.5)" data-backdrop = "static">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background: #23233b">
-                <h4 class="modal-title" style="font-family: Karla;color: antiquewhite">Welcome to the HTML Sandbox Page!</h4>
-            </div>
-            <div class="modal-body" style="background: #23233b">
-                <p style="font-family: Karla; color: antiquewhite">Load your projects before accessing this page!</p>
-                <button class = "btn-primary" ng-click = "DisplayProjects()" data-dismiss="modal" style="font-family: Karla;color: #23233b;background: antiquewhite; border: transparent; border-radius: 5px">Load Projects!</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--end-->
 
 <br>
 <div class="container fadeCont">
     <div class="card helpCard">
-        <div class="card-body headerCard">
-            <h5 class="card-title headerEditor"><u>HTML Sandbox Code Editor</u></h5>
+        <div class="card-body headerCard"><br>
+            <h2 class="card-title headerEditor"><b>HTML Sandbox Code Editor</b></h2><br>
         </div>
     </div>
 </div>
 <div class = "container fadeCont">
     <div class = "row justify-content-around">
         <div class = "col-8"  >
-            <!--            <input id="ProjectName" class="form-control codeTitle" type="text" ng-model = "name1" id= "t1" style="display: flex">-->
-            <!--            <input class="form-control codeTitle" type="text" ng-model = "name2" id = "t2" style="display: none">-->
-            <!--            <input class="form-control codeTitle" type="text" ng-model = "name3" id = "t3" style="display: none">-->
-            <!--            <input class="form-control codeTitle" type="text" ng-model = "name4" id = "t4" style="display: none">-->
-            <!--            <input class="form-control codeTitle" type="text" ng-model = "name5" id = "t5" style="display: none">-->
-            <!--            <input class="form-control codeTitle" type="text" ng-model = "name6" id = "t6" style="display: none">-->
-            <!--            <input class="form-control codeTitle" type="text" ng-model = "name7" id = "t7" style="display: none">-->
-            <!--            <input class="form-control codeTitle" type="text" ng-model = "name8" id = "t8" style="display: none">-->
-            <!--            <input class="form-control codeTitle" type="text" ng-model = "name9" id = "t9" style="display: none">-->
-            <!--            <input class="form-control codeTitle" type="text" ng-model = "name10" id = "t10" style="display: none">-->
         </div>
     </div>
 </div>
 <br>
 
-<!--<br>-->
-
-<!--<div class = "container">-->
-<!--    <div class = "row">-->
-<!--        <div class="card instructionsCard">-->
-<!--            <div class="card-body instructionsCard">-->
-<!--                <h4>How it Works</h4>-->
-<!--                <p>Use our sandbox editor to test out your own ideas and expand on your knowledge! Running out of ideas? Refer to our Project Ideas at the bottom of this page that you can try and test yourself with! Once you're done, click the red "Run it!" button and watch your code come to life in the output screen on the right!</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--<br>-->
-
-<!--<br>-->
-<div id="SubmitProject" class="modal fade" role="dialog" ng-controller="HTMLSandbox">
+<div id="SubmitProject" class="modal fade" role="dialog"ng-controller="HTMLSandbox">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content POPUP">
             <!--            <button type="button" class="close" data-dismiss="modal">&times;</button>-->
             <h4 class="modal-title">Name Your Project</h4>
             <div class="modal-body">
-                <input class="ProjectName" ng-model="CurrentProjectName" type="text" id = "ProjectName" style="display: flex">
+                <input class="ProjectName" ng-model="currentProjectName" type="text" id = "ProjectName" style="display: flex">
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" onclick="SaveChanges()" class="btn btn-default" data-dismiss="modal" > Done </a></button>
+                <button type="button" ng-click="saveProject()"  class="btn btn-default" data-dismiss="modal" >Done </a></button>
             </div>
         </div>
     </div>
@@ -211,55 +168,87 @@
         <div class = "col no-gutters">
             <div class = "rightside">
                 <iframe class= "outputScreen" id = "outputScreen" frameBorder="0"></iframe>
-                <!--                <textarea class= "outputScreen" id = "outputScreen" readonly>&ndash;&gt; Code Output</textarea>-->
             </div>
         </div>
-        <div class = "col-3" style="background: #ebefeb;text-align: center; font-family: Karla; border: 4px solid #23233b">
-            <h3 style="text-align: center"><b><u>Projects</u></b></h3>
-            <small>Access previous projects in this directory!</small>
-            <button class = "btn-primary projectLoadButtons active" ng-click="DisplayProjects()"  onclick="chooseActive(1) " id = "Project1" ng-model = "name1">{{name1}}<br>({{lang1}})</button>
-            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(2) " id = "Project2" ng-model = "name2"> {{name2}}<br>({{lang2}})</button>
-            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(3) " id = "Project3" ng-model = "name3"> {{name3}}<br>({{lang3}})</button>
-            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(4) " id = "Project4" ng-model = "name4"> {{name4}}<br>({{lang4}})</button>
-            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(5) " id = "Project5" ng-model = "name5"> {{name5}}<br>({{lang5}})</button>
-            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(6) " id = "Project6" ng-model = "name6"> {{name6}}<br>({{lang6}})</button>
-            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(7) " id = "Project7" ng-model = "name7"> {{name7}}<br>({{lang7}})</button>
-            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(8) " id = "Project8" ng-model = "name8"> {{name8}}<br>({{lang8}})</button>
-            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(9) " id = "Project9" ng-model = "name9"> {{name9}}<br>({{lang9}})</button>
-            <button class = "btn-primary projectLoadButtons" ng-click="DisplayProjects()" onclick="chooseActive(10) " id = "Project10" ng-model = "name10"> {{name10}}<br>({{lang10}})</button>
-        </div>
-    </div>
-</div>
-<br><br><br><br><br><br><br><br><br>
+        <div class = "col-3" id = "projects" style="background: #23233b;text-align: center; font-family: Karla; " ng-controller="HTMLSandbox">
+            <br><h3 style="text-align: center;color: antiquewhite"><b><u>Projects</u></b></h3>
+            <small style="color: antiquewhite">Access previous projects in this directory!</small><br><br>
 
-<div class = "container buttonCont" >
-    <div class = "row buttonRow justify-content-around">
-        <div class="col-6 colButton">
-            <button class="btn btn-primary CompileButton" onclick="SaveProject()" data-toggle="modal" data-target="#SubmitProject" id = "SaveButton" type="submit">Save It!</button>
-        </div>
-<!--        <div class="col-6 colButton">-->
-<!--            <button class="btn btn-primary CompileButton" id = "CompileButton" type="submit">Run It!</button>-->
-<!--        </div>-->
-    </div>
-</div>
+            <label for = "createBtn" style="color:antiquewhite;">Create Project</label>
+            <button id = "createBtn" class="btn btn-danger btn-circle btn-circle-lg m-1" data-toggle="modal" data-target="#createProjModal" >+</button><br><br>
+            <div style="border-bottom: 3px solid antiquewhite"></div>
+            <div class="card" id = "project{{$index}}"  ng-click="displayProject($index)" ng-repeat="project in projects" style="border-bottom: 3px solid antiquewhite ">
+                <div class="card-body">
+                    <div class= "row justify-content-around">
+                        <div class = "col-5">
+                            <div class = "row justify-content-around">
+                                <h4 style="background: #ececf3;border-radius: 15px">&nbsp;&nbsp;{{project.name}}&nbsp;&nbsp;</h4>
+                            </div><br>
+                            <div class = "row justify-content-around" id = "date{{$index}}" style="background: #ececf3;border-radius: 15px">
+                                Created: {{project.date.toDate().getMonth()}}/{{project.date.toDate().getDate()}} at {{project.date.toDate().getHours()}}:{{project.date.toDate().getMinutes()}}
+                            </div>
+                        </div>
+                        <div class = "col-5"><br>
+                            <div class = "row justify-content-around">
+                                <img class = "trash" src="../trashcan.png" id = "trashBtn{{$index}}" ng-click="deleteConfirm($index)">
+                            </div>
+                            <br>
+                            <div>
+                                <img src="https://img.icons8.com/bubbles/50/000000/download.png" ng-click="downloadCode($index)"/>
+                            </div>
+                            <br>
+                            <div class = "row justify-content-around">
+                                <button class="btn btn-primary saveBTN" id = "saveBtn{{$index}}" ng-click="saveProject($index)">Save Project</button>
+                            </div>
 
-<div id="WrongCode" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content POPUP">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"> Project Loading Error</h4>
-            <div class="modal-body">
-                You tried loading a PYTHON project into the HTML sandbox
-            </div>
-            <div class="modal-footer justify-content-center">
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ><a href="../SandboxPagePython/Sandbox.html"> PYTHON Sandbox</a></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<br><br><br><br><br><br><br><br><br>
+
+<div class="modal fade" id="deleteModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content" style="background: #bebed2">
+            <div class="modal-body" style="font-family: Karla">
+                <h1>Confirm Delete?</h1>
+                <h3 style="color: #E32c2c">Once deleted, the project can never be recovered again!</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" style="background: #E32c2c;font-family: Karla" data-dismiss="modal" id = "delete">Delete</button>
+                <button type="button" class="btn btn-default" style="font-family: Karla" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="modal fade" id="createProjModal" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true" ng-controller = "HTMLSandbox">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background: #bebed2; font-family: Karla;color: #23233b">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Create New Project</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6>Projects once named cannot be renamed!</h6>
+                <br>
+                <label for = "ProjName" style="font-size: 25px">Name: </label>
+                <input id = "ProjName" style="font-size: 25px" type = "text" placeholder="Enter Project Name" ng-model="new.project.name">
+                <br><br>
+                <button type="button" class="btn " data-dismiss="modal" ng-click="createProject()" style="font-size: 20px" >Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <div class="container">
 
