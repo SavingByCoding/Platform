@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel = "stylesheet" type="text/css" href = "AdvPythonContentPage.css">
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+    <link rel = "stylesheet" type="text/css" href="../navbarCSS.css">
+    <link rel="icon" href="../LogoWithoutWords.png">
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+    <script src="../FirebaseCode.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164071846-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-164071846-1');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PRWFR3P');</script>
+    <!-- End Google Tag Manager -->
+    <title>Advanced Python Content</title>
+</head>
+<body class = "bodystuff" ng-app = "myApp">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PRWFR3P"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!--Navbar -->
+<header class="page-header navbar navbar-expand-lg navbar-dark navBar" id="page-header" id="page-header" ng-controller = "myCont1" style="background:#8f92b4; display:grid;">
+    <button  class="ghost navbar-toggler first-button main-menu-toggle" id="hamburg" type="button" data-toggle="collapse" data-target="#navbarSupportedContent20" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a href = "/Platform/public/index.html" class="logo1">
+        <img id = "logo1" ng-src={{logo}} style="height: 100px"></a>
+    <nav class="main-nav" id="main-nav1">
+        <!--    <button type="button" class="ghost main-menu-toggle" aria-haspopup="true" aria-label="Show Menu">  </button>-->
+
+        <ul class="main-menu navbar-collapse"  id="navbarSupportedContent20">
+            <li class="top-level-entry-container">
+                <a class="nav-link active" id = "m1" href="#" ng-model = "menuName1">{{menuName1}}<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="top-level-entry-container nav-item active">
+                <a class="nav-link" id = "m2" href="#" ng-model = "menuName2"> {{menuName2}}</a>
+            </li>
+            <li class="top-level-entry-container nav-item">
+                <a class="nav-link" id = "m4" href="#" ng-model = "menuName4">{{menuName4}}</a>
+
+            </li>
+            <li style="position:relative">
+                <a class="nav-link dropdown-toggle nav-item" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                    {{menuName3}}
+                </a>
+                <div class="dropdown-menu nav-item" style="position:absolute; left:0; top:100%; width:auto; font-size:17px;"  aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#" ng-model = "menuName5" id="m5">{{menuName5}}</a>
+                    <a class="dropdown-item" href="#" ng-model = "menuName6" id = "m6">{{menuName6}}</a>
+                </div>
+            </li>
+            <li style="position:relative">
+                <a class="nav-link dropdown-toggle nav-item" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "dropdownName">
+                    {{sandbox}}
+                </a>
+                <div class="dropdown-menu nav-item dropdown-menu-items right" style="position:absolute;  font-size:17px; left:0; top:100%;" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="" id="s1">{{sand1}}</a>
+                    <a class="dropdown-item" href="" id = "s2">{{sand2}}</a>
+                </div>
+            </li>
+            <li  class="top-level-entry-container nav-item active" >
+                <button class = "btn btn-primary registerButton" id="HiddenRegister" onClick = "registerNow()" style="background: transparent; font-size:20px; padding:4px;  color: #23233b; border: transparent"><b>Register Now</b></button>
+            </li>
+            <li  class="top-level-entry-container nav-item active">
+                <button class = "btn btn-primary" id="HiddenSignUp" onClick = "signUpNow()" style="background: transparent; font-size:20px; padding:4px; color: #23233b; border: transparent"><b>Sign Up</b></button>
+            </li>
+        </ul>
+    </nav>
+    <button class = "btn btn-primary header-search" id="SignUpForFree" onClick = "signUpNow()" style=" font-size:20px; margin-top:0px; background: antiquewhite; color: #23233b; border: transparent;" >Sign Up</button>
+    <button class = "btn btn-primary  header-search" id="RegisterNow" onClick = "registerNow()" style=" font-size:20px; margin-top:0px; background: antiquewhite; color: #23233b; border: transparent ">Register Now</button>
+    <button class = "btn btn-primary  auth-container"  id="loginButton" onClick= "loginNow()" style="background: antiquewhite;  font-size:20px; margin-top:0px; color: #23233b; border: transparent">  Login </button>
+    <div class="auth-container dropdown-container" id="profilepic1" >
+        <button class="dropdown-menu-label dropdown-toggle" data-toggle="dropdown" id="user-avatar-menu" type="button" aria-haspopup="true" style="background:transparent; cursor:pointer; border:none">
+            <img id="ProfilePicture" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpJQyPJzRtki3nmi0X00gDx-9inOL2It8-yID8bZzrfyTr_ML3&usqp=CAU" style="border-radius: 50%; width: 60px; height: 60px" class="center ">
+        </button>
+        <ul class="dropdown-menu-items right" id="dropdown" aria-expanded="false" role="menu" style=" left:auto;right:0;margin-right:-10px;">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="font-size:17px;">
+
+                <a class="dropdown-item" style="font-size:17px;"href="" id="d1">{{dropdown1}}</a>
+                <div class="dropdown-divider" style="font-size:17px;"id="divider1"></div>
+                <a class="dropdown-item"style="font-size:17px;" onclick="SignOut()" href="" id="d4">{{dropdown4}}</a>
+                <a class="dropdown-item" style="font-size:17px;" href="" id="d6">{{dropdown6}}</a>
+            </div>
+            </li>
+        </ul>
+    </div>
+</header>
+<!--/.Navbar -->
+
+
+<br>
+<div class = "container" data-aos="fade-up">
+    <div class="row overviewRow justify-content-around">
+        <div class="col-8 overviewHeader">
+            <p><u><b>Advanced Python Course Overview</b></u></p>
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="container"  data-aos="fade-up" style="border-top: 10px solid #23233b">
+    <div class = "row justify-content-around" style="height: 30px;">
+        <div class = "col-4" style="text-align: center;background: antiquewhite;color: #23233b;font-family: Karla;font-size: 35px;">Units</div>
+        <div class = "col-4" style="text-align: center;background: antiquewhite;color: #23233b;font-family: Karla;font-size: 35px;">Lessons</div>
+        <div class = "col-4" style="text-align: center;background: antiquewhite;color: #23233b;font-family: Karla;font-size: 35px;">Overview</div>
+    </div>
+</div>
+
+
+<br>
+
+<div class = "container" data-aos="fade-up" >
+    <div class = "row mainRow">
+        <div class = "col-4 unitNameDisplayCol">
+            <div class = "row Units"><button class = "btn btn-primary UnitButton u1" style="font-size: 16px" onclick="Unit1()">Unit 1 - Basic Python and Functions</button></div>
+            <div class = "row Units"><button class = "btn btn-primary UnitButton u2" style="font-size: 16px" onclick="Unit2()">Unit 2 - Object Oriented Programming Part 1 </button></div>
+            <div class = "row Units"><button class = "btn btn-primary UnitButton u3" style="font-size: 16px" onclick="Unit3()">Unit 3 - Object Oriented Programming Part 2</button></div>
+            <div class = "row Units"><button class = "btn btn-primary UnitButton u4" style="font-size: 16px" onclick="Unit4()">Unit 4 - File Handling and Modules</button></div>
+
+        </div>
+        <div class="col-4 unitDisplayCol">
+            <div id = "Unit1Chapters" class = "UnitChapters">
+                <button class = "btn btn-primary ChapterButton u1" onclick="Chapter1()">Lesson 1.1 </button>
+                <button class = "btn btn-primary ChapterButton u1" onclick="Chapter2()">Lesson 1.2 </button>
+            </div>
+            <div id = "Unit2Chapters" class = "UnitChapters">
+                <button class = "btn btn-primary ChapterButton u2" onclick="Chapter3()">Lesson 2.1</button>
+                <button class = "btn btn-primary ChapterButton u2" onclick="Chapter4()">Lesson 2.2</button>
+                <button class = "btn btn-primary ChapterButton u2" onclick="Chapter5()">Lesson 2.3</button>
+                <button class = "btn btn-primary ChapterButton u3" onclick="Chapter6()">Lesson 2.4</button>
+            </div>
+            <div id = "Unit3Chapters" class = "UnitChapters">
+                <button class = "btn btn-primary ChapterButton u3" onclick="Chapter7()">Lesson 3.1</button>
+                <button class = "btn btn-primary ChapterButton u3" onclick="Chapter8()">Lesson 3.2</button>
+                <button class = "btn btn-primary ChapterButton u3" onclick="Chapter9()">Lesson 3.3</button>
+            </div>
+            <div id = "Unit4Chapters" class = "UnitChapters">
+                <button class = "btn btn-primary ChapterButton u4" onclick="Chapter10()">Lesson 4.1</button>
+                <button class = "btn btn-primary ChapterButton u4" onclick="Chapter11()">Lesson 4.2</button>
+                <button class = "btn btn-primary ChapterButton u4" onclick="Chapter12()">Lesson 4.3</button>
+            </div>
+        </div>
+        <div class = "col-4 unitOverviewCol">
+            <div class = "row justify-content-around">
+                <div class = "chap u1" id = "Chapter1">
+                    <br>
+                    <h5><b><u>Basic Review</u></b></h5>
+                    <p>The first lesson of this course will review the basics of Python in order to provide a strong foundation before students working with Object Oriented Programming</p>
+                    <br>
+                </div>
+                <div class = "chap u1" id = "Chapter2">
+                    <br>
+                    <h5><b><u>Functions and Lambda</u></b></h5>
+                    <p>This lesson will dive into functions and introduce students to the ideas of methods, parameters, and arguments.</p>
+                    <br>
+                </div>
+                <div class = "chap u2" id = "Chapter3">
+                    <br>
+                    <h5><b><u>What is OOP?</u></b></h5>
+                    <p>This lesson introduces the idea of Object Oriented Programming and how classes and methods work together.</p>
+                    <br>
+                </div>
+                <div class = "chap u2" id = "Chapter4">
+                    <br>
+                    <h5><b><u>Attributes and Methods</u></b></h5>
+                    <p>Students will learn how translate the properties and behaviors of their classes into attributes and methods.</p>
+                    <br>
+                </div>
+                <div class = "chap u2" id = "Chapter5">
+                    <br>
+                    <h5><b><u>Working With Objects</u></b></h5>
+                    <p>This lesson teaches students how create objects from a class and utilize the object's attributes and methods.</p>
+                    <br>
+                </div>
+                <div class = "chap u2" id = "Chapter6">
+                    <br>
+                    <h5><b><u>Class and Static Methods</u></b></h5>
+                    <p>Students will familiarize themselves with two unique methods within their own classes and learn how to put them to use.</p>
+                    <br>
+                </div>
+                <div class = "chap u3" id = "Chapter7">
+                    <br>
+                    <h5><b><u>Idea of Inheritance</u></b></h5>
+                    <p>Students will be introduced to concept of Inheritance and its application with classes and objects.</p>
+                    <br>
+                </div>
+                <div class = "chap u3" id = "Chapter8">
+                    <br>
+                    <h5><b><u>Inheritance Syntax</u></b></h5>
+                    <p>This lesson familiarizes students with the various syntax and keywords needed to apply inheritance.</p>
+                    <br>
+                </div>
+                <div class = "chap u3" id = "Chapter9">
+                    <br>
+                    <h5><b><u>Constructors and Polymorphism</u></b></h5>
+                    <p>Students will learn to edit their constructors for inheritance and be introduced to the concept of Polymorphism.</p>
+                    <br>
+                </div>
+                <div class = "chap u4" id = "Chapter10">
+                    <br>
+                    <h5><b><u>Intro to File Handling</u></b></h5>
+                    <p>This lesson goes over the characteristics of files and rules of file handling in Python.</p>
+                    <br>
+                </div>
+                <div class = "chap u4" id = "Chapter11">
+                    <br>
+                    <h5><b><u>Reading and Writing to Files</u></b></h5>
+                    <p>Students will review the appropriate syntax to read and write to files in Python</p>
+                    <br>
+                </div>
+                <div class = "chap u4" id = "Chapter12">
+                    <br>
+                    <h5><b><u>Modules</u></b></h5>
+                    <p>Our final lesson explores the workings behind Modules and the steps to create them.</p>
+                    <br>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class = "container">
+    <div class = "row justify-content-around">
+        <button class = "btn btn-primary closeButton" onclick="closeAll()">Close all</button>
+    </div>
+</div>
+<br><br><br>
+<footer id="sticky-footer" class="py-4  FOOTER text-white-50" ng-controller = "MyCont2" style="border-top: 10px solid #23233b">
+    <div class="container  text-center">
+        <div class = "row">
+            <div class = "col-4" style="font-family:Karla;color: #23233b">
+                <h5>2020 Copyright: Saving By Coding</h5>
+                <p>Make a difference in your life</p>
+            </div>
+            <div class = "col-4 linksColFooter">
+                <small><a class = "Links" href="#" id = "f1" mg-model = "footerMenuName1">{{footerMenuName1}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f2" mg-model = "footerMenuName2">{{footerMenuName2}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f3" mg-model = "footerMenuName3">{{footerMenuName3}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f4" mg-model = "footerMenuName4">{{footerMenuName4}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f5" mg-model = "footerMenuName5">{{footerMenuName5}}</a></small><br>
+                <small><a class = "Links" href="#" id = "f6" mg-model = "footerMenuName6">{{footerMenuName6}}</a></small><br>
+            </div>
+            <div class = "col-4">
+                <div style="background: #dce1e8;border-radius: 15px">
+                    <img id = "instalogo" src="../instalogo.png" style="height: 60px;">
+                    <label style="font-family: Karla; color: #23233b;font-size: 20px" for = "instalogo"><a href="https://www.instagram.com/codeology.sbc/">&nbsp;Find Us on Instagram!</a></label>
+                </div>
+                <br>
+                <div style="background: #dce1e8;border-radius: 15px">
+                    <img id = "facebooklogo" src="../facebooklogo.png" style="height: 60px;">
+                    <label style="font-family: Karla; color: #23233b;font-size: 20px" for = "facebooklogo">  <a href="https://www.facebook.com/codeology.sbc/">Add Us on Facebook!</a></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
+<script src="../navigationLinks.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="LoginFirebase.js"></script>
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script src = "Overview.js"></script>
+<script>AOS.init();</script>
+</html>
