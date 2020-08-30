@@ -1,9 +1,17 @@
 # Codeology
 
-Backend for the platform.
+Codeology is a platform that helps users learn to code with instructors in an online classroom format. 
 
-# Introduction
+## Features
 
-This is the "complete" Codeology platform. 
+### Code Compilers
 
-Codeology is a platform. Users can experiment, learn to code, and submit assignments all on the website. 
+Codeology utilizes compilers from @ajaxorg/ace to help users code on our website and 
+
+### Classroom Style Assignment Submission and Grading
+
+
+
+## Built Using
+
+Codeology 
