@@ -7,11 +7,15 @@
 
 ## Features
 
-### Code Compilers
+- Code Compilers: Codeology enables users to begin coding on the website without any need to download software. Compilers are currently available in the languages of HTML and Python. Codeology utilizes compilers from [@ajaxorg/ace](https://github.com/ajaxorg/ace).
 
-Codeology utilizes compilers from @ajaxorg/ace to help users code on our website and 
+- Assignment Submission and Grading: In a virtual classroom format, users can complete assignments for their class and submit them to be graded by their instructors in real time. Upon grading, users receive an email notification of a status update to their submitted assignment. 
 
-### Assignment Submission and Grading
+## How to Use it
+
+
+## Tech Stack
+
 
 ## Motivation
 
@@ -19,5 +23,5 @@ Codeology's day 1 goal has always been to support underprivleged youth. The educ
 
 ## FAQ
 
-If you have questions about Codeology and want answers, then email our team at savingbycoding@gmail.com!
+If you have questions about Codeology and want answers, feel free to email our team at savingbycoding@gmail.com!
 
