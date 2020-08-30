@@ -13,6 +13,7 @@
 
 ## How to Use it
 
+To get started with Codeology, go to our [website](https://www.codeology.org) and create an account by signing in with google. Then, after attending a demo class, you will be able to register for courses by scheduling classes that correspond to your availability. And, just like that, you can get started with learning to code! 
 
 ## Tech Stack
 
