@@ -1,4 +1,4 @@
-![Codeology](Codeology Black Logo Transparent Without Words.png)
+![](/Platform/public/Codeology Black Logo Transparent Without Words.png)
 
 # Codeology
 
